@@ -1,0 +1,47 @@
+@header-font-family: "'Helvetica Neue Light', 'HelveticaNeue-Light', 'Helvetica Neue', Calibri, Helvetica, Arial";
+@contentzone-bg-color: #dbdec0;
+@contentzone-borders: 1px solid #dec69c;
+@contentzone-width: 95%;
+#page-header{
+  padding: 15px;
+  .Title{
+    font-family: @header-font-family;
+    font-size: x-large;
+    display: block;
+  }
+  .Description {
+    font-family: @header-font-family;
+    font-size: small;
+    color: #666666;
+  }
+}
+
+#search-filter{
+  width: @contentzone-width;
+}
+
+#entity-list {
+  width: @contentzone-width;
+  table{
+    border-spacing:0;
+    border-collapse: collapse;
+    width: 100%;
+
+    thead {
+      tr {
+        td {
+          font-weight: bold;
+        }
+      }
+    }
+    tbody{
+      tr {
+        td {
+          padding: 5px;
+          text-decoration: double;
+          border-bottom: 1px solid #666666;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+doctype 5
+html
+    head
+        title= title
+        block meta
+            meta(charset="utf-8")
+            meta(http-equiv="X-UA-Compatible", content="IE=edge,chrome=1")
+            title
+            meta(name="description", content="")
+            meta(name="author", content="")
+            meta(name="viewport", content="initial-scale=1.0, user-scalable=no")
+            // configure Grunt to compile all css into single file.
+            link(rel='stylesheet', type='text/css', href='/dash/css/style.css')
+            link(rel='stylesheet', type='text/css', href='/dash/css/dash.buttons.css')
+            link(rel='stylesheet', type='text/css', href='/dash/css/dash.index.css')
+            link(rel='stylesheet', type='text/css', href='/dash/css/dash.map.css')
+            link(rel='stylesheet', type='text/css', href='/dash/css/dash.titlebar.css')
+            link(rel='stylesheet', type='text/css', href='/dash/css/dash.welcome.css')
+            link(rel='stylesheet', type='text/css', href='/dash/css/dash.lists.css')
+            link(rel='stylesheet', type='text/css', href='//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.2/css/bootstrap.min.css')
+        block styles
+            script(src="/dash/js/lib/require.js", data-main="/dash/js/main")
+        block scripts
+            body
+        div(id="site-container-override")
+        div(id="site-container")
+            div(id="site-header")
+            div(id="site-content")
+        block content

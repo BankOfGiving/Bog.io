@@ -1,0 +1,28 @@
+doctype 5
+html
+    head
+        title= title
+        block meta
+            meta(charset="utf-8")
+            meta(http-equiv="X-UA-Compatible", content="IE=edge,chrome=1")
+            title
+            meta(name="description", content="")
+            meta(name="author", content="")
+            meta(name="viewport", content="initial-scale=1.0, user-scalable=no")
+            link(rel='stylesheet', href='/css/style.css')
+            // configure Grunt to compile all css into single file.
+            link(rel='stylesheet', type='text/css', href='/css/public.index.css')
+            link(rel='stylesheet', type='text/css', href='/css/public.map.css')
+            link(rel='stylesheet', type='text/css', href='/css/public.titlebar.css')
+            link(rel='stylesheet', type='text/css', href='/css/public.welcome.css')
+            link(rel='stylesheet', type='text/css', href='/css/public.lists.css')
+        block styles
+            script(src="/js/lib/require.js", data-main="/js/main")
+        block scripts
+
+    body
+        div(id="site-container-override")
+        div(id="site-container")
+            div(id="site-header")
+            div(id="site-content")
+        block content
