@@ -5,20 +5,24 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'views/profile/profile.detail.small',
+    'views/profile/_profile.detail.small',
     'text!../../../tmpl/home/main.v1.html'
 ], function($, _, Backbone, ProfileView, mainTemplate){
     return Backbone.View.extend({
+        initialize: function(){
+            console.log('initialize');
+        },
         render: function(container) {
 
             container.html(mainTemplate);
 
-            var profilePanelContainer = $("#profile-panel")
+            var profilePanelContainer = $("#profile-panel");
             var profileView = new ProfileView();
             profileView.render(profilePanelContainer);
-        },
-        initialize: function(){
-            console.log('initialize');
+
+            $("#Logout").click(function(){
+                $.get("/auth/logout/");
+            })
         }
     });
 });

@@ -6,15 +6,23 @@ mongoose.createConnection(db.connectionString);
 
 var ObjectId = mongoose.Schema.Types.ObjectId;
 
+var User = require('./user.model.js');
+var Tag = require('./tag.model.js');
+var Audit = require('./audit.model.js');
+
 var donationSchema = new mongoose.Schema({
     id: ObjectId,
     title:  String,
-    author: String,
+    author: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'User'
+    },
     description: String,
     type:  String,
     comments: [{ body: String, date: Date }],
-    tags: [{ tag: String }],
-    hidden: Boolean,
+    tags: [Tag],
+    active: Boolean,
+    deleted: Boolean,
     meta: {
         votes: Number,
         favs:  Number
@@ -26,14 +34,11 @@ var donationSchema = new mongoose.Schema({
                 "short_name" : String,
                 "types" : Array
             }],
-        "geometry" : {
-            "location" : [Number]  // [lng, lat]
-            }
+        "location" : [Number]  // [lng, lat]
     },
-    audit: {
-        createdAt: { type: Date, default: Date.now },
-        lastModifiedAt: { type: Date, default: Date.now }
-    }
+    createdAt: { type: Date, default: Date.now },
+    lastModifiedAt: { type: Date, default: Date.now},
+    audit: [Audit]
 });
 
 donationSchema.index({ "address.geometry.location": "2d"});
@@ -51,11 +56,67 @@ donationSchema.statics.getByObjectId = function (id, callback) {
         }
     });
 };
+donationSchema.statics.UpsertFromObject = function(input, user, callback){ // callback(err, donation)
+    var id = input._id;
 
-donationSchema.statics.getByLocation = function (lat, lng, rad, callback) {
-    // var query = this.where('addresses.geometry.location').near([lat, lng]).maxDistance(rad);
 
-    var geo = [lng, lat];
+
+    var donation = new this({
+        title: input.title,
+        author: user,
+        description: input.description,
+        type: input.type,
+        address: {
+            location: input.address.location
+        }
+    });
+
+    if(id){
+        // Upsert
+
+    } else {
+        // Create
+    }
+
+    var donation = new this({
+        title: input.title,
+        author: user,
+        description: input.description,
+        type: input.type,
+        address: {
+            location: input.address.location
+        }
+    });
+
+//    var donation = new this();
+//    donation.title = input.title;
+//    donation.author = user;
+//    donation.description = input.description;
+//    donation.type = input.type;
+//    donation.location = input.location;
+//    donation.tags = [];
+//    for(var i=0;i<input.tags.length; i++){
+//        var tag = new Tag( { tag: input.tags[i].tag });
+//        donation.tags.push(tag);
+//    }
+//    console.log('INPUT TITLE:  ' + input.title);
+//    console.log('DONATION TITLE:  ' + donation.title);
+//    console.log('DONATION:  ' + donation);
+
+    donation.save(function (err) {
+        donation.title = input.title;
+        if (err){
+            console.log(err);
+            callback(err, null);
+        }
+        callback(null, donation);
+    });
+};
+
+    donationSchema.statics.getByLocation = function (lat, lng, rad, callback) {
+        // var query = this.where('addresses.geometry.location').near([lat, lng]).maxDistance(rad);
+
+        var geo = [lng, lat];
 
 //    var lonLat = { $geometry :  { type : "Point" , coordinates : geo } };
 //    var query = this.aggregate([
@@ -89,24 +150,25 @@ donationSchema.statics.getByLocation = function (lat, lng, rad, callback) {
         });
     };
 
-donationSchema.statics.createSeed = function (seed, callback) {
-    var donation = new this;
+    donationSchema.statics.createSeed = function (seed, callback) {
+        var donation = new this;
 
-    if(seed){
-        donation.address = {
-            geometry : {
-                location: [randomFromInterval(-124.848974, -66.885444), randomFromInterval(24.396308, 49.384358)]
-            }
-        };
-        callback(donation);
-    } else {
-        callback(donation);
+        if(seed){
+            donation.address = {
+                geometry : {
+                    location: [randomFromInterval(-124.848974, -66.885444), randomFromInterval(24.396308, 49.384358)]
+                }
+            };
+            callback(donation);
+        } else {
+            callback(donation);
+        }
+    };
+
+    function randomFromInterval(from,to) {
+        var rand = Math.random()*(to-from+1)+from;
+        return rand;
     }
-};
 
-function randomFromInterval(from,to) {
-    var rand = Math.random()*(to-from+1)+from;
-    return rand;
-}
+    module.exports = mongoose.model('Donation', donationSchema);
 
-module.exports = mongoose.model('Donation', donationSchema);

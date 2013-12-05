@@ -26,9 +26,7 @@ var solicitationSchema = new mongoose.Schema({
                 "short_name" : String,
                 "types" : Array
             }],
-        "geometry" : {
             "location" : [Number]  // [lng, lat]
-            }
     },
     audit: {
         createdAt: { type: Date, default: Date.now },

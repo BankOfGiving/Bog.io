@@ -95,6 +95,23 @@ module.exports = function(app, uriBase){
         }
     });
 
+    app.post(uriBase + '/', function(req, res){
+        var donation = req.body.donation;
+        var user = req.session.user;
+
+        console.log('USER:  ' + user);
+        if(donation != null && donation != ''){
+            Donation.UpsertFromObject(donation, user, function(err, don){
+                if(err) {
+                    res.send(406, err);
+                }
+                res.send(200);
+            });
+        } else {
+            res.send(406, new Error("no object sent"));
+        }
+    });
+
     function CreateElements(num, callback){
         var coll = [];
         for(var i = 0; i < num; i++) {

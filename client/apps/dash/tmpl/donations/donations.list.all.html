@@ -14,7 +14,7 @@
         <tbody>
         <% if(donations == "loading") { %>
         <tr>
-            <td colspan="3"><img src="/images/loading.bar.gif"/></td>
+            <td colspan="3"><img src="/img/loading.bar.gif"/></td>
         </tr>
         <% } else { %>
             <% if(donations == null) { %>
@@ -26,7 +26,7 @@
                     <tr>
                         <td><a href="#/donation/<%= donation.get('_id') %>"><%= donation.get('title') %></a></td>
                         <td><%= donation.get('address.geometry.location') %></td>
-                        <td>[<a herf="#" style="cursor:hand;" onclick="edit('<%=donation.get("_id") %>')"> 0 </a>][X]</td>
+                        <td>add control buttons here.</td>
                     </tr>
                 <% }); %>
             <% } %>

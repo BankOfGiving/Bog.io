@@ -26,7 +26,7 @@ define([ 'jquery', 'underscore', 'backbone', 'bog.session', 'bog.site',
     'views/solicitations/solicitation.delete',
     'views/solicitations/solicitation.add',
     'views/solicitations/solicitation.view',
-    'views/solicitations/solicitation.edit',
+    'views/solicitations/solicitation.edit'
 
 ], function($, _, Backbone, session, site,
         LandingView,
@@ -58,8 +58,8 @@ define([ 'jquery', 'underscore', 'backbone', 'bog.session', 'bog.site',
         routes: {
             // Define some URL routes
             '': 'landing',
-            'profile': 'manageProfile',
-            'profile/edit': 'editProfileEdit',
+            'profile': 'userProfileManage',
+            'profile/edit': 'userProfileEdit',
 
             'donations': 'userDonations',
             'donations/delete/:id': 'userDonationDelete',
@@ -105,13 +105,11 @@ define([ 'jquery', 'underscore', 'backbone', 'bog.session', 'bog.site',
         });
 
         // Profile
-        app_router.on('route:manageProfile', function () {
-            var profileManageView = new ProfileManageView();
-            profileManageView.render(contentContainer);
+        app_router.on('route:userProfileManage', function () {
+            var profileManageView = new ProfileManageView(contentContainer);
         });
-        app_router.on('route:editProfile', function () {
-            var profileEditView = new ProfileEditView();
-            profileEditView.render(contentContainer);
+        app_router.on('route:userProfileEdit', function () {
+            var profileEditView = new ProfileEditView(contentContainer);
         });
 
         // Donations

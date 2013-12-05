@@ -5,7 +5,6 @@ define([ ], function(){
     return {
         isAuthenticated: function(callback) {
             var that = this;
-            console.log('check user');
             $.ajax("auth/loggedin", {
                 type: "GET",
                 dataType: "json",

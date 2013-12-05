@@ -30,10 +30,35 @@ module.exports = function(app, uriBase) {
         },
         function(accessToken, refreshtoken, profile, done) {
             process.nextTick(function () {
-                User.GetUserFromFacebookProfile(profile, function(err, user){
-                    console.log('DONE:USER: ' + user);
-                    console.log('DONE:ERR: ' + err);
-                    done(err, user);
+                User.findByPassportProfile(profile, function(err, user){
+
+                    if(user && !err) {
+                        console.log('User is found and no errors.  Update account from the profile information and return.');
+                        User.MapPassportProfileToUser(profile, user, function(err, user){
+                            user.save(function (err, user, numberAffected) {
+                                if(err) {console.log(err)}
+                                done(err, user);
+                            });
+                        })
+                    }
+                    if(!user && !err) {
+                        console.log('No user exists and no errors.  Create a new account from the profile information and return.');
+                        User.MapPassportProfileToUser(profile, new User(), function(err, user){
+                            user.save(function (err, user, numberAffected) {
+                                if(err) {console.log(err)}
+                                done(err, user);
+                            });
+                        })
+                    }
+                    if(user && err)
+                    {
+                        switch (err) {
+                            case "email match":
+                                console.log('An account is in the system with a matching email. Present to user for confirmation.');
+                                done(err, user);
+                                break;
+                        }
+                    }
                 });
             });
         }

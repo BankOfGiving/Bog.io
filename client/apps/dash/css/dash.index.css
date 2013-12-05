@@ -8,10 +8,18 @@
   border-right: 1px solid #666666;
 }
 input[type="text"] {
-  margin-top: 7px;
-  width: 150px;
-  height: 20px;
-  display: block;
-  margin-bottom: 10px;
-  border: 1px solid #528ecc;
+    margin-top: 7px;
+    width: 150px;
+    height: 20px;
+    display: block;
+    margin-bottom: 10px;
+    border: 1px solid #528ecc;
+}
+input[type="email"] {
+    margin-top: 7px;
+    width: 150px;
+    height: 20px;
+    display: block;
+    margin-bottom: 10px;
+    border: 1px solid #528ecc;
 }

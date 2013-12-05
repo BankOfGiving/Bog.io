@@ -16,6 +16,11 @@ module.exports = function(app, uriBase){
         res.send(200);
     });
 
+    app.get(uriBase + '/logout', ensureAuthenticated, function(req, res){
+        req.logout();
+        res.send(200);
+    });
+
     app.get(uriBase + '/checkuser', function(req, res){
         if(req.user == null){
             res.send(401, { user: null });
