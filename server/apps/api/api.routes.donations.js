@@ -1,5 +1,4 @@
 module.exports = function(app, uriBase){
-    var connectTimeout = require('connect-timeout');
     // modules
     var Donation = require('../../models/donation.model.js');
 
@@ -95,21 +94,18 @@ module.exports = function(app, uriBase){
         }
     });
 
+    // ADD
     app.post(uriBase + '/', function(req, res){
-        var donation = req.body.donation;
-        var user = req.session.user;
+        AddUpdateDonation(req, res, true);
+    });
 
-        console.log('USER:  ' + user);
-        if(donation != null && donation != ''){
-            Donation.UpsertFromObject(donation, user, function(err, don){
-                if(err) {
-                    res.send(406, err);
-                }
-                res.send(200);
-            });
-        } else {
-            res.send(406, new Error("no object sent"));
-        }
+    // UPDATE
+    app.put(uriBase + '/', function(req, res){
+        AddUpdateDonation(req, res, false);
+    });
+
+    app.put(uriBase + '/:id', function(req, res){
+        AddUpdateDonation(req, res, false);
     });
 
     function CreateElements(num, callback){
@@ -125,6 +121,26 @@ module.exports = function(app, uriBase){
                     }
                 });
             }(i));
+        }
+    }
+
+    function AddUpdateDonation(req, res, createIfNotFound) {
+        var donation = req.body.donation;
+        var user = req.user;
+        console.log("USER:  " + req.user);
+        console.log("USER:  " + JSON.stringify(req.session.user));
+        console.log("USER:  " + req.isAuthenticated);
+        if(donation != null && donation != ''){
+            Donation.AddUpdateFromObject(donation, createIfNotFound, user, function(err, don){
+                if(err) {
+                    console.log('Error');
+                    res.send(406, err);
+                }
+                res.send(200, { donation: don });
+            });
+        } else {
+            console.log("no object sent");
+            res.send(406, new Error("no object sent"));
         }
     }
 };

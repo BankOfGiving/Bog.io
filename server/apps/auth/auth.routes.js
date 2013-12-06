@@ -19,7 +19,10 @@ module.exports = function(app) {
     });
 
     app.get(uriBase + '/success', function(req, res){
-        res.render(path.join(__dirname, '/views/success'), {user: req.user});
+        req.logIn(user, function(err) {
+            if (err) { res.send(400, err); }
+            res.render(path.join(__dirname, '/views/success'), {user: req.user});
+        });
     });
     app.get(uriBase + '/failed', function(req, res){
         res.render(path.join(__dirname, '/views/failed'), {title: 'failed!!!', user: req.user});

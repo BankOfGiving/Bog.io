@@ -4,6 +4,6 @@ module.exports = function(app) {
     var uriBase = '/dash';
 
     app.get(uriBase + '/', function(req, res){
-        res.render(__dirname + '/views/index', { title: 'Welcome to the Bank of Giving!!' });
+        res.render(__dirname + '/views/index', { user: req.user });
     });
 };

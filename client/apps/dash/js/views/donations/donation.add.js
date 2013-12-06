@@ -2,24 +2,34 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'views/maps/map.small',
     'views/donations/_donation.form',
     'models/model.donation',
     'text!../../../tmpl/donations/donation.add.html'
-], function($, _, Backbone, MapView, FormView, DonationModel, AddTemplate){
+], function($, _, Backbone, FormView, DonationModel, AddTemplate){
     return Backbone.View.extend({
-        el: $('#site-content'),
-        render: function(id) {
+        el: $('body'),
+        initialize: function(container){
             var self = this;
 
-            console.log(id);
+            var donation = new DonationModel();
 
-            var donation = new DonationModel({id: id});
+            donation = donation.attributes;
+            self.render(container, donation).bind(donation);
+        },
+        render: function(container, donation) {
 
-            donation.fetch({
-                success: function (donation) {
-                    $(self.el).html(_.template(AddTemplate, {donation: donation, _:_}));
-                }
+            container.html(AddTemplate);
+
+            DisplayView.initialize($('#Donation-Display'), donation);
+
+            return this;
+        },
+        bind: function(donation){
+            $("div#Donation-View-Container > button.backButton").click(function(){
+                history.back();
+            });
+            $("div#Donation-View-Container > button.addButton").click(function(){
+                location.href = '#/Donation/Edit/' + donation.id;
             });
         }
     });

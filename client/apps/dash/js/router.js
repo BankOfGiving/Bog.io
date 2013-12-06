@@ -62,9 +62,9 @@ define([ 'jquery', 'underscore', 'backbone', 'bog.session', 'bog.site',
             'profile/edit': 'userProfileEdit',
 
             'donations': 'userDonations',
+            'donation/:id': 'userDonationView',
             'donations/delete/:id': 'userDonationDelete',
             'donations/add': 'userDonationAdd',
-            'donations/view/:id:': 'userDonationView',
             'donations/edit/:id': 'userDonationEdit',
 
             'events': 'userEvents',
@@ -114,24 +114,19 @@ define([ 'jquery', 'underscore', 'backbone', 'bog.session', 'bog.site',
 
         // Donations
         app_router.on('route:userDonations', function () {
-            var donationsListView = new DonationsListView();
-            donationsListView.render(contentContainer);
+            var donationsListView = new DonationsListView(contentContainer);
         });
         app_router.on('route:userDonationDelete', function (id) {
-            var donationDeleteView = new DonationDeleteView();
-            donationDeleteView.render(contentContainer, id);
+            var donationDeleteView = new DonationDeleteView(contentContainer, id);
         });
         app_router.on('route:userDonationAdd', function () {
-            var donationAddView = new DonationAddView();
-            donationAddView.render(contentContainer);
+            var donationAddView = new DonationAddView(contentContainer);
         });
         app_router.on('route:userDonationView', function (id) {
-            var donationViewView = new DonationViewView();
-            donationViewView.render(contentContainer, id);
+            var donationViewView = new DonationViewView(contentContainer, id);
         });
         app_router.on('route:userDonationEdit', function (id) {
-            var donationEditView = new DonationEditView();
-            donationEditView.render(contentContainer, id);
+            var donationEditView = new DonationEditView(contentContainer, id);
         });
 
         // Events

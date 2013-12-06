@@ -8,13 +8,35 @@ define([
     'text!../../../tmpl/donations/donation.edit.html'
 ], function($, _, Backbone, MapView, FormView, DonationModel, EditTemplate){
     return Backbone.View.extend({
-        render: function(container, id) {
+        el: $('body'),
+        initialize: function(container, id){
+            var self = this;
+
             var donation = new DonationModel({id: id});
 
             donation.fetch({
                 success: function (donation) {
-                    container.html(_.template(EditTemplate, {donation: donation, _:_}));
+                    donation = donation.attributes;
+                    self.render(container, donation).bind(donation);
                 }
+            });
+
+        },
+        render: function(container, donation) {
+            container.html(EditTemplate);
+
+            var displayView = new DisplayView($('#Donation-Display'), donation);
+            //displayContainer = null;
+            //displayView = null;
+            delete displayView;
+            return this;
+        },
+        bind: function(donation){
+            $("div#Donation-View-Container > button.backButton").click(function(){
+                history.back();
+            });
+            $("div#Donation-View-Container > button.addButton").click(function(){
+                location.href = '#/Donation/Edit/' + donation.id;
             });
         }
     });

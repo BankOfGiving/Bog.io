@@ -31,11 +31,10 @@ module.exports = function(app, uriBase) {
         function(accessToken, refreshtoken, profile, done) {
             process.nextTick(function () {
                 User.findByPassportProfile(profile, function(err, user){
-
                     if(user && !err) {
                         console.log('User is found and no errors.  Update account from the profile information and return.');
                         User.MapPassportProfileToUser(profile, user, function(err, user){
-                            user.save(function (err, user, numberAffected) {
+                            user.save(function (err, user) {
                                 if(err) {console.log(err)}
                                 done(err, user);
                             });
@@ -44,7 +43,7 @@ module.exports = function(app, uriBase) {
                     if(!user && !err) {
                         console.log('No user exists and no errors.  Create a new account from the profile information and return.');
                         User.MapPassportProfileToUser(profile, new User(), function(err, user){
-                            user.save(function (err, user, numberAffected) {
+                            user.save(function (err, user) {
                                 if(err) {console.log(err)}
                                 done(err, user);
                             });
@@ -65,19 +64,12 @@ module.exports = function(app, uriBase) {
     ));
 
     var fb_login_handler    = Passport.authenticate('facebook', { scope: [ 'email', 'user_photos'] });
-    var fb_callback_handler = Passport.authenticate('facebook', { successRedirect: '/auth/success/', failureRedirect : '/auth/failed/'});
+    var fb_callback_handler = Passport.authenticate('facebook', { failureRedirect: '/auth/failed/' });
     var fb_callback_handler2 = function(req, res) {
-        console.log('we b logged in!');
-        console.dir(req.user);
-    };
+        res.redirect('/auth/success/');
+        };
 
     app.get(uriBase + '/', fb_login_handler);
 
-    app.get(uriBase + '/return',
-        Passport.authenticate('facebook', { failureRedirect: '/auth/failed/' }),
-        function(req, res) {
-            res.redirect('/auth/success/');
-        });
-
-    //app.get(uriBase + '/return', fb_callback_handler, fb_callback_handler2);
+    app.get(uriBase + '/return', fb_callback_handler , fb_callback_handler2);
 };

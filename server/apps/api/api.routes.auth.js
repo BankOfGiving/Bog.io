@@ -13,7 +13,7 @@ module.exports = function(app, uriBase){
     });
 
     app.get(uriBase + '/loggedin', ensureAuthenticated, function(req, res){
-        res.send(200);
+        res.send(200, { user: req.user });
     });
 
     app.get(uriBase + '/logout', ensureAuthenticated, function(req, res){

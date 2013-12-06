@@ -1,6 +1,5 @@
 var mongoose = require('mongoose');
 var db = require('../config/db.mongo').development;
-var unirest = require('unirest');
 
 mongoose.createConnection(db.connectionString);
 
@@ -56,83 +55,55 @@ donationSchema.statics.getByObjectId = function (id, callback) {
         }
     });
 };
-donationSchema.statics.UpsertFromObject = function(input, user, callback){ // callback(err, donation)
-    var id = input._id;
 
-
-
-    var donation = new this({
-        title: input.title,
-        author: user,
-        description: input.description,
-        type: input.type,
-        address: {
-            location: input.address.location
-        }
-    });
-
-    if(id){
-        // Upsert
-
-    } else {
-        // Create
-    }
-
-    var donation = new this({
-        title: input.title,
-        author: user,
-        description: input.description,
-        type: input.type,
-        address: {
-            location: input.address.location
-        }
-    });
-
-//    var donation = new this();
-//    donation.title = input.title;
-//    donation.author = user;
-//    donation.description = input.description;
-//    donation.type = input.type;
-//    donation.location = input.location;
-//    donation.tags = [];
-//    for(var i=0;i<input.tags.length; i++){
-//        var tag = new Tag( { tag: input.tags[i].tag });
-//        donation.tags.push(tag);
-//    }
-//    console.log('INPUT TITLE:  ' + input.title);
-//    console.log('DONATION TITLE:  ' + donation.title);
-//    console.log('DONATION:  ' + donation);
-
-    donation.save(function (err) {
-        donation.title = input.title;
-        if (err){
-            console.log(err);
-            callback(err, null);
-        }
+donationSchema.statics.SaveFromObject = function(donation, input, user, callback){ // callback(err, donation)
+    console.log(donation);
+    donation.title = input.title;
+    donation.author = user;
+    donation.description = input.description;
+    donation.type = input.type;
+    donation.address = input.address;
+    donation.save(function (err, donation) {
+        if (err) { callback(err, null); }
         callback(null, donation);
     });
 };
 
+donationSchema.statics.AddUpdateFromObject = function(input, createIfNotFound, user, callback){ // callback(err, donation)
+    var self = this;
+    var id = input._id;
+    var donation;
+
+    console.log(id);
+
+    if(id){
+        self.findById( id, function (err, donation) {
+            if(err){
+                // Return the error.
+                callback (err, null);
+            }
+            if(!err && !donation && !createIfNotFound){
+                // No record found to update and do not create a new one.
+                callback(new Error('no item found with id: ' + id), null);
+            }
+            if(!err && !donation && createIfNotFound){
+                // No record found to update.  Create a new one
+                donation = new self();
+            }
+
+            self.SaveFromObject(donation, input, user, function(err, donation){
+                callback (err, donation);
+            });
+        });
+    }else{
+        donation = mongoose.model("Donation", donationSchema);
+        self.SaveFromObject(donation, input, user, function(err, donation){
+            callback (err, donation);
+        });
+    }
+};
+
     donationSchema.statics.getByLocation = function (lat, lng, rad, callback) {
-        // var query = this.where('addresses.geometry.location').near([lat, lng]).maxDistance(rad);
-
-        var geo = [lng, lat];
-
-//    var lonLat = { $geometry :  { type : "Point" , coordinates : geo } };
-//    var query = this.aggregate([
-//        {
-//            $geoNear: {
-//                near: geo,
-//                distanceField: "dist.calculated",
-//                maxDistance: rad,
-//                query: { },
-//                includeLocs: "dist.location",
-//                uniqueDocs: true,
-//                spherical: true,
-//                num: 1000
-//            }
-//        }]
-//    );
         var query  = this.find( { 'address.geometry.location' : {
             $near : {
                 $geometry: {
@@ -166,8 +137,7 @@ donationSchema.statics.UpsertFromObject = function(input, user, callback){ // ca
     };
 
     function randomFromInterval(from,to) {
-        var rand = Math.random()*(to-from+1)+from;
-        return rand;
+        return Math.random()*(to-from+1)+from;
     }
 
     module.exports = mongoose.model('Donation', donationSchema);

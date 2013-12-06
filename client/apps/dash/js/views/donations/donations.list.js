@@ -6,9 +6,10 @@ define([
     'text!../../../tmpl/donations/donations.list.all.html'
 ], function($, _, Backbone, DonationCollection, DonationTemplate){
     return Backbone.View.extend({
+        initialize: function(container){
+            this.render(container);
+        },
         render: function(container) {
-            var self = this;
-
             var donations = new DonationCollection();
 
             donations.fetch({
