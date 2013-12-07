@@ -9,7 +9,6 @@ define([ ], function(){
                 type: "GET",
                 dataType: "json",
                 complete: function(xhr, textStatus) {
-                    console.log('xhr:' + xhr.status);
                     if(xhr.status == 200){
                         callback(true);
                     } else {

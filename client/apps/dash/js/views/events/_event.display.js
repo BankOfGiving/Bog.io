@@ -5,7 +5,7 @@ define([
     'views/maps/map.small',
 ], function($, _, Backbone, MapView){
     return Backbone.View.extend({
-        el: $('#site-content'),
+        el: $('body'),
         render: function(id) {
             var self = this;
 

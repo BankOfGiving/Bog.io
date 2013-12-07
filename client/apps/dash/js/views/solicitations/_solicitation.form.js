@@ -7,7 +7,7 @@ define([
     'text!../../../tmpl/donations/donation.form.html'
 ], function($, _, Backbone, MapView, DonationModel, DetailTemplate){
     return Backbone.View.extend({
-        el: $('#site-content'),
+        el: $('body'),
         render: function(id) {
             var self = this;
 

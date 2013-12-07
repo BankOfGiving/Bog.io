@@ -1,15 +1,8 @@
 /**
  * Created by dbaxter on 12/1/13.
  */
-define([
-    'jquery',
-    'underscore',
-    'backbone',
-    'models/model.donation'
-], function($, _, Backbone, donation){
-    return Backbone.Collection.extend({
-        model: donation,
+Bog.collections.Donations = Backbone.Collection.extend({
+        model: Bog.models.Donation,
         urlRoot: 'donations/',
         url: 'donations/'
-    });
 });

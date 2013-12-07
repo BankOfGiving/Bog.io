@@ -2,7 +2,7 @@
  * Created by dbaxter on 12/1/13.
  */
 // Filename: router.js
-define([ 'jquery', 'underscore', 'backbone', 'bog.session', 'bog.site',
+define([ 'jquery', 'underscore', 'backbone', 'bog', 'bog.session', 'bog.site',
     'views/home/landing',
     'views/home/titlebar',
     'views/header/header.dash',
@@ -28,7 +28,7 @@ define([ 'jquery', 'underscore', 'backbone', 'bog.session', 'bog.site',
     'views/solicitations/solicitation.view',
     'views/solicitations/solicitation.edit'
 
-], function($, _, Backbone, session, site,
+], function($, _, Backbone, bog, session, site,
         LandingView,
         TitleBarView,
         DashboardHeaderView,
@@ -88,7 +88,8 @@ define([ 'jquery', 'underscore', 'backbone', 'bog.session', 'bog.site',
         var app_router = new AppRouter;
         var container = $('#site-container');
         var headerContainer = $('#site-header');
-        var contentContainer = $('#site-content');
+        var contentContainerId = '#page-content';
+        var contentContainer = $(contentContainerId);
 
         site.transitionToSiteDefaultContainer();
 
@@ -100,8 +101,7 @@ define([ 'jquery', 'underscore', 'backbone', 'bog.session', 'bog.site',
 
         // main
         app_router.on('route:landing', function () {
-            var landingView = new LandingView();
-            landingView.render(contentContainer);
+            var landingView = new LandingView(contentContainer);
         });
 
         // Profile
@@ -114,13 +114,13 @@ define([ 'jquery', 'underscore', 'backbone', 'bog.session', 'bog.site',
 
         // Donations
         app_router.on('route:userDonations', function () {
-            var donationsListView = new DonationsListView(contentContainer);
+            var donationsListView = new DonationsListView( { el: contentContainerId } );
         });
         app_router.on('route:userDonationDelete', function (id) {
             var donationDeleteView = new DonationDeleteView(contentContainer, id);
         });
         app_router.on('route:userDonationAdd', function () {
-            var donationAddView = new DonationAddView(contentContainer);
+            var donationAddView = new DonationAddView({ el: contentContainerId });
         });
         app_router.on('route:userDonationView', function (id) {
             var donationViewView = new DonationViewView(contentContainer, id);

@@ -5,20 +5,32 @@ define([
     'jquery',
     'underscore',
     'backbone',
+    'models/model.profile',
     'views/profile/_profile.detail.small',
     'text!../../../tmpl/home/main.v1.html'
-], function($, _, Backbone, ProfileView, mainTemplate){
+], function($, _, Backbone, ProfileModel, ProfileView, mainTemplate){
     return Backbone.View.extend({
-        initialize: function(){
-            console.log('initialize');
+        model: null,
+        container: null,
+        initialize: function(container){
+            var self = this;
+
+            self.container = container;
+
+            var profile = new ProfileModel();
+            profile.fetch({
+                success: function (profile) {
+                    self.model = profile;
+                    self.render();
+                }
+            });
         },
-        render: function(container) {
+        render: function() {
+            var self = this;
 
-            container.html(mainTemplate);
+            self.container.html(mainTemplate);
 
-            var profilePanelContainer = $("#profile-panel");
-            var profileView = new ProfileView();
-            profileView.render(profilePanelContainer);
+            var profileView = new ProfileView($("#Profile-Panel"), self.model);
 
             $("#Logout").click(function(){
                 $.get("/auth/logout/");

@@ -8,7 +8,7 @@ define([
     'text!../../../tmpl/donations/donation.delete.html'
 ], function($, _, Backbone, MapView, DonationModel, DeleteTemplate){
     return Backbone.View.extend({
-        el: $('#site-content'),
+        el: $('body'),
         render: function(id) {
             var self = this;
 
