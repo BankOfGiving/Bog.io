@@ -6,8 +6,8 @@ var express = require('express'),
     mongoose = require('mongoose');
 
 // Configs
-var sessionStore = require('./server/config/session.store').development;
-var db = require('./server/config/db.mongo').development;
+var sessionStore = require('./server/config/db.sessionStore');
+var db = require('./server/config/db.mongo');
 
 // Bootstrap db connection
 mongoose.connect(db.connectionString);
@@ -31,7 +31,7 @@ app.use(express.session({
         secret: sessionStore.secret,
         maxAge: sessionStore.maxAge,
         store: new MongoStore(sessionStore.db)
-    }, function(err){
+    }, function (err) {
         console.log(err)
     }
 ));
@@ -55,9 +55,9 @@ require('./server/apps/api/api.routes')(app);
 
 // development only
 if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
+    app.use(express.errorHandler());
 }
 
-http.createServer(app).listen(app.get('port'), function(){
+http.createServer(app).listen(app.get('port'), function () {
     console.log("Express server listening on port " + app.get('port') + " in " + app.settings.env);
 });

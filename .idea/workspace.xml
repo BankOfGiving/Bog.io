@@ -1,52 +1,266 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1a901559-d8d7-476e-bd58-657e953166e6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/_base/Bog.views.full.Confirmation.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/_base/Bog.views.full.CustomView.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/_base/Bog.views.full.Display.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/_base/Bog.views.full.Form.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/_base/Bog.views.partial.ButtonBar.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/_base/Bog.views.partial.ModelDisplay.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/_base/Bog.views.partial.ModelForm.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/tmpl/donations/_donations.list.item.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/donations/_donations.list.item.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/tmpl/donations/_donations.list.items.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/donations/_donations.list.items.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/js/bog.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/donations/donations.list.bak.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/tmpl/shared/list.html" />
+    <list default="true" id="1a901559-d8d7-476e-bd58-657e953166e6" name="Default" comment="Added API new methods and data layer abstraction for key elements on dashboard.  Functionality changes to dashboard UI.">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/css/bootstrap/fonts/glyphicons-halflings-regular.eot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/css/bootstrap/fonts/glyphicons-halflings-regular.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/css/bootstrap/fonts/glyphicons-halflings-regular.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/server/models/address.model.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/tmpl/donations/bak._donation.display.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/donations/bak._donation.display.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/tmpl/donations/bak._donation.form.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/donations/bak._donation.form.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/tmpl/donations/bak._donations.list.item.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/donations/bak._donations.list.item.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/tmpl/donations/bak._donations.list.items.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/donations/bak._donations.list.items.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/events/bak._event.form.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/solicitations/bak._solicitation.display.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/solicitations/bak._solicitation.form.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/tmpl/donations/bak.donation.add.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/donations/bak.donation.add.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/tmpl/donations/bak.donation.delete.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/donations/bak.donation.delete.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/tmpl/donations/bak.donations.list.all.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/donations/bak.donations.list.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/events/bak.event.add.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/events/bak.event.delete.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/js/viewmodels/events/bak.event.form.viewmodel.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/solicitations/bak.solicitation.add.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/solicitations/bak.solicitation.delete.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/server/modules/bog.auth.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/js/bog.i18n.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/css/bootstrap/css/bootstrap-theme.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/css/bootstrap/css/bootstrap-theme.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/css/bootstrap/css/bootstrap.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/css/bootstrap/js/bootstrap.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/css/bootstrap/css/bootstrap.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/css/bootstrap/js/bootstrap.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/tmpl/shared/buttonbar.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/css/dash.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/css/dash.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/server/config/db.sessionStore.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/tmpl/donations/donation.detail.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/donations/donation.detail.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/js/viewmodels/donation.edit.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/tmpl/donations/donation.form.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/donations/donation.form.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/tmpl/donations/donations.list.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/server/config/env.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/events/event.detail.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/tmpl/events/event.form.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/events/event.form.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/tmpl/events/events.list.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/css/bootstrap/fonts/glyphicons-halflings-regular.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/tmpl/shared/header.dash.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/shared/header.dash.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/home/home.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/tmpl/home/landing.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/js/models/model.address.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/tmpl/shared/navbar.auth.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/tmpl/shared/navbar.public.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/server/config/oauth.facebook.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/server/config/oauth.google.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/server/config/oauth.twitter.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/profile/profile.view.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/solicitations/solicitation.detail.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/tmpl/solicitations/solicitation.form.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/solicitations/solicitation.form.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/tmpl/solicitations/solicitations.list.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/apps/dash/css/bootstrap/css/unity-bootstrap.min.css" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/apps/dash/js/views/_base/bog.views.full.Confirmation.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/apps/dash/js/views/_base/bog.views.full.Display.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/apps/dash/js/views/_base/bog.views.full.Form.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/apps/dash/js/views/_base/bog.views.partial.ButtonBar.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/apps/dash/js/views/_base/bog.views.partial.ModelDisplay.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/apps/dash/js/views/_base/bog.views.partial.ModelForm.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/apps/dash/tmpl/events/evetnts.list.all.html" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/client/apps/dash/css/style.css" afterPath="$PROJECT_DIR$/client/apps/dash/css/style.css.bak" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/client/apps/dash/js/views/events/event.add.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/events/bak._event.display.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/client/apps/dash/tmpl/events/event.detail.html" afterPath="$PROJECT_DIR$/client/apps/dash/tmpl/events/event.add.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/server/apps/auth/routes/auth.routes.facebook.js" afterPath="$PROJECT_DIR$/server/config/passport.facebook.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/views/_base/Bog.views.full.CustomView.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/_base/Bog.views.full.CustomView.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gruntfile.js" afterPath="$PROJECT_DIR$/Gruntfile.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LICENSE" afterPath="$PROJECT_DIR$/LICENSE" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Node_js_Dependencies_for_passportexample.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Node_js_Dependencies_for_passportexample.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/tmpl/donations/_donation.display.html" afterPath="$PROJECT_DIR$/client/apps/dash/tmpl/donations/_donation.display.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/views/donations/_donation.display.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/donations/_donation.display.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/tmpl/donations/_donation.form.html" afterPath="$PROJECT_DIR$/client/apps/dash/tmpl/donations/_donation.form.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/views/donations/_donation.form.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/donations/_donation.form.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/tmpl/donations/_donations.list.item.html" afterPath="$PROJECT_DIR$/client/apps/dash/tmpl/donations/_donations.list.item.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/views/donations/_donations.list.item.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/donations/_donations.list.item.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/tmpl/donations/_donations.list.items.html" afterPath="$PROJECT_DIR$/client/apps/dash/tmpl/donations/_donations.list.items.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/views/donations/_donations.list.items.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/donations/_donations.list.items.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/views/events/_event.display.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/events/_event.display.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/views/events/_event.form.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/events/_event.form.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/tmpl/profile/_profile.detail.full.html" afterPath="$PROJECT_DIR$/client/apps/dash/tmpl/profile/_profile.detail.full.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/views/profile/_profile.detail.full.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/profile/_profile.detail.full.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/tmpl/profile/_profile.detail.small.html" afterPath="$PROJECT_DIR$/client/apps/dash/tmpl/profile/_profile.detail.small.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/views/profile/_profile.detail.small.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/profile/_profile.detail.small.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/views/profile/_profile.form.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/profile/_profile.form.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/views/solicitations/_solicitation.display.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/solicitations/_solicitation.display.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/views/solicitations/_solicitation.form.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/solicitations/_solicitation.form.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/apps/api/api.routes.auth.js" afterPath="$PROJECT_DIR$/server/apps/api/api.routes.auth.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/apps/api/api.routes.donations.js" afterPath="$PROJECT_DIR$/server/apps/api/api.routes.donations.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/apps/api/api.routes.events.js" afterPath="$PROJECT_DIR$/server/apps/api/api.routes.events.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/apps/api/api.routes.js" afterPath="$PROJECT_DIR$/server/apps/api/api.routes.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/apps/api/api.routes.profile.js" afterPath="$PROJECT_DIR$/server/apps/api/api.routes.profile.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/apps/api/api.routes.search.js" afterPath="$PROJECT_DIR$/server/apps/api/api.routes.search.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/apps/api/api.routes.solicitations.js" afterPath="$PROJECT_DIR$/server/apps/api/api.routes.solicitations.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/app.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/js/app.js" afterPath="$PROJECT_DIR$/client/apps/pub/js/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/lib/async.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/lib/async.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/js/lib/async.js" afterPath="$PROJECT_DIR$/client/apps/pub/js/lib/async.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/models/audit.model.js" afterPath="$PROJECT_DIR$/server/models/audit.model.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/apps/auth/routes/auth.routes.facebook.js" afterPath="$PROJECT_DIR$/server/apps/auth/routes/auth.routes.facebook.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/apps/auth/routes/auth.routes.google.js" afterPath="$PROJECT_DIR$/server/apps/auth/routes/auth.routes.google.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/apps/auth/auth.routes.js" afterPath="$PROJECT_DIR$/server/apps/auth/auth.routes.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/apps/auth/routes/auth.routes.twitter.js" afterPath="$PROJECT_DIR$/server/apps/auth/routes/auth.routes.twitter.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/config/bog.api.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/config/bog.api.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/js/config/bog.api.js" afterPath="$PROJECT_DIR$/client/apps/pub/js/config/bog.api.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/bog.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/bog.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/bog.maps.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/bog.maps.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/js/bog.maps.js" afterPath="$PROJECT_DIR$/client/apps/pub/js/bog.maps.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/js/bog.search.js" afterPath="$PROJECT_DIR$/client/apps/pub/js/bog.search.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/bog.session.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/bog.session.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/js/bog.session.js" afterPath="$PROJECT_DIR$/client/apps/pub/js/bog.session.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/bog.site.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/bog.site.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/js/bog.site.js" afterPath="$PROJECT_DIR$/client/apps/pub/js/bog.site.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/js/views/boilerplate.js" afterPath="$PROJECT_DIR$/client/apps/pub/js/views/boilerplate.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/collections/collection.donations.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/collections/collection.donations.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/css/dash.buttons.css" afterPath="$PROJECT_DIR$/client/apps/dash/css/dash.buttons.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/js/collections/collection.donations.js" afterPath="$PROJECT_DIR$/client/apps/pub/js/collections/collection.donations.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/collections/collection.events.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/collections/collection.events.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/js/collections/collection.events.js" afterPath="$PROJECT_DIR$/client/apps/pub/js/collections/collection.events.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/collections/collection.solicitations.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/collections/collection.solicitations.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/js/collections/collection.solicitations.js" afterPath="$PROJECT_DIR$/client/apps/pub/js/collections/collection.solicitations.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/css/dash.buttons.less" afterPath="$PROJECT_DIR$/client/apps/dash/css/dash.buttons.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/css/dash.index.css" afterPath="$PROJECT_DIR$/client/apps/dash/css/dash.index.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/css/dash.index.less" afterPath="$PROJECT_DIR$/client/apps/dash/css/dash.index.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/css/dash.lists.css" afterPath="$PROJECT_DIR$/client/apps/dash/css/dash.lists.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/css/dash.lists.less" afterPath="$PROJECT_DIR$/client/apps/dash/css/dash.lists.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/css/dash.map.css" afterPath="$PROJECT_DIR$/client/apps/dash/css/dash.map.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/css/dash.map.less" afterPath="$PROJECT_DIR$/client/apps/dash/css/dash.map.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/apps/dash/dash.routes.js" afterPath="$PROJECT_DIR$/server/apps/dash/dash.routes.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/css/dash.titlebar.css" afterPath="$PROJECT_DIR$/client/apps/dash/css/dash.titlebar.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/css/dash.titlebar.less" afterPath="$PROJECT_DIR$/client/apps/dash/css/dash.titlebar.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/css/dash.welcome.less" afterPath="$PROJECT_DIR$/client/apps/dash/css/dash.welcome.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/config/db.mongo.js" afterPath="$PROJECT_DIR$/server/config/db.mongo.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/js/views/donations/detail.donation.js" afterPath="$PROJECT_DIR$/client/apps/pub/js/views/donations/detail.donation.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/js/views/events/detail.event.js" afterPath="$PROJECT_DIR$/client/apps/pub/js/views/events/detail.event.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/tmpl/donations/detail.html" afterPath="$PROJECT_DIR$/client/apps/pub/tmpl/donations/detail.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/tmpl/events/detail.html" afterPath="$PROJECT_DIR$/client/apps/pub/tmpl/events/detail.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/tmpl/solicitations/detail.html" afterPath="$PROJECT_DIR$/client/apps/pub/tmpl/solicitations/detail.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/js/views/solicitations/detail.solicitation.js" afterPath="$PROJECT_DIR$/client/apps/pub/js/views/solicitations/detail.solicitation.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/tmpl/donations/donation.add.html" afterPath="$PROJECT_DIR$/client/apps/dash/tmpl/donations/donation.add.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/views/donations/donation.add.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/donations/donation.add.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/tmpl/donations/donation.delete.html" afterPath="$PROJECT_DIR$/client/apps/dash/tmpl/donations/donation.delete.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/views/donations/donation.delete.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/donations/donation.delete.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/tmpl/donations/donation.edit.html" afterPath="$PROJECT_DIR$/client/apps/dash/tmpl/donations/donation.edit.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/views/donations/donation.edit.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/donations/donation.edit.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/models/donation.model.js" afterPath="$PROJECT_DIR$/server/models/donation.model.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/tmpl/donations/donation.view.html" afterPath="$PROJECT_DIR$/client/apps/dash/tmpl/donations/donation.view.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/views/donations/donation.view.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/donations/donation.view.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/tmpl/donations/donations.list.all.html" afterPath="$PROJECT_DIR$/client/apps/dash/tmpl/donations/donations.list.all.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/views/donations/donations.list.bak.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/donations/donations.list.bak.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/views/donations/donations.list.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/donations/donations.list.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/views/events/event.add.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/events/event.add.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/views/events/event.delete.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/events/event.delete.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/tmpl/events/event.detail.html" afterPath="$PROJECT_DIR$/client/apps/dash/tmpl/events/event.detail.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/views/events/event.edit.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/events/event.edit.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/models/event.model.js" afterPath="$PROJECT_DIR$/server/models/event.model.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/views/events/event.view.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/events/event.view.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/views/events/events.list.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/events/events.list.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/config/facebook.api.js" afterPath="$PROJECT_DIR$/server/config/facebook.api.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/apps/auth/views/failed.jade" afterPath="$PROJECT_DIR$/server/apps/auth/views/failed.jade" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/tmpl/filters/filter.donations.html" afterPath="$PROJECT_DIR$/client/apps/pub/tmpl/filters/filter.donations.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/js/views/filters/filter.donations.js" afterPath="$PROJECT_DIR$/client/apps/pub/js/views/filters/filter.donations.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/tmpl/filters/filter.events.html" afterPath="$PROJECT_DIR$/client/apps/pub/tmpl/filters/filter.events.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/js/views/filters/filter.events.js" afterPath="$PROJECT_DIR$/client/apps/pub/js/views/filters/filter.events.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/tmpl/filters/filter.solicitations.html" afterPath="$PROJECT_DIR$/client/apps/pub/tmpl/filters/filter.solicitations.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/js/views/filters/filter.solicitations.js" afterPath="$PROJECT_DIR$/client/apps/pub/js/views/filters/filter.solicitations.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/config/google.api.js" afterPath="$PROJECT_DIR$/server/config/google.api.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/js/google.maps.js" afterPath="$PROJECT_DIR$/client/apps/pub/js/google.maps.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/tmpl/header/header.dash.html" afterPath="$PROJECT_DIR$/client/apps/dash/tmpl/header/header.dash.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/views/header/header.dash.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/header/header.dash.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/apps/dash/views/index.html" afterPath="$PROJECT_DIR$/server/apps/dash/views/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/apps/dash/views/index.jade" afterPath="$PROJECT_DIR$/server/apps/dash/views/index.jade" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/apps/public/views/index.jade" afterPath="$PROJECT_DIR$/server/apps/public/views/index.jade" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/views/home/landing.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/home/landing.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/js/views/home/landing.js" afterPath="$PROJECT_DIR$/client/apps/pub/js/views/home/landing.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/js/views/donations/list.all.donations.js" afterPath="$PROJECT_DIR$/client/apps/pub/js/views/donations/list.all.donations.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/js/views/events/list.all.events.js" afterPath="$PROJECT_DIR$/client/apps/pub/js/views/events/list.all.events.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/tmpl/donations/list.all.html" afterPath="$PROJECT_DIR$/client/apps/pub/tmpl/donations/list.all.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/tmpl/events/list.all.html" afterPath="$PROJECT_DIR$/client/apps/pub/tmpl/events/list.all.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/tmpl/solicitations/list.all.html" afterPath="$PROJECT_DIR$/client/apps/pub/tmpl/solicitations/list.all.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/js/views/solicitations/list.all.solicitations.js" afterPath="$PROJECT_DIR$/client/apps/pub/js/views/solicitations/list.all.solicitations.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/tmpl/shared/list.html" afterPath="$PROJECT_DIR$/client/apps/dash/tmpl/shared/list.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/apps/auth/views/login.jade" afterPath="$PROJECT_DIR$/server/apps/auth/views/login.jade" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/main.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/js/main.js" afterPath="$PROJECT_DIR$/client/apps/pub/js/main.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/tmpl/home/main.v1.html" afterPath="$PROJECT_DIR$/client/apps/dash/tmpl/home/main.v1.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/views/maps/map.header.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/maps/map.header.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/js/views/maps/map.header.js" afterPath="$PROJECT_DIR$/client/apps/pub/js/views/maps/map.header.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/views/maps/map.small.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/maps/map.small.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/js/views/maps/map.small.js" afterPath="$PROJECT_DIR$/client/apps/pub/js/views/maps/map.small.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/models/model.donation.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/models/model.donation.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/js/models/model.donation.js" afterPath="$PROJECT_DIR$/client/apps/pub/js/models/model.donation.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/models/model.event.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/models/model.event.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/js/models/model.event.js" afterPath="$PROJECT_DIR$/client/apps/pub/js/models/model.event.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/models/model.profile.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/models/model.profile.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/models/model.solicitation.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/models/model.solicitation.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/js/models/model.solicitation.js" afterPath="$PROJECT_DIR$/client/apps/pub/js/models/model.solicitation.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/passportexample.iml" afterPath="$PROJECT_DIR$/.idea/passportexample.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/tmpl/profile/profile.edit.html" afterPath="$PROJECT_DIR$/client/apps/dash/tmpl/profile/profile.edit.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/views/profile/profile.edit.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/profile/profile.edit.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/tmpl/profile/profile.manage.html" afterPath="$PROJECT_DIR$/client/apps/dash/tmpl/profile/profile.manage.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/views/profile/profile.manage.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/profile/profile.manage.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/css/public.index.css" afterPath="$PROJECT_DIR$/client/apps/pub/css/public.index.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/css/public.index.less" afterPath="$PROJECT_DIR$/client/apps/pub/css/public.index.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/css/public.lists.css" afterPath="$PROJECT_DIR$/client/apps/pub/css/public.lists.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/css/public.lists.less" afterPath="$PROJECT_DIR$/client/apps/pub/css/public.lists.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/css/public.map.css" afterPath="$PROJECT_DIR$/client/apps/pub/css/public.map.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/css/public.map.less" afterPath="$PROJECT_DIR$/client/apps/pub/css/public.map.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/apps/public/public.routes.js" afterPath="$PROJECT_DIR$/server/apps/public/public.routes.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/css/public.titlebar.css" afterPath="$PROJECT_DIR$/client/apps/pub/css/public.titlebar.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/css/public.titlebar.less" afterPath="$PROJECT_DIR$/client/apps/pub/css/public.titlebar.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/css/public.welcome.css" afterPath="$PROJECT_DIR$/client/apps/pub/css/public.welcome.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/css/public.welcome.less" afterPath="$PROJECT_DIR$/client/apps/pub/css/public.welcome.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/lib/require.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/lib/require.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/js/lib/require.js" afterPath="$PROJECT_DIR$/client/apps/pub/js/lib/require.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/router.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/router.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/js/router.js" afterPath="$PROJECT_DIR$/client/apps/pub/js/router.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" afterPath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.js" afterPath="$PROJECT_DIR$/server.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/config/session.store.js" afterPath="$PROJECT_DIR$/server/config/session.store.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/tmpl/solicitations/solicitaitons.list.all.html" afterPath="$PROJECT_DIR$/client/apps/dash/tmpl/solicitations/solicitaitons.list.all.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/views/solicitations/solicitation.add.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/solicitations/solicitation.add.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/views/solicitations/solicitation.delete.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/solicitations/solicitation.delete.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/tmpl/solicitations/solicitation.detail.html" afterPath="$PROJECT_DIR$/client/apps/dash/tmpl/solicitations/solicitation.detail.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/views/solicitations/solicitation.edit.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/solicitations/solicitation.edit.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/models/solicitation.model.js" afterPath="$PROJECT_DIR$/server/models/solicitation.model.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/views/solicitations/solicitation.view.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/solicitations/solicitation.view.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/views/solicitations/solicitations.list.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/solicitations/solicitations.list.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/css/style.css" afterPath="$PROJECT_DIR$/client/apps/dash/css/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/css/style.css" afterPath="$PROJECT_DIR$/client/apps/pub/css/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/apps/auth/views/success.html" afterPath="$PROJECT_DIR$/server/apps/auth/views/success.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/apps/auth/views/success.jade" afterPath="$PROJECT_DIR$/server/apps/auth/views/success.jade" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/models/tag.model.js" afterPath="$PROJECT_DIR$/server/models/tag.model.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/text.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/text.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/js/text.js" afterPath="$PROJECT_DIR$/client/apps/pub/js/text.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/dash/js/views/home/titlebar.js" afterPath="$PROJECT_DIR$/client/apps/dash/js/views/home/titlebar.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/js/views/home/titlebar.js" afterPath="$PROJECT_DIR$/client/apps/pub/js/views/home/titlebar.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/config/twitter.api.js" afterPath="$PROJECT_DIR$/server/config/twitter.api.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/models/user.model.js" afterPath="$PROJECT_DIR$/server/models/user.model.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/apps/pub/js/views/home/welcome.overlay.js" afterPath="$PROJECT_DIR$/client/apps/pub/js/views/home/welcome.overlay.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="passportexample.iws" />
@@ -70,92 +284,91 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="donations.list.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/apps/dash/js/views/donations/donations.list.js">
+      <file leaf-file-name="map.header.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/apps/dash/js/views/maps/map.header.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="45" column="60" selection-start="1407" selection-end="1407" vertical-scroll-proportion="0.0" vertical-offset="303" max-vertical-offset="969">
-              <folding>
-                <element signature="e#0#41#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Bog.views.partial.ListModel.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/apps/dash/js/views/_base/Bog.views.partial.ListModel.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="0" selection-start="247" selection-end="247" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="408">
+            <state line="6" column="45" selection-start="145" selection-end="145" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="475">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/apps/dash/css/style.css">
+      <file leaf-file-name="header.dash.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/apps/dash/js/views/header/header.dash.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="187" column="0" selection-start="4628" selection-end="4654" vertical-scroll-proportion="0.0" vertical-offset="235" max-vertical-offset="816">
-              <folding>
-                <element signature="e#5#168#0" expanded="false" />
-                <element signature="e#172#193#0" expanded="false" />
-                <element signature="e#210#394#0" expanded="false" />
-                <element signature="e#419#602#0" expanded="false" />
-                <element signature="e#616#638#0" expanded="false" />
-                <element signature="e#653#789#0" expanded="false" />
-                <element signature="e#813#849#0" expanded="false" />
-                <element signature="e#865#1944#0" expanded="false" />
-                <element signature="e#1974#2043#0" expanded="false" />
-                <element signature="e#2077#2159#0" expanded="false" />
-                <element signature="e#2208#2798#0" expanded="false" />
-                <element signature="e#2820#2889#0" expanded="false" />
-                <element signature="e#2905#2945#0" expanded="false" />
-                <element signature="e#2971#3182#0" expanded="false" />
-                <element signature="e#3221#3811#0" expanded="false" />
-                <element signature="e#3840#4430#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="list.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/apps/dash/tmpl/shared/list.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="52" selection-start="99" selection-end="99" vertical-scroll-proportion="-0.65384614" vertical-offset="0" max-vertical-offset="153">
+            <state line="7" column="48" selection-start="147" selection-end="147" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="380">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_donations.list.items.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/apps/dash/tmpl/donations/_donations.list.items.html">
+      <file leaf-file-name="list.all.events.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/apps/pub/js/views/events/list.all.events.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="8" selection-start="131" selection-end="131" vertical-scroll-proportion="-4.576923" vertical-offset="0" max-vertical-offset="221">
+            <state line="8" column="45" selection-start="219" selection-end="219" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="893">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="donation.view.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/client/apps/dash/js/views/donations/donation.view.js">
+      <file leaf-file-name="list.all.solicitations.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/apps/pub/js/views/solicitations/list.all.solicitations.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="47" selection-start="897" selection-end="897" vertical-scroll-proportion="0.8080439" vertical-offset="0" max-vertical-offset="1598">
+            <state line="8" column="52" selection-start="240" selection-end="240" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="874">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="donations.list.bak.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/apps/dash/js/views/donations/donations.list.bak.js">
+      <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/apps/dash/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="0" selection-start="1477" selection-end="1477" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="952">
+            <state line="18" column="12" selection-start="292" selection-end="292" vertical-scroll-proportion="0.0" vertical-offset="82" max-vertical-offset="1292">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_donations.list.item.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/apps/dash/tmpl/donations/_donations.list.item.html">
+      <file leaf-file-name="_profile.detail.small.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/apps/dash/tmpl/profile/_profile.detail.small.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="0" selection-start="99" selection-end="99" vertical-scroll-proportion="-1.3076923" vertical-offset="0" max-vertical-offset="136">
+            <state line="15" column="6" selection-start="570" selection-end="570" vertical-scroll-proportion="-10.178572" vertical-offset="0" max-vertical-offset="399">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="list.all.donations.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/apps/pub/js/views/donations/list.all.donations.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="30" column="16" selection-start="1141" selection-end="1141" vertical-scroll-proportion="0.0" vertical-offset="93" max-vertical-offset="874">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="solicitation.form.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/apps/dash/tmpl/solicitations/solicitation.form.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="27" column="85" selection-start="1358" selection-end="1358" vertical-scroll-proportion="-8.964286" vertical-offset="262" max-vertical-offset="2527">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bootstrap.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/apps/dash/css/bootstrap/css/bootstrap.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="4730" column="12" selection-start="77686" selection-end="77686" vertical-scroll-proportion="0.0" vertical-offset="89614" max-vertical-offset="140486">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bog.i18n.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/client/apps/dash/js/bog.i18n.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="240" column="34" selection-start="8678" selection-end="8678" vertical-scroll-proportion="0.48046875" vertical-offset="4191" max-vertical-offset="4959">
               <folding />
             </state>
           </provider>
@@ -179,30 +392,29 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/client/apps/dash/js/views/_base/Bog.views.partial.ButtonBar.js" />
-        <option value="$PROJECT_DIR$/client/apps/dash/js/views/_base/Bog.views.partial.ModelDisplay.js" />
-        <option value="$PROJECT_DIR$/client/apps/dash/js/views/_base/Bog.views.partial.ModelForm.js" />
-        <option value="$PROJECT_DIR$/client/apps/dash/tmpl/donations/_donation.list.items.html" />
-        <option value="$PROJECT_DIR$/client/apps/dash/js/collections/collection.donations.js" />
-        <option value="$PROJECT_DIR$/client/apps/dash/js/models/model.donation.js" />
-        <option value="$PROJECT_DIR$/client/apps/dash/js/views/_base/Bog.views.full.List.js" />
-        <option value="$PROJECT_DIR$/client/apps/dash/js/views/donations/_donations.list.item.js" />
-        <option value="$PROJECT_DIR$/client/apps/dash/js/views/donations/_donations.list.items.js" />
-        <option value="$PROJECT_DIR$/client/apps/dash/js/views/_base/Bog.views.partial.ListModels.js" />
-        <option value="$PROJECT_DIR$/client/apps/dash/js/views/_base/Bog.views.partial.ListModel.js" />
-        <option value="$PROJECT_DIR$/client/apps/dash/tmpl/shared/list.html" />
-        <option value="$PROJECT_DIR$/client/apps/dash/css/style.css" />
-        <option value="$PROJECT_DIR$/client/apps/dash/js/views/donations/donations.list.js" />
-        <option value="$PROJECT_DIR$/client/apps/dash/tmpl/donations/_donations.list.items.html" />
-        <option value="$PROJECT_DIR$/client/apps/dash/tmpl/donations/_donations.list.item.html" />
+        <option value="$PROJECT_DIR$/client/apps/dash/js/views/events/bak._event.display.js" />
+        <option value="$PROJECT_DIR$/client/apps/dash/js/models/model.solicitation.js" />
+        <option value="$PROJECT_DIR$/client/apps/pub/js/models/model.event.js" />
+        <option value="$PROJECT_DIR$/client/apps/pub/js/models/model.donation.js" />
+        <option value="$PROJECT_DIR$/client/apps/pub/js/models/model.solicitation.js" />
+        <option value="$PROJECT_DIR$/client/apps/pub/js/views/maps/map.header.js" />
+        <option value="$PROJECT_DIR$/client/apps/dash/js/views/maps/map.header.js" />
+        <option value="$PROJECT_DIR$/client/apps/dash/js/views/header/header.dash.js" />
+        <option value="$PROJECT_DIR$/client/apps/dash/tmpl/profile/_profile.detail.small.html" />
+        <option value="$PROJECT_DIR$/server/apps/api/api.routes.auth.js" />
+        <option value="$PROJECT_DIR$/client/apps/dash/tmpl/donations/bak._donation.form.html" />
+        <option value="$PROJECT_DIR$/client/apps/pub/js/views/events/list.all.events.js" />
+        <option value="$PROJECT_DIR$/client/apps/pub/js/views/solicitations/list.all.solicitations.js" />
+        <option value="$PROJECT_DIR$/client/apps/dash/js/app.js" />
+        <option value="$PROJECT_DIR$/client/apps/dash/tmpl/solicitations/solicitation.form.html" />
+        <option value="$PROJECT_DIR$/client/apps/dash/js/bog.i18n.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-4" />
-    <option name="y" value="-4" />
-    <option name="width" value="1928" />
-    <option name="height" value="1044" />
+    <option name="x" value="1918" />
+    <option name="width" value="2404" />
+    <option name="height" value="1352" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -230,7 +442,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -262,6 +473,42 @@
               <option name="myItemId" value="server" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="passportexample" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Bog.io" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="passportexample" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Bog.io" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -299,7 +546,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="dash" />
+              <option name="myItemId" value="auth" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -321,33 +568,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="dash" />
+              <option name="myItemId" value="auth" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="index.jade" />
-              <option name="myItemType" value="com.intellij.plugins.watcher.projectView.NestingTreeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="passportexample" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Bog.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
+              <option name="myItemId" value="routes" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -361,300 +586,19 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dash" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tmpl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="passportexample" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Bog.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dash" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tmpl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="shared" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="passportexample" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Bog.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dash" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tmpl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="donations" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="passportexample" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Bog.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dash" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="passportexample" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Bog.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dash" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="passportexample" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Bog.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dash" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="donations" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="passportexample" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Bog.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dash" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="_base" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="passportexample" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Bog.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dash" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="passportexample" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Bog.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dash" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="collections" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="passportexample" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Bog.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dash" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
+              <option name="myItemId" value="node_modules" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
+    <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.Font" />
     <property name="recentsLimit" value="5" />
     <property name="JavaScriptLanguageLevel" value="JS_1_8_5" />
     <property name="restartRequiresConfirmation" value="true" />
@@ -666,18 +610,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Storage\Projects\BankOfGiving\Bog.io\client\apps\dash\tmpl\events" />
+      <recent name="C:\Storage\Projects\BankOfGiving\Bog.io\client\apps\dash\css" />
+      <recent name="C:\Storage\Projects\Bog.io\client\apps\dash\tmpl\events" />
       <recent name="C:\Storage\Projects\Bog.io\client\apps\dash\tmpl\donations" />
       <recent name="C:\Storage\Projects\Bog.io\client\apps\dash\js\views\_base" />
-      <recent name="C:\Storage\Projects\Bog.io\server\models" />
-      <recent name="C:\Storage\Projects\Bog.io\client\apps\dash\js\views\profile" />
-      <recent name="C:\Storage\Projects\Bog.io\client\apps\dash\tmpl\profile" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Storage\Projects\BankOfGiving\Bog.io\client\apps\dash\js" />
+      <recent name="C:\Storage\Projects\BankOfGiving\Bog.io\client\apps\dash\css\bootstrap\css" />
       <recent name="C:\Storage\Projects\passportexample\client\apps\dash\tmpl\profile" />
       <recent name="C:\Storage\Projects\passportexample\client\apps\dash\tmpl" />
       <recent name="C:\Storage\Projects\passportexample\client\apps\pub\js\config" />
-      <recent name="C:\Storage\Projects\passportexample\client\apps\pub\js" />
-      <recent name="C:\Storage\Projects\passportexample\client\apps\dash\js\views" />
     </key>
   </component>
   <component name="RunManager" selected="Node.js.server.js">
@@ -778,7 +722,11 @@
       <created>1386319882562</created>
       <updated>1386319882562</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added abstraction for Backbone elements in Dashboard.  Created base views for list items.">
+      <created>1386411342900</created>
+      <updated>1386411342900</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -802,27 +750,27 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="-4" width="1928" height="1044" extended-state="6" />
+    <frame x="1918" y="0" width="2404" height="1352" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.40111113" sideWeight="0.49730894" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32777777" sideWeight="0.49970675" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.36333334" sideWeight="0.49920928" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24986821" sideWeight="0.7128603" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21349499" sideWeight="0.63666666" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980973" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.40063426" sideWeight="0.49730894" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.40282393" sideWeight="0.49920928" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3988889" sideWeight="0.49920928" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32890365" sideWeight="0.5002105" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.14549288" sideWeight="0.3" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36363637" sideWeight="0.5007907" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36444443" sideWeight="0.49815497" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980973" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32890365" sideWeight="0.49936843" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32769555" sideWeight="0.49970675" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24986821" sideWeight="0.7128603" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16252631" sideWeight="0.6710963" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39950165" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15116279" sideWeight="0.49815497" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -837,149 +785,126 @@
     <MESSAGE value="Added profile Update and donation CRUD WIP" />
     <MESSAGE value="Added donation Add Update methods to the API" />
     <MESSAGE value="Added donation Add Update methods to the API&#10;Code cleanup" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added donation Add Update methods to the API&#10;Code cleanup" />
+    <MESSAGE value="Added abstraction for Backbone elements in Dashboard.  Created base views for list items." />
+    <MESSAGE value="Added API new methods and data layer abstraction for key elements on dashboard.  Functionality changes to dashboard UI." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added API new methods and data layer abstraction for key elements on dashboard.  Functionality changes to dashboard UI." />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="21" />
+      <option name="time" value="28" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/client/apps/dash/js/collections/collection.donations.js">
+    <entry file="file://$PROJECT_DIR$/client/apps/dash/js/views/events/_event.display.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="35" selection-start="133" selection-end="134" vertical-scroll-proportion="0.07971864" vertical-offset="0" max-vertical-offset="853">
+        <state line="4" column="26" selection-start="83" selection-end="83" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="532">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/apps/dash/js/models/model.donation.js">
+    <entry file="file://$PROJECT_DIR$/client/apps/dash/js/models/model.solicitation.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="9" selection-start="402" selection-end="402" vertical-scroll-proportion="0.3501144" vertical-offset="0" max-vertical-offset="874">
+        <state line="6" column="14" selection-start="97" selection-end="97" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/apps/dash/tmpl/donations/donations.list.all.html">
+    <entry file="file://$PROJECT_DIR$/client/apps/pub/js/models/model.event.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="13" selection-start="589" selection-end="589" vertical-scroll-proportion="0.3408019" vertical-offset="0" max-vertical-offset="848">
+        <state line="6" column="14" selection-start="97" selection-end="97" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/apps/dash/js/views/events/events.list.js">
+    <entry file="file://$PROJECT_DIR$/client/apps/pub/js/models/model.donation.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="53" selection-start="378" selection-end="378" vertical-scroll-proportion="0.21395881" vertical-offset="0" max-vertical-offset="874">
+        <state line="6" column="14" selection-start="97" selection-end="97" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/apps/dash/js/views/donations/_donations.list.items.js">
+    <entry file="file://$PROJECT_DIR$/client/apps/pub/js/models/model.solicitation.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="0" selection-start="304" selection-end="304" vertical-scroll-proportion="0.1361556" vertical-offset="0" max-vertical-offset="874">
-          <folding>
-            <element signature="e#0#41#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/apps/dash/js/views/donations/_donations.list.item.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="0" selection-start="278" selection-end="278" vertical-scroll-proportion="0.11670481" vertical-offset="0" max-vertical-offset="874">
-          <folding>
-            <element signature="e#0#41#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/apps/dash/js/views/_base/Bog.views.full.List.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="27" selection-start="263" selection-end="263" vertical-scroll-proportion="0.11670481" vertical-offset="0" max-vertical-offset="874">
-          <folding>
-            <element signature="e#0#41#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/apps/dash/js/views/_base/Bog.views.partial.ListModels.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="0" selection-start="1248" selection-end="1248" vertical-scroll-proportion="0.60297483" vertical-offset="0" max-vertical-offset="874">
-          <folding>
-            <element signature="e#0#41#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/apps/dash/js/views/_base/Bog.views.partial.ListModel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="0" selection-start="247" selection-end="247" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="408">
+        <state line="6" column="14" selection-start="97" selection-end="97" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/apps/dash/tmpl/shared/list.html">
+    <entry file="file://$PROJECT_DIR$/client/apps/pub/js/views/maps/map.header.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="52" selection-start="99" selection-end="99" vertical-scroll-proportion="-0.65384614" vertical-offset="0" max-vertical-offset="153">
+        <state line="6" column="45" selection-start="145" selection-end="145" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="475">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/apps/dash/css/style.css">
+    <entry file="file://$PROJECT_DIR$/client/apps/dash/js/views/maps/map.header.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="187" column="0" selection-start="4628" selection-end="4654" vertical-scroll-proportion="0.0" vertical-offset="235" max-vertical-offset="816">
-          <folding>
-            <element signature="e#5#168#0" expanded="false" />
-            <element signature="e#172#193#0" expanded="false" />
-            <element signature="e#210#394#0" expanded="false" />
-            <element signature="e#419#602#0" expanded="false" />
-            <element signature="e#616#638#0" expanded="false" />
-            <element signature="e#653#789#0" expanded="false" />
-            <element signature="e#813#849#0" expanded="false" />
-            <element signature="e#865#1944#0" expanded="false" />
-            <element signature="e#1974#2043#0" expanded="false" />
-            <element signature="e#2077#2159#0" expanded="false" />
-            <element signature="e#2208#2798#0" expanded="false" />
-            <element signature="e#2820#2889#0" expanded="false" />
-            <element signature="e#2905#2945#0" expanded="false" />
-            <element signature="e#2971#3182#0" expanded="false" />
-            <element signature="e#3221#3811#0" expanded="false" />
-            <element signature="e#3840#4430#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/apps/dash/js/views/donations/donations.list.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="60" selection-start="1407" selection-end="1407" vertical-scroll-proportion="0.0" vertical-offset="303" max-vertical-offset="969">
-          <folding>
-            <element signature="e#0#41#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/apps/dash/tmpl/donations/_donations.list.item.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="0" selection-start="99" selection-end="99" vertical-scroll-proportion="-1.3076923" vertical-offset="0" max-vertical-offset="136">
+        <state line="6" column="45" selection-start="145" selection-end="145" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="475">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/apps/dash/js/views/donations/donations.list.bak.js">
+    <entry file="file://$PROJECT_DIR$/client/apps/dash/js/views/header/header.dash.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="0" selection-start="1477" selection-end="1477" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="952">
+        <state line="7" column="48" selection-start="147" selection-end="147" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="380">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/apps/dash/tmpl/donations/_donations.list.items.html">
+    <entry file="file://$PROJECT_DIR$/client/apps/pub/js/views/events/list.all.events.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="8" selection-start="131" selection-end="131" vertical-scroll-proportion="-4.576923" vertical-offset="0" max-vertical-offset="221">
+        <state line="8" column="45" selection-start="219" selection-end="219" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="893">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/apps/dash/js/views/donations/donation.view.js">
+    <entry file="file://$PROJECT_DIR$/client/apps/pub/js/views/solicitations/list.all.solicitations.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="47" selection-start="897" selection-end="897" vertical-scroll-proportion="0.8080439" vertical-offset="0" max-vertical-offset="1598">
+        <state line="8" column="52" selection-start="240" selection-end="240" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="874">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/apps/dash/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="12" selection-start="292" selection-end="292" vertical-scroll-proportion="0.0" vertical-offset="82" max-vertical-offset="1292">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/apps/dash/tmpl/profile/_profile.detail.small.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="6" selection-start="570" selection-end="570" vertical-scroll-proportion="-10.178572" vertical-offset="0" max-vertical-offset="399">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/apps/pub/js/views/donations/list.all.donations.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="16" selection-start="1141" selection-end="1141" vertical-scroll-proportion="0.0" vertical-offset="93" max-vertical-offset="874">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/apps/dash/tmpl/solicitations/solicitation.form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="85" selection-start="1358" selection-end="1358" vertical-scroll-proportion="-8.964286" vertical-offset="262" max-vertical-offset="2527">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/apps/dash/css/bootstrap/css/bootstrap.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4730" column="12" selection-start="77686" selection-end="77686" vertical-scroll-proportion="0.0" vertical-offset="89614" max-vertical-offset="140486">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/apps/dash/js/bog.i18n.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="240" column="34" selection-start="8678" selection-end="8678" vertical-scroll-proportion="0.48046875" vertical-offset="4191" max-vertical-offset="4959">
           <folding />
         </state>
       </provider>

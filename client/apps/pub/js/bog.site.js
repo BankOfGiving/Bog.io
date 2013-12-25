@@ -1,9 +1,9 @@
 /**
  * Created by dbaxter on 12/1/13.
  */
-define([ 'jquery' ], function($){
+define([ 'jquery' ], function ($) {
     return {
-        transitionToSiteOverrideContainer: function(){
+        transitionToSiteOverrideContainer: function () {
             // this is a special page that uses the override rather than the main layout.
             $('#site-container-override').css('visibility', 'visible');
             $('#site-container').css('visibility', 'hidden');
@@ -11,7 +11,7 @@ define([ 'jquery' ], function($){
             // add animations!!!
             //$( "someElement" ).hide().animate({height: "20px"}, 500)
         },
-        transitionToSiteDefaultContainer: function(){
+        transitionToSiteDefaultContainer: function () {
             // this is a special page that uses the override rather than the main layout.
             $('#site-container-override').css('visibility', 'hidden');
             $('#site-container').css('visibility', 'visible');

@@ -5,10 +5,10 @@ define([
     'views/maps/map.small',
     'models/model.donation',
     'text!../../../tmpl/donations/detail.html'
-], function($, _, Backbone, MapView, DonationModel, DetailTemplate){
+], function ($, _, Backbone, MapView, DonationModel, DetailTemplate) {
     return Backbone.View.extend({
         el: $('#site-content'),
-        render: function(id) {
+        render: function (id) {
             var self = this;
 
             console.log(id);
@@ -17,7 +17,7 @@ define([
 
             donation.fetch({
                 success: function (donation) {
-                    $(self.el).html(_.template(DetailTemplate, {donation: donation, _:_}));
+                    $(self.el).html(_.template(DetailTemplate, {donation: donation, _: _}));
                 }
             });
 

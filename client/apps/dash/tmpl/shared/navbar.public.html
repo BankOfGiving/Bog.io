@@ -1,0 +1,40 @@
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar-header col-xs-12 col-sm-12 col-md-5 col-lg-4">
+        <h3 class="text-site-title col-xs-6 col-sm-6">Bank of Giving</h3>
+        <button data-toggle="collapse" data-target=".navbar-collapse" class="btn btn-primary navbar-toggle"><span
+                class="glyphicon glyphicon-chevron-down"></span></button>
+    </div>
+    <div class="navbar-collapse collapse col-sm-0 col-md-pull-0 col-lg-pull-0">
+        <ul class="nav navbar-nav navbar-right" id="Navbar-Pub">
+            <li><a href="#" data-toggle="modal" data-target="#Login-Options" data-localize-key="nav.login"
+                   data-localize-target="text"></a></li>
+            <li><br></li>
+        </ul>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="Login-Options" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel" data-localize-key="login_modal.description"
+                    data-localize-target="text"></h4>
+            </div>
+            <div class="modal-body">
+                <button type="button" id="Login-Facebook" class="btn btn-default btn-lg btn-block"
+                        data-localize-key="login_modal.facebook" data-localize-target="html"></button>
+                <button type="button" id="Login-Google" class="btn btn-default btn-lg btn-block"
+                        data-localize-key="login_modal.google" data-localize-target="html"></button>
+                <button type="button" id="Login-Twitter" class="btn btn-default btn-lg btn-block"
+                        data-localize-key="login_modal.twitter" data-localize-target="html"></button>
+            </div>
+            <!-- <div class="modal-footer"> -->
+            <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Vance</button> -->
+            <!-- </div> -->
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div><!-- /.modal -->

@@ -1,30 +1,59 @@
-define([
-    'jquery',
-    'underscore',
-    'backbone',
-    'collections/collection.donations',
-    'text!../../../tmpl/donations/donations.list.all.html'
-], function($, _, Backbone, DonationCollection, DonationTemplate){
+define(['jquery', 'underscore', 'backbone', 'bog.site'
+    , 'collections/collection.solicitations'
+    , 'text!../../../tmpl/solicitations/solicitations.list.html'
+], function ($, _, Backbone, site, SolicitationCollection, SolicitationTemplate) {
     return Backbone.View.extend({
-        render: function(container) {
+        siteText: {
+            pageHeader: {
+                title: "My Solicitations",
+                description: "View and modify your existing Solicitations or create a news Solicitation starting with the form to the right."
+            }
+        },
+        initialize: function () {
             var self = this;
 
-            var donations = new DonationCollection();
+            var solicitations = new SolicitationCollection();
+            solicitations.fetch({
+                success: function (solicitations) {
+                    self.collection = solicitations;
+                    self.render();
+                }});
 
-            donations.fetch({
-                success: function (donations) {
-                    container.html(_.template(DonationTemplate, {donations: donations.models, _:_}));
+            return this;
+        },
+        render: function () {
+            var self = this;
 
-                    $('#donations-button-back').click(function(){
-                        console.log(window.location);
-                        window.location = '#/';
-                    });
+            var solicitations = self.collection.toJSON();
 
-                    $('#donations-button-create').click(function(){
-                        window.location = '#/donations/add';
-                    });
-                }
+            self.$el.empty();
+
+            if (solicitations.length == 0) {
+                self.$el.append(_.template(SolicitationTemplate, {solicitations: null, _: _}));
+            } else {
+                solicitations = sortByKey(solicitations, 'title');
+                self.$el.append(_.template(SolicitationTemplate, {solicitations: solicitations[0].solicitations, _: _}));
+            }
+
+            site.setPageHeader(self.siteText.pageHeader.title, self.siteText.pageHeader.description);
+            site.setActiveNav("solicitations");
+
+            $('#solicitations-button-back').click(function () {
+                console.log(window.location);
+                window.location = '#/';
+            });
+
+            $('.addButton').click(function () {
+                window.location = '#/solicitation/add';
             });
         }
     });
+
+    function sortByKey(array, key) {
+        return array.sort(function (a, b) {
+            var x = a[key];
+            var y = b[key];
+            return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+        });
+    }
 });

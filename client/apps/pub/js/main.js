@@ -10,22 +10,18 @@ requirejs.config({
         googlemaps: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCZjCOZHzKqlOAkBXr1HFrLtY84zVqWZxA&sensor=true',
         jquery: "//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min",
         blockui: "//cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.66.0-2013.10.09/jquery.blockUI.min",
-        underscore:  "//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min"
-    },shim: {
+        underscore: "//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min"
+    }, shim: {
         jquery: {
             exports: '$'
-        }
-        ,'underscore': {
-            deps: [ 'jquery' ]
-            ,exports: '_'
-        }
-        ,'backbone': {
-            deps: [ 'underscore' ]
-            ,exports: 'Backbone'
+        }, 'underscore': {
+            deps: [ 'jquery' ], exports: '_'
+        }, 'backbone': {
+            deps: [ 'underscore' ], exports: 'Backbone'
         }
     }
 });
 
-require([ 'app' ], function(App){
+require([ 'app' ], function (App) {
     App.initialize();
 });

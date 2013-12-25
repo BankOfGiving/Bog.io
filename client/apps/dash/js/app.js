@@ -1,22 +1,39 @@
+if (Bog == null) {
+    var Bog = {
+        dash: {
+            views: {
+                full: {},
+                partial: {}
+            }
+        },
+        models: {},
+        collections: {},
+        site: {}
+    };
+}
+
 define([
     'jquery',
     'underscore',
     'backbone',
-    'router',
-], function($, _, Backbone, Router){
-    var initialize = function(){
+    'router'
+], function ($, _, Backbone, Router) {
+
+    var initialize = function () {
 
         // Pass in our Router module and call it's initialize function
-        $.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
-            // options.url = 'http://lptp-win-dev01:5000/api/v1/' + options.url;
-            options.url = '/api/v1/' + options.url;
-            //options.url = 'http://localhost:5000/api/v1/' + options.url;
+        $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
+            if (options.url.indexOf('googleapis.com') > -1) {
+                // options.url = options.url;  // execute the google api call as is.
+            } else {
+                options.url = '/api/v1/' + options.url;  // prepend the local api uri
+            }
         });
 
-        $.fn.serializeObject = function() {
+        $.fn.serializeObject = function () {
             var o = {};
             var a = this.serializeArray();
-            $.each(a, function() {
+            $.each(a, function () {
                 if (o[this.name] !== undefined) {
                     if (!o[this.name].push) {
                         o[this.name] = [o[this.name]];
@@ -29,11 +46,11 @@ define([
             return o;
         };
 
-        function htmlEncode(value){
+        function htmlEncode(value) {
             return $('<div/>').text(value).html();
         }
 
-        function htmlDecode(value){
+        function htmlDecode(value) {
             return $('<div/>').html(value).text();
         }
 

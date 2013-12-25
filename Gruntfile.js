@@ -1,8 +1,7 @@
-
 /**
  * Created by dbaxter on 11/27/13.
  */
-module.exports = function (grunt){
+module.exports = function (grunt) {
     grunt.initConfig({
         "less": {
             "dev": {

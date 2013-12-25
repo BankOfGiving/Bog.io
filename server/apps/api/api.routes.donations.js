@@ -1,4 +1,4 @@
-module.exports = function(app, uriBase){
+module.exports = function (app, uriBase) {
     // modules
     var Donation = require('../../models/donation.model.js');
 
@@ -6,85 +6,80 @@ module.exports = function(app, uriBase){
     uriBase = uriBase + '/donations';
 
     // CORS
-    app.all(uriBase + '*', function(req, res, next) {
+    app.all(uriBase + '*', function (req, res, next) {
         res.header("Access-Control-Allow-Origin", "*");
         res.header("Access-Control-Allow-Headers", "X-Requested-With");
         next();
     });
 
     // routes
-    app.get(uriBase + '/', function(req, res){
+    app.get(uriBase + '/', function (req, res) {
         var query = Donation.find();
         query.exec(function (err, coll) {
-            if(err) {
+            if (err) {
                 res.send(err);
             }
-            if(coll.length == 0)
-            {
+            if (coll.length == 0) {
                 var donation = new Donation();
                 donation.title = "Sample Donation";
 
                 res.send(donation);
             }
-            if(coll == null)
-            {
+            if (coll == null) {
                 res.send('no data');
             }
-            if(coll.length > 0)
-            {
+            if (coll.length > 0) {
                 res.send(coll);
             }
         });
     });
 
-    app.get(uriBase + '/:objectId', function(req, res){
+    app.get(uriBase + '/:objectId', function (req, res) {
         var id = req.param('objectId');
-        Donation.getByObjectId(id, function (err, results){
-            if(err) {
+        Donation.getByObjectId(id, function (err, results) {
+            if (err) {
                 res.send(err);
             }
-            if(results == null)
-            {
+            if (results == null) {
                 res.send('no data');
-            }else{
+            } else {
                 res.send(results);
             }
         });
     });
 
-    app.get(uriBase + '/bylocation', function(req, res){
+    app.get(uriBase + '/bylocation', function (req, res) {
         var address = req.query.addr;
         var radius = req.query.rad;
-        Donation.getByLocation(address, radius, function(err, coll){
-            if(err) {
+        Donation.getByLocation(address, radius, function (err, coll) {
+            if (err) {
                 res.send(coll, 500, err);
-            }else{
+            } else {
                 res.send(coll, 200);
             }
         });
     });
 
-    app.get(uriBase + '/seed/:count', function(req, res){
+    app.get(uriBase + '/seed/:count', function (req, res) {
 
         var numOfElements = req.params.count;
 
-        if(req.query.clean == 'true')
-        {
-           Donation.remove({}, function() {
-               CreateElements(numOfElements, function(coll){
-                   Donation.create(coll, function(err, created){
-                       if(err) {
-                           res.send(400, err);
-                       } else {
-                           res.send(200, coll.length + ' documents created.');
-                       }
-                   });
-               });
+        if (req.query.clean == 'true') {
+            Donation.remove({}, function () {
+                CreateElements(numOfElements, function (coll) {
+                    Donation.create(coll, function (err, created) {
+                        if (err) {
+                            res.send(400, err);
+                        } else {
+                            res.send(200, coll.length + ' documents created.');
+                        }
+                    });
+                });
             });
         } else {
-            CreateElements(numOfElements, function(coll){
-                Donation.create(coll, function(err, created){
-                    if(err) {
+            CreateElements(numOfElements, function (coll) {
+                Donation.create(coll, function (err, created) {
+                    if (err) {
                         res.send(400, err);
                     } else {
                         res.send(200, coll.length + ' documents created.');
@@ -95,28 +90,28 @@ module.exports = function(app, uriBase){
     });
 
     // ADD
-    app.post(uriBase + '/', function(req, res){
+    app.post(uriBase + '/', function (req, res) {
         AddUpdateDonation(req, res, true);
     });
 
     // UPDATE
-    app.put(uriBase + '/', function(req, res){
+    app.put(uriBase + '/', function (req, res) {
         AddUpdateDonation(req, res, false);
     });
 
-    app.put(uriBase + '/:id', function(req, res){
+    app.put(uriBase + '/:id', function (req, res) {
         AddUpdateDonation(req, res, false);
     });
 
-    function CreateElements(num, callback){
+    function CreateElements(num, callback) {
         var coll = [];
-        for(var i = 0; i < num; i++) {
-            (function(i){
-                Donation.createSeed(true, function (d){
+        for (var i = 0; i < num; i++) {
+            (function (i) {
+                Donation.createSeed(true, function (d) {
                     d.title = 'Sample Donation ' + i;
                     coll.push(d);
 
-                    if(coll.length == num) {
+                    if (coll.length == num) {
                         callback(coll);
                     }
                 });
@@ -130,9 +125,9 @@ module.exports = function(app, uriBase){
         console.log("USER:  " + req.user);
         console.log("USER:  " + JSON.stringify(req.session.user));
         console.log("USER:  " + req.isAuthenticated);
-        if(donation != null && donation != ''){
-            Donation.AddUpdateFromObject(donation, createIfNotFound, user, function(err, don){
-                if(err) {
+        if (donation != null && donation != '') {
+            Donation.AddUpdateFromObject(donation, createIfNotFound, user, function (err, don) {
+                if (err) {
                     console.log('Error');
                     res.send(406, err);
                 }

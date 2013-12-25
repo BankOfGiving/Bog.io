@@ -6,10 +6,10 @@ define([
     'views/donations/_donation.form',
     'models/model.donation',
     'text!../../../tmpl/donations/donation.edit.html'
-], function($, _, Backbone, MapView, FormView, DonationModel, EditTemplate){
+], function ($, _, Backbone, MapView, FormView, DonationModel, EditTemplate) {
     return Backbone.View.extend({
         el: $('body'),
-        initialize: function(container, id){
+        initialize: function (container, id) {
             var self = this;
 
             var donation = new DonationModel({id: id});
@@ -22,7 +22,7 @@ define([
             });
 
         },
-        render: function(container, donation) {
+        render: function (container, donation) {
             container.html(EditTemplate);
 
             var displayView = new DisplayView($('#Donation-Display'), donation);
@@ -31,11 +31,11 @@ define([
             delete displayView;
             return this;
         },
-        bind: function(donation){
-            $("div#Donation-View-Container > button.backButton").click(function(){
+        bind: function (donation) {
+            $("div#Donation-View-Container > button.backButton").click(function () {
                 history.back();
             });
-            $("div#Donation-View-Container > button.addButton").click(function(){
+            $("div#Donation-View-Container > button.addButton").click(function () {
                 location.href = '#/Donation/Edit/' + donation.id;
             });
         }

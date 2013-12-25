@@ -7,9 +7,9 @@ define([
     'backbone',
     'blockui',
     'text!../../../tmpl/filters/filter.solicitations.html'
-], function($, _, Backbone, blockui, template){
+], function ($, _, Backbone, blockui, template) {
     return Backbone.View.extend({
-        render: function(container) {
+        render: function (container) {
             container.html(template);
         }
     });

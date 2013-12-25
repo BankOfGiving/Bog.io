@@ -4,126 +4,112 @@
 // Filename: router.js
 define([ 'jquery', 'underscore', 'backbone', 'bog', 'bog.session', 'bog.site',
     'views/home/landing',
-    'views/home/titlebar',
-    'views/header/header.dash',
+    'views/home/home',
+    'views/shared/header.dash',
 
-    'views/profile/profile.manage',
+    'views/profile/profile.view',
     'views/profile/profile.edit',
 
     'views/donations/donations.list',
-    'views/donations/donation.delete',
-    'views/donations/donation.add',
-    'views/donations/donation.view',
-    'views/donations/donation.edit',
+    'views/donations/donation.detail',
+    'views/donations/donation.form',
 
     'views/events/events.list',
-    'views/events/event.delete',
-    'views/events/event.add',
-    'views/events/event.view',
-    'views/events/event.edit',
+    'views/events/event.detail',
+    'views/events/event.form',
 
     'views/solicitations/solicitations.list',
-    'views/solicitations/solicitation.delete',
-    'views/solicitations/solicitation.add',
-    'views/solicitations/solicitation.view',
-    'views/solicitations/solicitation.edit'
+    'views/solicitations/solicitation.detail',
+    'views/solicitations/solicitation.form'
 
-], function($, _, Backbone, bog, session, site,
-        LandingView,
-        TitleBarView,
-        DashboardHeaderView,
-
-        ProfileManageView,
-        ProfileEditView,
-
-        DonationsListView,
-        DonationDeleteView,
-        DonationAddView,
-        DonationViewView,
-        DonationEditView,
-
-        EventsListView,
-        EventDeleteView,
-        EventAddView,
-        EventViewView,
-        EventEditView,
-
-        SolicitationsListView,
-        SolicitationDaveView,
-        SolicitationAddView,
-        SolicitationViewView,
-        SolicitationEditView
-    ){
+], function ($, _, Backbone, bog, session, site, DashLandingView, DashHomeView, DashHeaderView, ProfileViewView, ProfileEditView, DonationsListView, DonationDetailView, DonationFormView, EventsListView, EventDetailView, EventFormView, SolicitationsListView, SolicitationDetailView, SolicitationFormView) {
     var AppRouter = Backbone.Router.extend({
         routes: {
-            // Define some URL routes
-            '': 'landing',
-            'profile': 'userProfileManage',
+            '': 'home',
+            'logout': 'logout',
+            'profile': 'userProfileView',
             'profile/edit': 'userProfileEdit',
 
-            'donations': 'userDonations',
+            'donations/': 'userDonations',
+            'donation/': 'userDonationAdd',
             'donation/:id': 'userDonationView',
-            'donations/delete/:id': 'userDonationDelete',
-            'donations/add': 'userDonationAdd',
-            'donations/edit/:id': 'userDonationEdit',
+            'donation/:id/delete': 'userDonationDelete',
+            'donation/:id/edit': 'userDonationEdit',
 
-            'events': 'userEvents',
-            'events/delete/:id': 'userEventDelete',
-            'events/add': 'userEventAdd',
-            'events/view/:id:': 'userEventView',
-            'events/edit/:id': 'userEventEdit',
+            'events/': 'userEvents',
+            'event/': 'userEventAdd',
+            'event/:id': 'userEventView',
+            'event/:id/delete': 'userEventDelete',
+            'event/:id/edit': 'userEventEdit',
 
-            'solicitations': 'userSolicitations',
-            'solicitations/delete/:id': 'userSolicitationDelete',
-            'solicitations/add': 'userSolicitationAdd',
-            'solicitations/view/:id:': 'userSolicitationView',
-            'solicitations/edit/:id': 'userSolicitationEdit',
+            'solicitations/': 'userSolicitations',
+            'solicitation/': 'userSolicitationAdd',
+            'solicitation/:id': 'userSolicitationView',
+            'solicitation/:id/delete': 'userSolicitationDelete',
+            'solicitation/:id/edit': 'userSolicitationEdit',
 
             // Default
             '*actions': 'defaultAction'
         }
     });
 
-    var initialize = function(){
+    var initialize = function () {
         var app_router = new AppRouter;
         var container = $('#site-container');
+        var headerContainerId = '#site-header';
         var headerContainer = $('#site-header');
         var contentContainerId = '#page-content';
         var contentContainer = $(contentContainerId);
 
-        site.transitionToSiteDefaultContainer();
+        var pageHeader = $('#page-header');
 
-        var titleBarView = new TitleBarView();
-        titleBarView.render();
-
-        var dashboardHeaderView = new DashboardHeaderView();
-        dashboardHeaderView.render(headerContainer);
+        app_router.on("route", function () {
+            new DashHeaderView({ el: headerContainerId });
+        });
 
         // main
-        app_router.on('route:landing', function () {
-            var landingView = new LandingView(contentContainer);
+        app_router.on('route:home', function () {
+            session.isAuthenticated(function (result) {
+                if (result) {
+                    var homeView = new DashHomeView({ el: contentContainerId });
+                } else {
+                    var landingView = new DashLandingView({ el: contentContainerId });
+                }
+            });
+        });
+
+        // main
+        app_router.on('route:logout', function () {
+            session.logout(function (status) {
+                if (status) {
+                    window.location.href = '/';
+                } else {
+                    alert('Error while terminating session. Contact system admin.');
+                }
+
+            });
         });
 
         // Profile
-        app_router.on('route:userProfileManage', function () {
-            var profileManageView = new ProfileManageView(contentContainer);
+        app_router.on('route:userProfileView', function () {
+            var profileManageView = new ProfileViewView({ el: contentContainerId });
         });
         app_router.on('route:userProfileEdit', function () {
-            var profileEditView = new ProfileEditView(contentContainer);
+            var profileEditView = new ProfileEditView({ el: contentContainerId });
         });
 
         // Donations
         app_router.on('route:userDonations', function () {
-            var donationsListView = new DonationsListView( { el: contentContainerId } );
+            var donationsListView = new DonationsListView({ el: contentContainerId });
         });
         app_router.on('route:userDonationDelete', function (id) {
-            var donationDeleteView = new DonationDeleteView(contentContainer, id);
+            var donationDeleteView = new DonationDeleteView({ el: contentContainerId, id: id });
         });
         app_router.on('route:userDonationAdd', function () {
             var donationAddView = new DonationAddView({ el: contentContainerId });
         });
         app_router.on('route:userDonationView', function (id) {
-            var donationViewView = new DonationViewView(contentContainer, id);
+            var donationViewView = new DonationDetailView(contentContainer, id);
         });
         app_router.on('route:userDonationEdit', function (id) {
             var donationEditView = new DonationEditView(contentContainer, id);
@@ -131,24 +117,19 @@ define([ 'jquery', 'underscore', 'backbone', 'bog', 'bog.session', 'bog.site',
 
         // Events
         app_router.on('route:userEvents', function () {
-            var eventsListView = new EventsListView();
-            eventsListView.render(contentContainer);
+            var eventsListView = new EventsListView({ el: contentContainerId });
         });
         app_router.on('route:userEventDelete', function (id) {
-            var eventDeleteView = new EventDeleteView();
-            eventDeleteView.render(contentContainer, id);
+            var eventDeleteView = new EventDetailView({ el: contentContainerId, id: id });
         });
         app_router.on('route:userEventAdd', function () {
-            var eventAddView = new EventAddView();
-            eventAddView.render(contentContainer);
+            var eventAddView = new EventFormView({ el: contentContainerId });
         });
         app_router.on('route:userEventView', function (id) {
-            var eventViewView = new EventViewView();
-            eventViewView.render(contentContainer, id);
+            var eventViewView = new EventDetailView({ el: contentContainerId, id: id });
         });
         app_router.on('route:userEventEdit', function (id) {
-            var eventEditView = new EventEditView();
-            eventEditView.render(contentContainer, id);
+            var eventEditView = new EventFormView({ el: contentContainerId, id: id });
         });
 
 
@@ -165,7 +146,7 @@ define([ 'jquery', 'underscore', 'backbone', 'bog', 'bog.session', 'bog.site',
             solicitationAddView.render(contentContainer);
         });
         app_router.on('route:userSolicitationView', function (id) {
-            var solicitationViewView = new SolicitationViewView();
+            var solicitationViewView = new SolicitationDetailView();
             solicitationViewView.render(contentContainer, id);
         });
         app_router.on('route:userSolicitationEdit', function (id) {
@@ -173,7 +154,7 @@ define([ 'jquery', 'underscore', 'backbone', 'bog', 'bog.session', 'bog.site',
             solicitationEditView.render(contentContainer, id);
         });
 
-        app_router.on('route:defaultAction', function(actions){
+        app_router.on('route:defaultAction', function (actions) {
             console.log('No route:', actions);
         });
 

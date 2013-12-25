@@ -5,30 +5,27 @@ html
         block meta
             meta(charset="utf-8")
             meta(http-equiv="X-UA-Compatible", content="IE=edge,chrome=1")
-            title
             meta(name="description", content="")
             meta(name="author", content="")
             meta(name="viewport", content="initial-scale=1.0, user-scalable=no")
-            // configure Grunt to compile all css into single file.
+            link(rel='stylesheet', type='text/css', href='/dash/css/bootstrap/css/unity-bootstrap.min.css')
             link(rel='stylesheet', type='text/css', href='/dash/css/style.css')
-            link(rel='stylesheet', type='text/css', href='/dash/css/dash.buttons.css')
-            link(rel='stylesheet', type='text/css', href='/dash/css/dash.index.css')
-            link(rel='stylesheet', type='text/css', href='/dash/css/dash.map.css')
-            link(rel='stylesheet', type='text/css', href='/dash/css/dash.titlebar.css')
-            link(rel='stylesheet', type='text/css', href='/dash/css/dash.welcome.css')
-            link(rel='stylesheet', type='text/css', href='/dash/css/dash.lists.css')
-            link(rel='stylesheet', type='text/css', href='//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.2/css/bootstrap.min.css')
         block styles
             script(src="/dash/js/lib/require.js", data-main="/dash/js/main")
         block scripts
-            body
-        div(id="site-container-override")
-        div(id="site-container")
-            div(id="site-header")
-            div(id="site-content")
-                header(id="page-header")
-                    div(id="page-title")
-                    summary(id="page-description")
-                article(id="page-content")
-            footer(id="site-footer")
-        block content
+    body
+        div#wrap
+            section(id="site-container", class="col-lg-12")
+                header(id="site-header")
+                section(id="page-container", class="col-lg-12")
+                    header(id="page-header")
+                        div(id="page-title")
+                            h2
+                        summary(id="page-description")
+                            h4
+                    //section(id="page-left-side", class="col-lg-2") Left
+                    article(id="page-content", class="col-lg-12")
+                    //section(id="page-right-side", class="col-lg-2") Right
+            div#push
+        div#footer.well
+            p.text-muted.credit.col-lg-push-2 © Your Page 2013

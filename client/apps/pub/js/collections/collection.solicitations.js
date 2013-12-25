@@ -6,7 +6,7 @@ define([
     'underscore',
     'backbone',
     'models/model.solicitation'
-], function($, _, Backbone, solicitation){
+], function ($, _, Backbone, solicitation) {
     return Backbone.Collection.extend({
         model: solicitation,
         urlRoot: 'solicitations/',

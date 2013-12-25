@@ -1,8 +1,8 @@
 /**
  * Created by dbaxter on 12/3/13.
  */
-define([ ], function(){
+define([ ], function () {
     return {
-            uri: '/api/v1/'
+        uri: '/api/v1/'
     };
 });

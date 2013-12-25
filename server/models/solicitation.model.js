@@ -1,6 +1,5 @@
 var mongoose = require('mongoose');
-var db = require('../config/db.mongo').development;
-var unirest = require('unirest');
+var db = require('../config/db.mongo');
 
 mongoose.createConnection(db.connectionString);
 
@@ -8,25 +7,30 @@ var ObjectId = mongoose.Schema.Types.ObjectId;
 
 var solicitationSchema = new mongoose.Schema({
     id: ObjectId,
-    title:  String,
+    title: String,
     author: String,
     description: String,
-    type:  String,
-    comments: [{ body: String, date: Date }],
-    tags: [{ tag: String }],
+    type: String,
+    comments: [
+        { body: String, date: Date }
+    ],
+    tags: [
+        { tag: String }
+    ],
     hidden: Boolean,
     meta: {
         votes: Number,
-        favs:  Number
+        favs: Number
     },
-    address : {
-        "address_components" : [
+    address: {
+        "address_components": [
             {
-                "long_name" : String,
-                "short_name" : String,
-                "types" : Array
-            }],
-            "location" : [Number]  // [lng, lat]
+                "long_name": String,
+                "short_name": String,
+                "types": Array
+            }
+        ],
+        "location": [Number]  // [lng, lat]
     },
     audit: {
         createdAt: { type: Date, default: Date.now },
@@ -39,12 +43,12 @@ solicitationSchema.index({ "address.geometry.location": "2d"});
 solicitationSchema.statics.getByObjectId = function (id, callback) {
     var query = this.findById(id);
     query.exec(function (err, results) {
-        if(err) {
+        if (err) {
             callback(err, null);
         }
-        if(results == null) {
+        if (results == null) {
             callback('no data', null);
-        }else{
+        } else {
             callback(null, results);
         }
     });
@@ -70,29 +74,29 @@ solicitationSchema.statics.getByLocation = function (lat, lng, rad, callback) {
 //            }
 //        }]
 //    );
-        var query  = this.find( { 'address.geometry.location' : {
-            $near : {
-                $geometry: {
-                    type: 'Point',
-                    coordinates: [lng, lat]
-                }
-            },
-            $maxDistance: rad }
-        });
-        query.exec(function (err, coll) {
-            if (err){
-            }else{
-                callback(err, coll);
+    var query = this.find({ 'address.geometry.location': {
+        $near: {
+            $geometry: {
+                type: 'Point',
+                coordinates: [lng, lat]
             }
-        });
-    };
+        },
+        $maxDistance: rad }
+    });
+    query.exec(function (err, coll) {
+        if (err) {
+        } else {
+            callback(err, coll);
+        }
+    });
+};
 
 solicitationSchema.statics.createSeed = function (seed, callback) {
     var solicitation = new this;
 
-    if(seed){
+    if (seed) {
         solicitation.address = {
-            geometry : {
+            geometry: {
                 location: [randomFromInterval(-124.848974, -66.885444), randomFromInterval(24.396308, 49.384358)]
             }
         };
@@ -102,8 +106,8 @@ solicitationSchema.statics.createSeed = function (seed, callback) {
     }
 };
 
-function randomFromInterval(from,to) {
-    var rand = Math.random()*(to-from+1)+from;
+function randomFromInterval(from, to) {
+    var rand = Math.random() * (to - from + 1) + from;
     return rand;
 }
 

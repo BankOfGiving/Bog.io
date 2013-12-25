@@ -1,16 +1,16 @@
 /**
  * Created by dbaxter on 12/2/13.
  */
-define([ ], function(){
+define([ ], function () {
     return {
-        isAuthenticated: function(callback) {
+        isAuthenticated: function (callback) {
             var that = this;
             $.ajax("auth/loggedin", {
                 type: "GET",
                 dataType: "json",
-                complete: function(xhr, textStatus) {
+                complete: function (xhr, textStatus) {
                     console.log('xhr:' + xhr.status);
-                    if(xhr.status == 200){
+                    if (xhr.status == 200) {
                         callback(true);
                     } else {
                         callback(false);
@@ -19,7 +19,7 @@ define([ ], function(){
             });
         },
 
-        sessionUser: function(){
+        sessionUser: function () {
 
         }
     }

@@ -1,53 +1,59 @@
-/**
- * Created by dbaxter on 12/6/13.
- */
-define([ 'jquery','underscore','backbone'
-    , "views/_base/Bog.views.full.List"
-    , "views/donations/_donations.list.items"
-    , "views/donations/_donations.list.item"
-    , 'text!../../../tmpl/shared/list.html'
-], function($, _, Backbone
-            , _base
-            , ListItemsView
-            , ListItemView
-            , ListTemplate
-    ){
-    return _base.extend({
-        collection: Bog.collections.Donations
-        , listView: ListItemsView
-        , itemView: ListItemView
-        , initialize: function(){
+define(['jquery', 'underscore', 'backbone', 'bog.site'
+    , 'collections/collection.donations'
+    , 'text!../../../tmpl/donations/donations.list.html'
+], function ($, _, Backbone, site, DonationCollection, DonationTemplate) {
+    return Backbone.View.extend({
+        siteText: {
+            pageHeader: {
+                title: "My Donations",
+                description: "View and modify your existing Donations or create a news Donation starting with the form to the right."
+            }
+        },
+        initialize: function () {
             var self = this;
 
-            var donations = new Bog.collections.Donations();
-
+            var donations = new DonationCollection();
             donations.fetch({
                 success: function (donations) {
                     self.collection = donations;
                     self.render();
-                }
-            });
+                }});
 
             return this;
         },
-        render: function(){
+        render: function () {
             var self = this;
-            self.$el.append(ListTemplate);
-            var listView = new self.listView({
-                collection: self.collection,
-                itemView: self.itemView,
-                el: '#List-Container'
-            });
-            console.log(listView.render());
-            self.$el.children($('table')).append(listView.render());
-            return this;
-        },
-        events: {
-            "click #List-Container .list-link": "showDetail"
-        },
-        showDetail: function(){
-            alert("SHOW DETAIL!!");
-        }
 
+            var donations = self.collection.toJSON();
+
+            self.$el.empty();
+
+            if (donations.length == 0) {
+                self.$el.append(_.template(DonationTemplate, {donations: null, _: _}));
+            } else {
+                donations = sortByKey(donations, 'title');
+                self.$el.append(_.template(DonationTemplate, {donations: donations[0].donations, _: _}));
+            }
+
+            site.setPageHeader(self.siteText.pageHeader.title, self.siteText.pageHeader.description);
+            site.setActiveNav("donations");
+
+            $('#donations-button-back').click(function () {
+                console.log(window.location);
+                window.location = '#/';
+            });
+
+            $('.addButton').click(function () {
+                window.location = '#/donation/add';
+            });
+        }
     });
+
+    function sortByKey(array, key) {
+        return array.sort(function (a, b) {
+            var x = a[key];
+            var y = b[key];
+            return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+        });
+    }
 });

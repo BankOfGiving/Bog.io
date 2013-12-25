@@ -10,20 +10,20 @@ define([
     'bog.site',
     'text!../../../tmpl/home/titlebar.v1.html',
     'text!../../../tmpl/home/login.options.html'
-], function($, _, Backbone, blockui, session, site, titleBarTemplate, loginOptionsTemplate){
+], function ($, _, Backbone, blockui, session, site, titleBarTemplate, loginOptionsTemplate) {
     return Backbone.View.extend({
         el: $('body'),
-        render: function() {
+        render: function () {
             this.$el.append(titleBarTemplate);
 
-            $('#main-titlebar-site-title').click(function(){
+            $('#main-titlebar-site-title').click(function () {
                 window.location = '/';
             });
 
-            session.isAuthenticated(function(authenticated){
-                if(authenticated){
+            session.isAuthenticated(function (authenticated) {
+                if (authenticated) {
                     showAuthenticated();
-                }else{
+                } else {
                     showAnonymous();
                 }
             });
@@ -31,28 +31,29 @@ define([
     });
 
     var authWindow;
-    function LaunchAuth(){
-        var uri = window.location.protocol + '//' + window.location.hostname + ':' + window.location.port  + '/auth/fb/';
+
+    function LaunchAuth() {
+        var uri = window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/auth/fb/';
         authWindow = window.open(uri, "bog-auth-fb", "width=500,height=300");
         checkAuthComplete();
     }
-    function checkAuthComplete()
-    {
-        if(authWindow.closed)
-        {
+
+    function checkAuthComplete() {
+        if (authWindow.closed) {
             $.unblockUI();
             window.location.href = window.location.href;
         }
-        else
-        {
-            setTimeout(function(){ checkAuthComplete(); }, 1000);
+        else {
+            setTimeout(function () {
+                checkAuthComplete();
+            }, 1000);
         }
     }
 
-    function showAnonymous(){
+    function showAnonymous() {
         $('#main-titlebar-account > #Login').css('visibility', 'visible');
         $('#main-titlebar-account > #Account').css('visibility', 'hidden');
-        $('#main-titlebar-account').click(function(){
+        $('#main-titlebar-account').click(function () {
             $.blockUI({
                 message: loginOptionsTemplate,
                 //message: null,
@@ -64,8 +65,8 @@ define([
                 showOverlay: true,
                 centerY: true,
                 css: {
-                    top:  ($(window).height() - 360) /2 + 'px',
-                    left: ($(window).width() - 360) /2 + 'px',
+                    top: ($(window).height() - 360) / 2 + 'px',
+                    left: ($(window).width() - 360) / 2 + 'px',
                     width: '360px',
                     right: '',
                     border: 'none',
@@ -77,19 +78,19 @@ define([
                     color: '#fff',
                     cursor: 'default'
                 },
-                overlayCSS:  {
+                overlayCSS: {
                     backgroundColor: '#000',
                     opacity: 0.6,
                     cursor: 'default'
                 },
-                onBlock: function() {
-                    $('.login-facebook').click(function(){
+                onBlock: function () {
+                    $('.login-facebook').click(function () {
                         LaunchAuth();
                     });
-                    $('.login-google').click(function(){
+                    $('.login-google').click(function () {
                         alert('GOOGLE!!');
                     });
-                    $('.login-twitter').click(function(){
+                    $('.login-twitter').click(function () {
                         alert('TWITTER!!');
                     });
                 }
@@ -97,9 +98,9 @@ define([
         });
     }
 
-    function showAuthenticated(){
+    function showAuthenticated() {
         $('#main-titlebar-account #Login').css('visibility', 'hidden');
-        $('#main-titlebar-account #Account').css('visibility', 'visible').click(function(){
+        $('#main-titlebar-account #Account').css('visibility', 'visible').click(function () {
             window.location = '/dash';
         });
     }

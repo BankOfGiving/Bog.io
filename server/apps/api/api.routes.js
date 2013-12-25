@@ -1,9 +1,9 @@
-module.exports = function(app) {
+module.exports = function (app) {
 
     var uriBase = '/api/v1';
 
     // CORS
-    app.all(uriBase + '*', function(req, res, next) {
+    app.all(uriBase + '*', function (req, res, next) {
         res.header("Access-Control-Allow-Origin", "*");
         res.header("Access-Control-Allow-Headers", "X-Requested-With");
         next();

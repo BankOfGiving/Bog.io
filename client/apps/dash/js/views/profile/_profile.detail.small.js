@@ -1,38 +1,27 @@
-define([
-    'jquery',
-    'underscore',
-    'backbone',
-    'models/model.profile',
-    'text!../../../tmpl/profile/_profile.detail.small.html'
-], function($, _, Backbone, ProfileModel, ProfileTemplate){
+define([ 'jquery', 'underscore', 'backbone', 'bog.i18n'
+    , 'text!../../../tmpl/profile/_profile.detail.small.html'
+], function ($, _, Backbone, i18n, ProfileTemplate) {
     return Backbone.View.extend({
-        el: $('body'),
         container: null,
         model: null,
         screenText: {
             labelName: 'Name',
             labelEmail: 'Email'
         },
-        initialize: function(container, profile){
-            var self = this;
-
-            self.container = container;
-            self.model = profile;
-            self.render();
+        initialize: function () {
+            this.render();
         },
-        render: function() {
+        render: function () {
             var self = this;
 
-            var profile = self.model.attributes.user;
-            self.container.append(ProfileTemplate);
+            var viewText = i18n.getViewText('_profile_detail_small');
 
-            var panel = $('div#Profile-Display-SmallPanel');
+            var compiledTemplate = _.template(ProfileTemplate, { profile: self.model.toJSON(), text: viewText })
 
-            panel.children($('label[for="Name"]')).text(self.screenText.labelName);
-            panel.children($("input#Name")).val(profile.displayName);
+            this.$el.empty();
+            this.$el.append(compiledTemplate);
 
-            panel.children($('label[for="Email"]')).text(self.screenText.labelEmail);
-            panel.children($("input#Email")).val(profile.emails[0].value);
+            return this;
         }
     });
 });

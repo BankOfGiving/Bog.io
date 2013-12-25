@@ -1,10 +1,14 @@
-<div id="page-header"><span class="Title">Donations</span><span class="Description">Use the filters below to browse donations in your area.</span></div>
+<div id="page-header"><span class="Title">Donations</span><span class="Description">Use the filters below to browse donations in your area.</span>
+</div>
 <div id="search-filter" class="contentPanel"></div>
 
 <div id="entity-list" class="contentPanel">
     <table>
         <thead>
-            <tr><td>Donation</td><td>Location</td></tr>
+        <tr>
+            <td>Donation</td>
+            <td>Location</td>
+        </tr>
         </thead>
         <tbody>
         <% if(donations == "loading") { %>
@@ -12,18 +16,18 @@
             <td><img src="/img/loading.bar.gif"/></td>
         </tr>
         <% } else { %>
-            <% if(donations == null) { %>
-                <tr>
-                    <td>No results</td>
-                </tr>
-            <% } else {%>
-                <% _.each(donations, function(donation) { %>
-                    <tr>
-                        <td><a href="#/donation/<%= donation.get('_id') %>"><%= donation.get('title') %></a></td>
-                        <td><%= donation.get('address.geometry.location') %></td>
-                    </tr>
-                <% }); %>
-            <% } %>
+        <% if(donations == null) { %>
+        <tr>
+            <td>No results</td>
+        </tr>
+        <% } else {%>
+        <% _.each(donations, function(donation) { %>
+        <tr>
+            <td><a href="#/donation/<%= donation.get('_id') %>"><%= donation.get('title') %></a></td>
+            <td><%= donation.get('address.geometry.location') %></td>
+        </tr>
+        <% }); %>
+        <% } %>
         <% } %>
         </tbody>
     </table>

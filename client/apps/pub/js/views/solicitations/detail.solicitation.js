@@ -5,10 +5,10 @@ define([
     'views/maps/map.small',
     'models/model.solicitation',
     'text!../../../tmpl/solicitations/detail.html'
-], function($, _, Backbone, MapView, SolicitationModel, DetailTemplate){
+], function ($, _, Backbone, MapView, SolicitationModel, DetailTemplate) {
     return Backbone.View.extend({
         el: $('#site-content'),
-        render: function(id) {
+        render: function (id) {
             var self = this;
 
             console.log(id);
@@ -17,7 +17,7 @@ define([
 
             solicitation.fetch({
                 success: function (solicitation) {
-                    $(self.el).html(_.template(DetailTemplate, {solicitation: solicitation, _:_}));
+                    $(self.el).html(_.template(DetailTemplate, {solicitation: solicitation, _: _}));
                 }
             });
 

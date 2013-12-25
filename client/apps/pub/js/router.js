@@ -16,11 +16,7 @@ define([
     'views/events/detail.event',
     'views/solicitations/list.all.solicitations',
     'views/solicitations/detail.solicitation'
-], function($, _, Backbone, session, site, LandingView, TitleBarView,
-            DonationsListView, DonationDetailView,
-            EventsListView, EventDetailView,
-            SolicitationsListView, SolicitationDetailView
-    ){
+], function ($, _, Backbone, session, site, LandingView, TitleBarView, DonationsListView, DonationDetailView, EventsListView, EventDetailView, SolicitationsListView, SolicitationDetailView) {
     var AppRouter = Backbone.Router.extend({
         routes: {
             // Define some URL routes
@@ -43,7 +39,7 @@ define([
         }
     });
 
-    var initialize = function(){
+    var initialize = function () {
         var app_router = new AppRouter;
 
         var titleBarView = new TitleBarView();
@@ -104,7 +100,7 @@ define([
 //            donationsListView.render();
 //        });
 
-        app_router.on('route:defaultAction', function(actions){
+        app_router.on('route:defaultAction', function (actions) {
             console.log('No route:', actions);
         });
 

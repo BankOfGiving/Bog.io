@@ -965,7 +965,9 @@ var requirejs, require, define;
                             this.map.parentMap);
                         on(normalizedMap,
                             'defined', bind(this, function (value) {
-                                this.init([], function () { return value; }, null, {
+                                this.init([], function () {
+                                    return value;
+                                }, null, {
                                     enabled: true,
                                     ignore: true
                                 });
@@ -989,7 +991,9 @@ var requirejs, require, define;
                     }
 
                     load = bind(this, function (value) {
-                        this.init([], function () { return value; }, null, {
+                        this.init([], function () {
+                            return value;
+                        }, null, {
                             enabled: true
                         });
                     });
@@ -1350,6 +1354,7 @@ var requirejs, require, define;
                     }
                     return ret || (value.exports && getGlobal(value.exports));
                 }
+
                 return fn;
             },
 
@@ -1443,7 +1448,7 @@ var requirejs, require, define;
                         }
 
                         return context.nameToUrl(normalize(moduleNamePlusExt,
-                            relMap && relMap.id, true), ext,  true);
+                            relMap && relMap.id, true), ext, true);
                     },
 
                     defined: function (id) {
@@ -1742,7 +1747,9 @@ var requirejs, require, define;
      */
     req.nextTick = typeof setTimeout !== 'undefined' ? function (fn) {
         setTimeout(fn, 4);
-    } : function (fn) { fn(); };
+    } : function (fn) {
+        fn();
+    };
 
     /**
      * Export require as a global, but only if it does not already exist.
@@ -1846,8 +1853,7 @@ var requirejs, require, define;
                 //in IE8, node.attachEvent does not have toString()
                 //Note the test for "[native code" with no closing brace, see:
                 //https://github.com/jrburke/requirejs/issues/273
-                !(node.attachEvent.toString && node.attachEvent.toString().indexOf('[native code') < 0) &&
-                !isOpera) {
+                !(node.attachEvent.toString && node.attachEvent.toString().indexOf('[native code') < 0) && !isOpera) {
                 //Probably IE. IE (at least 6-8) do not fire
                 //script onload right after executing the script, so
                 //we cannot tie the anonymous define call to a name.
@@ -1945,7 +1951,7 @@ var requirejs, require, define;
                     //baseUrl.
                     src = mainScript.split('/');
                     mainScript = src.pop();
-                    subPath = src.length ? src.join('/')  + '/' : './';
+                    subPath = src.length ? src.join('/') + '/' : './';
 
                     cfg.baseUrl = subPath;
                 }

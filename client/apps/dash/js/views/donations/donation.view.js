@@ -1,89 +1,57 @@
-define([
-    'jquery',
-    'underscore',
-    'backbone',
+define(['jquery', 'underscore', 'backbone',
     'views/donations/_donation.display',
-    'views/donations/_donation.form',
     'models/model.donation',
-    'text!../../../tmpl/donations/donation.view.html'
-], function($, _, Backbone, DisplayView, FormView, DonationModel, ViewTemplate){
+    'text!../../../tmpl/donations/donation.view.html',
+    'text!../../../tmpl/shared/buttonbar.html'
+], function ($, _, Backbone, DisplayView, DonationModel, ViewTemplate, ButtonBar) {
     return Backbone.View.extend({
         el: $('body'),
         container: null,
         model: null,
         modelId: null,
-        formTemplate: FormView,
-        initialize: function(container, id){
+        initialize: function (container, id) {
             var self = this;
             self.container = container;
             self.id = id;
 
-            _.bindAll(this, 'render', 'renderView', 'renderForm', 'save');
+            _.bindAll(this, 'render', 'back', 'edit', 'delete');
 
             var donation = new DonationModel({id: id});
             donation.fetch({
                 success: function (donation) {
                     self.model = donation;
-                    self.render().renderView();
+                    self.render();
                 }
             });
         },
-        render: function(){
+        render: function () {
             var self = this;
 
             self.container.html(ViewTemplate);
+            self.container.append(ButtonBar);
 
-            $("div#Donation-View-Container > button.cancelButton").css("display", "none").click(function(){
-                self.renderView();
-            });
-            $("div#Donation-View-Container > button.saveButton").css("display", "none").click(function(){
-                self.save();
-            });
-            $("div#Donation-View-Container > button.backButton").css("display", "none").click(function(){
-                history.back();
-            });
-            $("div#Donation-View-Container > button.editButton").css("display", "none").click(function(){
-                self.renderForm();
-            });
-            $("div#Donation-View-Container > button.deleteButton").css("display", "none").click(function(){
-                alert('are you sure?????')
-            });
+            $("div#ButtonBar > button.cancelButton").css("display", "none");
+            $("div#ButtonBar > button.saveButton").css("display", "none");
 
+            $("div#ButtonBar > button.backButton").css("display", "inline");
+            $("div#ButtonBar > button.editButton").css("display", "inline");
+            $("div#ButtonBar > button.deleteButton").css("display", "inline");
             return this;
         },
-        renderView: function() {
-            var self = this;
-            var donation = self.model;
-
-            new DisplayView($('#Donation-Workspace'), donation.attributes);
-
-            $("div#Donation-View-Container > button.cancelButton").css("display", "none");
-            $("div#Donation-View-Container > button.saveButton").css("display", "none");
-
-            $("div#Donation-View-Container > button.backButton").css("display", "inline");
-            $("div#Donation-View-Container > button.editButton").css("display", "inline");
-            $("div#Donation-View-Container > button.deleteButton").css("display", "inline");
-
-            return this;
+        events: {
+            "click button.backButton": "back",
+            "click button.cancelButton": "back",
+            "click button.editButton": "edit",
+            "click button.deleteButton": "delete"
         },
-        renderForm: function() {
-            var self = this;
-            var donation = self.model;
-
-            new FormView($('#Donation-Workspace'), donation.attributes);
-
-            $("div#Donation-View-Container > button.backButton").css("display", "none");
-            $("div#Donation-View-Container > button.editButton").css("display", "none");
-
-            $("div#Donation-View-Container > button.cancelButton").css("display", "inline");
-            $("div#Donation-View-Container > button.saveButton").css("display", "inline");
-            $("div#Donation-View-Container > button.deleteButton").css("display", "inline");
-
-            return this;
+        back: function () {
+            history.back();
         },
-        save: function(){
-            var self = this;
-            self.model.save();
+        edit: function () {
+            window.location = '#/donations/edit/' + this.id;
+        },
+        delete: function () {
+            window.location = '#/donations/delete/' + this.id;
         }
     });
 });

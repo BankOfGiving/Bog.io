@@ -2,15 +2,15 @@
  * Created by dbaxter on 12/6/13.
  */
 Bog = {
-    init: function() {
-        console.log('surprise!!');
+    init: function () {
     },
-    dash:{
+    dash: {
         views: {
-                full: {},
-                partial: {}
+            full: {},
+            partial: {}
         }
     },
     models: {},
-    collections: {}
+    collections: {},
+    site: {}
 };

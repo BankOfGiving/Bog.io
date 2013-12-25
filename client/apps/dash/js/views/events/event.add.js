@@ -1,23 +1,17 @@
-define([
-    'jquery',
-    'underscore',
-    'backbone',
-    'views/maps/map.small'
-], function($, _, Backbone, MapView){
+define(['jquery', 'underscore', 'backbone'
+    , 'models/model.event'
+], function ($, _, Backbone, EventModel, AddFormTemplate) {
     return Backbone.View.extend({
         el: $('body'),
-        render: function(id) {
+        initialize: function () {
             var self = this;
+            self.render();
 
-            console.log(id);
 
-            var donation = new DonationModel({id: id});
-
-            donation.fetch({
-                success: function (donation) {
-                    $(self.el).html(_.template(DetailTemplate, {donation: donation, _:_}));
-                }
-            });
+            return this;
+        },
+        render: function (id) {
+            var self = this;
         }
     });
 });

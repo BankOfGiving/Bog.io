@@ -1,6 +1,6 @@
 var Passport = require('passport');
 
-var strategy = function() {
+var strategy = function () {
 
     var FacebookStrategy = require('passport-facebook').Strategy;
 
@@ -8,17 +8,17 @@ var strategy = function() {
     var User = require('../../../models/user.model');
 
     // modules
-    var apiConfig = require('./facebook.api.js');
+    var fbcfg = require('./oauth.facebook.js');
 
     // locals
-    var clientID = apiConfig.appId;
-    var clientSecret = apiConfig.appSecret;
-    var callbackURL = apiConfig.url + uriBase + "/return";
+    var clientID = fbcfg.appId;
+    var clientSecret = fbcfg.appSecret;
+    var callbackURL = fbcfg.url + uriBase + "/return";
 
-    Passport.serializeUser(function(user, done) {
-        done(null, user.id);
+    Passport.serializeUser(function (user, done) {
+        done(null, user._id);
     });
-    Passport.deserializeUser(function(id, done) {
+    Passport.deserializeUser(function (id, done) {
         User.findById(id, function (err, user) {
             done(err, user);
         });
@@ -28,15 +28,46 @@ var strategy = function() {
             clientSecret: clientSecret,
             callbackURL: callbackURL
         },
-        function(accessToken, refreshtoken, profile, done) {
+        function (accessToken, refreshtoken, profile, done) {
             process.nextTick(function () {
-                User.GetUserFromFacebookProfile(profile, function(err, user){
-                    console.log('DONE:USER: ' + user);
-                    console.log('DONE:ERR: ' + err);
-                    done(err, user);
+                User.findByPassportProfile(profile, function (err, user) {
+                    if (user && !err) {
+                        console.log('User is found and no errors.  Update account from the profile information and return.');
+                        User.MapPassportProfileToUser(profile, user, function (err, user) {
+                            console.log('Provider profile information mapped to user object.');
+                            user.save(function (err, user) {
+                                if (err) {
+                                    console.log(err)
+                                }
+                                console.log('User object saved.');
+                                done(err, user);
+                            });
+                        })
+                    }
+                    if (!user && !err) {
+                        console.log('No user exists and no errors.  Create a new account from the profile information and return.');
+                        User.MapPassportProfileToUser(profile, new User(), function (err, user) {
+                            user.save(function (err, user) {
+                                if (err) {
+                                    console.log(err)
+                                }
+                                done(err, user);
+                            });
+                        })
+                    }
+                    if (user && err) {
+                        switch (err) {
+                            case "email match":
+                                console.log('An account is in the system with a matching email. Present to user for confirmation.');
+                                done(err, user);
+                                break;
+                        }
+                    }
                 });
             });
         }
     ));
 };
+
+
 module.exports = Passport;
