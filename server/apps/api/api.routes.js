@@ -9,10 +9,18 @@ module.exports = function (app) {
         next();
     });
 
-    require('./api.routes.auth.js')(app, uriBase);
-    require('./api.routes.donations.js')(app, uriBase);
-    require('./api.routes.events.js')(app, uriBase);
-    require('./api.routes.profile.js')(app, uriBase);
-    require('./api.routes.solicitations.js')(app, uriBase);
-    require('./api.routes.search.js')(app, uriBase);
+//    require('./api.routes.auth.js')(app, uriBase);
+//    require('./api.routes.donations.js')(app, uriBase);
+//    require('./api.routes.events.js')(app, uriBase);
+//    require('./api.routes.profile.js')(app, uriBase);
+//    require('./api.routes.solicitations.js')(app, uriBase);
+//    require('./api.routes.search.js')(app, uriBase);
+
+    app.get(uriBase + '/', function (req, res) {
+
+        var donationRepo = require('/domain/models/bog.domain.repositories.donation');
+
+        donationRepo.
+            res.send(200, { user: req.user });
+    });
 };

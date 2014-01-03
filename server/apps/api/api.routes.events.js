@@ -1,6 +1,6 @@
 module.exports = function (app, uriBase) {
     // modules
-    var Event = require('../../models/event.model.js');
+    var Event = require('.././event.model.js');
     var auth = require('../../modules/bog.auth.js');
 
     // Collection Routes
@@ -147,7 +147,7 @@ module.exports = function (app, uriBase) {
 
     app.search(singleUri + '/meta', function (req, res) {
 
-        var EventSchema = require('mongoose').model('Event').schema; // require('./audit.model.js');
+        var EventSchema = require('mongoose').model('Event').schema; // require('./bog.data.models.audit.js');
         res.send(200, { model_definition: EventSchema, model: new Event() });
     });
 

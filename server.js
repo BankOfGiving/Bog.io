@@ -4,24 +4,20 @@ var express = require('express'),
     path = require('path'),
     passport = require('passport'),
     mongoose = require('mongoose');
-
 // Configs
 var sessionStore = require('./server/config/db.sessionStore');
-var db = require('./server/config/db.mongo');
 
+var db = require('./server/config/db.mongo');
 // Bootstrap db connection
 mongoose.connect(db.connectionString);
 
 var MongoStore = require('connect-mongostore')(express);
 
-// Models
-var User = require('./server/models/user.model');
-
 var app = express();
 
 // all environments
 app.set('port', process.env.PORT || 5000);
-app.set('views', path.join(__dirname, 'views'));
+//app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(express.favicon());
 app.use(express.logger('dev'));
@@ -42,16 +38,14 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
-app.use(express.static(path.join(__dirname, 'client/apps/pub')));
-app.use("/dash", express.static(path.join(__dirname, 'client/apps/dash')));
-app.use("/js/lib/npm/", express.static(path.join(__dirname, '/node_modules'))); // for development only.  Remove with build!
-app.use("/js/lib/b/", express.static(path.join(__dirname, '/bower_components')));  // for development only.  Remove with build!
+app.use('/', express.static(path.join(__dirname, 'client/apps/pub')));
+app.use('/admin', express.static(path.join(__dirname, 'client/apps/admin')));
+app.use('/dash', express.static(path.join(__dirname, 'client/apps/dash')));
+app.use('/js/lib/npm/', express.static(path.join(__dirname, '/node_modules'))); // for development only.  Remove with build!
+app.use('/js/lib/b/', express.static(path.join(__dirname, '/bower_components')));  // for development only.  Remove with build!
 
 // Routes
-require('./server/apps/auth/auth.routes')(app);
-require('./server/apps/dash/dash.routes')(app);
-require('./server/apps/public/public.routes')(app);
-require('./server/apps/api/api.routes')(app);
+require('./server/apps/app.routes')(app);
 
 // development only
 if ('development' == app.get('env')) {

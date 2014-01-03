@@ -1,6 +1,6 @@
 module.exports = function (app, uriBase) {
     // modules
-    var Donation = require('../../models/donation.model.js');
+    var Donation = require('.././donation.model.js');
 
     // globals
     uriBase = uriBase + '/donations';

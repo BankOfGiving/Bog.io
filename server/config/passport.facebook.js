@@ -1,6 +1,6 @@
 var Passport = require('passport');
 
-var strategy = function () {
+module.exports = function () {
 
     var FacebookStrategy = require('passport-facebook').Strategy;
 
@@ -28,7 +28,7 @@ var strategy = function () {
             clientSecret: clientSecret,
             callbackURL: callbackURL
         },
-        function (accessToken, refreshtoken, profile, done) {
+        function (accessToken, refreshToken, profile, done) {
             process.nextTick(function () {
                 User.findByPassportProfile(profile, function (err, user) {
                     if (user && !err) {
@@ -68,6 +68,3 @@ var strategy = function () {
         }
     ));
 };
-
-
-module.exports = Passport;

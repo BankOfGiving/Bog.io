@@ -1,6 +1,3 @@
-/**
- * Created by dbaxter on 12/2/13.
- */
 module.exports = function (app, uriBase) {
     // globals
     uriBase = uriBase + '/auth';

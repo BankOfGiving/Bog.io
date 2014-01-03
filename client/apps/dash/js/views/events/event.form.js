@@ -6,16 +6,16 @@ define(['jquery', 'underscore', 'backbone', 'bog.site', 'bog.i18n', 'bog.maps'
         initialize: function () {
             _.bindAll(this, 'localize', 'cancel', 'save', 'saveEntity', 'saveSuccess', 'saveFailure', 'delete');
             var self = this;
-            self.model = new EventModel();
+            self.model = new LocationModel();
             if (self.id) {
-                self.model = new EventModel({ id: self.id });
+                self.model = new LocationModel({ id: self.id });
                 self.model.fetch({
                     success: function (entity) {
                         self.model = entity;
                         self.render().localize();
                     }});
             } else {
-                self.model = new EventModel();
+                self.model = new LocationModel();
                 self.render().localize();
             }
 

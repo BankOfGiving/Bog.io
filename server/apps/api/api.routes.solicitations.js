@@ -1,7 +1,7 @@
 module.exports = function (app, uriBase) {
     var connectTimeout = require('connect-timeout');
     // modules
-    var Solicitation = require('../../models/solicitation.model.js');
+    var Solicitation = require('.././solicitation.model.js');
 
     // globals
     uriBase = uriBase + '/solicitations';

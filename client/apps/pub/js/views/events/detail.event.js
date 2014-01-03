@@ -13,7 +13,7 @@ define([
 
             console.log(id);
 
-            var event = new EventModel({id: id});
+            var event = new LocationModel({id: id});
 
             event.fetch({
                 success: function (event) {

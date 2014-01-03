@@ -6,7 +6,7 @@ module.exports = function (app, uriBase) {
     uriBase = uriBase + '/profile';
 
     // modules
-    var User = require('../../models/user.model');
+    var User = require('.././user.model');
     var bogAuth = require('../../modules/bog.auth.js');
 
     // CORS
@@ -36,7 +36,7 @@ module.exports = function (app, uriBase) {
     });
 
     app.get(uriBase + '/checkuser', function (req, res) {
-        console.log(JSON.stringify(req.session))
+        console.log(JSON.stringify(req.session));
         if (req.user == null) {
             res.send(401, { user: null });
         } else {

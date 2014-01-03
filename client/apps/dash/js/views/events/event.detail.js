@@ -8,7 +8,7 @@ define(['jquery', 'underscore', 'backbone', 'bootstrap', 'moment', 'bog.site', '
             var self = this;
             _.bindAll(this, 'cancel', 'edit', 'delete');
 
-            self.model = new EventModel({ id: self.id});
+            self.model = new LocationModel({ id: self.id});
             self.model.fetch({
                 success: function (model) {
                     self.model = model;

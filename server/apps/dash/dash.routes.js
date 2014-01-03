@@ -6,4 +6,8 @@ module.exports = function (app) {
     app.get(uriBase + '/', function (req, res) {
         res.render(__dirname + '/views/index', { user: req.user });
     });
+
+    var apiBase = uriBase + '/api';
+
+    require('./api/api.routes.events.js')(app, apiBase);
 };

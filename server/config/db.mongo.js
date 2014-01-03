@@ -21,6 +21,4 @@ config.db.mongo = {
         connectionString: 'mongodb://win-data01:27017/bog'
     }
 };
-console.log(config.db.mongo[env.current()]);
-
 module.exports = config.db.mongo[env.current()];
