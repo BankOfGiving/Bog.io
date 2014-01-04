@@ -18,7 +18,7 @@ var EventRepository = function (current_user) {
     var All = function (depth, callback) {
         depth = parseDepth(depth);
         if (depth == -1) {
-            callback(self.err.wrapForResponse(400, 'Invalid depth.'));
+            callback(self.err.wrap(2002));
             return;
         }
 
@@ -44,41 +44,39 @@ var EventRepository = function (current_user) {
                 });
                 return;
             default:
-                callback(self.err.wrapForResponse(400, 'Invalid procedure call'));
+                callback(self.err.wrap(1000));
                 return;
         }
     };
     var AllAsList = function (callback) {
         self.authorization.userCanPerform(null, EventEntity, 'AllAsList', function (hasAuth) {
             if (!hasAuth) {
-                callback('User is not authorized', null);
+                callback(self.err.wrap(4000));
+                return;
             }
-            try {
-                data.all(function (err, coll) {
-                    if (err) {
-                        callback(err, null);
-                    } else {
-                        var returnList = [];
-                        pushRawCollectionToList(coll, function (listColl) {
-                            returnList = listColl;
-                        });
-                        callback(null, returnList);
-                    }
-                });
-            } catch (err) {
-                callback(err, null);
-            }
+            data.all(function (err, coll) {
+                if (err) {
+                    callback(self.err.wrap(1001, null, err));
+                } else {
+                    var returnList = [];
+                    pushRawCollectionToList(coll, function (listColl) {
+                        returnList = listColl;
+                    });
+                    callback(null, returnList);
+                }
+            });
         });
     };
     var AllAsSimple = function (callback) {
         self.authorization.userCanPerform(null, EventEntity, 'AllAsSimple', function (hasAuth) {
             if (!hasAuth) {
-                callback('User is not authorized', null);
+                callback(self.err.wrap(4000));
+                return;
             }
             try {
                 data.all(function (err, coll) {
                     if (err) {
-                        callback(err, null);
+                        callback(self.err.wrap(1001, null, err));
                     } else {
                         var returnList = [];
                         pushRawCollectionToSimple(coll, function (listColl) {
@@ -88,18 +86,19 @@ var EventRepository = function (current_user) {
                     }
                 });
             } catch (err) {
-                callback(err, null);
+                callback(self.err.wrap(1001, null, err));
             }
         });
     };
     var AllAsDetail = function (callback) {
         self.authorization.userCanPerform(null, EventEntity, 'AllAsDetail', function (hasAuth) {
             if (!hasAuth) {
-                callback('User is not authorized', null);
+                callback(self.err.wrap(4000));
+                return;
             }
             data.all(function (err, coll) {
                 if (err) {
-                    callback(err, null);
+                    callback(self.err.wrap(1001, null, err));
                 } else {
                     var returnList = [];
                     pushRawCollectionToDetail(coll, function (listColl) {
@@ -113,11 +112,12 @@ var EventRepository = function (current_user) {
     var AllAsRaw = function (callback) { // callback (errors, collection)
         self.authorization.userCanPerform(null, EventEntity, 'AllAsRaw', function (hasAuth) {
             if (!hasAuth) {
-                callback('User is not authorized', null);
+                callback(self.err.wrap(4000));
+                return;
             }
             data.all(function (err, coll) {
                 if (err) {
-                    callback(err, null);
+                    callback(self.err.wrap(1001, null, err));
                 } else {
                     callback(null, coll);
                 }
@@ -129,7 +129,7 @@ var EventRepository = function (current_user) {
     var Filtered = function (filter, depth, callback) {
         depth = parseDepth(depth);
         if (depth == -1) {
-            callback(self.err.wrapForResponse(400, 'Invalid depth.'));
+            callback(self.err.wrap(5003));
             return;
         }
 
@@ -155,40 +155,39 @@ var EventRepository = function (current_user) {
                 });
                 return;
             default:
-                callback(self.err.wrapForResponse(400, 'Invalid procedure call'));
+                callback(self.err.wrap(1000));
                 return;
         }
     };
     var FilteredAsList = function (filter, callback) {
         self.authorization.userCanPerform(null, EventEntity, 'FilteredAsList', function (hasAuth) {
             if (!hasAuth) {
-                callback('User is not authorized', null);
+                callback(self.err.wrap(4000));
+                return;
             }
-            try {
-                data.find(filter, function (err, coll) {
-                    if (err) {
-                        callback(err, null);
-                    } else {
-                        var returnList = [];
-                        pushRawCollectionToList(coll, function (listColl) {
-                            returnList = listColl;
-                        });
-                        callback(null, returnList);
-                    }
-                });
-            } catch (err) {
-                callback(err, null);
-            }
+
+            data.find(filter, function (err, coll) {
+                if (err) {
+                    callback(self.err.wrap(1001, null, err));
+                } else {
+                    var returnList = [];
+                    pushRawCollectionToList(coll, function (listColl) {
+                        returnList = listColl;
+                    });
+                    callback(null, returnList);
+                }
+            });
         });
     };
     var FilteredAsSimple = function (filter, callback) {
         self.authorization.userCanPerform(null, EventEntity, 'FilteredAsSimple', function (hasAuth) {
             if (!hasAuth) {
-                callback('User is not authorized', null);
+                callback(self.err.wrap(4000));
+                return;
             }
             data.find(filter, function (err, coll) {
                 if (err) {
-                    callback(err, null);
+                    callback(self.err.wrap(1001, null, err));
                 } else {
                     var returnList = [];
                     pushRawCollectionToSimple(coll, function (listColl) {
@@ -202,11 +201,12 @@ var EventRepository = function (current_user) {
     var FilteredAsDetail = function (filter, callback) {
         self.authorization.userCanPerform(null, EventEntity, 'FilteredAsDetail', function (hasAuth) {
             if (!hasAuth) {
-                callback('User is not authorized', null);
+                callback(self.err.wrap(4000));
+                return;
             }
             data.find(filter, function (err, coll) {
                 if (err) {
-                    callback(err, null);
+                    callback(self.err.wrap(1001, null, err));
                 } else {
                     var returnList = [];
                     pushRawCollectionToDetail(coll, function (listColl) {
@@ -220,11 +220,12 @@ var EventRepository = function (current_user) {
     var FilteredAsRaw = function (filter, callback) {
         self.authorization.userCanPerform(null, EventEntity, 'FilteredAsRaw', function (hasAuth) {
             if (!hasAuth) {
-                callback('User is not authorized', null);
+                callback(self.err.wrap(4000));
+                return;
             }
             data.find(filter, function (err, coll) {
                 if (err) {
-                    callback(err, null);
+                    callback(self.err.wrap(1001, null, err));
                 } else {
                     callback(null, coll);
                 }
@@ -234,10 +235,14 @@ var EventRepository = function (current_user) {
 
     // Return Single
     var ById = function (id, depth, callback) {
+        if (!isValidObjectID(id)) {
+            callback(self.err.wrap(5001));
+            return;
+        }
 
         depth = parseDepth(depth);
         if (depth == -1) {
-            callback(self.err.wrapForResponse(400, 'Invalid depth.'));
+            callback(self.err.wrap(5003));
             return;
         }
         switch (depth) {
@@ -262,104 +267,141 @@ var EventRepository = function (current_user) {
                 });
                 return;
             default:
-                callback(self.err.wrapForResponse(400, 'Invalid procedure call'));
+                callback(self.err.wrap(1000));
                 return;
         }
     };
     var ByIdAsList = function (id, callback) {
-        data.findById(id, function (err, raw_item) {
-            self.authorization.userCanPerform(current_user, EventEntity, 'ByIdAsList', function (hasAuth) {
-                if (!hasAuth) {
-                    callback('User is not authorized', null);
-                }
-                if (err) {
-                    callback(err, null);
-                } else {
+        if (!isValidObjectID(id)) {
+            callback(self.err.wrap(5001));
+            return;
+        }
+
+        data.findById(id, function (err, entity) {
+            if (err) {
+                callback(self.err.wrap(1001, null, err));
+                return;
+            }
+            if (!entity || entity == {}) {
+                callback(self.err.wrap(5006));
+            } else {
+                self.authorization.userCanPerform(current_user, entity, 'ByIdAsSimple', function (hasAuth) {
+                    if (!hasAuth) {
+                        callback(self.err.wrap(4000));
+                        return;
+                    }
+
                     var returnItem = {};
-                    pushRawSingleToList(raw_item, function (err, parsed_item) {
+                    pushRawSingleToList(entity, function (err, parsed_item) {
                         returnItem = parsed_item;
                     });
                     callback(null, returnItem);
-                }
-            });
+                });
+            }
         });
     };
     var ByIdAsSimple = function (id, callback) {
-        data.findById(id, function (err, rawItem) {
-            self.authorization.userCanPerform(current_user, rawItem, 'ByIdAsSimple', function (hasAuth) {
-                if (!hasAuth) {
-                    callback('User is not authorized', null);
-                    return;
-                }
-                if (err) {
-                    callback(err, null);
-                } else {
+        if (!isValidObjectID(id)) {
+            callback(self.err.wrap(5001));
+            return;
+        }
+
+        data.findById(id, function (err, entity) {
+            if (err) {
+                callback(self.err.wrap(1001, null, err));
+                return;
+            }
+            if (!entity || entity == {}) {
+                callback(self.err.wrap(5006));
+            } else {
+                self.authorization.userCanPerform(current_user, entity, 'ByIdAsSimple', function (hasAuth) {
+                    if (!hasAuth) {
+                        callback(self.err.wrap(4000));
+                        return;
+                    }
+
                     var returnItem = {};
-                    pushRawSingleToSimple(rawItem, function (err, parsed_item) {
+                    pushRawSingleToSimple(entity, function (err, parsed_item) {
                         returnItem = parsed_item;
                     });
                     callback(null, returnItem);
-                }
-            });
+                });
+            }
         });
     };
     var ByIdAsDetail = function (id, callback) {
-        data.findById(id, function (err, found_item) {
-            self.authorization.userCanPerform(current_user, EventEntity, 'ByIdAsDetail', function (hasAuth) {
-                if (!hasAuth) {
-                    callback('User is not authorized', null);
-                    return;
-                }
-                if (err) {
-                    callback(err, null);
-                } else {
+        if (!isValidObjectID(id)) {
+            callback(self.err.wrap(5001));
+            return;
+        }
+
+        data.findById(id, function (err, entity) {
+            if (err) {
+                callback(self.err.wrap(1001, null, err));
+                return;
+            }
+            if (!entity || entity == {}) {
+                callback(self.err.wrap(5006));
+            } else {
+                self.authorization.userCanPerform(current_user, EventEntity, 'ByIdAsDetail', function (hasAuth) {
+                    if (!hasAuth) {
+                        callback(self.err.wrap(4000));
+                        return;
+                    }
                     var returnItem = {};
-                    pushRawSingleToDetail(found_item, function (err, parsed_item) {
+                    pushRawSingleToDetail(entity, function (err, parsed_item) {
                         returnItem = parsed_item;
                     });
                     callback(null, returnItem);
-                }
-            });
+                });
+            }
         });
     };
     var ByIdAsRaw = function (id, callback) {
-        data.findById(id, function (err, item) {
-            self.authorization.userCanPerform(current_user, EventEntity, 'ByIdAsRaw', function (hasAuth) {
-                if (!hasAuth) {
-                    callback('User is not authorized', null);
-                    return;
-                }
-                if (err) {
-                    callback(err, null);
-                } else {
-                    callback(null, item);
-                }
-            });
+        if (!isValidObjectID(id)) {
+            callback(self.err.wrap(5001));
+            return;
+        }
+
+        data.findById(id, function (err, entity) {
+            if (err) {
+                callback(self.err.wrap(1001, null, err));
+                return;
+            }
+            if (!entity || entity == {}) {
+                callback(self.err.wrap(5006));
+            } else {
+                self.authorization.userCanPerform(current_user, EventEntity, 'ByIdAsRaw', function (hasAuth) {
+                    if (!hasAuth) {
+                        callback(self.err.wrap(4000));
+                        return;
+                    }
+                    if (err) {
+                        callback(self.err.wrap(1001, null, err));
+                    } else {
+                        callback(null, entity);
+                    }
+                });
+            }
         });
     };
 
     // Add / Edit
     var Add = function (input, callback) {
-        if (!input) {
-            callback('Invalid Model', null);
-            return;
-        }
-        // if (!current_user) { callback('User required to add new records.', null); return; }
-
         self.authorization.userCanPerform(current_user, EventEntity, 'Add', function (hasAuth) {
             if (!hasAuth) {
-                callback('User is not authorized', null);
+                callback(self.err.wrap(4000));
                 return;
             }
 
             var entity = new EventEntity();
             parseAndValidate(input, entity, function (err, populated_entity) {
                 if (err) {
-                    callback(err, false);
+                    callback(self.err.wrap(1001, null, err));
                 } else {
                     data.add(populated_entity, function (err, saved_entity) {
                         if (err) {
-                            callback(err, null);
+                            callback(self.err.wrap(1001, null, err));
                         } else {
                             AddAuditEntry(saved_entity, 'Update', current_user);
                             callback(null, saved_entity._id);
@@ -370,26 +412,24 @@ var EventRepository = function (current_user) {
         });
     };
     var Update = function (id, input, callback) {  // callback(err, id)
-        if (!input) {
-            callback('Invalid input.', false);
+        if (!isValidObjectID(id)) {
+            callback(self.err.wrap(5001));
+            return;
         }
-        if (!id) {
-            callback('Invalid id.', false);
-        }
-        // if (!current_user) { callback('User required to update records.', null); return; }
 
         self.authorization.userCanPerform(current_user, EventEntity, 'Update', function (hasAuth) {
             if (!hasAuth) {
-                callback('User is not authorized', null);
+                callback(self.err.wrap(4000));
+                return;
             }
 
             data.findById(id, function (err, entity) {
                 if (err) {
-                    callback(err);
+                    callback(self.err.wrap(1001, null, err));
                     return;
                 }
                 if (!entity || entity == {}) {
-                    callback('Unable to find the requested entity.');
+                    callback(self.err.wrap(2010));
                 } else {
                     parseAndValidate(input, entity, function (err, populated_entity, changes) {
                         if (err) {
@@ -410,25 +450,36 @@ var EventRepository = function (current_user) {
         });
     };
     var Delete = function (input, callback) {
-        if (!input) {
-            callback('Invalid input.', false);
+        if (!input.id || !input._id) {
+            callback(self.err.wrap(5001));
+            return;
         }
-        //if (!current_user) { callback('Invalid user.', false); }
+        var id = input.id;
+        if (!id) {
+            id = input._id
+        }
+        if (!isValidObjectID(id)) {
+            callback(self.err.wrap(5001));
+            return;
+        }
 
         self.authorization.userCanPerform(current_user, EventEntity, 'DeleteById', function (hasAuth) {
             if (!hasAuth) {
-                callback('User is not authorized', null);
+                callback(self.err.wrap(4000));
+                return;
             }
-            var id = input.id;
-            data.findById(id, function (err, populated_entity) {
+            data.findById(id, function (err, entity) {
                 if (err) {
-                    callback(err, false);
+                    callback(self.err.wrap(1001, null, err));
+                    return;
+                }
+                if (!entity || entity == {}) {
+                    callback(self.err.wrap(5005));
                 } else {
-
-                    populated_entity.status = 'deleted';
-                    data.save(populated_entity, function (err, saved_entity) {
+                    entity.status = 'deleted';
+                    data.save(entity, function (err, saved_entity) {
                         if (err) {
-                            callback(err, null);
+                            callback(self.err.wrap(1001, null, err));
                         } else {
                             AddAuditEntry(saved_entity, 'Delete', current_user);
                             callback(null, saved_entity._id);
@@ -438,28 +489,31 @@ var EventRepository = function (current_user) {
             });
         });
     };
+
     var DeleteById = function (id, callback) {
-        if (!id) {
-            callback('Invalid id.', false);
+        if (!isValidObjectID(id)) {
+            callback(self.err.wrap(5001));
+            return;
         }
-        //if (!current_user) { callback('Invalid user.', false); }
 
         self.authorization.userCanPerform(current_user, EventEntity, 'DeleteById', function (hasAuth) {
             if (!hasAuth) {
-                callback('User is not authorized', null);
+                callback(self.err.wrap(4000));
+                return;
             }
 
             data.findById(id, function (err, populated_entity) {
                 if (err) {
-                    callback(err, false);
+                    callback(self.err.wrap(1001, null, err));
+                    return;
                 }
-                if (!entity || entity == {}) {
-                    callback('Unable to find the requested entity.');
+                if (!populated_entity || populated_entity == {}) {
+                    callback(self.err.wrap(5005));
                 } else {
                     populated_entity.status = 'deleted';
                     data.save(populated_entity, function (err, saved_entity) {
                         if (err) {
-                            callback(err, null);
+                            callback(self.err.wrap(1001, null, err));
                         } else {
                             AddAuditEntry(saved_entity, 'Delete', current_user);
                             callback(null, saved_entity._id);
@@ -472,57 +526,59 @@ var EventRepository = function (current_user) {
 
     // Physical Locations
     var PhysicalLocationById = function (eventid, locid, depth, callback) {
-        if (!eventid) {
-            callback('Invalid event id.', null);
+        if (!isValidObjectID(eventid)) {
+            callback(self.err.wrap(5001));
+            return;
         }
-        if (!locid) {
-            callback('Invalid locations id.', null);
+        if (!isValidObjectID(locid)) {
+            callback(self.err.wrap(5101));
+            return;
         }
-        // if (!current_user) { callback('User required to update records.', null); return; }
 
         self.authorization.userCanPerform(current_user, EventEntity, 'Location Get By Id', function (hasAuth) {
             if (!hasAuth) {
-                callback('User is not authorized', null);
+                callback(self.err.wrap(4000));
+                return;
             }
 
             plocDomain.byId(locid, depth, function (err, event_ploc) {
                 if (err) {
-                    callback(err, null);
+                    callback(self.err.wrap(1001, null, err));
                 } else {
-
                     callback(null, event_ploc);
                 }
             });
         });
     };
     var PhysicalLocationAdd = function (eventid, input, callback) {
-        if (!eventid) {
-            callback('Invalid event id.', null);
+        if (!isValidObjectID(eventid)) {
+            callback(self.err.wrap(5001));
             return;
         }
-        // if (!current_user) { callback('User required to update records.', null); return; }
 
         self.authorization.userCanPerform(current_user, EventEntity, 'Update', function (hasAuth) {
             if (!hasAuth) {
-                callback('User is not authorized', null);
+                callback(self.err.wrap(4000));
+                return;
             }
 
             data.findById(eventid, function (err, event_entity) {
                 var parent_event = event_entity;
                 if (err) {
-                    callback(self.err.wrapForResponse(400, null, err));
+                    callback(self.err.wrap(1001, null, err));
+                    return;
                 }
                 if (!event_entity || event_entity == {}) {
-                    callback(self.err.wrapForResponse(400, 'No event found.', err));
+                    callback(self.err.wrap(5005));
                 } else {
                     plocDomain.add(input, function (err, saved_ploc) {
                         if (err) {
-                            callback(self.err.wrapForResponse(400, null, err));
+                            callback(self.err.wrap(1001, null, err));
                         } else {
                             parent_event.locations_physical.push(saved_ploc);
                             data.update(eventid, parent_event, function (err, saved_entity) {
                                 if (err) {
-                                    callback(self.err.wrapForResponse(400, null, err));
+                                    callback(self.err.wrap(1001, null, err));
                                 } else {
                                     AddAuditEntry(saved_entity, 'Update Physical Location', current_user);
                                     callback(null, saved_entity._id);
@@ -535,25 +591,24 @@ var EventRepository = function (current_user) {
         });
     };
     var PhysicalLocationUpdate = function (eventid, locid, input, callback) {
-        if (!eventid) {
-            callback('Invalid event id.', null);
+        if (!isValidObjectID(eventid)) {
+            callback(self.err.wrap(5001));
+            return;
         }
-        if (!locid) {
-            callback('Invalid locations id.', null);
+        if (!isValidObjectID(locid)) {
+            callback(self.err.wrap(5101));
+            return;
         }
-        if (!input) {
-            callback('Invalid input.', false);
-        }
-        // if (!current_user) { callback('User required to update records.', null); return; }
 
         self.authorization.userCanPerform(current_user, EventEntity, 'Update', function (hasAuth) {
             if (!hasAuth) {
-                callback('User is not authorized', null);
+                callback(self.err.wrap(4000));
+                return;
             }
 
             plocDomain.update(locid, input, function (err, saved_ploc) {
                 if (err) {
-                    callback(err, null);
+                    callback(self.err.wrap(1001, null, err));
                 } else {
                     callback(null, saved_ploc._id);
                 }
@@ -561,32 +616,38 @@ var EventRepository = function (current_user) {
         });
     };
     var PhysicalLocationRemove = function (eventid, locid, callback) {
-        if (!eventid) {
-            callback('Invalid event id.', null);
+        if (!isValidObjectID(eventid)) {
+            callback(self.err.wrap(5001));
+            return;
         }
-        if (!locid) {
-            callback('Invalid locations id.', null);
+        if (!isValidObjectID(locid)) {
+            callback(self.err.wrap(5101));
+            return;
         }
-        // if (!current_user) { callback('User required to update records.', null); return; }
 
         self.authorization.userCanPerform(current_user, EventEntity, 'Update', function (hasAuth) {
             if (!hasAuth) {
-                callback('User is not authorized', null);
+                callback(self.err.wrap(4000));
+                return;
             }
 
             data.findById(eventid, function (err, event_entity) {
                 var parent_event = event_entity;
                 if (err) {
-                    callback(err, false);
+                    callback(self.err.wrap(1001, null, err));
+                    return;
+                }
+                if (!event_entity || event_entity == {}) {
+                    callback(self.err.wrap(5005));
                 } else {
                     plocDomain.delete(locid, function (err, saved_ploc) {
                         if (err) {
-                            callback(err, null);
+                            callback(self.err.wrap(1001, null, err));
                         } else {
                             parent_event.locations_physical.pop(saved_ploc);
                             data.update(eventid, parent_event, function (err, saved_entity) {
                                 if (err) {
-                                    callback(err, null);
+                                    callback(self.err.wrap(1001, null, err));
                                 } else {
                                     AddAuditEntry(saved_entity, 'Remove Physical Location', current_user);
                                     callback(null, saved_entity._id);
@@ -763,6 +824,14 @@ var EventRepository = function (current_user) {
         var detailModel = new EventModelDetail().fromRaw(rawItem);
         callback(null, detailModel);
     };
+
+    function isValidObjectID(str) {
+        var len = str.length, valid = false;
+        if (len == 12 || len == 24) {
+            valid = /^[0-9a-fA-F]+$/.test(str);
+        }
+        return valid;
+    }
 
     return {
         all: All,

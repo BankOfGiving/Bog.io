@@ -1,10 +1,10 @@
 var _base = require('./bog.data.repositories._base');
-var LocationModel = require('../models/bog.data.models.location.virtual');
+var ContactModel = require('../models/bog.data.models.location.virtual');
 
-VirtualLocationRepository = function () {
+ContactRepository = function () {
 
     var All = function (callback) {
-        var query = LocationModel.find();
+        var query = ContactModel.find();
         query.exec(function (err, data) {
             callback(err, data);
         });
@@ -16,21 +16,21 @@ VirtualLocationRepository = function () {
         };
         var fields = null;
         var options = null;
-        var query = LocationModel.find(conditions, fields, options);
+        var query = ContactModel.find(conditions, fields, options);
         query.exec(function (err, data) {
             callback(err, data);
         });
     };
 
     var FindById = function (id, callback) {
-        var query = LocationModel.findById(id);
+        var query = ContactModel.findById(id);
         query.exec(function (err, data) {
             callback(err, data);
         });
     };
 
     var Add = function (input, callback) {
-        LocationModel.create(input, function (err, data, numberAffected) {
+        ContactModel.create(input, function (err, data, numberAffected) {
             callback(err, data, numberAffected);
         });
     };
@@ -45,7 +45,7 @@ VirtualLocationRepository = function () {
         var obj = input.toObject();
         delete obj.id;
         delete obj._id;
-        LocationModel.update({ _id: id }, obj, {upsert: false}, function (err, numberAffected, data) {
+        ContactModel.update({ _id: id }, obj, {upsert: false}, function (err, numberAffected, data) {
             callback(err, input, numberAffected);
         });
     };
@@ -67,6 +67,6 @@ VirtualLocationRepository = function () {
     }
 };
 
-VirtualLocationRepository.prototype = new _base();
+ContactRepository.prototype = new _base();
 
-module.exports = VirtualLocationRepository;
+module.exports = ContactRepository;

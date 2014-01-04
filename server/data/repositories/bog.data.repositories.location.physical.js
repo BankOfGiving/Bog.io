@@ -1,7 +1,7 @@
 var _base = require('./bog.data.repositories._base');
 var LocationModel = require('../models/bog.data.models.location.physical');
 
-PhysicalLocationRepository = function () {
+LocationRepository = function () {
 
     var All = function (callback) {
         var query = LocationModel.find();
@@ -67,6 +67,6 @@ PhysicalLocationRepository = function () {
     }
 };
 
-PhysicalLocationRepository.prototype = new _base();
+LocationRepository.prototype = new _base();
 
-module.exports = PhysicalLocationRepository;
+module.exports = LocationRepository;

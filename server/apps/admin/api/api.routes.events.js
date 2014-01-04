@@ -19,25 +19,22 @@ module.exports = function (app, uriBase) {
     app.get(collectionUri + '/', function (req, res) {
         var user = req.user;
         var domainRepo = new EventRepo(user);
+
         var depth = req.query.depth;
-        var filter = req.query.filter;
         if (!depth) {
-            res.json(400, err_handler.wrapForResponse(400, 'Specify depth.'));
+            res.json(400, err_handler.wrap(5000));
         }
-        if (!filter && depth) {
-            domainRepo.all(depth, function (err, coll) {
-                returnCollection(res, err, coll);
-            });
-            return;
-        }
-        if (filter && depth) {
+
+        var filter = req.query.filter;
+        if (filter) {
             domainRepo.filtered(filter, depth, function (err, coll) {
                 returnCollection(res, err, coll);
             });
-            return;
+        } else {
+            domainRepo.all(depth, function (err, coll) {
+                returnCollection(res, err, coll);
+            });
         }
-
-        res.json(400, err_handler.wrapForResponse(400, 'Invalid request.'));
     });
 
     // Model Routes
@@ -54,87 +51,64 @@ module.exports = function (app, uriBase) {
     app.get(singleUri + '/:id', function (req, res) {
         var user = req.user;
         var domainRepo = new EventRepo(user);
+
         var depth = req.query.depth;
         if (!depth) {
-            res.json(400, err_handler.wrapForResponse(400, 'Specify depth.'));
+            res.json(500, err_handler.wrap(5002));
             return;
         }
+
         var id = req.params.id;
         if (!id) {
-            res.json(400, err_handler.wrapForResponse(400, 'Specify id.'));
-            return;
-        }
-        if (id && depth) {
-            domainRepo.byId(id, depth, function (err, item) {
-                returnSingle(res, err, item);
-            });
+            res.json(500, err_handler.wrap(5000));
             return;
         }
 
-        res.json(400, err_handler.wrapForResponse(400, 'Invalid request.'));
+        domainRepo.byId(id, depth, function (err, item) {
+            returnSingle(res, err, item);
+        });
     });
 
-    // Add EVent
+    // Add Event
     app.post(singleUri + '/', function (req, res) {
         var user = req.user;
         var domainRepo = new EventRepo(user);
+
         var input = req.body;
         if (!input) {
-            res.json(400, err_handler.wrapForResponse(400, 'Specify input.'));
+            res.json(500, err_handler.wrap(5004));
             return;
         }
+
         domainRepo.add(input, function (err, result) {
             if (err) {
-                res.json(400, err_handler.wrapForResponse(400, 'Error processing request.', err));
+                res.json(500, err_handler.wrap(1001, null, err));
                 return;
             }
-            console.log('RESULT: ' + result);
             res.json(200, result);
         });
     });
 
     // Update Event
-    app.put(singleUri + '/', function (req, res) {
-        var user = req.user;
-        var domainRepo = new EventRepo(user);
-        var input = req.body;
-        if (!input) {
-            res.json(400, err_handler.wrapForResponse(400, 'Specify input.'));
-            return;
-        }
-        var id = input.id;
-        if (!id) {
-            res.json(400, err_handler.wrapForResponse(400, 'Invalid entity id.'));
-            return;
-        }
-        domainRepo.update(input, function (err, result) {
-            if (err) {
-                res.json(400, err_handler.wrapForResponse(400, 'Error processing request.', err));
-                return;
-            }
-            console.log('RESULT: ' + result);
-            res.json(200, result);
-        });
-    });
     app.put(singleUri + '/:id', function (req, res) {
         var user = req.user;
         var domainRepo = new EventRepo(user);
-        var input = req.body;
-        if (!input) {
-            res.json(400, err_handler.wrapForResponse(400, 'Specify input.'));
-            return;
-        }
         var id = req.params.id;
         if (!id) {
-            res.json(400, err_handler.wrapForResponse(400, 'Invalid entity id.'));
+            res.json(500, err_handler.wrap(5000));
             return;
         }
+        var input = req.body;
+        if (!input) {
+            res.json(500, err_handler.wrap(5004));
+            return;
+        }
+
         domainRepo.update(id, input, function (err, result) {
             if (err) {
-                res.json(400, err_handler.wrapForResponse(400, 'Error processing request.', err));
+                res.json(500, err_handler.wrap(1001, null, err));
                 return;
             }
-            console.log('RESULT: ' + result);
             res.json(200, result);
         });
     });
@@ -143,39 +117,41 @@ module.exports = function (app, uriBase) {
     app.delete(singleUri + '/:id', function (req, res) {
         var user = req.user;
         var domainRepo = new EventRepo(user);
+
         var id = req.params.id;
         if (!id) {
-            res.json(400, err_handler.wrapForResponse(400, 'Specify id.'));
+            res.json(500, err_handler.wrap(5000));
             return;
         }
+
         domainRepo.deleteById(id, function (err, result) {
             if (err) {
-                res.json(400, err_handler.wrapForResponse(400, 'Error processing request.', err));
+                res.json(500, err_handler.wrap(1001, null, err));
                 return;
             }
-            console.log('RESULT: ' + result);
             res.json(200, result);
         });
     });
     app.delete(singleUri + '/', function (req, res) {
         var user = req.user;
         var domainRepo = new EventRepo(user);
+
         var input = req.body;
         if (!input) {
-            res.json(400, err_handler.wrapForResponse(400, 'Specify input.'));
+            res.json(500, err_handler.wrap(5004));
             return;
         }
         var id = input.id;
         if (!id) {
-            res.json(400, err_handler.wrapForResponse(400, 'Specify id.'));
+            res.json(500, err_handler.wrap(5000));
             return;
         }
+
         domainRepo.deleteById(id, function (err, result) {
             if (err) {
-                res.json(400, err_handler.wrapForResponse(400, 'Error processing request.', err));
+                res.json(500, err_handler.wrap(1001, null, err));
                 return;
             }
-            console.log('RESULT: ' + result);
             res.json(200, result);
         });
     });
@@ -185,74 +161,69 @@ module.exports = function (app, uriBase) {
     app.get(singleUri + '/:eventid/ploc/', function (req, res) {
         var user = req.user;
         var domainRepo = new EventRepo(user);
-        var depth = req.query.depth;
-        if (!depth) {
-            res.json(400, err_handler.wrapForResponse(400, 'Specify depth.'));
-            return;
-        }
+
         var id = req.params.eventid;
         if (!id) {
-            res.json(400, err_handler.wrapForResponse(400, 'Specify id.'));
-            return;
-        }
-        if (id && depth) {
-            domainRepo.byId(id, depth, function (err, item) {
-                console.log();
-                returnCollection(res, err, item.locations_physical);
-            });
+            res.json(500, err_handler.wrap(5000));
             return;
         }
 
-        res.json(400, err_handler.wrapForResponse(400, 'Invalid request.'));
+        var depth = req.query.depth;
+        if (!depth) {
+            res.json(500, err_handler.wrap(5102));
+            return;
+        }
+
+        domainRepo.byId(id, depth, function (err, item) {
+            returnCollection(res, err, item.locations_physical);
+        });
     });
     // Single Physical Location
     app.get(singleUri + '/:eventid/ploc/:locid', function (req, res) {
         var user = req.user;
         var domainRepo = new EventRepo(user);
-        var depth = req.query.depth;
+
         var eventid = req.params.eventid;
-        if (!depth) {
-            res.json(400, err_handler.wrapForResponse(400, 'Specify depth.'));
-            return;
-        }
         if (!eventid) {
-            res.json(400, err_handler.wrapForResponse(400, 'Specify event id.'));
+            res.json(500, err_handler.wrap(5000));
             return;
         }
         var locid = req.params.locid;
         if (!locid) {
-            res.json(400, err_handler.wrapForResponse(400, 'Specify location id.'));
-            return;
-        }
-        if (eventid && locid && depth) {
-            domainRepo.plocById(eventid, locid, depth, function (err, item) {
-                returnCollection(res, err, item);
-            });
+            res.json(500, err_handler.wrap(5100));
             return;
         }
 
-        res.json(400, err_handler.wrapForResponse(400, 'Invalid request.'));
+        var depth = req.query.depth;
+        if (!depth) {
+            res.json(500, err_handler.wrap(5102));
+            return;
+        }
+
+        domainRepo.plocById(eventid, locid, depth, function (err, item) {
+            returnCollection(res, err, item);
+        });
     });
     // Add Physical Location
     app.post(singleUri + '/:eventid/ploc/', function (req, res) {
         var user = req.user;
         var domainRepo = new EventRepo(user);
+
         var eventid = req.params.eventid;
         if (!eventid) {
-            res.json(400, err_handler.wrapForResponse(400, 'Specify event id.'));
+            res.json(500, err_handler.wrap(5000));
             return;
         }
         var input = req.body;
         if (!input) {
-            res.json(400, err_handler.wrapForResponse(400, 'Specify input.'));
+            res.json(500, err_handler.wrap(5103));
             return;
         }
         domainRepo.addPloc(eventid, input, function (err, result) {
             if (err) {
-                res.json(400, err_handler.wrapForResponse(400, 'Error processing request.', err));
+                res.json(500, err_handler.wrap(1001, null, err));
                 return;
             }
-            console.log('RESULT: ' + result);
             res.json(200, result);
         });
     });
@@ -260,27 +231,27 @@ module.exports = function (app, uriBase) {
     app.put(singleUri + '/:eventid/ploc/:locid', function (req, res) {
         var user = req.user;
         var domainRepo = new EventRepo(user);
-        var input = req.body;
-        if (!input) {
-            res.json(400, err_handler.wrapForResponse(400, 'Specify input.'));
-            return;
-        }
+
         var eventid = req.params.eventid;
         if (!eventid) {
-            res.json(400, err_handler.wrapForResponse(400, 'Specify event id.'));
+            res.json(500, err_handler.wrap(5000));
             return;
         }
         var locid = req.params.locid;
         if (!locid) {
-            res.json(400, err_handler.wrapForResponse(400, 'Specify location id.'));
+            res.json(500, err_handler.wrap(5100));
+            return;
+        }
+        var input = req.body;
+        if (!input) {
+            res.json(500, err_handler.wrap(5104));
             return;
         }
         domainRepo.updatePloc(eventid, locid, input, function (err, result) {
             if (err) {
-                res.json(400, err_handler.wrapForResponse(400, 'Error processing request.', err));
+                res.json(500, err_handler.wrap(1001, null, err));
                 return;
             }
-            console.log('RESULT: ' + result);
             res.json(200, result);
         });
     });
@@ -288,145 +259,57 @@ module.exports = function (app, uriBase) {
     app.delete(singleUri + '/:eventid/ploc/:locid', function (req, res) {
         var user = req.user;
         var domainRepo = new EventRepo(user);
+
         var eventid = req.params.eventid;
         if (!eventid) {
-            res.json(400, err_handler.wrapForResponse(400, 'Specify event id.'));
+            res.json(500, err_handler.wrap(5000));
             return;
         }
+
         var locid = req.params.locid;
         if (!locid) {
-            res.json(400, err_handler.wrapForResponse(400, 'Specify location id.'));
+            res.json(500, err_handler.wrap(5100));
             return;
         }
         domainRepo.removePloc(eventid, locid, function (err, result) {
             if (err) {
-                res.json(400, err_handler.wrapForResponse(400, 'Error processing request.', err));
+                res.json(500, err_handler.wrap(1001, null, err));
                 return;
             }
-            console.log('RESULT: ' + result);
             res.json(200, result);
         });
     });
 
     var returnCollection = function (res, err, coll) {
         if (err) {
-            res.json(500, err);
-            return;
-        }
-        if (!coll || typeof(coll) === 'undefined') {
-            res.json(204, err_handler.wrapForResponse(204, 'No results.'));
-            return;
-        }
-        if (coll.length == 0) {
-            res.json(204, err_handler.wrapForResponse(204, 'No results.'));
-            return;
-        }
-        if (coll) {
-            res.send(200, coll);
+            var ret_err = err_handler.wrap(1001, null, err);
+            console.log('ERR:  ' + JSON.stringify(ret_err));
+            res.send(500, ret_err);
+        } else {
+            if (!coll || typeof(coll) === 'undefined') {
+                res.json(204, err_handler.wrap(5004));
+                return;
+            }
+            if (coll.length == 0) {
+                res.json(204, err_handler.wrap(5004));
+                return;
+            }
+            if (coll) {
+                res.send(200, coll);
+            }
         }
     };
     var returnSingle = function (res, err, item) {
         if (err) {
-            res.json(500, err_handler.wrapForResponse(500, 'Error executing query.', err));
-            return;
-        }
-        if (!item || typeof(item) == 'undefined') {
-            res.json(204, err_handler.wrapForResponse(204, 'No results.'));
-            return;
-        }
-        if (item) {
-            res.send(200, item);
+            res.json(500, err_handler.wrap(1001, null, err));
+        } else {
+            if (!item || typeof(item) == 'undefined') {
+                res.json(204, err_handler.wrap(5004));
+                return;
+            }
+            if (item) {
+                res.send(200, item);
+            }
         }
     };
-
-    /*
-     app.post(singleUri + '/', function (req, res) {
-     Event.AddFromObject(req.body, req.user, function (err, result) {
-     if (err) {
-     res.send(500, { error: err });
-     return;
-     }
-     res.send(200, result);
-     });
-     });
-
-     app.put(singleUri + '/', function (req, res) {
-     Event.UpdateFromObject(req.body, req.user, function (err, result) {
-     if (err) {
-     res.send(401, { error: err })
-     }
-     res.send(200, result);
-     })
-     });
-
-     app.put(singleUri + '/:id', function (req, res) {
-     Event.UpdateFromObject(req.body, req.user, function (err, result) {
-     if (err) {
-     res.send(401, { error: err })
-     }
-     res.send(200, result);
-     })
-     });
-
-     app.delete(singleUri + '/:id', function (req, res) {
-     Event.DeleteById(req.params.id, req.user, function (err, event) {
-     if (err) {
-     res.send(401, { error: err })
-     }
-     res.send(200, event);
-     })
-     });
-
-     app.get(uriBase + '/seed/:count', auth.ensureAuthenticated, function (req, res) {
-
-     var numOfElements = req.params.count;
-
-     if (req.query.clean == 'true') {
-     Event.remove({}, function () {
-     CreateElements(numOfElements, function (coll) {
-     Event.create(coll, function (err, created) {
-     if (err) {
-     res.send(400, err);
-     } else {
-     res.send(200, coll.length + ' documents created.');
-     }
-     });
-     });
-     });
-     } else {
-     CreateElements(numOfElements, function (coll) {
-     Event.create(coll, function (err, created) {
-     if (err) {
-     res.send(400, err);
-     } else {
-     res.send(200, coll.length + ' documents created.');
-     }
-     });
-     });
-     }
-     });
-
-     app.search(singleUri + '/meta', function (req, res) {
-
-     var EventSchema = require('mongoose').model('Event').schema; // require('./bog.data.models.audit.js');
-     res.send(200, { model_definition: EventSchema, model: new Event() });
-     });
-
-     function CreateElements(num, callback) {
-     var coll = [];
-     for (var i = 0; i < num; i++) {
-     (function (i) {
-     Event.createSeed(true, function (d) {
-     d.title = 'Sample Event ' + i;
-     coll.push(d);
-
-     if (coll.length == num) {
-     callback(coll);
-     }
-     });
-     }(i));
-     }
-     }
-     */
-
 };

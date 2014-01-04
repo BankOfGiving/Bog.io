@@ -8,7 +8,7 @@ define(['jquery', 'underscore', 'backbone', 'bootstrap', 'moment', 'bog.site', '
             var self = this;
             _.bindAll(this, 'cancel', 'edit', 'remove');
 
-            self.model = new LocationModel({ id: self.id});
+            self.model = new ContactModel({ id: self.id});
             self.model.fetch({data: {depth: 3},
                 success: function (model) {
                     self.model = model;

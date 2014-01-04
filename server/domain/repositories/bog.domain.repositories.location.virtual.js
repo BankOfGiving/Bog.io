@@ -1,11 +1,11 @@
 var _base = require('./bog.domain.repositories._base.js');
-var LocationData = require('../../data/repositories/bog.data.repositories.location.physical');
-var LocationEntity = require('../../data/models/bog.data.models.location.physical');
-var LocationModelList = require('../models/bog.domain.models.location.physical.list');
-var LocationModelSimple = require('../models/bog.domain.models.location.physical.simple');
-var LocationModelDetail = require('../models/bog.domain.models.location.physical.detail');
+var LocationData = require('../../data/repositories/bog.data.repositories.location.virtual');
+var LocationEntity = require('../../data/models/bog.data.models.location.virtual');
+var LocationModelList = require('../models/bog.domain.models.location.virtual.list');
+var LocationModelSimple = require('../models/bog.domain.models.location.virtual.simple');
+var LocationModelDetail = require('../models/bog.domain.models.location.virtual.detail');
 
-var PhysicalLocationRepository = function (current_user) {
+var LocationRepository = function (current_user) {
     var self = this;
     var data = new LocationData();
 
@@ -487,7 +487,7 @@ var PhysicalLocationRepository = function (current_user) {
     };
 
     var validate = function (entity, callback) {
-        console.log('TODO: Add domain logic for: location_physical');
+        console.log('TODO: Add domain logic for: location_virtual');
         callback(null, entity);
     };
 
@@ -638,6 +638,6 @@ var PhysicalLocationRepository = function (current_user) {
     }
 };
 
-PhysicalLocationRepository.prototype = new _base();
+LocationRepository.prototype = new _base();
 
-module.exports = PhysicalLocationRepository;
+module.exports = LocationRepository;
