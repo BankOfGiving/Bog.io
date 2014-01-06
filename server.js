@@ -3,7 +3,8 @@ var express = require('express'),
     http = require('http'),
     path = require('path'),
     passport = require('passport'),
-    mongoose = require('mongoose');
+    mongoose = require('mongoose'),
+    domain = require('domain');
 // Configs
 var sessionStore = require('./server/config/db.sessionStore');
 
@@ -52,6 +53,16 @@ if ('development' == app.get('env')) {
     app.use(express.errorHandler());
 }
 
-http.createServer(app).listen(app.get('port'), function () {
+var server = http.createServer(app).listen(app.get('port'), function () {
     console.log("Express server listening on port " + app.get('port') + " in " + app.settings.env);
 });
+
+server.on('request', function(req, res){
+    var error_handler_domain = domain.create();
+    error_handler_domain.add(req);
+    error_handler_domain.add(res);
+    error_handler_domain.on('error', function(err){
+        console.log(err.message);
+    });
+});
+

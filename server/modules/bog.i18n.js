@@ -18,7 +18,7 @@ module.exports = function (culture) {
         errors: {
             general: {
                 invalid_request: 'Invalid request.',
-                request_error: 'Error processing request.'
+                request_error: 'Error processing request.  See inner exception(s) for additional details.'
             },
             data: {
                 no_id: 'Invalid id specified.',

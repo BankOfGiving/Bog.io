@@ -19,7 +19,6 @@ module.exports = function (app, uriBase) {
     app.get(collectionUri + '/', function (req, res) {
         var user = req.user;
         var domainRepo = new EventRepo(user);
-
         var depth = req.query.depth;
         if (!depth) {
             res.json(400, err_handler.wrap(5000));
