@@ -1,7 +1,7 @@
 module.exports = {
     current: function () {
-//        return 'development_local';
-        return 'development';
+        return 'development_local';
+//        return 'development';
 //        return 'production';
     },
     host: function () {
