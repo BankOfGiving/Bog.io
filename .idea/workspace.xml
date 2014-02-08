@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f850b571-0b2e-4fab-88d7-ce1416533d54" name="Default" comment="Fixed 'dash' doctype.  Re-render of Jade files.">
+    <list default="true" id="f850b571-0b2e-4fab-88d7-ce1416533d54" name="Default" comment="Changed invalid pointer in dashboard header files.">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Bog.io.iws" />
@@ -483,7 +483,11 @@
       <created>1391846963939</created>
       <updated>1391846963939</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Changed invalid pointer in dashboard header files.">
+      <created>1391847026745</created>
+      <updated>1391847026745</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
