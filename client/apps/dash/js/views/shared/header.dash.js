@@ -2,7 +2,7 @@
  * Created by dbaxter on 12/3/13.
  */
 define([ 'jquery', 'underscore', 'backbone', 'bog.site', 'bog.session', 'bog.i18n'
-    , 'text!../../../tmpl/shared/header.admin.html'
+    , 'text!../../../tmpl/shared/header.dash.html'
     , 'text!../../../tmpl/shared/navbar.public.html'
     , 'text!../../../tmpl/shared/navbar.auth.html'
 ], function ($, _, Backbone, site, session, i18n, DashboardHeaderTemplate, NavPubTemplate, NavAuthTemplate) {
