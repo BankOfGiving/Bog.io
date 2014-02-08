@@ -12,6 +12,7 @@
 
 #main-titlebar #main-titlebar-site-title {
     float: left;
+    width: 400px;
     margin: 0;
     padding: 0;
 }

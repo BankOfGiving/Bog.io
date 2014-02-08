@@ -1,37 +1,30 @@
 #page-header {
     padding: 15px;
 }
-
 #page-header .Title {
     font-family: "'Helvetica Neue Light', 'HelveticaNeue-Light', 'Helvetica Neue', Calibri, Helvetica, Arial";
     font-size: x-large;
     display: block;
 }
-
 #page-header .Description {
     font-family: "'Helvetica Neue Light', 'HelveticaNeue-Light', 'Helvetica Neue', Calibri, Helvetica, Arial";
     font-size: small;
     color: #666666;
 }
-
 #search-filter {
     width: 95%;
 }
-
 #entity-list {
     width: 95%;
 }
-
 #entity-list table {
     border-spacing: 0;
     border-collapse: collapse;
     width: 100%;
 }
-
 #entity-list table thead tr td {
     font-weight: bold;
 }
-
 #entity-list table tbody tr td {
     padding: 5px;
     text-decoration: double;

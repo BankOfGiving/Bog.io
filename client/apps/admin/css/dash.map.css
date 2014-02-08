@@ -6,7 +6,6 @@
     border-left: 1px solid #666666;
     border-right: 1px solid #666666;
 }
-
 #map-condensed {
     height: 200px;
     margin: 0px;
@@ -15,7 +14,6 @@
     border-left: 1px solid #666666;
     border-right: 1px solid #666666;
 }
-
 #header-map {
     height: 200px;
     z-index: 100;
