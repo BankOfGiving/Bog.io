@@ -1,19 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f850b571-0b2e-4fab-88d7-ce1416533d54" name="Default" comment="Changed invalid pointer in dashboard header files.">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/server/config/session.store.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/server/config/twitter.api.js" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/server/config/env.js" afterPath="$PROJECT_DIR$/server/config/env.host.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/config/db.mongo.js" afterPath="$PROJECT_DIR$/server/config/db.mongo.js" />
+    <list default="true" id="f850b571-0b2e-4fab-88d7-ce1416533d54" name="Default" comment="Updated config files to use environment variables to change site settings.">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/config/db.sessionStore.js" afterPath="$PROJECT_DIR$/server/config/db.sessionStore.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/config/facebook.api.js" afterPath="$PROJECT_DIR$/server/config/facebook.api.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/config/google.api.js" afterPath="$PROJECT_DIR$/server/config/google.api.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/config/oauth.facebook.js" afterPath="$PROJECT_DIR$/server/config/oauth.facebook.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/config/oauth.google.js" afterPath="$PROJECT_DIR$/server/config/oauth.google.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/config/oauth.twitter.js" afterPath="$PROJECT_DIR$/server/config/oauth.twitter.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.js" afterPath="$PROJECT_DIR$/server.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Bog.io.iws" />
@@ -40,7 +29,7 @@
       <file leaf-file-name="env.host.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/config/env.host.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="21" selection-start="608" selection-end="608" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="630">
+            <state line="26" column="21" selection-start="614" selection-end="614" vertical-scroll-proportion="0.0" vertical-offset="36" max-vertical-offset="666">
               <folding />
             </state>
           </provider>
@@ -49,16 +38,25 @@
       <file leaf-file-name="db.mongo.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/config/db.mongo.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="1" selection-start="667" selection-end="702" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="576">
+            <state line="14" column="12" selection-start="335" selection-end="356" vertical-scroll-proportion="0.0" vertical-offset="36" max-vertical-offset="612">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="server.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="db.sessionStore.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/server/config/db.sessionStore.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="39" column="40" selection-start="1346" selection-end="1346" vertical-scroll-proportion="0.5858951" vertical-offset="378" max-vertical-offset="1404">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="server.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="71" column="7" selection-start="2438" selection-end="2438" vertical-scroll-proportion="0.82522523" vertical-offset="820" max-vertical-offset="1404">
+            <state line="72" column="3" selection-start="2442" selection-end="2442" vertical-scroll-proportion="0.0" vertical-offset="280" max-vertical-offset="1404">
               <folding />
             </state>
           </provider>
@@ -101,7 +99,6 @@
         <option value="$PROJECT_DIR$/server/apps/public/views/index.jade" />
         <option value="$PROJECT_DIR$/server/apps/admin/views/index.jade" />
         <option value="$PROJECT_DIR$/server/config/db.mongo.js" />
-        <option value="$PROJECT_DIR$/server/config/db.sessionStore.js" />
         <option value="$PROJECT_DIR$/server/config/google.api.js" />
         <option value="$PROJECT_DIR$/server/config/facebook.api.js" />
         <option value="$PROJECT_DIR$/server/config/oauth.facebook.js" />
@@ -109,6 +106,7 @@
         <option value="$PROJECT_DIR$/server/config/oauth.twitter.js" />
         <option value="$PROJECT_DIR$/server/config/env.host.js" />
         <option value="$PROJECT_DIR$/server.js" />
+        <option value="$PROJECT_DIR$/server/config/db.sessionStore.js" />
       </list>
     </option>
   </component>
@@ -304,14 +302,19 @@
       <created>1391847071139</created>
       <updated>1391847071139</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Updated config files to use environment variables to change site settings.">
+      <created>1391927595850</created>
+      <updated>1391927595850</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-2" y="0" width="1922" height="984" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32949308" sideWeight="0.49973616" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33025405" sideWeight="0.49973616" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295964" sideWeight="0.49973616" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31797236" sideWeight="0.49973616" order="1" side_tool="false" content_ui="tabs" />
@@ -319,13 +322,12 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21108179" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32949308" sideWeight="0.50026387" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33025405" sideWeight="0.50026387" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295964" sideWeight="0.49973616" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32949308" sideWeight="0.49973616" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -347,7 +349,8 @@
     <MESSAGE value="Changed stylesheet to test continuous integration." />
     <MESSAGE value="Fixed 'dash' doctype.  Re-render of Jade files." />
     <MESSAGE value="Changed invalid pointer in dashboard header files." />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed invalid pointer in dashboard header files." />
+    <MESSAGE value="Updated config files to use environment variables to change site settings." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated config files to use environment variables to change site settings." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -592,30 +595,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/config/db.sessionStore.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="72" selection-start="825" selection-end="825" vertical-scroll-proportion="0.73333335" vertical-offset="0" max-vertical-offset="1368">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/config/db.mongo.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="1" selection-start="667" selection-end="702" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="576">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/config/env.host.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="21" selection-start="608" selection-end="608" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="630">
+        <state line="26" column="21" selection-start="614" selection-end="614" vertical-scroll-proportion="0.0" vertical-offset="36" max-vertical-offset="666">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="7" selection-start="2438" selection-end="2438" vertical-scroll-proportion="0.82522523" vertical-offset="820" max-vertical-offset="1404">
+        <state line="72" column="3" selection-start="2442" selection-end="2442" vertical-scroll-proportion="0.0" vertical-offset="280" max-vertical-offset="1404">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/config/db.mongo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="12" selection-start="335" selection-end="356" vertical-scroll-proportion="0.0" vertical-offset="36" max-vertical-offset="612">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/config/db.sessionStore.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="40" selection-start="1346" selection-end="1346" vertical-scroll-proportion="0.5858951" vertical-offset="378" max-vertical-offset="1404">
           <folding />
         </state>
       </provider>
