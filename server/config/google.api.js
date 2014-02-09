@@ -1,6 +1,3 @@
-/**
- * Created by dbaxter on 12/2/13.
- */
 module.exports = {
     google: {
         appId: '178224175708352',

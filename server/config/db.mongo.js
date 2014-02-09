@@ -1,24 +1,29 @@
-var env = require('./env');
-
 if (!config) {
     var config = {db: {}};
 }
 
-config.db.mongo = {
-    development: {
-        host: 'win-data01',
-        port: '27017',
-        connectionString: 'mongodb://win-data01:27017/bog'
-    },
-    development_local: {
-        host: 'localhost',
-        port: '27017',
-        connectionString: 'mongodb://localhost:27017/bog'
-    },
-    production: {
-        url: 'mongodb://win-data01/bog',
-        port: '27017',
-        connectionString: 'mongodb://win-data01:27017/bog'
-    }
-};
-module.exports = config.db.mongo[env.current()];
+switch (process.env.NODE_ENV) {
+    case 'development':
+        config.db.mongo = {
+            host: 'localhost',
+            port: '27017',
+            connectionString: 'mongodb://localhost:27017/bog'
+        };
+        break;
+    case 'staging':
+        config.db.mongo = {
+            host: 'lnx-ubu-data',
+            port: '27017',
+            connectionString: 'mongodb://lnx-ubu-data:27017/bog'
+        };
+        break;
+    case 'production':
+        config.db.mongo = {
+            host: 'localhost',
+            port: '27017',
+            connectionString: 'mongodb://localhost:27017/bog'
+        };
+        break;
+}
+
+module.exports = config.db.mongo;

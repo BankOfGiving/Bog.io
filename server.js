@@ -9,6 +9,8 @@ var express = require('express'),
 var sessionStore = require('./server/config/db.sessionStore');
 
 var db = require('./server/config/db.mongo');
+var host = require('./server/config/env.host');
+
 // Bootstrap db connection
 mongoose.connect(db.connectionString);
 
@@ -54,6 +56,10 @@ if ('development' == app.get('env')) {
 }
 
 var server = http.createServer(app).listen(app.get('port'), function () {
+
+    console.log('ENV: ' + process.env.NODE_ENV);
+    console.log('WWW: ' + host.protocol + ':' + host.uri + ((host.port != 80) ? ':' + host.port : ''));
+    console.log('DB: ' + db.connectionString);
     console.log("Express server listening on port " + app.get('port') + " in " + app.settings.env);
 });
 
@@ -65,4 +71,3 @@ server.on('request', function(req, res){
         console.log(err.message);
     });
 });
-

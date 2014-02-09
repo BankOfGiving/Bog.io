@@ -1,7 +1,5 @@
-var env = require('./env');
-
 if (!config) {
-    var config = {oauth: {}};
+    var config = { oauth: {} };
 }
 
 config.oauth.facebook = {
@@ -10,4 +8,4 @@ config.oauth.facebook = {
     url: 'http://24.205.139.117:5000'
 };
 
-module.exports = config.oauth.facebook[env.current()];
+module.exports = config.oauth.facebook;

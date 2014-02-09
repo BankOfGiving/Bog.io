@@ -2,6 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f850b571-0b2e-4fab-88d7-ce1416533d54" name="Default" comment="Changed invalid pointer in dashboard header files.">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/config/session.store.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/config/twitter.api.js" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/server/config/env.js" afterPath="$PROJECT_DIR$/server/config/env.host.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/config/db.mongo.js" afterPath="$PROJECT_DIR$/server/config/db.mongo.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/config/db.sessionStore.js" afterPath="$PROJECT_DIR$/server/config/db.sessionStore.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/config/facebook.api.js" afterPath="$PROJECT_DIR$/server/config/facebook.api.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/config/google.api.js" afterPath="$PROJECT_DIR$/server/config/google.api.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/config/oauth.facebook.js" afterPath="$PROJECT_DIR$/server/config/oauth.facebook.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/config/oauth.google.js" afterPath="$PROJECT_DIR$/server/config/oauth.google.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/config/oauth.twitter.js" afterPath="$PROJECT_DIR$/server/config/oauth.twitter.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.js" afterPath="$PROJECT_DIR$/server.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Bog.io.iws" />
@@ -25,91 +37,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.jade" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/apps/public/views/index.jade">
+      <file leaf-file-name="env.host.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/config/env.host.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="12" selection-start="12" selection-end="12" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="594">
+            <state line="24" column="21" selection-start="608" selection-end="608" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="630">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.jade" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/server/apps/admin/views/index.jade">
+      <file leaf-file-name="db.mongo.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/config/db.mongo.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="20" selection-start="559" selection-end="559" vertical-scroll-proportion="0.24385965" vertical-offset="77" max-vertical-offset="648">
+            <state line="24" column="1" selection-start="667" selection-end="702" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="576">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/apps/admin/views/index.html">
+      <file leaf-file-name="server.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="85" selection-start="85" selection-end="85" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="108">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="failed.jade" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/apps/auth/views/failed.jade">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="26" selection-start="53" selection-end="53" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="144">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="login.jade" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/apps/auth/views/login.jade">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="7" selection-start="21" selection-end="21" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="234">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="success.jade" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/apps/auth/views/success.jade">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="27" selection-start="71" selection-end="71" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="252">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.jade" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/apps/dash/views/index.jade">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="12" selection-start="12" selection-end="12" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="648">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="titlebar.v1.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/apps/dash/tmpl/home/titlebar.v1.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="108">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="header.dash.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/apps/dash/js/views/header/header.dash.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="3" selection-start="351" selection-end="351" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="header.dash.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/apps/dash/js/views/shared/header.dash.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="0" selection-start="539" selection-end="539" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1602">
+            <state line="71" column="7" selection-start="2438" selection-end="2438" vertical-scroll-proportion="0.82522523" vertical-offset="820" max-vertical-offset="1404">
               <folding />
             </state>
           </provider>
@@ -130,7 +79,6 @@
       <list>
         <option value="$PROJECT_DIR$/server/modules/bog.errors.js" />
         <option value="$PROJECT_DIR$/server/domain/repositories/bog.domain.repositories.event.js" />
-        <option value="$PROJECT_DIR$/server.js" />
         <option value="$PROJECT_DIR$/server/modules/bog.i18n.js" />
         <option value="$PROJECT_DIR$/server/apps/admin/api/api.routes.events.js" />
         <option value="$PROJECT_DIR$/server/config/env.js" />
@@ -152,13 +100,22 @@
         <option value="$PROJECT_DIR$/client/apps/dash/js/views/shared/header.dash.js" />
         <option value="$PROJECT_DIR$/server/apps/public/views/index.jade" />
         <option value="$PROJECT_DIR$/server/apps/admin/views/index.jade" />
+        <option value="$PROJECT_DIR$/server/config/db.mongo.js" />
+        <option value="$PROJECT_DIR$/server/config/db.sessionStore.js" />
+        <option value="$PROJECT_DIR$/server/config/google.api.js" />
+        <option value="$PROJECT_DIR$/server/config/facebook.api.js" />
+        <option value="$PROJECT_DIR$/server/config/oauth.facebook.js" />
+        <option value="$PROJECT_DIR$/server/config/oauth.google.js" />
+        <option value="$PROJECT_DIR$/server/config/oauth.twitter.js" />
+        <option value="$PROJECT_DIR$/server/config/env.host.js" />
+        <option value="$PROJECT_DIR$/server.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-2" />
     <option name="width" value="1922" />
-    <option name="height" value="1010" />
+    <option name="height" value="984" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -232,152 +189,8 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
+              <option name="myItemId" value="config" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Bog.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Bog.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Bog.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Bog.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Bog.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Bog.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dash" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Bog.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Bog.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="auth" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Bog.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Bog.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="admin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Bog.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Bog.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="admin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="index.jade" />
-              <option name="myItemType" value="com.intellij.plugins.watcher.projectView.NestingTreeNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -388,7 +201,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="FullScreen" value="false" />
-    <property name="last_opened_file_path" value="/usr/lib/node_modules/less/bin/lessc" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/server" />
     <property name="options.lastSelected" value="settings" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
@@ -487,28 +300,32 @@
       <created>1391847026745</created>
       <updated>1391847026745</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Changed invalid pointer in dashboard header files.">
+      <created>1391847071139</created>
+      <updated>1391847071139</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-2" y="0" width="1922" height="1010" extended-state="6" />
+    <frame x="-2" y="0" width="1922" height="984" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33071747" sideWeight="0.49973616" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32949308" sideWeight="0.49973616" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295964" sideWeight="0.49973616" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32847533" sideWeight="0.49973616" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31797236" sideWeight="0.49973616" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21108179" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33071747" sideWeight="0.50026387" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32949308" sideWeight="0.50026387" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295964" sideWeight="0.49973616" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295964" sideWeight="0.49973616" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32949308" sideWeight="0.49973616" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -538,56 +355,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/server/domain/repositories/bog.domain.repositories.location.physical.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="13" selection-start="2465" selection-end="2465" vertical-scroll-proportion="0.0" vertical-offset="570" max-vertical-offset="12312" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/domain/repositories/bog.domain.repositories.location.virtual.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="12312" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/domain/repositories/bog.domain.repositories.event.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="15" selection-start="2454" selection-end="2454" vertical-scroll-proportion="0.0" vertical-offset="1254" max-vertical-offset="2489" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/modules/bog.errors.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="10" selection-start="546" selection-end="546" vertical-scroll-proportion="0.0" vertical-offset="304" max-vertical-offset="1672" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/modules/bog.i18n.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="85" selection-start="371" selection-end="371" vertical-scroll-proportion="0.0" vertical-offset="133" max-vertical-offset="1729" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/apps/admin/api/api.routes.events.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="286" column="35" selection-start="8221" selection-end="8221" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6080" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/domain/repositories/bog.domain.repositories.location.physical.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="13" selection-start="2465" selection-end="2465" vertical-scroll-proportion="0.0" vertical-offset="570" max-vertical-offset="12312" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/domain/repositories/bog.domain.repositories.location.virtual.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="12312" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/domain/repositories/bog.domain.repositories.event.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="15" selection-start="2454" selection-end="2454" vertical-scroll-proportion="0.0" vertical-offset="1254" max-vertical-offset="2489" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/modules/bog.errors.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="10" selection-start="546" selection-end="546" vertical-scroll-proportion="0.0" vertical-offset="304" max-vertical-offset="1672" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/modules/bog.i18n.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="7" column="85" selection-start="371" selection-end="371" vertical-scroll-proportion="0.0" vertical-offset="133" max-vertical-offset="1729" />
@@ -618,19 +385,9 @@
         <state line="16" column="10" selection-start="546" selection-end="546" vertical-scroll-proportion="0.0" vertical-offset="9" max-vertical-offset="1672" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="0" selection-start="1657" selection-end="1657" vertical-scroll-proportion="0.0" vertical-offset="222" max-vertical-offset="1406" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/apps/admin/api/api.routes.events.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="39" column="39" selection-start="1250" selection-end="1250" vertical-scroll-proportion="0.0" vertical-offset="630" max-vertical-offset="5742" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/config/env.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="2" selection-start="224" selection-end="224" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server/apps/public/views/index.html">
@@ -650,203 +407,215 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/apps/admin/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="1" selection-start="222" selection-end="222" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1224">
-          <folding />
-        </state>
+        <state line="12" column="1" selection-start="222" selection-end="222" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1224" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/apps/pub/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1584">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1584" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/apps/pub/tmpl/home/titlebar.v1.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="64" selection-start="64" selection-end="64" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="108">
-          <folding />
-        </state>
+        <state line="0" column="64" selection-start="64" selection-end="64" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="108" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/apps/pub/css/public.titlebar.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="23" selection-start="1117" selection-end="1117" vertical-scroll-proportion="0.0" vertical-offset="321" max-vertical-offset="1782">
-          <folding />
-        </state>
+        <state line="41" column="23" selection-start="1117" selection-end="1117" vertical-scroll-proportion="0.0" vertical-offset="321" max-vertical-offset="1782" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server/apps/auth/views/success.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="72" selection-start="72" selection-end="72" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="108">
-          <folding />
-        </state>
+        <state line="0" column="72" selection-start="72" selection-end="72" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="108" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server/apps/auth/views/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="571">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="571" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/apps/admin/css/dash.buttons.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="1" selection-start="1576" selection-end="1576" vertical-scroll-proportion="-5.3333335" vertical-offset="594" max-vertical-offset="5418">
-          <folding />
-        </state>
+        <state line="41" column="1" selection-start="1576" selection-end="1576" vertical-scroll-proportion="-5.3333335" vertical-offset="594" max-vertical-offset="5418" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/apps/admin/css/dash.index.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="594">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="594" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/apps/admin/css/dash.lists.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="810">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="810" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/apps/admin/css/dash.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="108">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="108" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/apps/admin/css/dash.index.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="344" selection-end="344" vertical-scroll-proportion="-10.666667" vertical-offset="0" max-vertical-offset="540">
-          <folding />
-        </state>
+        <state line="16" column="0" selection-start="344" selection-end="344" vertical-scroll-proportion="-10.666667" vertical-offset="0" max-vertical-offset="540" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/apps/admin/css/dash.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="571">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="571" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/apps/admin/css/dash.lists.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="0" selection-start="445" selection-end="445" vertical-scroll-proportion="-11.333333" vertical-offset="0" max-vertical-offset="936">
-          <folding />
-        </state>
+        <state line="17" column="0" selection-start="445" selection-end="445" vertical-scroll-proportion="-11.333333" vertical-offset="0" max-vertical-offset="936" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/apps/admin/css/dash.map.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="13" selection-start="404" selection-end="404" vertical-scroll-proportion="-13.333333" vertical-offset="0" max-vertical-offset="522">
-          <folding />
-        </state>
+        <state line="20" column="13" selection-start="404" selection-end="404" vertical-scroll-proportion="-13.333333" vertical-offset="0" max-vertical-offset="522" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/apps/admin/css/dash.map.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="571">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="571" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/apps/admin/css/dash.titlebar.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="0" selection-start="189" selection-end="189" vertical-scroll-proportion="-6.6666665" vertical-offset="0" max-vertical-offset="1782">
-          <folding />
-        </state>
+        <state line="10" column="0" selection-start="189" selection-end="189" vertical-scroll-proportion="-6.6666665" vertical-offset="0" max-vertical-offset="1782" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/apps/admin/css/dash.welcome.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="231" column="0" selection-start="9111" selection-end="9111" vertical-scroll-proportion="0.0" vertical-offset="3695" max-vertical-offset="4266">
-          <folding />
-        </state>
+        <state line="231" column="0" selection-start="9111" selection-end="9111" vertical-scroll-proportion="0.0" vertical-offset="3695" max-vertical-offset="4266" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/apps/admin/css/dash.welcome.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="17" selection-start="1276" selection-end="1276" vertical-scroll-proportion="56.0" vertical-offset="2142" max-vertical-offset="4320">
-          <folding />
-        </state>
+        <state line="35" column="17" selection-start="1276" selection-end="1276" vertical-scroll-proportion="56.0" vertical-offset="2142" max-vertical-offset="4320" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/apps/dash/tmpl/home/main.v1.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="570">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="570" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/apps/dash/tmpl/home/titlebar.v1.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="557">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="557" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/apps/dash/js/views/shared/header.dash.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="0" selection-start="539" selection-end="539" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1602">
-          <folding />
-        </state>
+        <state line="13" column="0" selection-start="539" selection-end="539" vertical-scroll-proportion="0.4105263" vertical-offset="0" max-vertical-offset="1602" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/apps/dash/js/views/header/header.dash.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="3" selection-start="351" selection-end="351" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360">
-          <folding />
-        </state>
+        <state line="14" column="3" selection-start="351" selection-end="351" vertical-scroll-proportion="0.44210526" vertical-offset="0" max-vertical-offset="570" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server/apps/auth/views/failed.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="26" selection-start="53" selection-end="53" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="144">
-          <folding />
-        </state>
+        <state line="2" column="26" selection-start="53" selection-end="53" vertical-scroll-proportion="0.06315789" vertical-offset="0" max-vertical-offset="570" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server/apps/auth/views/login.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="7" selection-start="21" selection-end="21" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="234">
-          <folding />
-        </state>
+        <state line="1" column="7" selection-start="21" selection-end="21" vertical-scroll-proportion="0.031578947" vertical-offset="0" max-vertical-offset="570" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server/apps/auth/views/success.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="27" selection-start="71" selection-end="71" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="252">
-          <folding />
-        </state>
+        <state line="4" column="27" selection-start="71" selection-end="71" vertical-scroll-proportion="0.12631579" vertical-offset="0" max-vertical-offset="570" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server/apps/dash/views/index.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="12" selection-start="12" selection-end="12" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="648">
-          <folding />
-        </state>
+        <state line="0" column="12" selection-start="12" selection-end="12" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="648" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server/apps/public/views/index.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="12" selection-start="12" selection-end="12" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="594">
-          <folding />
-        </state>
+        <state line="0" column="12" selection-start="12" selection-end="12" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="594" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server/apps/admin/views/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="85" selection-start="85" selection-end="85" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="108">
-          <folding />
-        </state>
+        <state line="0" column="85" selection-start="85" selection-end="85" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="108" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server/apps/admin/views/index.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="20" selection-start="559" selection-end="559" vertical-scroll-proportion="0.24385965" vertical-offset="77" max-vertical-offset="648">
+        <state line="23" column="54" selection-start="1027" selection-end="1027" vertical-scroll-proportion="0.59122807" vertical-offset="77" max-vertical-offset="648" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/config/google.api.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="538">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/config/oauth.facebook.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="0" selection-start="46" selection-end="71" vertical-scroll-proportion="0.06666667" vertical-offset="0" max-vertical-offset="540">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/config/oauth.google.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="8" selection-start="108" selection-end="108" vertical-scroll-proportion="0.13333334" vertical-offset="0" max-vertical-offset="540">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/config/oauth.twitter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="36" selection-start="239" selection-end="239" vertical-scroll-proportion="0.26666668" vertical-offset="0" max-vertical-offset="540">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/config/passport.facebook.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="0" selection-start="68" selection-end="68" vertical-scroll-proportion="0.1" vertical-offset="0" max-vertical-offset="1350">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/config/facebook.api.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="180">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/config/db.sessionStore.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="72" selection-start="825" selection-end="825" vertical-scroll-proportion="0.73333335" vertical-offset="0" max-vertical-offset="1368">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/config/db.mongo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="1" selection-start="667" selection-end="702" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="576">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/config/env.host.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="21" selection-start="608" selection-end="608" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="630">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="71" column="7" selection-start="2438" selection-end="2438" vertical-scroll-proportion="0.82522523" vertical-offset="820" max-vertical-offset="1404">
           <folding />
         </state>
       </provider>
