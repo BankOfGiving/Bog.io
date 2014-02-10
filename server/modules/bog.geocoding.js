@@ -2,7 +2,7 @@ var Geocode = function () {
     var http = require('http');
 
     var GeocodeAddress = function (address, callback) {
-        var g = new google(address, function (geocode) {
+        google(address, function (geocode) {
             callback(geocode);
         });
     };
@@ -25,7 +25,7 @@ var Geocode = function () {
                 body += data;
             });
             response.on('end', function () {
-                callback(eval("(" + body + ")"));
+                callback(eval("(" + body + ")")); // jshint ignore:line
             });
         });
         request.on('error', function (e) {
