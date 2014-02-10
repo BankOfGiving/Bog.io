@@ -1,3 +1,4 @@
+var authWindow;
 define([
     'jquery',
     'underscore',
@@ -12,8 +13,6 @@ define([
         el: $('body'),
         render: function () {
             this.$el.append(titleBarTemplate);
-
-            authWindow = object();
 
             $('#main-titlebar-site-title').click(function () {
                 window.location = '/';
@@ -48,8 +47,8 @@ define([
     }
 
     function showAnonymous() {
-        $('#main-titlebar-account > #Login').css('visibility', 'visible');
-        $('#main-titlebar-account > #Account').css('visibility', 'hidden');
+        $('#Login').css('visibility', 'visible');
+        $('#Account').css('visibility', 'hidden');
         $('#main-titlebar-account').click(function () {
             $.blockUI({
                 message: loginOptionsTemplate,
@@ -96,8 +95,8 @@ define([
     }
 
     function showAuthenticated() {
-        $('#main-titlebar-account #Login').css('visibility', 'hidden');
-        $('#main-titlebar-account #Account').css('visibility', 'visible').click(function () {
+        $('#Login').css('visibility', 'hidden');
+        $('#Account').css('visibility', 'visible').click(function () {
             window.location = '/dash';
         });
     }
