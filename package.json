@@ -23,24 +23,23 @@
         "stylus": "~0.28.1",
         "linq": "~1.0.2"
     },
-    "devDependencies ": {
+    "devDependencies": {
         "grunt": "~0.4.2",
-        "grunt-contrib-less": "~0.8.3",
+        "grunt-contrib-less": "*",
+        "grunt-contrib-jade": "*",
+        "grunt-contrib-watch": "*",
         "mocha": "~1.14.0",
         "assert": "~1.0.0",
         "node-dev": "~0.2.4",
         "request": "~2.9.203",
-        "libxmljs": "~0.5.4"
+        "libxmljs": "~0.5.4",
+        "grunt-contrib-jshint": "~0.8.0",
+        "grunt-htmlhint": "~0.4.0"
     },
     "scripts": {
         "test": "./node_modules/.bin/mocha",
         "start": "node server.js",
         "watch": "./node_modules/.bin/mocha --growl --watch",
         "devserver": "./node_modules/node-dev/node-dev server.js"
-    },
-    "devDependencies": {
-        "grunt": "~0.4.2",
-        "grunt-contrib-less": "~0.8.2",
-        "grunt-contrib-jade": "~0.8.0"
     }
 }

@@ -1,6 +1,3 @@
-/**
- * Created by dbaxter on 12/1/13.
- */
 define([ 'jquery' ], function ($) {
     return {
         transitionToSiteOverrideContainer: function () {
@@ -16,5 +13,5 @@ define([ 'jquery' ], function ($) {
             $('#site-container-override').css('visibility', 'hidden');
             $('#site-container').css('visibility', 'visible');
         }
-    }
+    };
 });

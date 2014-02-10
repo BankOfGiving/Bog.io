@@ -64,7 +64,7 @@ LocationRepository = function () {
         add: Add,
         update: Update,
         delete: Delete
-    }
+    };
 };
 
 LocationRepository.prototype = new _base();

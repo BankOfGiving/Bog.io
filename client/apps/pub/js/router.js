@@ -1,7 +1,3 @@
-/**
- * Created by dbaxter on 12/1/13.
- */
-// Filename: router.js
 define([
     'jquery',
     'underscore',
@@ -40,7 +36,7 @@ define([
     });
 
     var initialize = function () {
-        var app_router = new AppRouter;
+        var app_router = new AppRouter();
 
         var titleBarView = new TitleBarView();
         titleBarView.render();

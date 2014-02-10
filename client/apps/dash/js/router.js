@@ -1,7 +1,3 @@
-/**
- * Created by dbaxter on 12/1/13.
- */
-// Filename: router.js
 define([ 'jquery', 'underscore', 'backbone', 'bog', 'bog.session', 'bog.site',
     'views/home/landing',
     'views/home/home',

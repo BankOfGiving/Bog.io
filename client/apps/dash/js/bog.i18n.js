@@ -1,6 +1,3 @@
-/**
- * Created by dbaxter on 12/10/13.
- */
 define([ 'jquery' ], function ($) {
     return {
         cultures: [

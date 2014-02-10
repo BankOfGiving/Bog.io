@@ -6,7 +6,7 @@ module.exports = bog.Namespace('bog.data.repositories.donation', function () {
             if (err) {
                 callback(err, null);
             }
-            if (results == null) {
+            if (results === null) {
                 callback('no data', null);
             } else {
                 callback(null, results);
@@ -68,7 +68,7 @@ module.exports = bog.Namespace('bog.data.repositories.donation', function () {
     };
 
     donationSchema.statics.createSeed = function (seed, callback) {
-        var donation = new this;
+        var donation = new this();
 
         if (seed) {
             donation.address = {

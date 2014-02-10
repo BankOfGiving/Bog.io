@@ -12,17 +12,17 @@ module.exports = function () {
 
         self.findById(id, function (err, auditEvent) {
             console.log('AUDIT EVENT:  ' + auditEvent);
-            if (auditEvent.audit == null) {
+            if (auditEvent.audit === null) {
                 auditEvent.audit = {
                     author: actor,
                     createdAt: Date.now(),
                     detail: []
                 };
             } else {
-                if (auditEvent.audit.author == null) {
+                if (auditEvent.audit.author === null) {
                     auditEvent.audit.author = actor;
                 }
-                if (auditEvent.audit.createdAt == null) {
+                if (auditEvent.audit.createdAt === null) {
                     auditEvent.audit.createdAt = Date.now();
                 }
             }
@@ -39,5 +39,5 @@ module.exports = function () {
 
     return {
         add: AddAuditEntry
-    }
+    };
 };

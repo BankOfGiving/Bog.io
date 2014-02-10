@@ -1,6 +1,3 @@
-/**
- * Created by dbaxter on 12/10/13.
- */
 define([ 'jquery' ], function ($) {
     return {
         cultures: [
@@ -174,7 +171,7 @@ define([ 'jquery' ], function ($) {
         getViewText: function (viewName) {
             var self = this;
             if (!self.views[viewName]) {
-                throw ('Invalid view name:  ' + viewName)
+                throw ('Invalid view name:  ' + viewName);
             } else {
                 return self.views[viewName];
             }

@@ -1,7 +1,3 @@
-/**
- * Created by dbaxter on 12/26/13.
- */
-
 User.statics.UpdateFromObject = function (userObject, callback) { // callback(err, numberAffected, raw)
     var self = this;
     var query = { _id: userObject._id };
@@ -21,7 +17,7 @@ User.statics.UpdateFromObject = function (userObject, callback) { // callback(er
         }, function (err, numberAffected, raw) {
             callback(err, numberAffected, raw);
         }
-    )
+    );
 };
 
 
@@ -35,7 +31,7 @@ User.statics.findByProviderId = function (provider, id, callback) {
 
 User.statics.findByEmail = function (email, callback) {
     var self = this;
-    if (email == null || email == '') {
+    if (email === null || email === '') {
         callback(new Error("invalid email address"));
     }
     var query = self.findOne(({'emails.value': email}));
@@ -47,7 +43,7 @@ User.statics.findByEmail = function (email, callback) {
 User.statics.findByEmailArray = function (emailArray, callback) {  // callback(err, user)
     var self = this;
     console.log(emailArray);
-    if (emailArray == null || emailArray == '') {
+    if (emailArray === null || emailArray === '') {
         callback(new Error("invalid email address array"), null);
         return;
     }
@@ -55,7 +51,7 @@ User.statics.findByEmailArray = function (emailArray, callback) {  // callback(e
 //        callback(new Error("invalid email address array"), null);
 //        return;
 //    }
-    if (emailArray.length == 0) {
+    if (emailArray.length === 0) {
         callback(new Error("invalid email address array"), null);
         return;
     }
@@ -69,13 +65,13 @@ User.statics.findByPassportProfile = function (profile, callback) {  // callback
     var self = this;
     self.findByProviderId(profile.provider, profile.id, function (err, user) {
         if (user) {
-            callback(null, user)
+            callback(null, user);
         }
 
         // if user not found, check for email match
         var emailArray = [];
         for (var i = 0; i < profile.emails.length; i++) {
-            emailArray.push(profile.emails[i].value)
+            emailArray.push(profile.emails[i].value);
         }
         self.findByEmailArray(emailArray, function () {
             if (user) {
@@ -83,7 +79,7 @@ User.statics.findByPassportProfile = function (profile, callback) {  // callback
             } else {
                 callback(null, null);
             }
-        })
+        });
     });
 };
 

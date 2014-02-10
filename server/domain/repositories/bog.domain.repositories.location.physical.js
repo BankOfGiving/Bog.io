@@ -449,37 +449,37 @@ var PhysicalLocationRepository = function (current_user) {
         if (input.street) {
             if (entity.street != input.street) {
                 entity.street = input.street;
-                changes.push(['street', entity.street, input.street])
+                changes.push(['street', entity.street, input.street]);
             }
         }
         if (input.city) {
             if (entity.city != input.city) {
                 entity.city = input.city;
-                changes.push(['city', entity.city, input.city])
+                changes.push(['city', entity.city, input.city]);
             }
         }
         if (input.state) {
             if (entity.state != input.state) {
                 entity.state = input.state;
-                changes.push(['state', entity.state, input.state])
+                changes.push(['state', entity.state, input.state]);
             }
         }
         if (input.postal_code) {
             if (entity.postal_code != input.postal_code) {
                 entity.postal_code = input.postal_code;
-                changes.push(['postal_code', entity.postal_code, input.postal_code])
+                changes.push(['postal_code', entity.postal_code, input.postal_code]);
             }
         }
         if (input.country) {
             if (entity.country != input.country) {
                 entity.country = input.country;
-                changes.push(['country', entity.country, input.country])
+                changes.push(['country', entity.country, input.country]);
             }
         }
         if (input.primary) {
             if (entity.primary != input.primary) {
                 entity.primary = input.primary;
-                changes.push(['primary', entity.primary, input.primary])
+                changes.push(['primary', entity.primary, input.primary]);
             }
         }
 
@@ -511,7 +511,7 @@ var PhysicalLocationRepository = function (current_user) {
                             callback(err, validated_entity, changes);
                         });
                     }
-                })
+                });
             }
         });
     };
@@ -522,7 +522,7 @@ var PhysicalLocationRepository = function (current_user) {
 
         serializeAddress(location, function (serialized_location) {
             geo.code(serialized_location, function (geocode) {
-                if (geocode.results.length == 0) {
+                if (geocode.results.length === 0) {
                     callback(self.err.wrap(400, 'Address Verification failed.  No match found.'), false);
                     return;
                 }
@@ -535,7 +535,7 @@ var PhysicalLocationRepository = function (current_user) {
                     console.log("status:  " + geocode.status);
                     return;
                 }
-                if (geocode.results[0].partial_match == true) {
+                if (geocode.results[0].partial_match === true) {
                     callback(self.err.wrap(400, 'Address Verification failed.  Only partial matches found.'), false);
                     return;
                 }
@@ -635,7 +635,7 @@ var PhysicalLocationRepository = function (current_user) {
         add: Add,
         update: Update,
         delete: DeleteById
-    }
+    };
 };
 
 PhysicalLocationRepository.prototype = new _base();

@@ -1,6 +1,3 @@
-/**
- * Created by dbaxter on 12/1/13.
- */
 define([
     'jquery',
     'underscore',
@@ -16,6 +13,8 @@ define([
         render: function () {
             this.$el.append(titleBarTemplate);
 
+            authWindow = object();
+
             $('#main-titlebar-site-title').click(function () {
                 window.location = '/';
             });
@@ -29,8 +28,6 @@ define([
             });
         }
     });
-
-    var authWindow;
 
     function LaunchAuth() {
         var uri = window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/auth/fb/';

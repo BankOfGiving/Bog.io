@@ -21,7 +21,7 @@ var LocationDetail = function () {
 
     return{
         fromRaw: fromRaw
-    }
+    };
 };
 
 module.exports = LocationDetail;

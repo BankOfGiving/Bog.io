@@ -9,5 +9,5 @@ module.exports = function () {
         logger: new Logger(),
         i18n: new Internationalization(),
         authorization: new Authorization()
-    }
+    };
 };

@@ -1,6 +1,6 @@
 Authorization = function () {
     var userCanPerform = function (user, object, action, callback) {
-        if (1 == 0) {
+        if (1 === 0) {
             callback(false);
         } else {
             callback(true);
@@ -9,7 +9,7 @@ Authorization = function () {
 
     return {
         userCanPerform: userCanPerform
-    }
+    };
 };
 
 module.exports = Authorization;

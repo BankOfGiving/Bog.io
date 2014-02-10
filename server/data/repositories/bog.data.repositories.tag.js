@@ -4,7 +4,7 @@ tagSchema.statics.getByObjectId = function (id, callback) {
         if (err) {
             callback(err, null);
         }
-        if (results == null) {
+        if (results === null) {
             callback('no data', null);
         } else {
             callback(null, results);

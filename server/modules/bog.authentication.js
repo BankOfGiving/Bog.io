@@ -6,5 +6,5 @@ module.exports = function () {
         } else {
             res.send(401);
         }
-    }
+    };
 };

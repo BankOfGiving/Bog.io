@@ -20,7 +20,7 @@ var LocationSimple = function () {
 
     return{
         fromRaw: fromRaw
-    }
+    };
 };
 
 module.exports = LocationSimple;

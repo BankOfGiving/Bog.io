@@ -1,6 +1,3 @@
-/**
- * Created by dbaxter on 12/6/13.
- */
 define([ 'jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
     Bog.dash.views.partial = {
         ListModels: Backbone.View.extend({
@@ -9,19 +6,19 @@ define([ 'jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
             initialize: function (args) {
                 var self = this;
 
-                if (args.collection == null || args.collection == 'undefined') {
+                if (args.collection === null || args.collection == 'undefined') {
                     throw ('Collection must be defined.');
                 } else {
                     self.collection = args.collection;
                 }
 
-                if (args.itemView == null || args.itemView == 'undefined') {
+                if (args.itemView === null || args.itemView == 'undefined') {
                     throw ('Item View must be defined.');
                 } else {
                     self.itemView = args.itemView;
                 }
 
-                if (args.el == null || args.el == 'undefined') {
+                if (args.el === null || args.el == 'undefined') {
                     throw ('EL must be defined.');
                 } else {
                     self.el = args.el;

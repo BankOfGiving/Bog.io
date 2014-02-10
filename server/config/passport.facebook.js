@@ -37,23 +37,23 @@ module.exports = function () {
                             console.log('Provider profile information mapped to user object.');
                             user.save(function (err, user) {
                                 if (err) {
-                                    console.log(err)
+                                    console.log(err);
                                 }
                                 console.log('User object saved.');
                                 done(err, user);
                             });
-                        })
+                        });
                     }
                     if (!user && !err) {
                         console.log('No user exists and no errors.  Create a new account from the profile information and return.');
                         User.MapPassportProfileToUser(profile, new User(), function (err, user) {
                             user.save(function (err, user) {
                                 if (err) {
-                                    console.log(err)
+                                    console.log(err);
                                 }
                                 done(err, user);
                             });
-                        })
+                        });
                     }
                     if (user && err) {
                         switch (err) {

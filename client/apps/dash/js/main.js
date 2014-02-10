@@ -1,6 +1,3 @@
-/**
- * Created by dbaxter on 12/1/13.
- */
 requirejs.config({
     baseUrl: 'js/',
     paths: {

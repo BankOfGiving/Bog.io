@@ -289,7 +289,7 @@ module.exports = function (app, uriBase) {
                 res.json(204, err_handler.wrap(5004));
                 return;
             }
-            if (coll.length == 0) {
+            if (coll.length === 0) {
                 res.json(204, err_handler.wrap(5004));
                 return;
             }

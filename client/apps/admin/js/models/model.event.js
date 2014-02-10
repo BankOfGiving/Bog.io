@@ -1,6 +1,3 @@
-/**
- * Created by dbaxter on 12/1/13.
- */
 define(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
     return Backbone.Model.extend({
         urlRoot: 'event/',
@@ -38,7 +35,7 @@ define(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
             _binder.on(message, function (evt, prop_name, new_val) {
                 jQuery("[data-" + data_attr + "=" + prop_name + "]").each(function () {
                     var $bound = jQuery(this);
-                    if ($bound.val() != '' && $bound.val() != new_val) {
+                    if ($bound.val() !== '' && $bound.val() != new_val) {
                     }
 
                     if ($bound.is("input, textarea, select")) {

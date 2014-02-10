@@ -4,7 +4,7 @@ solicitationSchema.statics.getByObjectId = function (id, callback) {
         if (err) {
             callback(err, null);
         }
-        if (results == null) {
+        if (results === null) {
             callback('no data', null);
         } else {
             callback(null, results);
@@ -50,7 +50,7 @@ solicitationSchema.statics.getByLocation = function (lat, lng, rad, callback) {
 };
 
 solicitationSchema.statics.createSeed = function (seed, callback) {
-    var solicitation = new this;
+    var solicitation = new this();
 
     if (seed) {
         solicitation.address = {

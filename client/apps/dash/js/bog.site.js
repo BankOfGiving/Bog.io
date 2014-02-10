@@ -1,6 +1,3 @@
-/**
- * Created by dbaxter on 12/1/13.
- */
 define([ 'jquery' ], function ($) {
     return {
         transitionToSiteOverrideContainer: function () {

@@ -1,9 +1,11 @@
-/**
- * Created by dbaxter on 12/3/13.
- */
-define([ 'jquery', 'underscore', 'backbone', 'bog.site', 'bog.i18n'
-    , 'text!../../../tmpl/shared/header.admin.html'
-    , 'text!../../../tmpl/shared/navbar.auth.html'
+define([
+    'jquery',
+    'underscore',
+    'backbone',
+    'bog.site',
+    'bog.i18n',
+    'text!../../../tmpl/shared/header.admin.html',
+    'text!../../../tmpl/shared/navbar.auth.html'
 ], function ($, _, Backbone, site, i18n, AdminHeaderTemplate, NavAuthTemplate) {
     return Backbone.View.extend({
         initialize: function () {

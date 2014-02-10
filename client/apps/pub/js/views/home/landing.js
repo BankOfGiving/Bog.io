@@ -1,6 +1,3 @@
-/**
- * Created by dbaxter on 12/1/13.
- */
 define([
     'jquery',
     'underscore',
@@ -24,8 +21,8 @@ define([
             map = maps.addMapToCanvas(document.getElementById("map-canvas"));
             search.all(function (results) {
                 maps.createMarkers(results, function () {
-                    console.log('successfully search, returned all records, and plotted to map.')
-                })
+                    console.log('successfully search, returned all records, and plotted to map.');
+                });
             });
 
             var welcomeOverlay = new WelcomeOverlay();

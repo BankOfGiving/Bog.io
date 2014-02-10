@@ -11,5 +11,5 @@ module.exports = function () {
         err: new Errors(),
         logger: new Logger(),
         mongoose: mongoose
-    }
+    };
 };

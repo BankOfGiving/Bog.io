@@ -1,6 +1,3 @@
-/**
- * Created by dbaxter on 12/2/13.
- */
 define([  ], function () {
     return Bog.session = {
         sessionUser: null,

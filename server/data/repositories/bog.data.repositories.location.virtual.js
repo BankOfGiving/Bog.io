@@ -64,7 +64,7 @@ VirtualLocationRepository = function () {
         add: Add,
         update: Update,
         delete: Delete
-    }
+    };
 };
 
 VirtualLocationRepository.prototype = new _base();

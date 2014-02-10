@@ -14,7 +14,7 @@ define(["async!http://maps.google.com/maps/api/js?key=AIzaSyCZjCOZHzKqlOAkBXr1HF
             var self = this;
 
             if (!mapCanvas) {
-                mapCanvas == self.DEFAULT_CANVASNAME;
+                mapCanvas = self.DEFAULT_CANVASNAME;
             }
             if (!centerLat) {
                 centerLat = self.DEFAULT_LATITUDE;

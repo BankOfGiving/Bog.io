@@ -1,8 +1,8 @@
 var _base = require('./bog.domain.repositories._base.js');
 var LocationData = require('../../data/repositories/bog.data.repositories.location.virtual');
 var LocationEntity = require('../../data/models/bog.data.models.location.virtual');
-var LocationModelList = require('../models/bog.domain.models.location.virtual.list');
-var LocationModelSimple = require('../models/bog.domain.models.location.virtual.simple');
+var LocationModelList = require('../models/bog.domain.models.location.virtual.detail');
+var LocationModelSimple = require('../models/bog.domain.models.location.virtual.detail');
 var LocationModelDetail = require('../models/bog.domain.models.location.virtual.detail');
 
 var LocationRepository = function (current_user) {
@@ -445,41 +445,42 @@ var LocationRepository = function (current_user) {
 
     var parse = function (input, entity, callback) {
         // Mapping
+
+        model.id = raw._id;
+        model.name = raw.name;
+        model.uri = raw.uri;
+        model.description = raw.description;
+        model.verified = raw.verified;
+        model.additional_data = raw.additional_data;
         var changes = []; // property, old, new
-        if (input.street) {
-            if (entity.street != input.street) {
-                entity.street = input.street;
-                changes.push(['street', entity.street, input.street])
+        if (input.name) {
+            if (entity.name != input.name) {
+                entity.name = input.name;
+                changes.push(['name', entity.name, input.name]);
             }
         }
-        if (input.city) {
-            if (entity.city != input.city) {
-                entity.city = input.city;
-                changes.push(['city', entity.city, input.city])
+        if (input.uri) {
+            if (entity.uri != input.uri) {
+                entity.uri = input.uri;
+                changes.push(['uri', entity.uri, input.uri]);
             }
         }
-        if (input.state) {
-            if (entity.state != input.state) {
-                entity.state = input.state;
-                changes.push(['state', entity.state, input.state])
+        if (input.description) {
+            if (entity.description != input.description) {
+                entity.description = input.description;
+                changes.push(['description', entity.description, input.description]);
             }
         }
-        if (input.postal_code) {
-            if (entity.postal_code != input.postal_code) {
-                entity.postal_code = input.postal_code;
-                changes.push(['postal_code', entity.postal_code, input.postal_code])
+        if (input.verified) {
+            if (entity.verified != input.verified) {
+                entity.verified = input.verified;
+                changes.push(['verified', entity.verified, input.verified]);
             }
         }
-        if (input.country) {
-            if (entity.country != input.country) {
-                entity.country = input.country;
-                changes.push(['country', entity.country, input.country])
-            }
-        }
-        if (input.primary) {
-            if (entity.primary != input.primary) {
-                entity.primary = input.primary;
-                changes.push(['primary', entity.primary, input.primary])
+        if (input.additional_data) {
+            if (entity.additional_data != input.additional_data) {
+                entity.additional_data = input.additional_data;
+                changes.push(['additional_data', entity.additional_data, input.additional_data]);
             }
         }
 
@@ -500,56 +501,12 @@ var LocationRepository = function (current_user) {
                     if (err) {
                         callback(err);
                     } else {
-                        verify(validated_entity, function (err, verified, geocode) {
-                            validated_entity.verified = verified;
-                            if (verified) {
-                                validated_entity.geocoding_result = geocode;
-                                validated_entity.latitude = geocode.geometry.location.lat;
-                                validated_entity.longitude = geocode.geometry.location.lng;
-                                validated_entity.geospacial_index.coordinates = [geocode.geometry.location.lng, geocode.geometry.location.lat];
-                            }
-                            callback(err, validated_entity, changes);
-                        });
+                        callback(err, validated_entity, changes);
                     }
-                })
+                });
             }
         });
     };
-
-    var verify = function (location, callback) { //callback(err, verified, result)
-        var GeoCoding = require('../../modules/bog.geocoding');
-        var geo = new GeoCoding();
-
-        serializeAddress(location, function (serialized_location) {
-            geo.code(serialized_location, function (geocode) {
-                if (geocode.results.length == 0) {
-                    callback(self.err.wrap(400, 'Address Verification failed.  No match found.'), false);
-                    return;
-                }
-                if (geocode.results.length > 1) {
-                    callback(self.err.wrap(400, 'Address Verification failed.  Multiple results found.'), false);
-                    return;
-                }
-                if (geocode.status != 'OK') {
-                    callback(self.err.wrap(400, 'Address Verification failed.  Invalid return staus: ' + geocode.status), false);
-                    console.log("status:  " + geocode.status);
-                    return;
-                }
-                if (geocode.results[0].partial_match == true) {
-                    callback(self.err.wrap(400, 'Address Verification failed.  Only partial matches found.'), false);
-                    return;
-                }
-                if (geocode.results.length == 1) {
-                    callback(null, true, geocode.results[0]);
-                }
-            });
-        });
-    };
-
-    var serializeAddress = function (loc, callback) {
-        callback(loc.street + ' ' + loc.city + ' ' + loc.state + ' ' + loc.country);
-    };
-
     var parseDepth = function (depth) {
         if (isNaN(depth)) {
             if (depth_enum.indexOf(depth) === -1) {
@@ -635,7 +592,7 @@ var LocationRepository = function (current_user) {
         add: Add,
         update: Update,
         delete: DeleteById
-    }
+    };
 };
 
 LocationRepository.prototype = new _base();

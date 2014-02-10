@@ -15,7 +15,7 @@ var EventSimple = function () {
 
     return{
         fromRaw: fromRaw
-    }
+    };
 };
 
 module.exports = EventSimple;

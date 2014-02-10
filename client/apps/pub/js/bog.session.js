@@ -1,6 +1,3 @@
-/**
- * Created by dbaxter on 12/2/13.
- */
 define([ ], function () {
     return {
         isAuthenticated: function (callback) {
@@ -22,5 +19,5 @@ define([ ], function () {
         sessionUser: function () {
 
         }
-    }
+    };
 });

@@ -1,7 +1,4 @@
-define(['jquery', 'underscore', 'backbone', 'bog.site'
-    , 'collections/collection.solicitations'
-    , 'text!../../../tmpl/solicitations/solicitations.list.html'
-], function ($, _, Backbone, site, SolicitationCollection, SolicitationTemplate) {
+define(['jquery', 'underscore', 'backbone', 'bog.site', 'collections/collection.solicitations', 'text!../../../tmpl/solicitations/solicitations.list.html'], function ($, _, Backbone, site, SolicitationCollection, SolicitationTemplate) {
     return Backbone.View.extend({
         siteText: {
             pageHeader: {
@@ -28,7 +25,7 @@ define(['jquery', 'underscore', 'backbone', 'bog.site'
 
             self.$el.empty();
 
-            if (solicitations.length == 0) {
+            if (solicitations.length === 0) {
                 self.$el.append(_.template(SolicitationTemplate, {solicitations: null, _: _}));
             } else {
                 solicitations = sortByKey(solicitations, 'title');

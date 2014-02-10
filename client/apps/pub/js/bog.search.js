@@ -15,5 +15,5 @@ define(['jquery'], function ($) {
                 callback(data);
             });
         }
-    }
+    };
 });

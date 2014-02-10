@@ -63,7 +63,7 @@ var EventDetail = function () {
 
     return{
         fromRaw: fromRaw
-    }
+    };
 };
 
 module.exports = EventDetail;

@@ -112,7 +112,7 @@ define(["async!http://maps.google.com/maps/api/js?key=AIzaSyCZjCOZHzKqlOAkBXr1HF
             while (collection.length > 0) {
                 var entity = collection.pop();
                 self.createMarker(entity);
-                if (collection.length == 0) {
+                if (collection.length === 0) {
                     callback();
                     break;
                 }
@@ -124,7 +124,7 @@ define(["async!http://maps.google.com/maps/api/js?key=AIzaSyCZjCOZHzKqlOAkBXr1HF
             while (this.markers.length > 0) {
                 var marker = this.markers.pop();
                 marker.setMap(null);
-                if (this.markers.length == 0) {
+                if (this.markers.length === 0) {
                     callback();
                     break;
                 }
@@ -136,7 +136,7 @@ define(["async!http://maps.google.com/maps/api/js?key=AIzaSyCZjCOZHzKqlOAkBXr1HF
             $.getJSON(uri, function (geocode) {
                 console.log(uri);
                 console.log(geocode);
-                if (geocode.results.length == 0) {
+                if (geocode.results.length === 0) {
                     callback("no results", null, null);
                 }
                 if (geocode.results.length == 1) {
@@ -146,7 +146,7 @@ define(["async!http://maps.google.com/maps/api/js?key=AIzaSyCZjCOZHzKqlOAkBXr1HF
                     callback(null, lat, lng);
                 }
                 if (geocode.results.length > 1) {
-                    callback('multiple results.', null, null)
+                    callback('multiple results.', null, null);
                 }
             });
         },
@@ -165,5 +165,4 @@ define(["async!http://maps.google.com/maps/api/js?key=AIzaSyCZjCOZHzKqlOAkBXr1HF
             markers[i].setMap(map);
         }
     }
-
 });

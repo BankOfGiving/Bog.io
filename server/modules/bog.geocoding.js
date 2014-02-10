@@ -37,7 +37,7 @@ var Geocode = function () {
 
     return {
         code: GeocodeAddress
-    }
+    };
 };
 
 module.exports = Geocode;

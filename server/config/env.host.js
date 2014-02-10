@@ -3,14 +3,6 @@ if (!config) {
 }
 
 switch (process.env.NODE_ENV) {
-    case 'development':
-        config.env.host = {
-            protocol: 'http',
-            uri: '//localhost',
-            port: 5000,
-            path: '/'
-        };
-        break;
     case 'staging':
         config.env.host = {
             protocol: 'http',
@@ -23,6 +15,14 @@ switch (process.env.NODE_ENV) {
         config.env.host = {
             protocol: 'http',
             uri: '//bankofgiving.com',
+            port: 5000,
+            path: '/'
+        };
+        break;
+    default:  //case 'development':
+        config.env.host = {
+            protocol: 'http',
+            uri: '//localhost',
             port: 5000,
             path: '/'
         };

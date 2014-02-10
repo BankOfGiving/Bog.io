@@ -81,5 +81,5 @@ module.exports = function (culture) {
     return {
         pullText: pullText,
         txt_enus: txt_enus
-    }
+    };
 };

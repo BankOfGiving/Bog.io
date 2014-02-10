@@ -64,7 +64,7 @@ ContactRepository = function () {
         add: Add,
         update: Update,
         delete: Delete
-    }
+    };
 };
 
 ContactRepository.prototype = new _base();

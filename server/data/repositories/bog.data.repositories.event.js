@@ -57,7 +57,7 @@ EventRepository = function () {
         save: Save,
         add: Add,
         update: Update
-    }
+    };
 };
 
 EventRepository.prototype = new _base();

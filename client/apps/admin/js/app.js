@@ -1,4 +1,4 @@
-if (Bog == null) {
+if (Bog === null) {
     var Bog = {
         admin: {
             views: {

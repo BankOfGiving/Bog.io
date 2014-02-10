@@ -20,11 +20,11 @@ var EventSimple = function () {
         SimpleModel.endAt = raw.endAt;
         SimpleModel.status = raw.status;
         return SimpleModel;
-    }
+    };
 
     return{
         fromRaw: fromRaw
-    }
+    };
 };
 
 module.exports = EventSimple;

@@ -456,7 +456,7 @@ var EventRepository = function (current_user) {
         }
         var id = input.id;
         if (!id) {
-            id = input._id
+            id = input._id;
         }
         if (!isValidObjectID(id)) {
             callback(self.err.wrap(5001));
@@ -671,17 +671,17 @@ var EventRepository = function (current_user) {
 
         if (changes) audit.changeList = changes;
 
-        if (entity.audit == null) {
+        if (entity.audit === null) {
             entity.audit = {
                 author: actor,
                 createdAt: Date.now(),
                 detail: []
             };
         } else {
-            if (entity.audit.author == null) {
+            if (entity.audit.author === null) {
                 entity.audit.author = actor;
             }
-            if (entity.audit.createdAt == null) {
+            if (entity.audit.createdAt === null) {
                 entity.audit.createdAt = Date.now();
             }
         }
@@ -702,7 +702,7 @@ var EventRepository = function (current_user) {
             } else {
                 validate(parsed_entity, function (err, validated_entity) {
                     callback(err, validated_entity, changes);
-                })
+                });
             }
         });
     };
@@ -864,7 +864,7 @@ var EventRepository = function (current_user) {
         addPloc: PhysicalLocationAdd,
         updatePloc: PhysicalLocationUpdate,
         removePloc: PhysicalLocationRemove
-    }
+    };
 };
 
 EventRepository.prototype = new _base();
