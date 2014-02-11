@@ -4,8 +4,8 @@ mongoose.createConnection(dbconn.connectionString);
 
 var ObjectId = mongoose.Schema.Types.ObjectId;
 
-var User = require('./user.model.js');
-var Tag = require('./tag.model.js');
+var User = require('./bog.data.models.user.js');
+var Tag = require('./bog.data.models.tag.js');
 var Audit = require('./bog.data.models.audit.js');
 
 var donationSchema = new mongoose.Schema({

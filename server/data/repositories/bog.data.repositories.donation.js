@@ -1,84 +1,65 @@
-module.exports = bog.Namespace('bog.data.repositories.donation', function () {
+var _base = require('./bog.data.repositories._base');
+var DonationModel = require('../models/bog.data.models.donation');
 
-    var getByObjectId = function (id, callback) {
-        var query = this.findById(id);
-        query.exec(function (err, results) {
-            if (err) {
-                callback(err, null);
-            }
-            if (results === null) {
-                callback('no data', null);
-            } else {
-                callback(null, results);
-            }
+DonationRepository = function () {
+
+    var All = function (callback) {
+        var query = DonationModel.find();
+        query.exec(function (err, data) {
+            callback(err, data);
         });
     };
 
-
-    donationSchema.statics.AddUpdateFromObject = function (input, createIfNotFound, user, callback) {
-        var self = this;
-        var id = input._id;
-        var donation;
-
-        console.log(id);
-
-        if (id) {
-            self.findById(id, function (err, donation) {
-                if (err) {
-                    // Return the error.
-                    callback(err, null);
-                }
-                if (!err && !donation && !createIfNotFound) {
-                    // No record found to update and do not create a new one.
-                    callback(new Error('no item found with id: ' + id), null);
-                }
-                if (!err && !donation && createIfNotFound) {
-                    // No record found to update.  Create a new one
-                    donation = new self();
-                }
-
-                self.SaveFromObject(donation, input, user, function (err, donation) {
-                    callback(err, donation);
-                });
-            });
-        } else {
-            donation = mongoose.model("Donation", donationSchema);
-            self.SaveFromObject(donation, input, user, function (err, donation) {
-                callback(err, donation);
-            });
-        }
-    };
-
-    donationSchema.statics.getByLocation = function (lat, lng, rad, callback) {
-        var query = this.find({ 'address.geometry.location': {
-            $near: {
-                $geometry: {
-                    type: 'Point',
-                    coordinates: [lng, lat]
-                }
-            },
-            $maxDistance: rad }
-        });
-        query.exec(function (err, coll) {
-            if (err) {
-            } else {
-                callback(err, coll);
-            }
+    var Find = function (filters, callback) {
+        var conditions = {
+            status: { $ne: 'deleted' }
+        };
+        var fields = null;
+        var options = null;
+        var query = DonationModel.find(conditions, fields, options);
+        query.exec(function (err, data) {
+            callback(err, data);
         });
     };
 
-    donationSchema.statics.createSeed = function (seed, callback) {
-        var donation = new this();
-
-        if (seed) {
-            donation.address = {
-                geometry: {
-                    location: [randomFromInterval(-124.848974, -66.885444), randomFromInterval(24.396308, 49.384358)]
-                }
-            };
-            callback(donation);
-        } else {
-            callback(donation);
-        }
+    var FindById = function (id, callback) {
+        var query = DonationModel.findById(id).populate('locations_physical');
+        query.exec(function (err, data) {
+            callback(err, data);
+        });
     };
-});
+
+    var Add = function (input, callback) {
+        DonationModel.create(input, function (err, data, numberAffected) {
+            callback(err, data, numberAffected);
+        });
+    };
+
+    var Save = function (input, callback) {
+        input.save(function (err, data, numberAffected) {
+            callback(err, data, numberAffected);
+        });
+    };
+
+    var Update = function (id, input, callback) {
+        var obj = input.toObject();
+        delete obj.id;
+        delete obj._id;
+        DonationModel.update({ _id: id }, obj, {upsert: false}, function (err, numberAffected, data) {
+            callback(err, input, numberAffected);
+        });
+    };
+
+    return{
+        all: All,
+        find: Find,
+        findById: FindById,
+        save: Save,
+        add: Add,
+        update: Update
+    };
+};
+
+DonationRepository.prototype = new _base();
+
+module.exports = DonationRepository;

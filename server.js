@@ -1,10 +1,10 @@
 // Components
 var express = require('express'),
     http = require('http'),
-    path = require('path'),
     passport = require('passport'),
     mongoose = require('mongoose'),
     domain = require('domain');
+
 // Configs
 var sessionStore = require('./server/config/db.sessionStore');
 
@@ -20,7 +20,6 @@ var app = express();
 
 // all environments
 app.set('port', process.env.PORT || 5000);
-//app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(express.favicon());
 app.use(express.logger('dev'));
@@ -41,19 +40,9 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
-app.use('/', express.static(path.join(__dirname, 'client/apps/pub')));
-app.use('/admin', express.static(path.join(__dirname, 'client/apps/admin')));
-app.use('/dash', express.static(path.join(__dirname, 'client/apps/dash')));
-app.use('/js/lib/npm/', express.static(path.join(__dirname, '/node_modules'))); // for development only.  Remove with build!
-app.use('/js/lib/b/', express.static(path.join(__dirname, '/bower_components')));  // for development only.  Remove with build!
 
-// Routes
-require('./server/apps/app.routes')(app);
-
-// development only
-if ('development' == app.get('env')) {
-    app.use(express.errorHandler());
-}
+// Load Routes
+require('./server/apps/app.routes')(app, express);
 
 var server = http.createServer(app).listen(app.get('port'), function () {
 
@@ -63,11 +52,11 @@ var server = http.createServer(app).listen(app.get('port'), function () {
     console.log("Express server listening on port " + app.get('port') + " in " + app.settings.env);
 });
 
-server.on('request', function(req, res){
+server.on('request', function (req, res) {
     var error_handler_domain = domain.create();
     error_handler_domain.add(req);
     error_handler_domain.add(res);
-    error_handler_domain.on('error', function(err){
+    error_handler_domain.on('error', function (err) {
         console.log(err.message);
     });
 });
