@@ -11,7 +11,7 @@ module.exports = function (app) {
     app.get(uriBase + '/', function (req, res) {
         res.render(path.join(__dirname, '../views/login'), {
             title: 'Login',
-            stylesheet: 'login'})
+            stylesheet: 'login'});
     });
 
 //    app.get(uriBase + '/logout', bogAuth.ensureAuthenticated, function (req, res) {
