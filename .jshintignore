@@ -1,0 +1,7 @@
+.idea/**/*.*
+node_modules/**/*.*
+
+client/**/lib/*.js
+client/**/css/**/*.js
+
+client/apps/pub/src/js/google.maps.js

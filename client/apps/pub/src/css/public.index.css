@@ -1,0 +1,18 @@
+#search-form-main {
+    background-color: #6495ed;
+    height: 40px;
+    position: relative;
+    width: 1500px;
+    border-bottom: 1px solid #666666;
+    border-left: 1px solid #666666;
+    border-right: 1px solid #666666;
+}
+
+input[type="text"] {
+    margin-top: 7px;
+    width: 150px;
+    height: 20px;
+    display: block;
+    margin-bottom: 10px;
+    border: 1px solid #528ecc;
+}

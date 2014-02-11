@@ -1,50 +1,88 @@
 module.exports = function (grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        jshint: {
-            pub: 'client/apps/pub/js/text.js',
-            dash: 'client/apps/dash/js/**/*.js',
-            admin: 'client/apps/admin/js/**/*.js',
-            server: 'server/modules/**/*.js',
-            all: 'client/apps/**/*.js'
-        },
-        concat: {
-            options: {
-                separator: ';'
+
+        htmlhint: {
+            src_client_admin: {
+                src: ['client/apps/admin/src/**/*.html']
             },
-            dist: {
-                src: ['src/**/*.js'],
-                dest: 'dist/<%= pkg.name %>.js'
+            src_client_dash: {
+                src: ['client/apps/dash/src/**/*.html']
+            },
+            src_client_pub: {
+                src: ['client/apps/pub/src/**/*.html']
+            }
+        },
+        jshint: {
+            src_client_admin: 'client/apps/admin/src/js/*.js',
+            src_client_dash: 'client/apps/dash/src/js/*.js',
+            src_client_pub: 'client/apps/pub/src/js/*.js',
+            src_server: 'server/**/*.js'
+        },
+        less: {
+            'dash': {
+                options: {
+                    compress: true,
+                    yuicompress: true,
+                    optimization: 2
+                },
+                files: {
+                    "client/apps/dash/src/styles.css": "client/apps/dash/src/styles/*.less"
+                }
+            }
+        },
+
+
+        concat: {
+            'dash-js': {
+                src: 'client/apps/dash/src/js/**/*.js',
+                dest: 'client/apps/dash/src/dash.min.js'
             }
         },
         uglify: {
             options: {
-                // the banner is inserted at the top of the output
-                banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
+                //banner: grunt.file.read('LICENCE'),
+                mangle: true,
+                squeeze: {dead_code: true},
+                codegen: {quote_keys: true}
             },
-            dist: {
-                files: {
-                    'dist/<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>']
-                }
+            'dash-js': {
+                src: 'client/apps/dash/src/dash.min.js',
+                dest: 'client/apps/dash/dist/dash.min.js'
             }
         },
-        "less": {
-            "dev": {
-                files: ["styles.less"]
-            },
-            "dist": {
-                files: ["styles.less"],
-                options: { yuicompress: true }
+        watch: {
+            'client': {
+                files: ['client/apps/**/*.*'],
+                tasks: ['default'],
+                options: {
+                    nospawn: true
+                }
             }
         }
     });
 
-    grunt.registerTask("default", ['jshint:server']);
+    grunt.registerTask('default',
+        [
+            'jshint:src_server',
+            'htmlhint:src_client_admin',
+            'htmlhint:src_client_dash',
+            'htmlhint:src_client_pub',
+            'jshint:src_client_admin',
+            'jshint:src_client_dash',
+            'jshint:src_client_pub',
+        ]);
 
-    grunt.loadNpmTasks('grunt-contrib-less');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.registerTask('watch', 'watch:client');
+
+
+    // grunt.registerTask("dash", ['jshint:src_dash', 'concat:dash-js', 'uglify:dash-js', 'less:dash', 'jshint:min_dash']);
+
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-less');
+    grunt.loadNpmTasks('grunt-htmlhint');
+
+    grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-concat');
-    //grunt.loadNpmTasks('grunt-contrib-qunit');
 };
