@@ -96,7 +96,19 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.registerTask('default', 'jshint:src_server');
+    grunt.registerTask('default',
+        [
+            'client_pub',
+            'client_dash',
+            'client_admin',
+            'server'
+        ]
+    );
+
+    grunt.registerTask('server',
+        [
+            'jshint:src_server'
+        ]);
 
     grunt.registerTask('client_pub',
         [
