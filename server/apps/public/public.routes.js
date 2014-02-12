@@ -27,6 +27,8 @@ module.exports = function (app, express) {
     app.use(uriBase + '/img', express.static(path.join(__dirname, '../../../client/img')));
 
     app.get('/', function (req, res) {
+
+        console.log(req.user);
         res.render(__dirname + '/views/index', { title: 'Welcome to the Bank of Giving!!' });
     });
 

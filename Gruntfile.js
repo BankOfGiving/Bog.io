@@ -30,6 +30,16 @@ module.exports = function (grunt) {
                     "client/apps/admin/src/styles/admin.css": "client/apps/admin/src/styles/*.less"
                 }
             },
+            'auth': {
+                options: {
+                    compress: true,
+                    yuicompress: true,
+                    optimization: 2
+                },
+                files: {
+                    "client/apps/auth/src/styles/auth.css": "client/apps/auth/src/styles/*.less"
+                }
+            },
             'dash': {
                 options: {
                     compress: true,
@@ -86,6 +96,13 @@ module.exports = function (grunt) {
                     nospawn: true
                 }
             },
+            'client_auth': {
+                files: ['client/apps/auth/**/*.*'],
+                tasks: ['client_auth'],
+                options: {
+                    nospawn: true
+                }
+            },
             'client_pub': {
                 files: ['client/apps/pub/**/*.*'],
                 tasks: ['client_pub'],
@@ -100,6 +117,7 @@ module.exports = function (grunt) {
         [
             'client_pub',
             'client_dash',
+            'client_auth',
             'client_admin',
             'server'
         ]
@@ -115,6 +133,13 @@ module.exports = function (grunt) {
             'htmlhint:src_client_pub',
             'jshint:src_client_pub',
             'less:pub'
+        ]);
+
+    grunt.registerTask('client_auth',
+        [
+            //'htmlhint:src_client_auth',
+            //'jshint:src_client_auth',
+            'less:auth'
         ]);
 
     grunt.registerTask('client_admin',
