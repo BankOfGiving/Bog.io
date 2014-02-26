@@ -1,0 +1,25 @@
+<div class="well text-left text-top">
+    <% if(module.result.title) { %>
+    <div style="vertical-align: text-top">
+        <a href="#/event/<%=module.result._id%>">
+            <h2>
+                <% if(module.result.type == 'food') { %>
+                <i class="glyphicon glyphicon-4x glyphicon-cutlery"></i>
+                <% } %>
+                <%= module.result.title %>
+            </h2>
+        </a>
+    </div>
+    <% } else { %>
+    <div style="vertical-align: text-top">
+        <a href="/" class="glyphicons flower">sd</a>
+        <a href="#/event/<%=module.result._id%>">
+            <h2><i class="glyphicon glyphicon-4x glyphicon-icon-flower"></i>Undefined</h2>
+        </a>
+    </div>
+    <% } %>
+    <div class="row">
+        <div class="muted col-lg-6">Created on [date] by [user]</div>
+        <div class="muted col-lg-6 text-right"> <%=module.result_count%> of <%=module.total_results %></div>
+    </div>
+</div>

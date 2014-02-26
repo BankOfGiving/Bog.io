@@ -1,0 +1,14 @@
+{
+    "module": {
+        "title": "",
+        "description": ""
+    },
+    "nav": {
+        "events": "Events",
+        "donations": "Donations",
+        "solicitations": "Solicitations",
+        "blog": "Blog",
+        "philosophy": "Philosophy",
+        "about": "About"
+    }
+}

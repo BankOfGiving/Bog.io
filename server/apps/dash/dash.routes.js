@@ -30,6 +30,12 @@ module.exports = function (app, express) {
         res.render(__dirname + '/views/index', { user: req.user });
     });
 
+    var apiBase = uriBase + '/api';
+
     // Dashboard Api Routes
-    require('./api/api.routes.events.js')(app, uriBase + '/api');
+    require('./api/api.routes.events.js')(app, apiBase);
+
+    app.get(apiBase + '/profile', function (req, res) {
+        res.json(200, req.user);
+    });
 };

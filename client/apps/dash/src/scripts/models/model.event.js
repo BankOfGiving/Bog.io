@@ -1,6 +1,6 @@
-define(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
+define(['jquery', 'underscore', 'backbone', 'modules/bog.api'], function ($, _, Backbone, api) {
     return Backbone.Model.extend({
-        urlRoot: 'event/',
+        urlRoot: api.uri.event,
         types: [
             { value: 'food', name: 'Food Distribution', description: '' },
             { value: 'job', name: 'Career Assistance', description: ''  },
@@ -51,7 +51,7 @@ define(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
                 console.log("model value:  " + vm.get(attr_name));
                 var hasChanged = $.trim(new_val) != $.trim(vm.get(attr_name));
                 var isDirty = vm.get("_is_dirty");
-                var isAddressValidated = vm.get("_is_address_validated");
+                // var isAddressValidated = vm.get("_is_address_validated");
 
                 if (initiator !== vm) {
                     if (isDirty !== true) {
@@ -81,9 +81,10 @@ define(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
             });
         }
 //        validate: function(callback){
+//            console.log(callback);
 //            var validationMessages = []; // [field, message]
-//            // validationMessages.push(['event_title', 'you need a better title.']);
-//            callback(validationMessages);
+//            //validationMessages.push(['event_title', 'you need a better title.']);
+//            callback([]);
 //        }
     });
 });

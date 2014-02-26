@@ -1,7 +1,7 @@
-define(['jquery', 'underscore', 'backbone', 'models/model.donation'], function ($, _, Backbone, donation) {
+define(['jquery', 'underscore', 'backbone', 'modules/bog.api', 'models/model.donation'], function ($, _, Backbone, api, donation) {
     return Backbone.Collection.extend({
         model: donation,
-        urlRoot: 'donations/',
-        url: 'donations/'
+        urlRoot: api.uri.donations,
+        url: api.uri.donations
     });
 });

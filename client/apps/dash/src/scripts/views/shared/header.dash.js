@@ -1,10 +1,10 @@
-define(['jquery', 'underscore', 'backbone', 'modules/bog.site', 'modules/bog.session', 'modules/bog.i18n', 'text!../../../templates/shared/header.dash.html', 'text!../../../templates/shared/navbar.public.html', 'text!../../../templates/shared/navbar.auth.html'],
+define(['jquery', 'underscore', 'backbone', 'modules/bog.site', 'modules/bog.session', 'modules/bog.i18n', 'text!../../../templates/shared/header.dash.html', 'text!../../../templates/shared/titlebar.public.html', 'text!../../../templates/shared/titlebar.auth.html'],
     function ($, _, Backbone, site, session, i18n, DashboardHeaderTemplate, NavPubTemplate, NavAuthTemplate) {
         return Backbone.View.extend({
             initialize: function () {
                 var self = this;
 
-                _.bindAll(this, 'localize', 'FBAuth');
+                _.bindAll(this, 'localize');
 
                 session.isAuthenticated(function (isAuth, user) {
                     self.isAuth = isAuth;
@@ -33,19 +33,12 @@ define(['jquery', 'underscore', 'backbone', 'modules/bog.site', 'modules/bog.ses
                 "click #NavBar-Auth-Home": "goHome",
                 "click #NavBar-Auth-Logout": "goLogout",
                 "click #NavBar-Auth-Profile": "goProfile",
-                "click #NavBar-Auth-Solicitations": "goSolicitations",
-
-                "click #Login-Facebook": "FBAuth",
-                "click #Login-Google": "FBAuth",
-                "click #Login-Twitter": "FBAuth"
+                "click #NavBar-Auth-Solicitations": "goSolicitations"
             },
             localize: function () {
                 i18n.localizeView(this.$el, 'dash_header');
             },
-            FBAuth: function (e) {
-                e.preventDefault();
-                session.launchAuth('fb');
-            },
+
             goEvents: function (e) {
                 e.preventDefault();
                 site.setActiveNav('events');

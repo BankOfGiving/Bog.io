@@ -22,10 +22,9 @@
                 <td></td>
             </tr>
             <% } else { %>
-
             <% _.each(collection, function(event) { %>
             <tr data-attribute="address" data-id="<%= event._id %>">
-                <td><span class="btn btn-sm btn-link" data-attribute="title" data-id="<%= event._id %>"><%= event.title %></span>
+                <td><span class="btn btn-sm btn-link" data-attribute="title" data-id="<%= event.id %>"><%= event.title %></span>
                 </td>
                 <td><span><%= _.template.showLocation(event)%></span></td>
             </tr>

@@ -3,29 +3,32 @@ module.exports = function (app, uriBase) {
 
     // modules
     var EventRepo = require('../../../domain/repositories/bog.domain.repositories.event');
+    var EventStatusRepo = require('../../../domain/repositories/bog.domain.repositories.status');
+    var EventTypeRepo = require('../../../domain/repositories/bog.domain.repositories.event.type');
     var ErrorHandler = require('../../../modules/bog.errors');
 
     var err_handler = new ErrorHandler();
 
     // Collection Routes
     var collectionUri = uriBase + '/events';
-
     // CORS
     app.all(collectionUri + '/*', function (req, res, next) {
         res.header("Access-Control-Allow-Origin", "*");
         res.header("Access-Control-Allow-Headers", "X-Requested-With");
         next();
     });
+    // All with Filter
     app.get(collectionUri + '/', function (req, res) {
         var user = req.user;
         var domainRepo = new EventRepo(user);
-        var depth = 1;
+        var depth = 3;
         if (!depth) {
             res.json(400, err_handler.wrap(5000));
         }
 
         var filter = req.query.filter;
         if (filter) {
+            filter = JSON.parse(filter);
             domainRepo.filtered(filter, depth, function (err, coll) {
                 returnCollection(res, err, coll);
             });
@@ -38,14 +41,12 @@ module.exports = function (app, uriBase) {
 
     // Model Routes
     var singleUri = uriBase + '/event';
-
     // CORS
     app.all(singleUri + '/*', function (req, res, next) {
         res.header("Access-Control-Allow-Origin", "*");
         res.header("Access-Control-Allow-Headers", "X-Requested-With");
         next();
     });
-
     // View Event
     app.get(singleUri + '/:id', function (req, res) {
         var user = req.user;
@@ -67,7 +68,6 @@ module.exports = function (app, uriBase) {
             returnSingle(res, err, item);
         });
     });
-
     // Add Event
     app.post(singleUri + '/', function (req, res) {
         var user = req.user;
@@ -87,7 +87,6 @@ module.exports = function (app, uriBase) {
             res.json(200, result);
         });
     });
-
     // Update Event
     app.put(singleUri + '/:id', function (req, res) {
         var user = req.user;
@@ -111,7 +110,6 @@ module.exports = function (app, uriBase) {
             res.json(200, result);
         });
     });
-
     // Delete Event
     app.delete(singleUri + '/:id', function (req, res) {
         var user = req.user;
@@ -157,7 +155,8 @@ module.exports = function (app, uriBase) {
 
 
     // Get All Locations for Event
-    app.get(singleUri + '/:eventid/ploc/', function (req, res) {
+    var physicalLocationUri = uriBase + '/event/:eventid/ploc';
+    app.get(physicalLocationUri + '/', function (req, res) {
         var user = req.user;
         var domainRepo = new EventRepo(user);
 
@@ -178,7 +177,7 @@ module.exports = function (app, uriBase) {
         });
     });
     // Single Physical Location
-    app.get(singleUri + '/:eventid/ploc/:locid', function (req, res) {
+    app.get(physicalLocationUri + '/:locid', function (req, res) {
         var user = req.user;
         var domainRepo = new EventRepo(user);
 
@@ -204,7 +203,7 @@ module.exports = function (app, uriBase) {
         });
     });
     // Add Physical Location
-    app.post(singleUri + '/:eventid/ploc/', function (req, res) {
+    app.post(physicalLocationUri + '/', function (req, res) {
         var user = req.user;
         var domainRepo = new EventRepo(user);
 
@@ -227,7 +226,7 @@ module.exports = function (app, uriBase) {
         });
     });
     // Update Physical Location
-    app.put(singleUri + '/:eventid/ploc/:locid', function (req, res) {
+    app.put(physicalLocationUri + '/:locid', function (req, res) {
         var user = req.user;
         var domainRepo = new EventRepo(user);
 
@@ -255,7 +254,7 @@ module.exports = function (app, uriBase) {
         });
     });
     // Delete Physical Location
-    app.delete(singleUri + '/:eventid/ploc/:locid', function (req, res) {
+    app.delete(physicalLocationUri + '/:locid', function (req, res) {
         var user = req.user;
         var domainRepo = new EventRepo(user);
 
@@ -279,6 +278,38 @@ module.exports = function (app, uriBase) {
         });
     });
 
+    // Event Statuses
+    var statusesUri = uriBase + '/event/statuses';
+    // CORS
+    app.all(singleUri + '/*', function (req, res, next) {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "X-Requested-With");
+        next();
+    });
+    // Get All
+    app.get(statusesUri + '/', function (req, res) {
+        var statusesRepo = new EventStatusRepo();
+        statusesRepo.all(function (err, coll) {
+            returnCollection(res, err, coll);
+        });
+    });
+
+    // Event Types
+    var typesUri = uriBase + '/event_types';
+    // CORS
+    app.all(singleUri + '/*', function (req, res, next) {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "X-Requested-With");
+        next();
+    });
+    // Get All
+    app.get(typesUri + '/', function (req, res) {
+        var typesRepo = new EventTypeRepo();
+        typesRepo.all(function (err, coll) {
+            returnCollection(res, err, coll);
+        });
+    });
+
     var returnCollection = function (res, err, coll) {
         if (err) {
             var ret_err = err_handler.wrap(1001, null, err);
@@ -294,7 +325,7 @@ module.exports = function (app, uriBase) {
                 return;
             }
             if (coll) {
-                res.send(200, coll);
+                res.json(coll);
             }
         }
     };

@@ -20,14 +20,12 @@ define([
 ], function ($, _, Backbone, Router) {
 
     var initialize = function () {
-
-        // Pass in our Router module and call it's initialize function
         $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
-            if (options.url.indexOf('googleapis.com') > -1) {
-                // options.url = options.url;  // execute the google api call as is.
-            } else {
-                options.url = 'api/' + options.url;  // prepend the local api uri
-            }
+//            if (options.url.indexOf('googleapis.com') > -1) {
+//                // options.url = options.url;  // execute the google api call as is.
+//            } else {
+//                options.url = 'api/' + options.url;  // prepend the local api uri
+//            }
         });
 
         $.fn.serializeObject = function () {

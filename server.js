@@ -45,14 +45,15 @@ app.use(express.session({
         auto_reconnect: true
     })
 }));
-app.use(express.csrf());
+// app.use(express.csrf());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(function (req, res, next) {
     res.locals.user = req.user;
-    res.locals.token = req.csrfToken();
+    // res.locals.token = req.csrfToken();
     next();
 });
+
 app.use(flash());
 app.use(app.router);
 //app.use(express.static(path.join(__dirname, 'public'), { maxAge: week }));

@@ -35,6 +35,7 @@ module.exports = function (culture) {
                 invalid_id: 'Invalid event id specified.',
                 no_depth: 'No depth specified.',
                 invalid_depth: 'Invalid depth specified.',
+                invalid_input: 'Invalid input specified.',
                 no_input: 'No input sent.',
                 no_results: 'No results matching the criteria.',
                 no_result: 'No item found matching the criteria.'

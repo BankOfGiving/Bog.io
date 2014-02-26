@@ -4,16 +4,16 @@ define(['jquery', 'underscore', 'backbone', 'modules/bog.site', 'modules/bog.i18
             initialize: function () {
                 _.bindAll(this, 'localize', 'cancel', 'save', 'saveEntity', 'saveSuccess', 'saveFailure', 'delete');
                 var self = this;
-                self.model = new ContactModel();
+                self.model = new EventModel();
                 if (self.id) {
-                    self.model = new ContactModel({ id: self.id });
+                    self.model = new EventModel({ id: self.id });
                     self.model.fetch({
                         success: function (entity) {
                             self.model = entity;
                             self.render().localize();
                         }});
                 } else {
-                    self.model = new ContactModel();
+                    self.model = new EventModel();
                     self.render().localize();
                 }
 
@@ -35,9 +35,7 @@ define(['jquery', 'underscore', 'backbone', 'modules/bog.site', 'modules/bog.i18
             localize: function () {
                 var self = this;
 
-                var siteText = i18n.localizeView(this.$el, 'event_edit');
-
-                // var siteText = i18n.getViewText('event_edit');
+                var siteText = i18n.getViewText('event_edit');
 
                 var sectionText = siteText.form.sections;
                 i18n.localizeFormSection('Event-Basics', sectionText.basic);
@@ -59,7 +57,7 @@ define(['jquery', 'underscore', 'backbone', 'modules/bog.site', 'modules/bog.i18
                 i18n.localizeFormElement('longitude', formElementText.longitude);
 
                 var buttonText = siteText.buttons;
-                if (self.entityId) {
+                if (self.id) {
                     i18n.localizeButton('save', buttonText.save);
                 } else {
                     i18n.localizeButton('save', buttonText.add);
@@ -84,11 +82,11 @@ define(['jquery', 'underscore', 'backbone', 'modules/bog.site', 'modules/bog.i18
                     return;
                 }
 
-//            self.model.validate(function(validationMessages){
-//                if(validationMessages.length){
-//                    showValidationErrors(validationMessages);
-//                    return;
-//                }
+//                self.model.validate(function(validationMessages){
+//                    if(validationMessages.length){
+//                        showValidationErrors(validationMessages);
+//                        return;
+//                    }
 //                var entityToSave;
 //                if(self.model.get("_is_address_validated") != true){
 //                    var addressArray = [];
@@ -129,10 +127,11 @@ define(['jquery', 'underscore', 'backbone', 'modules/bog.site', 'modules/bog.i18
 //                            // entityToSave = self.model.saveToEntity(self.model, geocode.results[0], self.saveEntity);
 //                        }
 //                    });
-//                } else {
+//                    } else {
+//                        self.model.save(null, {success: self.saveSuccess, error: self.saveFailure});
+//                    }
                 self.model.save(null, {success: self.saveSuccess, error: self.saveFailure});
-                //}
-//            });
+//                });
             },
             saveEntity: function (entity) {
                 var self = this;

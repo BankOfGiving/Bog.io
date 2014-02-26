@@ -1,7 +1,3 @@
-if (Bog === null) {
-    var Bog = { admin: { views: { full: {}, partial: {} } }, models: {}, collections: {}, site: {} };
-}
-
 define(['jquery', 'underscore', 'backbone', 'router'],
     function ($, _, Backbone, Router) {
 

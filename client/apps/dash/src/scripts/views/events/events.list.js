@@ -51,7 +51,19 @@ define(['jquery', 'underscore', 'backbone', 'modules/bog.site', 'modules/bog.i18
 
                 self.previewMap = maps.map;
 
-                maps.createMarkers(self.previewMap, self.collection.toJSON());
+                var events_with_location = [];
+                for (var i = 0; self.collection.length > i; i++) {
+                    var e = self.collection.models[i];
+                    if (typeof e.attributes.locations_physical !== 'undefined') {
+                        if (e.attributes.locations_physical.length > 0) {
+                            events_with_location.push(e);
+                        }
+                    }
+                }
+
+                if (events_with_location.length > 0) {
+                    maps.createMarkers(self.previewMap, self.collection.toJSON());
+                }
 
                 return this;
             },

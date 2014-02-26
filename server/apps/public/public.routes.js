@@ -18,9 +18,11 @@ module.exports = function (app, express) {
 
     // Public Site Static Paths
     app.use(uriBase + '/', express.static(path.join(__dirname, '../../../client/apps/pub')));
-    app.use(uriBase + '/scripts', express.static(path.join(__dirname, '../../../client/apps/pub/' + asset_location + '/scripts')));
+    app.use(uriBase + '/app', express.static(path.join(__dirname, '../../../client/apps/pub/' + asset_location + '/app')));
+    app.use(uriBase + '/domain', express.static(path.join(__dirname, '../../../client/apps/pub/' + asset_location + '/domain')));
+    app.use(uriBase + '/modules', express.static(path.join(__dirname, '../../../client/apps/pub/' + asset_location + '/modules')));
     app.use(uriBase + '/styles', express.static(path.join(__dirname, '../../../client/apps/pub/' + asset_location + '/styles')));
-    app.use(uriBase + '/templates', express.static(path.join(__dirname, '../../../client/apps/pub/' + asset_location + '/templates')));
+    app.use(uriBase + '/views', express.static(path.join(__dirname, '../../../client/apps/pub/' + asset_location + '/views')));
 
     // Shared Resource Paths
     app.use(uriBase + '/lib', express.static(path.join(__dirname, '../../../client/lib')));
@@ -35,4 +37,5 @@ module.exports = function (app, express) {
     // Register Api Routes
     require('./api/api.routes.donations')(app, uriBase + '/api');
     require('./api/api.routes.events')(app, uriBase + '/api');
+    require(path.join(__dirname, '../../apps/i18n/api/api.routes.i18n'))(app, uriBase + '/api');
 };

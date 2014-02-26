@@ -1,0 +1,62 @@
+<div class="well">
+    <form class="form">
+        <fieldset>
+            <legend><%= module.title %></legend>
+            <div class="form-group" data-localize-key="form.elements.title" data-localize-target="form-group">
+                <label for="search_text" class="control-label"></label>
+                <input name="title" id="search_text" class="form-control" placeholder="" data-bind-event="title"
+                       value="<%= event.title %>">
+            </div>
+            <div class="form-group">
+                <label for="search_type" class="control-label">Type</label>
+                <select class="form-control" id="search_type">
+                    <% _(module.search_types).each(function(search_type) { %>
+                    <option value="<%= search_type.value %>"><%= search_type.name %></option>
+                    <% }); %>
+                </select>
+            </div>
+            <div class="form-group">
+                <div class=" col-lg-offset-2">
+                    <button class="btn btn-default">Cancel</button>
+                    <button id="btn_submit_search" type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+            <!--<div class="form-group">
+                <label for="inputPassword" class="control-label">Password</label>
+                <div class="">
+                    <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"> Checkbox
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="textArea" class="control-label">Textarea</label>
+                <div class="">
+                    <textarea class="form-control" rows="3" id="textArea"></textarea>
+                    <span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Radios</label>
+                <div class="">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+                            Option one is this
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                            Option two can be something else
+                        </label>
+                    </div>
+                </div>
+            </div>-->
+
+        </fieldset>
+    </form>
+</div>

@@ -69,7 +69,9 @@ module.exports = function (app, express) {
     app.get(uriBase + '/api/github', passportConf.isAuthenticated, passportConf.isAuthorized, apiController.getGithub);
     app.get(uriBase + '/api/twitter', passportConf.isAuthenticated, passportConf.isAuthorized, apiController.getTwitter);
 
-    app.get(uriBase + '/api/isAuthenticated', passportConf.isAuthenticated, passportConf.isAuthorized, apiController.getTwitter);
+    app.get(uriBase + '/api/isAuthenticated', function (req, res) {
+        res.send(req.isAuthenticated());
+    });
 
     /** OAuth routes for sign-in. */
 

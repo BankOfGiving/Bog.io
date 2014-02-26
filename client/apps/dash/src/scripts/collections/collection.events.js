@@ -1,7 +1,7 @@
-define(['jquery', 'underscore', 'backbone', 'models/model.event'], function ($, _, Backbone, event) {
+define(['jquery', 'underscore', 'backbone', 'modules/bog.api', 'models/model.event'], function ($, _, Backbone, api, event) {
     return Backbone.Collection.extend({
         model: event,
-        urlRoot: 'events/',
-        url: 'events/'
+        urlRoot: api.uri.events,
+        url: api.uri.events
     });
 });

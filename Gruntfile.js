@@ -62,23 +62,23 @@ module.exports = function (grunt) {
             }
         },
 
-
         concat: {
-            'dash-js': {
-                src: 'client/apps/dash/src/js/**/*.js',
-                dest: 'client/apps/dash/src/dash.min.js'
+            'pub_bog': {
+                src: 'client/apps/pub/src/lib/bog/*.js',
+                dest: 'client/lib/bog.pub.min.js'
             }
         },
         uglify: {
             options: {
                 //banner: grunt.file.read('LICENCE'),
                 mangle: true,
-                squeeze: {dead_code: true},
-                codegen: {quote_keys: true}
+                dead_code: true
+//                squeeze: {dead_code: true},
+//                codegen: {quote_keys: true}
             },
-            'dash-js': {
-                src: 'client/apps/dash/src/dash.min.js',
-                dest: 'client/apps/dash/dist/dash.min.js'
+            'pub_bog': {
+                src: 'client/apps/pub/src/lib/bog/*.js',
+                dest: 'client/lib/bog.pub.min.js'
             }
         },
         watch: {
@@ -109,6 +109,13 @@ module.exports = function (grunt) {
                 options: {
                     nospawn: true
                 }
+            },
+            'server': {
+                files: ['server/**/*.js'],
+                tasks: ['server'],
+                options: {
+                    nospawn: true
+                }
             }
         }
     });
@@ -130,6 +137,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('client_pub',
         [
+            'concat:pub_bog',
             'htmlhint:src_client_pub',
             'jshint:src_client_pub',
             'less:pub'
@@ -156,7 +164,7 @@ module.exports = function (grunt) {
             'less:dash'
         ]);
 
-    grunt.registerTask('watch', 'watch:client');
+    grunt.registerTask('watch', 'watch'); //, 'watch:client');
 
 
     // grunt.registerTask("dash", ['jshint:src_dash', 'concat:dash-js', 'uglify:dash-js', 'less:dash', 'jshint:min_dash']);

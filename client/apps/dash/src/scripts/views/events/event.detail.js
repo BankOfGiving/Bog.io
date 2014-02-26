@@ -6,7 +6,7 @@ define(['jquery', 'underscore', 'backbone', 'bootstrap', 'moment', 'modules/bog.
                 var self = this;
                 _.bindAll(this, 'cancel', 'edit', 'delete');
 
-                self.model = new ContactModel({ id: self.id});
+                self.model = new EventModel({ id: self.id});
                 self.model.fetch({
                     success: function (model) {
                         self.model = model;

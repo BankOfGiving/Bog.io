@@ -1,4 +1,11 @@
-define([ 'jquery', 'underscore', 'backbone', 'modules/bog', 'modules/bog.session', 'modules/bog.site',
+define([
+    'jquery',
+    'underscore',
+    'backbone',
+
+    'modules/bog.session',
+    'modules/bog.site',
+
     'views/home/landing',
     'views/home/home',
     'views/shared/header.dash',
@@ -53,7 +60,6 @@ define([ 'jquery', 'underscore', 'backbone', 'modules/bog', 'modules/bog.session
         var app_router = new AppRouter();
         var container = $('#site-container');
         var headerContainerId = '#site-header';
-        var headerContainer = $('#site-header');
         var contentContainerId = '#page-content';
         var contentContainer = $(contentContainerId);
 

@@ -1,5 +1,5 @@
-define(['jquery', 'underscore', 'backbone', 'modules/bog.site', 'modules/bog.i18n', 'text!../../../templates/shared/header.admin.html', 'text!../../../templates/shared/navbar.auth.html'
-], function ($, _, Backbone, site, i18n, AdminHeaderTemplate, NavAuthTemplate) {
+define(['jquery', 'underscore', 'backbone', 'modules/bog.site', 'modules/bog.i18n', 'text!../../../templates/shared/header.admin.html', 'text!../../../templates/shared/titlebar.auth.html'
+], function ($, _, Backbone, site, i18n, AdminHeaderTemplate, TitlebarAuthTemplate) {
     return Backbone.View.extend({
         initialize: function () {
             var self = this;
@@ -8,7 +8,7 @@ define(['jquery', 'underscore', 'backbone', 'modules/bog.site', 'modules/bog.i18
         render: function () {
 
             var navTemplate;
-            navTemplate = _.template(NavAuthTemplate);
+            navTemplate = _.template(TitlebarAuthTemplate);
 
             this.$el.empty();
             this.$el.append(AdminHeaderTemplate);
