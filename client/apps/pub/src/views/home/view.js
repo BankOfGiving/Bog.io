@@ -38,6 +38,7 @@ define([
                     uid: '',
                     title: '',
                     description: '',
+                    culture: '',
                     localize: true,
                     pubsub: {
                         data_channel_id: '',

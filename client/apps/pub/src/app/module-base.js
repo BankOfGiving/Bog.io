@@ -2,10 +2,11 @@ define([ 'jquery', 'underscore', 'backbone', 'postal', 'bog' ],
     function ($, _, Backbone, postal, bog) {
         return Backbone.View.extend({
             manifest: {},
+            template: null,
             data_channel: null,
             loc_channel: null,
             debug_channel: null,
-            module_key: null,
+            key: null,
 
             __init: function (el, manifest) {
                 var self = this;
@@ -59,18 +60,17 @@ define([ 'jquery', 'underscore', 'backbone', 'postal', 'bog' ],
                 self.on('all', function (e) {
                     self.__publish_debug(e);
                 });
-                self.on('__render_template', function (e) {
-                    self.__publish_debug(e);
-                });
-                self.listenTo(self, '__publish_debug', null);
-
-                self.trigger('__init', self.manifest);
                 return self;
             },
             __init_l10n: function () {
-                this.loc_channel.subscribe(this.key, function () {
-                    throw "NEW LOCALIZATION DATA!!!!";
+                var self = this;
+                self.loc_channel.subscribe(self.key, function (data, envelope) {
+                    self.__render_module(self.template, data, function () {
+                        self.__publish_debug(data);
+                        self.__publish_debug(envelope);
+                    });
                 });
+                return self;
             },
             __publish_debug: function (e) {
                 var self = this;
@@ -124,35 +124,34 @@ define([ 'jquery', 'underscore', 'backbone', 'postal', 'bog' ],
                     callback();
                 }
             },
-            __render_template: function (template, callback) {
+            __render_module: function (template, culture, callback) {
+                var self = this;
+                self.template = template;
+
                 // Render wrapper div immediately.
-                var mod_wrapper = document.createElement('div');
-                mod_wrapper.setAttribute('class', 'module-wrapper');
-                this.$el.append(mod_wrapper);
+                var mod_wrapper = document.getElementById(self.key);
+                if (mod_wrapper) {
+                    $(mod_wrapper).empty();
+                } else {
+                    mod_wrapper = document.createElement('div');
+                    mod_wrapper.className = "'module-wrapper";
+                    mod_wrapper.id = self.key;
+                    self.$el.append(mod_wrapper);
+                }
 
                 // Continue loading rest of module.
-                var self = this;
                 var rendered_template = _.template(template, {
                     title: self.manifest.title,
                     description: self.manifest.description,
                     module: self.manifest.options
                 });
-                self.module_key =
-                    self.manifest.app + '.' +
-                        'mod.' +
-                        self.manifest.mod_type + '.' +
-                        self.manifest.uid;
 
-                try {
-                    // Tag the module container
-                    mod_wrapper.setAttribute('id', self.module_key);
-                } catch (e) {
-                    self.__publish_debug(e);
-                }
-
-                if (self.localize) {
+                if (self.manifest.localize) {
+                    if (!culture) {
+                        culture = self.manifest.culture;
+                    }
                     var i18n = new bog.i18n();
-                    i18n.localize_markup(rendered_template, null, self.key, function (localized_markup) {
+                    i18n.localize_markup(rendered_template, culture, self.key, function (localized_markup) {
                         $(mod_wrapper).append(localized_markup);
                         if (callback) {
                             callback(localized_markup);

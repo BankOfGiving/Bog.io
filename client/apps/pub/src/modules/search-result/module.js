@@ -11,7 +11,7 @@ define([ 'module_base', 'text!./mod-search-result.html' ], function (mod_base, m
         },
         render: function (callback) {
             var self = this;
-            self.__render_template(module_layout, function () {
+            self.__render_module(module_layout, window.current_culture, function () {
                 if (callback) {
                     callback(self);
                 } else {

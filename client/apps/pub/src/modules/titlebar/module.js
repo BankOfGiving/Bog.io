@@ -10,16 +10,40 @@ define([
 ],
     function ($, _, Backbone, bog, module_layout_public, module_layout_auth) {
         return Backbone.View.extend({
-            initialize: function () {
-                var self = this;
-
-                _.bindAll(this, 'localize');
-
+            initialize: function (el, o, callback) {
                 bog.session.isAuthenticated(function (isAuth, user) {
                     self.isAuth = isAuth;
                     self.model = user;
                     self.render(isAuth).localize();
                 });
+
+                this.__init(el, o).render(function (self) {
+                    if (callback) {
+                        callback(self);
+                    } else {
+                        return self;
+                    }
+                });
+            },
+            render: function (callback) {
+                var self = this;
+                self.__render_module(module_layout, window.current_culture, function () {
+                    if (callback) {
+                        callback(self);
+                    } else {
+                        return self;
+                    }
+                });
+
+                return self;
+            }
+
+            initialize: function () {
+                var self = this;
+
+                _.bindAll(this, 'localize');
+
+
             },
             render: function (isAuth) {
                 var self = this;
@@ -46,10 +70,8 @@ define([
                 var i18n = new bog.i18n();
                 var new_culture = e.currentTarget.getAttribute("data-value");
                 i18n.change_culture(new_culture);
-                console.log("change culture to " + new_culture);
-            },
-            localize: function () {
-                //i18n.localizeView(this.$el, 'pub_header');
+                $("#current_culture_icon").addClass("icon-" + new_culture);
+                console.log("icon-" + new_culture);
             },
             goHome: function (e) {
                 e.preventDefault();

@@ -31,13 +31,13 @@ define([
             },
             render: function (callback) {
                 var self = this;
-                var mod_template;
+                var module_layout;
                 if (self.manifest.options.orientation == 'vert') {
-                    mod_template = module_layout_vert;
+                    module_layout = module_layout_vert;
                 } else {
-                    mod_template = module_layout_horiz;
+                    module_layout = module_layout_horiz;
                 }
-                self.__render_template(mod_template, function () {
+                self.__render_module(module_layout, window.current_culture, function () {
                     if (callback) {
                         callback(self);
                     } else {
