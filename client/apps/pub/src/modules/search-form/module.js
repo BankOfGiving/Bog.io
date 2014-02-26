@@ -1,7 +1,7 @@
 define([
     'postal',
 
-    'module_view',
+    'module_base',
 
     'domain/events/event_collection',
     'domain/events/event_model',
@@ -37,7 +37,7 @@ define([
                 } else {
                     mod_template = module_layout_horiz;
                 }
-                self.__render_template(mod_template, true, function () {
+                self.__render_template(mod_template, function () {
                     if (callback) {
                         callback(self);
                     } else {

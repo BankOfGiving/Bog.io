@@ -1,34 +1,25 @@
-define([
-    'jquery',
-    'underscore',
-    'backbone',
-
-    'bog',
-
-    'text!./ad-static.html'
-],
-    function ($, _, Backbone, bog, module_layout) {
-        return Backbone.View.extend({
-            modules: null,
-            initialize: function (vars) {
-                var self = this;
-                self.render(vars).localize();
-            },
-            render: function (vars) {
-                var self = this;
-
-                var container = self.$el.append(module_layout);
-                if (typeof vars.class !== 'undefined' && vars.class !== '') {
-                    container.addClass(vars.class);
+define([ 'module_base', 'text!./ad-static.html' ], function (mod_base, module_layout) {
+    return mod_base.extend({
+        initialize: function (el, o, callback) {
+            this.__init(el, o).render(function (self) {
+                if (callback) {
+                    callback(self);
+                } else {
+                    return self;
                 }
-                var titleSpan = container.children().children("#col-title");
-                titleSpan.text(vars.title);
+            });
+        },
+        render: function (callback) {
+            var self = this;
+            self.__render_template(module_layout, function () {
+                if (callback) {
+                    callback(self);
+                } else {
+                    return self;
+                }
+            });
 
-                self.modules = container.children().children("#col-mod-container");
-                return this;
-            },
-            localize: function () {
-                return this;
-            }
-        });
+            return self;
+        }
     });
+});

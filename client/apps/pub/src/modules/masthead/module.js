@@ -1,26 +1,26 @@
-define([
-    'jquery',
-    'underscore',
-    'backbone',
+define([ 'module_base', 'text!./masthead.html' ], function (mod_base, module_layout) {
+    return mod_base.extend({
+        initialize: function (el, o, callback) {
+            console.log('MASTHEAD:   ' + JSON.stringify(o));
+            this.__init(el, o).render(function (self) {
+                if (callback) {
+                    callback(self);
+                } else {
+                    return self;
+                }
+            });
+        },
+        render: function (callback) {
+            var self = this;
+            self.__render_template(module_layout, function () {
+                if (callback) {
+                    callback(self);
+                } else {
+                    return self;
+                }
+            });
 
-    'bog',
-
-    'text!./masthead.html'
-],
-    function ($, _, Backbone, bog, module_layout) {
-        return Backbone.View.extend({
-            initialize: function (vars) {
-                var self = this;
-                self.render(vars).localize();
-            },
-            render: function (vars) {
-                var self = this;
-                var rendered_layout = _.template(module_layout, { module_title: vars.title, module_description: vars.description });
-                self.$el.append(rendered_layout);
-                return this;
-            },
-            localize: function () {
-                return this;
-            }
-        });
+            return self;
+        }
     });
+});

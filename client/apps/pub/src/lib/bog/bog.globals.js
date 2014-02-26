@@ -1,2 +1,4 @@
-window.mod_list = [];
+window.mod_list = [
+    []
+];
 window.current_culture = null;

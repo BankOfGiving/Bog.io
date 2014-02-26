@@ -1,21 +1,25 @@
-define([
-    'jquery',
-    'underscore',
-    'backbone'
-],
-    function ($, _, Backbone) {
-        return Backbone.View.extend({
-            initialize: function (vars) {
-                var self = this;
-                self.render(vars);
-            },
-            render: function () {
-                var self = this;
-                self.$el.append("<hr />");
-                return this;
-            },
-            localize: function () {
-                return this;
-            }
-        });
+define([ 'module_base', 'text!./mod-separator.html' ], function (mod_base, module_layout) {
+    return mod_base.extend({
+        initialize: function (el, o, callback) {
+            this.__init(el, o).render(function (self) {
+                if (callback) {
+                    callback(self);
+                } else {
+                    return self;
+                }
+            });
+        },
+        render: function (callback) {
+            var self = this;
+            self.__render_template(module_layout, function () {
+                if (callback) {
+                    callback(self);
+                } else {
+                    return self;
+                }
+            });
+
+            return self;
+        }
     });
+});

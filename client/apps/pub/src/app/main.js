@@ -6,7 +6,7 @@ requirejs.config({
         router: 'app/router',
 
         bog: '/lib/bog.pub.min',
-        module_view: '/app/module-view',
+        module_base: '/app/module-base',
 
         async: '/lib/async',
         bootstrap: '/lib/bootstrap/js/bootstrap.min',

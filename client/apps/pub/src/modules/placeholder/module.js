@@ -1,32 +1,25 @@
-define(['jquery', 'underscore', 'backbone', 'text!./placeholder.html'],
-    function ($, _, Backbone, module_template) {
-        return Backbone.View.extend({
-            resource_root: 'http://placehold.it/',
-            height: 350,
-            width: 350,
-            initialize: function (args) {
-                var self = this;
-                if (args.height && args.height !== '') {
-                    self.height = args.height;
+define([ 'module_base', 'text!./placeholder.html' ], function (mod_base, module_layout) {
+    return mod_base.extend({
+        initialize: function (el, o, callback) {
+            this.__init(el, o).render(function (self) {
+                if (callback) {
+                    callback(self);
+                } else {
+                    return self;
                 }
-                if (args.width && args.width !== '') {
-                    self.width = args.width;
+            });
+        },
+        render: function (callback) {
+            var self = this;
+            self.__render_template(module_layout, function () {
+                if (callback) {
+                    callback(self);
+                } else {
+                    return self;
                 }
+            });
 
-                self.render().localize();
-            },
-            render: function () {
-                var self = this;
-                self.$el.append(module_template)
-                    .children('img')
-                    .attr('src', self.resource_root + self.width + 'x' + self.height);
-                //.attr('height', self.height)
-                //.attr('width', self.width)
-                return this;
-            },
-            localize: function () {
-                var self = this;
-                return this;
-            }
-        });
+            return self;
+        }
     });
+});

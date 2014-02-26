@@ -73,7 +73,7 @@ bog.i18n = function () {
 
     var localize_markup = function (markup, culture, key, callback) {
         if (!markup) {
-            throw 'Invalid markup';
+            // throw 'Invalid markup';
         }
         if (culture) {
             get_localization_text(culture, key, function (loc_text) {
@@ -170,14 +170,20 @@ bog.i18n = function () {
         get_current_culture(function (current_culture) {
             if (new_culture !== current_culture) {
                 for (var i = 0; i < window.mod_list.length; i++) {
-                    (function (i) {
-                        var mod_markup = document.getElementById(window.mod_list[i]);
-                        localize_markup(mod_markup, new_culture, window.mod_list[i], function (localized_markup) {
-                            $(mod_markup).replaceWith(localized_markup);
-                        });
-                    }(i)); // jshint ignore:line
+                    var key = window.mod_list[i][0];
+                    var loclaize = window.mod_list[i][1];
+                    if (loclaize) {
+                        (function (i) {
+                            var mod_markup = document.getElementById(key);
+                            localize_markup(mod_markup, new_culture, key, function (localized_markup) {
+                                $(mod_markup).replaceWith(localized_markup);
+                            });
+                        }(i)); // jshint ignore:line
+                    }
                 }
                 window.current_culture = new_culture;
+                var cache = new bog.cache();
+                cache.set_text('current_culture', new_culture);
             } else {
                 console.log('attempting to change culture to the current culture');
             }

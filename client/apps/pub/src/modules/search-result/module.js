@@ -1,25 +1,25 @@
-define([
-    'jquery',
-    'underscore',
-    'backbone',
-    'bog',
+define([ 'module_base', 'text!./mod-search-result.html' ], function (mod_base, module_layout) {
+    return mod_base.extend({
+        initialize: function (el, o, callback) {
+            this.__init(el, o).render(function (self) {
+                if (callback) {
+                    callback(self);
+                } else {
+                    return self;
+                }
+            });
+        },
+        render: function (callback) {
+            var self = this;
+            self.__render_template(module_layout, function () {
+                if (callback) {
+                    callback(self);
+                } else {
+                    return self;
+                }
+            });
 
-    'text!./mod-search-result.html'
-],
-    function ($, _, Backbone, bog, module_layout) {
-        return Backbone.View.extend({
-            initialize: function (options) {
-                var self = this;
-                self.render(options).localize();
-            },
-            render: function (options) {
-                var self = this;
-                var rendered_layout = _.template(module_layout, { module: options.options });
-                $(self.el).append(rendered_layout);
-                return this;
-            },
-            localize: function () {
-                return this;
-            }
-        });
+            return self;
+        }
     });
+});

@@ -113,11 +113,16 @@ define([ 'jquery', 'underscore', 'backbone', 'postal', 'bog' ],
                     self.app = self.manifest.app;
                     self.mod_type = self.manifest.mod_type;
                     self.uid = self.manifest.uid;
-                    self.key = self.app + '.' + 'mod.' + self.mod_type + '.' + self.uid;
+                    self.localize = self.manifest.localize;
+                    if (self.uid && self.uid !== '') {
+                        self.key = self.app + '.' + 'mod.' + self.mod_type + '.' + self.uid;
+                    } else {
+                        self.key = self.app + '.' + 'mod.' + self.mod_type;
+                    }
                     callback();
                 }
             },
-            __render_template: function (template, localize, callback) {
+            __render_template: function (template, callback) {
                 // Render wrapper div immediately.
                 var mod_wrapper = document.createElement('div');
                 mod_wrapper.setAttribute('class', 'module-wrapper');
@@ -143,7 +148,7 @@ define([ 'jquery', 'underscore', 'backbone', 'postal', 'bog' ],
                     self.__publish_debug(e);
                 }
 
-                if (localize) {
+                if (self.localize) {
                     var i18n = new bog.i18n();
                     i18n.localize_markup(rendered_template, null, self.key, function (localized_markup) {
                         $(mod_wrapper).append(localized_markup);
