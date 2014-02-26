@@ -50,7 +50,7 @@ define([ 'jquery', 'underscore', 'backbone', 'postal', 'bog' ],
                         self.debug_channel = postal.channel('debug');
                     }
                 } else {
-                    console.log('No pubsub set for this module.');
+                    self.__publish_debug('No pubsub set for this module.');
                 }
                 return this;
             },
@@ -59,11 +59,13 @@ define([ 'jquery', 'underscore', 'backbone', 'postal', 'bog' ],
                 self.on('all', function (e) {
                     self.__publish_debug(e);
                 });
-                self.on('render', function (e) {
+                self.on('__render_template', function (e) {
                     self.__publish_debug(e);
                 });
+                self.listenTo(self, '__publish_debug', null);
+
                 self.trigger('__init', self.manifest);
-                return this;
+                return self;
             },
             __init_l10n: function () {
                 this.loc_channel.subscribe(this.key, function () {
@@ -83,7 +85,7 @@ define([ 'jquery', 'underscore', 'backbone', 'postal', 'bog' ],
                 } else {
                     console.log(e);
                 }
-                return this;
+                return self;
             },
             __validate_manifest: function (manifest) {
                 if (!this.el) {

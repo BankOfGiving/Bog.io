@@ -57,8 +57,7 @@ define([
                         return callback();
                     },
                     error: function (e) {
-                        console.log('error');
-                        throw e;
+                        self.__publish_debug(e);
                     }
                 });
             },
@@ -70,14 +69,14 @@ define([
 
                 eventCollection.filter = {
                     type: $('#search_type').val(),
-                    text: 'test'
+                    text: $('#search_text').val()
                 };
                 eventCollection.fetch({
                     success: function (data) {
                         self.data_channel.publish(self.manifest.pubsub.data_topic, data.toJSON());
                     },
-                    error: function () {
-                        console.log('error');
+                    error: function (e) {
+                        self.__publish_debug(e);
                     }
                 });
             },

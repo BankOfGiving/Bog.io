@@ -1,7 +1,6 @@
 define([ 'module_base', 'text!./masthead.html' ], function (mod_base, module_layout) {
     return mod_base.extend({
         initialize: function (el, o, callback) {
-            console.log('MASTHEAD:   ' + JSON.stringify(o));
             this.__init(el, o).render(function (self) {
                 if (callback) {
                     callback(self);

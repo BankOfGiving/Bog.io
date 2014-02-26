@@ -6,13 +6,10 @@ define([ 'jquery', 'underscore', 'backbone', 'text!../../../templates/donations/
                 self.render(container).bind(donation);
             },
             render: function (container) {
-                console.log('CONTAINER:  ' + container.html());
-
                 container.html(DetailTemplate);
                 return this;
             },
             bind: function (donation) {
-                console.log('DONATION:  ' + donation.title);
                 $('#Donation-Display-Title').text(donation.title);
                 $('#Donation-Display-Description').text(donation.description);
             }
