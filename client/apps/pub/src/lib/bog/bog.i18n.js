@@ -171,12 +171,11 @@ bog.i18n = function () {
             if (new_culture !== current_culture) {
                 for (var i = 0; i < window.mod_list.length; i++) {
                     (function (i) {
-                        //in this case, "i" is the one from our immediate function argument
                         var mod_markup = document.getElementById(window.mod_list[i]);
                         localize_markup(mod_markup, new_culture, window.mod_list[i], function (localized_markup) {
                             $(mod_markup).replaceWith(localized_markup);
                         });
-                    }(i)); //pass in our i from the loop
+                    }(i)); // jshint ignore:line
                 }
                 window.current_culture = new_culture;
             } else {
