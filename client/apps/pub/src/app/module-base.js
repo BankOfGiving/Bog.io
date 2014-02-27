@@ -64,13 +64,12 @@ define([ 'jquery', 'underscore', 'backbone', 'postal', 'bog' ],
             },
             __init_l10n: function () {
                 var self = this;
-                self.loc_channel.subscribe(self.key, function (data) {
+                self.loc_channel.subscribe(self.key, function (culture) {
                     self.set_active_culture(culture);
                     if (self.render) {
                         self.render();
-                    } // else{
-                    self.__render_module(self.template, data);
-//                    }
+                    }
+                    self.__render_module(self.template, culture);
                 });
                 return self;
             },
