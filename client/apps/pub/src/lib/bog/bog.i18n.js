@@ -2,68 +2,86 @@ if (!bog) {
     var bog = {};
 }
 bog.i18n = function () {
-    var get_localization_text = function (culture, path, callback) {
+    var get_localization_text = function (culture, key, callback) {
         var cache = new bog.cache();
-        var loc_key = culture.replace('-', '_') + '.' + path;
+        var loc_key = culture.replace('-', '_') + '.' + key;
         cache.get_json(loc_key, function (loc_text) {
             // 1.  Check local storage for specific text.
             if (loc_text) {
                 callback(loc_text);
             } else {
                 // 2.  Check server for specific text.
-                var api_key =
-                    $.getJSON('/api/i18n/text/' + loc_key, function (loc_text) {
-                        cache.set_json(loc_key, loc_text);
-                        callback(loc_text);
-                    })
-                        .fail(function () {
-                            if (loc_key.split('.').length === 5) {
-                                var loc_key_arr = loc_key.split('.');
-                                loc_key_arr.pop();
-                                loc_key = loc_key_arr.join('.');
-                                cache.get_json(loc_key, function (loc_text) {
-                                    // 3.  Check local storage for generic text.
-                                    if (loc_text) {
+                $.getJSON('/api/i18n/text/' + loc_key, function (loc_text) {
+                    cache.set_json(loc_key, loc_text);
+                    callback(loc_text);
+                })
+                    .fail(function () {
+                        if (loc_key.split('.').length === 5) {
+                            var loc_key_arr = loc_key.split('.');
+                            loc_key_arr.pop();
+                            loc_key = loc_key_arr.join('.');
+                            cache.get_json(loc_key, function (loc_text) {
+                                // 3.  Check local storage for generic text.
+                                if (loc_text) {
+                                    callback(loc_text);
+                                } else {
+                                    // 4.  Check server for generic text.
+                                    $.getJSON('/api/i18n/text/' + loc_key, function (loc_text) {
+                                        cache.set_json(loc_key, loc_text);
                                         callback(loc_text);
-                                    } else {
-                                        // 4.  Check server for generic text.
-                                        $.getJSON('/api/i18n/text/' + loc_key, function (loc_text) {
-                                            cache.set_json(loc_key, loc_text);
-                                            callback(loc_text);
-                                        })
-                                            .fail(function () {
-                                                callback(null);
-                                            });
-                                    }
-                                });
-                            } else {
-                                callback(null);
-                            }
-                        });
+                                    })
+                                        .fail(function () {
+                                            callback(null);
+                                        });
+                                }
+                            });
+                        } else {
+                            callback(null);
+                        }
+                    });
             }
         });
     };
 
     var get_current_culture = function (callback) {
         if (window.current_culture) {
-            callback(window.current_culture);
+            if (callback) {
+                callback(window.current_culture);
+            } else {
+                return window.current_culture;
+            }
         } else {
             var cache = new bog.cache();
             cache.get_text('current_culture', function (culture) {
                 // 1.  Check local storage for selected culture.
                 if (culture) {
-                    callback(culture);
+                    if (callback) {
+                        callback(culture);
+                    } else {
+                        return culture;
+                    }
                 } else {
                     // 2.  Check server for specific file.
                     $.get('/api/i18n/culture', function (culture) {
-                        cache.set_text('current_culture:  ', culture);
-                        callback(culture);
-                    })
-                        .fail(function () {
+                        cache.set_text('current_culture', culture);
+                        if (callback) {
+                            callback(culture);
+                        } else {
+                            return culture;
+                        }
+                    }).fail(function () {
                             if (window.current_culture) {
-                                callback(window.current_culture);
+                                if (callback) {
+                                    callback(window.current_culture);
+                                } else {
+                                    return window.current_culture;
+                                }
                             } else {
-                                callback('en-US');
+                                if (callback) {
+                                    callback('en-US');
+                                } else {
+                                    return 'en-US';
+                                }
                             }
                         });
                 }

@@ -8,7 +8,7 @@ bog.session = {
             dataType: "json",
             complete: function (xhr) {
                 if (xhr.status == 200) {
-                    callback(true);
+                    callback(xhr.responseJSON);
                 } else {
                     callback(false);
                 }

@@ -62,7 +62,6 @@ define([
                 eventCollection.fetch({
                     success: function (data) {
                         data.each(function (event_model) {
-                            console.log(event_model.get("id"));
                             new search_result_module({ el: col_two_container.modules, result: event_model });
                         });
                     },
@@ -70,21 +69,6 @@ define([
                         console.log('error');
                     }
                 });
-                /*new map_module({ el: mid_col_container.modules });
-                 new placeholder_module({ el: current_col.modules, height: 100, width: 650 });
-                 new separator_module({ el: current_col.modules });
-                 new placeholder_module({ el: current_col.modules, height: 100, width: 650 });
-                 new separator_module({ el: current_col.modules });
-                 new placeholder_module({ el: current_col.modules, height: '500', width: 650 });
-                 new separator_module({ el: current_col.modules });
-                 new placeholder_module({ el: current_col.modules, height: 100, width: 650 });
-                 new separator_module({ el: current_col.modules });*/
-
-//            var col_three_container = new column_container_module({ el: '#column-three', title: '-'});
-//            current_col = col_three_container;
-//            new search_form_module({ el: current_col.modules });
-                //new placeholder_module({ el: current_col.modules, height: 500, width: 250 });
-
                 return this;
             },
             localize: function () {

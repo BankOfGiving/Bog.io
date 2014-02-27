@@ -64,11 +64,13 @@ define([ 'jquery', 'underscore', 'backbone', 'postal', 'bog' ],
             },
             __init_l10n: function () {
                 var self = this;
-                self.loc_channel.subscribe(self.key, function (data, envelope) {
-                    self.__render_module(self.template, data, function () {
-                        self.__publish_debug(data);
-                        self.__publish_debug(envelope);
-                    });
+                self.loc_channel.subscribe(self.key, function (data) {
+                    self.set_active_culture(culture);
+                    if (self.render) {
+                        self.render();
+                    } // else{
+                    self.__render_module(self.template, data);
+//                    }
                 });
                 return self;
             },
@@ -114,7 +116,14 @@ define([ 'jquery', 'underscore', 'backbone', 'postal', 'bog' ],
                     self.manifest = manifest;
                     self.app = self.manifest.app;
                     self.mod_type = self.manifest.mod_type;
-                    self.uid = self.manifest.uid;
+                    if (self.manifest.uid === '') {
+                        self.uid = Math.floor((Math.random() * 10000000) + 1);
+                        console.log(self.uid);
+                    } else {
+                        self.uid = self.manifest.uid;
+                    }
+
+
                     self.localize = self.manifest.localize;
                     if (self.uid && self.uid !== '') {
                         self.key = self.app + '.' + 'mod.' + self.mod_type + '.' + self.uid;
