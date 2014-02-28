@@ -42,15 +42,17 @@ define([ 'module_base', 'text!./titlebar.public.html', 'text!./titlebar.auth.htm
         },
         change_culture: function (e) {
             e.preventDefault();
-            var i18n = new bog.i18n();
             var new_culture = e.currentTarget.getAttribute("data-value");
-            i18n.change_culture(new_culture, function () {
-                this.set_active_culture(new_culture);
+            console.log(new_culture);
+            this.loc_channel.publish({
+                topic: 'set-culture',
+                data: new_culture
             });
+            this.set_active_culture(new_culture);
         },
         set_active_culture: function (culture) {
-            console.log(culture);
-            $("#current_culture_icon").addClass("icon-" + culture);
+            $("#current_culture_icon").removeClass().addClass("icon-" + culture).class;
+            //$("#current_culture_icon").parent().text("icon-" + culture);
         },
         goHome: function (e) {
             e.preventDefault();

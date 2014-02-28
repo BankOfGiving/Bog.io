@@ -1,33 +1,27 @@
-define([
-    'jquery',
-    'underscore',
-    'backbone',
-    'bog',
-
-    'text!./col-container.html'
-],
-    function ($, _, Backbone, bog, module_layout) {
-        return Backbone.View.extend({
-            modules: null,
-            initialize: function (options) {
-                var self = this;
-                self.render(options).localize();
-            },
-            render: function (options) {
-                var self = this;
-
-                var container = self.$el.append(module_layout);
-                if (typeof options.class !== 'undefined' && options.class !== '') {
-                    container.addClass(options.class);
+define([ 'module_base', 'text!./col-container.html' ], function (mod_base, module_layout) {
+    return mod_base.extend({
+        modules: [],
+        initialize: function (el, o, callback) {
+            this.__init(el, o).render(function (self) {
+                if (callback) {
+                    callback(self);
+                } else {
+                    return self;
                 }
-                var titleSpan = container.children().children("#col-title");
-                titleSpan.text(options.title);
+            });
+        },
+        render: function (callback) {
+            var self = this;
+            self.__render_module(module_layout, window.current_culture, function (rendered_layout) {
+                self.modules = $(rendered_layout).children().children("#col-mod-container");
+                if (callback) {
+                    callback(self);
+                } else {
+                    return self;
+                }
+            });
 
-                self.modules = container.children().children("#col-mod-container");
-                return this;
-            },
-            localize: function () {
-                return this;
-            }
-        });
+            return self;
+        }
     });
+});

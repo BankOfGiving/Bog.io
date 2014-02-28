@@ -191,8 +191,8 @@ bog.i18n = function () {
                     var loc_channel = postal.channel("i18n");
                     for (var i = 0; i < window.mod_list.length; i++) {
                         var key = window.mod_list[i][0];
-                        var loclalize = window.mod_list[i][1];
-                        if (loclalize) {
+                        var localize = window.mod_list[i][1];
+                        if (localize) {
                             loc_channel.publish(key, new_culture);
                         }
                     }
@@ -207,9 +207,9 @@ bog.i18n = function () {
     };
 
     return {
-        localize_markup: localize_markup,
-        get_loc_text: get_localization_text,
+        get_markup: localize_markup,
+        get_text: get_localization_text,
         get_culture: get_current_culture,
-        change_culture: __change_culture
+        set_culture: __change_culture
     };
 };

@@ -44,12 +44,6 @@ define([ 'jquery', 'underscore', 'backbone', 'postal', 'bog' ],
                     } else {
                         self.debug_channel = postal.channel('debug');
                     }
-                    // PUBSUB Channel for Debug
-                    if (self.manifest.pubsub.debug_channel_id && self.manifest.pubsub.debug_channel_id !== '') {
-                        self.debug_channel = postal.channel(self.manifest.pubsub.debug_channel_id);
-                    } else {
-                        self.debug_channel = postal.channel('debug');
-                    }
                 } else {
                     self.__publish_debug('No pubsub set for this module.');
                 }
@@ -64,12 +58,18 @@ define([ 'jquery', 'underscore', 'backbone', 'postal', 'bog' ],
             },
             __init_l10n: function () {
                 var self = this;
+                self.loc_channel.subscribe('set-culture', function (culture, envelope) {
+                    if (self.localize) {
+                        self.__render_module(self.template, culture);
+                    }
+                });
                 self.loc_channel.subscribe(self.key, function (culture) {
-                    self.set_active_culture(culture);
+                    console.log('RENDER NEW CULTURE:  ' + culture);
                     if (self.render) {
                         self.render();
+                    } else {
+                        self.__render_module(self.template, culture);
                     }
-                    self.__render_module(self.template, culture);
                 });
                 return self;
             },
@@ -117,7 +117,6 @@ define([ 'jquery', 'underscore', 'backbone', 'postal', 'bog' ],
                     self.mod_type = self.manifest.mod_type;
                     if (self.manifest.uid === '') {
                         self.uid = Math.floor((Math.random() * 10000000) + 1);
-                        console.log(self.uid);
                     } else {
                         self.uid = self.manifest.uid;
                     }
@@ -144,9 +143,12 @@ define([ 'jquery', 'underscore', 'backbone', 'postal', 'bog' ],
                     mod_wrapper = document.createElement('div');
                     mod_wrapper.className = "'module-wrapper";
                     mod_wrapper.id = self.key;
+                    mod_wrapper.setAttribute("data-culture", culture);
                     self.$el.append(mod_wrapper);
                 }
 
+                mod_wrapper.setAttribute("data-culture", culture);
+                console.log(mod_wrapper);
                 // Continue loading rest of module.
                 var rendered_template = _.template(template, {
                     title: self.manifest.title,
@@ -159,16 +161,16 @@ define([ 'jquery', 'underscore', 'backbone', 'postal', 'bog' ],
                         culture = self.manifest.culture;
                     }
                     var i18n = new bog.i18n();
-                    i18n.localize_markup(rendered_template, culture, self.key, function (localized_markup) {
+                    i18n.get_markup(rendered_template, culture, self.key, function (localized_markup) {
                         $(mod_wrapper).append(localized_markup);
                         if (callback) {
-                            callback(localized_markup);
+                            callback(mod_wrapper);
                         }
                     });
                 } else {
                     $(mod_wrapper).append(rendered_template);
                     if (callback) {
-                        callback(rendered_template);
+                        callback(mod_wrapper);
                     }
                 }
             }
