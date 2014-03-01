@@ -2,7 +2,7 @@ if (!bog) {
     var bog = {};
 }
 bog.i18n = function () {
-    var get_localization_text = function (culture, key, callback) {
+    var get_module_text = function (culture, key, callback) {
         var cache = new bog.cache();
         var loc_key = culture.replace('-', '_') + '.' + key;
         cache.get_json(loc_key, function (loc_text) {
@@ -43,7 +43,7 @@ bog.i18n = function () {
         });
     };
 
-    var get_current_culture = function (callback) {
+    var get_culture = function (callback) {
         if (window.current_culture) {
             if (callback) {
                 callback(window.current_culture);
@@ -62,7 +62,7 @@ bog.i18n = function () {
                     }
                 } else {
                     // 2.  Check server for specific file.
-                    $.get('/api/i18n/culture', function (culture) {
+                    $.get('/api/i18n/culture',function (culture) {
                         cache.set_text('current_culture', culture);
                         if (callback) {
                             callback(culture);
@@ -89,14 +89,36 @@ bog.i18n = function () {
         }
     };
 
-    var localize_markup = function (markup, culture, key, callback) {
+    var set_culture = function (new_culture) {
+        get_culture(function (current_culture) {
+            if (new_culture !== current_culture) {
+                require(['postal'], function (postal) {
+                    var loc_channel = postal.channel("i18n");
+                    for (var i = 0; i < window.mod_list.length; i++) {
+                        var key = window.mod_list[i][0];
+                        var localize = window.mod_list[i][1];
+                        if (localize) {
+                            loc_channel.publish(key, new_culture);
+                        }
+                    }
+                    window.current_culture = new_culture;
+                    var cache = new bog.cache();
+                    cache.set_text('current_culture', new_culture);
+                });
+            } else {
+                console.log('attempting to change culture to the current culture');
+            }
+        });
+    };
+
+    var get_module_localized_markup = function (markup, culture, key, callback) {
         if (!markup) {
-            // throw 'Invalid markup';
+            throw 'Invalid markup';
         }
         if (culture) {
-            get_localization_text(culture, key, function (loc_text) {
+            get_module_text(culture, key, function (loc_text) {
                 if (loc_text) {
-                    __render_localized_markup(markup, loc_text, function (localized_markup) {
+                    __render_markup(markup, loc_text, function (localized_markup) {
                         callback(localized_markup);
                     });
                 } else {
@@ -106,16 +128,16 @@ bog.i18n = function () {
             });
         } else {
             // Determine culture
-            get_current_culture(function (culture) {   // 'en-US';  // TODO: detect culture
+            get_culture(function (culture) {   // 'en-US';  // TODO: detect culture
                 if (!culture) {
                     throw 'invalid culture';
                 } else {
                     culture = culture.replace('-', '_');
                 }
 
-                get_localization_text(culture, key, function (loc_text) {
+                get_module_text(culture, key, function (loc_text) {
                     if (loc_text) {
-                        __render_localized_markup(markup, loc_text, function (localized_markup) {
+                        __render_markup(markup, loc_text, function (localized_markup) {
                             callback(localized_markup);
                         });
                     } else {
@@ -127,8 +149,7 @@ bog.i18n = function () {
         }
     };
 
-    var __render_localized_markup = function (markup, l10n_dictionary, callback) {
-        var self = this;
+    var __render_markup = function (markup, l10n_dictionary, callback) {
         var rendered_markup = $(markup);
 
         $.each(rendered_markup.find("[data-localize-key]"), function (index, element) {
@@ -184,32 +205,10 @@ bog.i18n = function () {
         return o;
     };
 
-    var __change_culture = function (new_culture) {
-        get_current_culture(function (current_culture) {
-            if (new_culture !== current_culture) {
-                require(['postal'], function (postal) {
-                    var loc_channel = postal.channel("i18n");
-                    for (var i = 0; i < window.mod_list.length; i++) {
-                        var key = window.mod_list[i][0];
-                        var localize = window.mod_list[i][1];
-                        if (localize) {
-                            loc_channel.publish(key, new_culture);
-                        }
-                    }
-                    window.current_culture = new_culture;
-                    var cache = new bog.cache();
-                    cache.set_text('current_culture', new_culture);
-                });
-            } else {
-                console.log('attempting to change culture to the current culture');
-            }
-        });
-    };
-
     return {
-        get_markup: localize_markup,
-        get_text: get_localization_text,
-        get_culture: get_current_culture,
-        set_culture: __change_culture
+        get_module_markup: get_module_localized_markup,
+        get_module_text: get_module_text,
+        get_culture: get_culture,
+        set_culture: set_culture
     };
 };

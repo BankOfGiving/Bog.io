@@ -16,33 +16,13 @@ define([
         return mod_base.extend({
             initialize: function (el, o, callback) {
                 var self = this;
-                self.__init(el, o);
                 _.bindAll(self, 'search', 'load_view_data');
-
-                self.load_view_data(function () {
-                    if (callback) {
-                        self.render(function () {
+                self.base_initialize(el, o, function () {
+                    self.render(module_layout, window.current_culture, function (self) {
+                        if (callback) {
                             callback(self);
-                        });
-                    } else {
-                        self.render();
-                    }
-                });
-            },
-            render: function (callback) {
-                var self = this;
-                var module_layout;
-                if (self.manifest.options.orientation == 'vert') {
-                    module_layout = module_layout_vert;
-                } else {
-                    module_layout = module_layout_horiz;
-                }
-                self.__render_module(module_layout, window.current_culture, function () {
-                    if (callback) {
-                        callback(self);
-                    } else {
-                        return self;
-                    }
+                        }
+                    });
                 });
             },
             events: {
@@ -57,7 +37,7 @@ define([
                         return callback();
                     },
                     error: function (e) {
-                        self.__publish_debug(e);
+                        self.publish_debug(e);
                     }
                 });
             },

@@ -2,26 +2,23 @@ define([ 'module_base', 'text!./col-container.html' ], function (mod_base, modul
     return mod_base.extend({
         modules: [],
         initialize: function (el, o, callback) {
-            this.__init(el, o).render(function (self) {
-                if (callback) {
-                    callback(self);
-                } else {
-                    return self;
-                }
+            var self = this;
+            self.base_initialize(el, o, function () {
+                self.render(module_layout, window.current_culture, function (self) {
+                    if (callback) {
+                        callback(self);
+                    }
+                });
             });
         },
-        render: function (callback) {
+        render: function (template, culture, callback) {
             var self = this;
-            self.__render_module(module_layout, window.current_culture, function (rendered_layout) {
+            self.base_render(template, culture, function (rendered_layout) {
                 self.modules = $(rendered_layout).children().children("#col-mod-container");
                 if (callback) {
                     callback(self);
-                } else {
-                    return self;
                 }
             });
-
-            return self;
         }
     });
 });
