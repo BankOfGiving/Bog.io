@@ -2,6 +2,7 @@ define([ 'module_base', 'text!./titlebar.public.html', 'text!./titlebar.auth.htm
     return mod_base.extend({
         initialize: function (el, o, callback) {
             var self = this;
+            var culture = window.current_culture || 'en-US';
             self.base_initialize(el, o, function () {
                 bog.session.isAuthenticated(function (isAuth) {
                     var module_layout;
@@ -11,11 +12,11 @@ define([ 'module_base', 'text!./titlebar.public.html', 'text!./titlebar.auth.htm
                     } else {
                         module_layout = module_layout_public;
                     }
-                    self.base_render(module_layout, window.current_culture, function (self) {
+                    self.base_render(module_layout, culture, function () {
+                        self.set_active_culture(culture);
                         if (callback) {
                             callback(self);
                         }
-                        return self;
                     });
                 });
             });

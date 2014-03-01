@@ -18,10 +18,13 @@ define([
                 var self = this;
                 _.bindAll(self, 'search', 'load_view_data');
                 self.base_initialize(el, o, function () {
-                    self.render(module_layout, window.current_culture, function (self) {
-                        if (callback) {
-                            callback(self);
-                        }
+                    var module_template = module_layout_vert;
+                    self.base_initialize(el, o, function () {
+                        self.base_render(module_template, window.current_culture, function (self) {
+                            if (callback) {
+                                callback(self);
+                            }
+                        });
                     });
                 });
             },
@@ -56,7 +59,7 @@ define([
                         self.data_channel.publish(self.manifest.pubsub.data_topic, data.toJSON());
                     },
                     error: function (e) {
-                        self.__publish_debug(e);
+                        self.publish_debug(e);
                     }
                 });
             },
