@@ -1,7 +1,7 @@
 module.exports = function (app, uriBase) {
     // modules
     var EventRepo = require('../../../domain/repositories/bog.domain.repositories.event');
-    var auth = require('../../../modules/bog.authentication');
+    var auth = require('../../../bog/bog.authentication');
 
     // Collection Routes
     var collectionUri = uriBase + '/profile';

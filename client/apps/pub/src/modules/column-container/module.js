@@ -1,5 +1,6 @@
 define([ 'module_base', 'text!./col-container.html' ], function (mod_base, module_layout) {
     return mod_base.extend({
+        api_root: "/api/mod/column",
         modules: [],
         initialize: function (el, o, callback) {
             var self = this;

@@ -50,17 +50,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(function (req, res, next) {
     res.locals.user = req.user;
-    // res.locals.token = req.csrfToken();
     next();
 });
 
 app.use(flash());
 app.use(app.router);
-//app.use(express.static(path.join(__dirname, 'public'), { maxAge: week }));
-//app.use(function(req, res) {
-//    res.status(404);
-//    res.render('404');
-//});
 app.use(express.errorHandler());
 
 /** Routes */

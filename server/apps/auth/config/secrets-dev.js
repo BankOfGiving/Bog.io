@@ -8,15 +8,6 @@ module.exports = {
         password: 'Your SendGrid Password'
     },
 
-    nyt: {
-        key: 'Your New York Times API Key'
-    },
-
-    lastfm: {
-        api_key: 'Your API Key',
-        secret: 'Your API Secret'
-    },
-
     facebook: {
         clientID: '1386900388244159',
         clientSecret: '785ea53dd1ef804eb240b297aa4991a7',
@@ -32,8 +23,8 @@ module.exports = {
     },
 
     twitter: {
-        consumerKey: 'Your Consumer Key',
-        consumerSecret: 'Your Consumer Secret',
+        consumerKey: '9d61pQQu1XuCkc8Op6IqA',
+        consumerSecret: 'bABg2DdiTa2tL0weeS4Y4VTAux87QWPi7zEa0IqFYg',
         callbackURL: '/auth/twitter/callback',
         passReqToCallback: true
     },

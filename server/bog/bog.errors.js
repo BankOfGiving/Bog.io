@@ -1,5 +1,5 @@
 module.exports = function () {
-    var I18n = require('./bog.i18n');
+    var I18n = require('./bog.i18n.js');
     // var Linq = require('linq');
     // var Logging = require('./bog.logging');
 

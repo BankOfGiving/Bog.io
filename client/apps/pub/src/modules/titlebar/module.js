@@ -1,17 +1,20 @@
 define([ 'module_base', 'text!./titlebar.public.html', 'text!./titlebar.auth.html' ], function (mod_base, module_layout_public, module_layout_auth) {
     return mod_base.extend({
+        api_root: "/api/mod/titlebar",
         initialize: function (el, o, callback) {
             var self = this;
             var culture = window.current_culture || 'en-US';
             self.base_initialize(el, o, function () {
-                bog.session.isAuthenticated(function (isAuth) {
+                bog.session.isAuthenticated(function (authenticated, user) {
                     var module_layout;
-                    self.manifest.options.isAuth = isAuth;
-                    if (isAuth) {
+                    self.manifest.options.authenticated = authenticated;
+                    if (authenticated) {
+                        self.manifest.options.user = user;
                         module_layout = module_layout_auth;
                     } else {
                         module_layout = module_layout_public;
                     }
+                    console.log(self.manifest);
                     self.base_render(module_layout, culture, function () {
                         self.set_active_culture(culture);
                         if (callback) {

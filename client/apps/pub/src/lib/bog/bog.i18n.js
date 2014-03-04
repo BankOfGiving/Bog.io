@@ -62,7 +62,7 @@ bog.i18n = function () {
                     }
                 } else {
                     // 2.  Check server for specific file.
-                    $.get('/api/i18n/culture',function (culture) {
+                    $.get('/api/culture',function (culture) {
                         cache.set_text('current_culture', culture);
                         if (callback) {
                             callback(culture);

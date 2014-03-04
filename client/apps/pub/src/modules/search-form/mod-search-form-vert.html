@@ -16,7 +16,7 @@
             <div class="form-group" data-localize-key="form.elements.type" data-localize-target="form-group">
                 <label for="search_type" class="control-label"></label>
                 <select class="form-control" id="search_type">
-                    <% _.each(module.search_types, function(search_type) { %>
+                    <% _.each(module.view_data.search_types, function(search_type) { %>
                     <option data-localize-key="<%= search_type.key %>" data-localize-target="text"
                             value="<%= search_type.value %>"></option>
                     <% }); %>

@@ -1,16 +1,16 @@
 {
     "module": {
-        "title": "Buscar",
+        "title": "Search",
         "description": ""
     },
     "form": {
         "elements": {
             "search": {
-                "label": "Query",
+                "label": "Search Terms",
                 "placeholder": "Something fun!"
             },
             "type": {
-                "label": "Type",
+                "label": "Result Types",
                 "placeholder": "Select a type"
             }
         },
@@ -22,11 +22,11 @@
     "data": {
         "lookup": {
             "event_types": {
-                "food": "Uno",
-                "career_assist": "Dos",
-                "health": "Tres",
-                "training": "Cuatro",
-                "other": "Cinco"
+                "food": "Food Distribution",
+                "career_assist": "Career Assistance",
+                "health": "Health & Fitness",
+                "training": "Training & Education",
+                "other": "Other"
             }
         }
     }

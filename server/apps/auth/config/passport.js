@@ -52,6 +52,9 @@ passport.use(new LocalStrategy({ usernameField: 'email' }, function (email, pass
  */
 
 passport.use(new FacebookStrategy(secrets.facebook, function (req, accessToken, refreshToken, profile, done) {
+    console.log('QUERY:  ' + req.query);
+    console.log('USER:  ' + req.user);
+    console.log('RET:  ' + req.query.ret);
     if (req.user) {
         User.findOne({ $or: [
             { facebook: profile.id },

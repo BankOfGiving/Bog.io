@@ -11,7 +11,6 @@ module.exports = function () {
         });
 
         self.findById(id, function (err, auditEvent) {
-            console.log('AUDIT EVENT:  ' + auditEvent);
             if (auditEvent.audit === null) {
                 auditEvent.audit = {
                     author: actor,

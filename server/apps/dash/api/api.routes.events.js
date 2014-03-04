@@ -3,7 +3,7 @@ module.exports = function (app, uriBase) {
 
     // modules
     var EventRepo = require('../../../domain/repositories/bog.domain.repositories.event');
-    var ErrorHandler = require('../../../modules/bog.errors');
+    var ErrorHandler = require('../../../bog/bog.errors');
 
     var err_handler = new ErrorHandler();
 

@@ -9,8 +9,9 @@
         <div class="navbar-collapse collapse">
             <ul class="nav pull-right navbar-nav">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="" id="current_culture_icon"
-                                                                                    class=""/></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <img src="" id="current_culture_icon" class=""/>
+                    </a>
                     <ul class="dropdown-menu">
                         <li><a class="culture-switch" data-value="en-US" href="#"><img src="" class="icon-en-US"/></a>
                         </li>
@@ -19,11 +20,19 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i>
-                        User Profile <i class="glyphicon glyphicon-chevron-down"></i></a>
+                    <a href="#" class="profile-badge dropdown-toggle" data-toggle="dropdown">
+                        <% if (module.user.profile.picture) { %>
+                        <img class="profile-image" src="<%=module.user.profile.picture%>"/>
+                        <% } else { %>
+                        <!--img.profile-image(src='#{user.gravatar()}') -->
+                        <% } %>
+                        <%=module.user.profile.name || module.user.email || module.user.id %>&nbsp;
+                        <i class="glyphicon glyphicon-chevron-down"></i>
+                    </a>
                     <ul class="dropdown-menu">
                         <li><a href="#" data-localize-key="account.profile" data-localize-target="text"></a></li>
-                        <li><a href="#" data-localize-key="account.logout" data-localize-target="text"></a></li>
+                        <li><a href="/auth/logout" data-localize-key="account.logout" data-localize-target="text"></a>
+                        </li>
                         <!--<li class="divider"></li>
                         <li><a href="#">About</a></li>-->
                     </ul>

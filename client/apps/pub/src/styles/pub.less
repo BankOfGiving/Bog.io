@@ -1,12 +1,28 @@
-.navbar-form input, .form-inline input {
-  width: auto;
-}
-
 @import url('http://fonts.googleapis.com/css?family=Open+Sans:300,400');
 
 header {
   min-height: 50px;
   margin-bottom: 5px;
+}
+
+.navbar-nav a.profile-badge {
+  color: #797263;
+  font-weight: bold;
+}
+
+.navbar-nav a.profile-badge:hover {
+  background-color: #dfdfdf;
+}
+
+.navbar-nav a.profile-badge:enabled {
+  border: 1px solid #000000 !important;
+  background-color: #dfdfdf;
+}
+
+.navbar-nav .profile-badge img {
+  width: 30px;
+  height: 30px;
+  margin: -15px 15px -15px 0;
 }
 
 /* only apply sticky columns on wider screens */

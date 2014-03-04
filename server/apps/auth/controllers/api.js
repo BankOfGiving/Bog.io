@@ -1,23 +1,23 @@
 var secrets = require('../config/secrets');
 var User = require('../../../data/models/bog.data.models.user');
-var querystring = require('querystring');
 var async = require('async');
 var cheerio = require('cheerio');
 var request = require('request');
 var _ = require('underscore');
 var graph = require('fbgraph');
+var Twit = require('twit');
+
 var LastFmNode = require('lastfm').LastFmNode;
 var tumblr = require('tumblr.js');
-var foursquare = require('node-foursquare')({ secrets: secrets.foursquare });
 var Github = require('github-api');
-var Twit = require('twit');
+var foursquare = require('node-foursquare')({ secrets: secrets.foursquare });
+var querystring = require('querystring');
 var paypal = require('paypal-rest-sdk');
 
 /**
  * GET /api
  * List of API examples.
  */
-
 exports.getApi = function (req, res) {
     res.render('api/index', {
         title: 'API Browser'
@@ -27,9 +27,8 @@ exports.getApi = function (req, res) {
 /**
  * GET /api/foursquare
  * Foursquare API example.
- */
 
-exports.getFoursquare = function (req, res, next) {
+ exports.getFoursquare = function (req, res, next) {
     var token = _.findWhere(req.user.tokens, { kind: 'foursquare' });
     async.parallel({
             trendingVenues: function (callback) {
@@ -58,13 +57,12 @@ exports.getFoursquare = function (req, res, next) {
             });
         });
 };
+ */
 
 /**
  * GET /api/tumblr
  * Tumblr API example.
- */
-
-exports.getTumblr = function (req, res) {
+ exports.getTumblr = function (req, res) {
     var token = _.findWhere(req.user.tokens, { kind: 'tumblr' });
     var client = tumblr.createClient({
         consumer_key: secrets.tumblr.consumerKey,
@@ -80,12 +78,12 @@ exports.getTumblr = function (req, res) {
         });
     });
 };
+ */
 
 /**
  * GET /api/facebook
  * Facebook API example.
  */
-
 exports.getFacebook = function (req, res, next) {
     var token = _.findWhere(req.user.tokens, { kind: 'facebook' });
     graph.setAccessToken(token.accessToken);
@@ -115,7 +113,6 @@ exports.getFacebook = function (req, res, next) {
  * GET /api/scraping
  * Web scraping example using Cheerio library.
  */
-
 exports.getScraping = function (req, res, next) {
     request.get('https://news.ycombinator.com/', function (err, request, body) {
         if (err) return next(err);
@@ -134,8 +131,8 @@ exports.getScraping = function (req, res, next) {
 /**
  * GET /api/github
  * GitHub API Example.
- */
-exports.getGithub = function (req, res) {
+
+ exports.getGithub = function (req, res) {
     var token = _.findWhere(req.user.tokens, { kind: 'github' });
     var github = new Github({ token: token.accessToken });
     var repo = github.getRepo('sahat', 'requirejs-library');
@@ -147,12 +144,12 @@ exports.getGithub = function (req, res) {
     });
 
 };
+ */
 
 /**
  * GET /api/aviary
  * Aviary image processing example.
  */
-
 exports.getAviary = function (req, res) {
     res.render('api/aviary', {
         title: 'Aviary API'
@@ -160,85 +157,9 @@ exports.getAviary = function (req, res) {
 };
 
 /**
- * GET /api/nyt
- * New York Times API example.
- */
-
-exports.getNewYorkTimes = function (req, res, next) {
-    var query = querystring.stringify({ 'api-key': secrets.nyt.key, 'list-name': 'young-adult' });
-    var url = 'http://api.nytimes.com/svc/books/v2/lists?' + query;
-    request.get(url, function (error, request, body) {
-        if (request.statusCode === 403) return next(Error('Missing or Invalid New York Times API Key'));
-        var bestsellers = JSON.parse(body);
-        res.render('api/nyt', {
-            title: 'New York Times API',
-            books: bestsellers.results
-        });
-    });
-};
-
-/**
- * GET /api/lastfm
- * Last.fm API example.
- */
-
-exports.getLastfm = function (req, res, next) {
-    var lastfm = new LastFmNode(secrets.lastfm);
-    async.parallel({
-            artistInfo: function (done) {
-                lastfm.request("artist.getInfo", {
-                    artist: 'Epica',
-                    handlers: {
-                        success: function (data) {
-                            done(null, data);
-                        },
-                        error: function (err) {
-                            done(err);
-                        }
-                    }
-                });
-            },
-            artistTopAlbums: function (done) {
-                lastfm.request("artist.getTopAlbums", {
-                    artist: 'Epica',
-                    handlers: {
-                        success: function (data) {
-                            var albums = [];
-                            _.each(data.topalbums.album, function (album) {
-                                albums.push(album.image.slice(-1)[0]['#text']);
-                            });
-                            done(null, albums.slice(0, 4));
-                        },
-                        error: function (err) {
-                            done(err);
-                        }
-                    }
-                });
-            }
-        },
-        function (err, results) {
-            if (err) return next(err.message);
-            var artist = {
-                name: results.artistInfo.artist.name,
-                image: results.artistInfo.artist.image.slice(-1)[0]['#text'],
-                tags: results.artistInfo.artist.tags.tag,
-                bio: results.artistInfo.artist.bio.summary,
-                stats: results.artistInfo.artist.stats,
-                similar: results.artistInfo.artist.similar.artist,
-                topAlbums: results.artistTopAlbums
-            };
-            res.render('api/lastfm', {
-                title: 'Last.fm API',
-                artist: artist
-            });
-        });
-};
-
-/**
  * GET /api/twitter
  * Twiter API example.
  */
-
 exports.getTwitter = function (req, res, next) {
     var token = _.findWhere(req.user.tokens, { kind: 'twitter' });
     var T = new Twit({
@@ -259,9 +180,8 @@ exports.getTwitter = function (req, res, next) {
 /**
  * GET /api/paypal
  * PayPal SDK example.
- */
 
-exports.getPayPal = function (req, res, next) {
+ exports.getPayPal = function (req, res, next) {
     paypal.configure(secrets.paypal);
     var payment_details = {
         'intent': 'sale',
@@ -298,13 +218,13 @@ exports.getPayPal = function (req, res, next) {
         }
     });
 };
-
+ */
 /**
  * GET /api/paypal/success
  * PayPal SDK example.
- */
 
-exports.getPayPalSuccess = function (req, res, next) {
+
+ exports.getPayPalSuccess = function (req, res, next) {
     var payment_id = req.session.payment_id;
     var payment_details = { 'payer_id': req.query.PayerID };
     paypal.payment.execute(payment_id, payment_details, function (error, payment) {
@@ -321,63 +241,17 @@ exports.getPayPalSuccess = function (req, res, next) {
         }
     });
 };
-
+ */
 /**
  * GET /api/paypal/cancel
  * PayPal SDK example.
- */
 
-exports.getPayPalCancel = function (req, res, next) {
+
+ exports.getPayPalCancel = function (req, res, next) {
     req.session.payment_id = null;
     res.render('api/paypal', {
         result: true,
         canceled: true
     });
 };
-
-/**
- * GET /api/steam
- * Steam API example.
  */
-
-exports.getSteam = function (req, res, next) {
-    var steamId = '76561197982488301';
-    var query = { l: 'english', steamid: steamId, key: secrets.steam.apiKey };
-
-    async.parallel({
-            playerAchievements: function (done) {
-                query.appid = '49520';
-                var qs = querystring.stringify(query);
-                request.get({ url: 'http://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001/?' + qs, json: true }, function (error, request, body) {
-                    if (request.statusCode === 401) return done(new Error('Missing or Invalid Steam API Key'));
-                    done(error, body);
-                });
-            },
-            playerSummaries: function (done) {
-                query.steamids = steamId;
-                var qs = querystring.stringify(query);
-                request.get({ url: 'http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?' + qs, json: true }, function (error, request, body) {
-                    if (request.statusCode === 401) return done(new Error('Missing or Invalid Steam API Key'));
-                    done(error, body);
-                });
-            },
-            ownedGames: function (done) {
-                query.include_appinfo = 1;
-                query.include_played_free_games = 1;
-                var qs = querystring.stringify(query);
-                request.get({ url: 'http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?' + qs, json: true }, function (error, request, body) {
-                    if (request.statusCode === 401) return done(new Error('Missing or Invalid Steam API Key'));
-                    done(error, body);
-                });
-            }
-        },
-        function (err, results) {
-            if (err) return next(err);
-            res.render('api/steam', {
-                title: 'Steam Web API',
-                ownedGames: results.ownedGames.response.games,
-                playerAchievemments: results.playerAchievements.playerstats,
-                playerSummary: results.playerSummaries.response.players[0]
-            });
-        });
-};

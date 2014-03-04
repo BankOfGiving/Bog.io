@@ -1,6 +1,6 @@
 module.exports = function () {
-    var Errors = require('../../modules/bog.errors');
-    var Logger = require('../../modules/bog.logging');
+    var Errors = require('../../bog/bog.errors');
+    var Logger = require('../../bog/bog.logging');
 
     var mongoose = require('mongoose');
     var db = require('../../config/db.mongo');

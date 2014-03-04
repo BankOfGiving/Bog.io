@@ -1,0 +1,33 @@
+{
+    "module": {
+        "title": "Buscar",
+        "description": ""
+    },
+    "form": {
+        "elements": {
+            "search": {
+                "label": "Términos de búsqueda",
+                "placeholder": "Algo divertido!"
+            },
+            "type": {
+                "label": "Tipos de resultado",
+                "placeholder": "Seleccione un tipo"
+            }
+        },
+        "buttons": {
+            "cancel": "Cancelar",
+            "search": "Búsqueda"
+        }
+    },
+    "data": {
+        "lookup": {
+            "event_types": {
+                "food": "Uno",
+                "career_assist": "Dos",
+                "health": "Tres",
+                "training": "Cuatro",
+                "other": "Cinco"
+            }
+        }
+    }
+}

@@ -17,14 +17,13 @@ define([
     'modules/nav/module',
     'modules/placeholder/module',
     'modules/search-form/module',
-    'modules/search-result/module',
+    'modules/search-result-container/module',
     'modules/separator/module',
     'modules/social/module',
     'modules/text/module',
     'modules/titlebar/module'
 ],
-    function ($, _, Backbone, bs, postal, bog, view_layout, ad_static_module, column_container_module, debug_module, //map_module,
-              masthead_module, nav_module, placeholder_module, search_form_module, search_result_module, separator_module, social_module, text_module, titlebar_module) {
+    function ($, _, Backbone, bs, postal, bog, view_layout, ad_static_module, column_container_module, debug_module, masthead_module, nav_module, placeholder_module, search_form_module, search_result_module, separator_module, social_module, text_module, titlebar_module) {
         return Backbone.View.extend({
             initialize: function () {
                 var self = this;
@@ -132,25 +131,30 @@ define([
                 center_column_manifest.uid = 'home_center_column';
                 self.append_module(column_container_module, '#column-two', center_column_manifest, function (column) {
                     // -------------------------------------------------------------------------------------------------
-                    var search_results_placeholder_manifest = new self.module_manifest_template();
-                    search_results_placeholder_manifest.mod_type = 'text';
-                    search_results_placeholder_manifest.uid = 'search_results_placeholder';
-                    search_results_placeholder_manifest.options = { };
-                    self.append_module(text_module, column.modules, search_results_placeholder_manifest, function () {
-                        // ---------------------------------------------------------------------------------------------------------
-                        var center_placeholder_manifest = new self.module_manifest_template();
-                        center_placeholder_manifest.mod_type = 'placeholder';
-                        center_placeholder_manifest.uid = 'home_center_placeholder';
-                        center_placeholder_manifest.localize = false;
-                        center_placeholder_manifest.options = {
-                            height: '150',
-                            width: '650'
-                        };
-                        self.append_module(placeholder_module, column.modules, center_placeholder_manifest);
+                    var search_results_manifest = new self.module_manifest_template();
+                    search_results_manifest.mod_type = 'search-results-container';
+                    search_results_manifest.uid = 'home_search_results';
+                    search_results_manifest.options = { };
+                    self.append_module(search_result_module, column.modules, search_results_manifest, function (results_container) {
+                        // ---------------------------------------------------------------------------------------------
+                        var search_results_placeholder_manifest = new self.module_manifest_template();
+                        search_results_placeholder_manifest.mod_type = 'text';
+                        search_results_placeholder_manifest.uid = 'search_results_placeholder';
+                        search_results_placeholder_manifest.options = { };
+                        self.append_module(text_module, results_container.results, search_results_placeholder_manifest, function () {
+                            // ---------------------------------------------------------------------------------------------
+                            var center_placeholder_manifest = new self.module_manifest_template();
+                            center_placeholder_manifest.mod_type = 'placeholder';
+                            center_placeholder_manifest.uid = 'home_center_placeholder';
+                            center_placeholder_manifest.localize = false;
+                            center_placeholder_manifest.options = {
+                                height: '150',
+                                width: '620'
+                            };
+                            self.append_module(placeholder_module, results_container.results, center_placeholder_manifest);
+                        });
                     });
                 });
-                // -----------------------------------------------------------------------------------------------------
-                // var search_result_container = col_two_container.modules;
                 // -----------------------------------------------------------------------------------------------------
                 // Column three
                 // -----------------------------------------------------------------------------------------------------
@@ -177,21 +181,13 @@ define([
                         self.append_module(text_module, column.modules, latestinfo_manifest, function () {
                             // ---------------------------------------------------------------------------------------------
                             var ads_module_manifest = new self.module_manifest_template();
-                            ads_module_manifest.mod_type = 'text';
+                            ads_module_manifest.mod_type = 'ad-static';
                             ads_module_manifest.uid = 'home_ads_right';
                             ads_module_manifest.options = {};
                             self.append_module(ad_static_module, column.modules, ads_module_manifest);
                         });
                     });
                 });
-                /**/
-                // -----------------------------------------------------------------------------------------------------
-
-
-//                channel.subscribe("search.results.all", function (data) {
-//                    self.search_results(search_result_container, data);
-//                });
-
                 return this;
             },
             append_module: function (module, container, manifest, callback) {
@@ -228,21 +224,6 @@ define([
             },
             load_column: function (manifest) {
                 // Build a loader for column modules
-            },
-            search_results: function (container, data) {
-                container.empty();
-                var search_result_manifest = new this.module_manifest_template();
-                search_result_manifest.localize = false;
-                search_result_manifest.mod_type = 'text';
-                search_result_manifest.options = {
-                    total_results: data.length
-                };
-                for (var i = 0; i < data.length; i++) {
-                    search_result_manifest.uid = 'search_results_' + i;
-                    search_result_manifest.options.result = data[i];
-                    search_result_manifest.options.result_count = i + 1;
-                    this.append_module(search_result_module, container, search_result_manifest);
-                }
             }
         });
     });

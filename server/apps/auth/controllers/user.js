@@ -9,7 +9,36 @@ var User = require('../../../data/models/bog.data.models.user');
  */
 
 exports.getLogin = function (req, res) {
-    if (req.user) return res.redirect('/');
+    console.log('SESSION:  ' + req.session.ret_uri);
+    if (req.query.ret) {
+        req.session.ret_uri = req.query.ret;
+    }
+    if (req.user) {
+        if (req.session.ret_uri) {
+            var ret_uri = req.session.ret_uri;
+            delete req.session.ret_uri;
+            var ret_uri_arr = ret_uri.split('#');
+            switch (ret_uri_arr[0]) {
+                case 'pub/':
+                    if (ret_uri_arr[1]) {
+                        return res.redirect('/#' + ret_uri_arr[1]);
+                    } else {
+                        return res.redirect('/');
+                    }
+                case 'dash/':
+                    return res.redirect(ret_uri);
+                case 'admin/':
+                    return res.redirect(ret_uri);
+                case 'auth/':
+                    return res.redirect(ret_uri);
+                default:
+                    return res.redirect(ret_uri);
+            }
+        } else {
+            //return res.redirect('auth/');
+        }
+    }
+
     res.render('account/login', {
         title: 'Login'
     });

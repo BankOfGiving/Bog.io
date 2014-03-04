@@ -20,42 +20,29 @@ module.exports = function (grunt) {
             src_server: 'server/**/*.js'
         },
         less: {
+            options: {
+                cleancss: true,
+                compress: true,
+                optimization: 2,
+                strictImports: false,
+                yuicompress: true
+            },
             'admin': {
-                options: {
-                    compress: true,
-                    yuicompress: true,
-                    optimization: 2
-                },
                 files: {
                     "client/apps/admin/src/styles/admin.css": "client/apps/admin/src/styles/*.less"
                 }
             },
             'auth': {
-                options: {
-                    compress: true,
-                    yuicompress: true,
-                    optimization: 2
-                },
                 files: {
                     "client/apps/auth/src/styles/auth.css": "client/apps/auth/src/styles/*.less"
                 }
             },
             'dash': {
-                options: {
-                    compress: true,
-                    yuicompress: true,
-                    optimization: 2
-                },
                 files: {
                     "client/apps/dash/src/styles/dash.css": "client/apps/dash/src/styles/*.less"
                 }
             },
             'pub': {
-                options: {
-                    compress: true,
-                    yuicompress: true,
-                    optimization: 2
-                },
                 files: {
                     "client/apps/pub/src/styles/pub.css": "client/apps/pub/src/styles/*.less"
                 }

@@ -18,7 +18,6 @@ EventRepository = function () {
             conditions.type = filters.type;
         }
 
-        console.log(filters);
         var fields = null;
         var options = null;
         var query = EventModel.find(conditions, fields, options);

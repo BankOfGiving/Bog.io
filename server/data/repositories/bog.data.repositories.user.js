@@ -1,7 +1,6 @@
 User.statics.UpdateFromObject = function (userObject, callback) { // callback(err, numberAffected, raw)
     var self = this;
     var query = { _id: userObject._id };
-    console.log(query);
     var updates = {
         displayName: userObject.displayName,
         name: {
@@ -10,7 +9,6 @@ User.statics.UpdateFromObject = function (userObject, callback) { // callback(er
             family: userObject.family
         }
     };
-    console.log(updates);
     self.update(query, updates,
         {
             multi: true
