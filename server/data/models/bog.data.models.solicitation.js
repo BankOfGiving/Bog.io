@@ -1,4 +1,4 @@
-var dbconn = require('../../config/db.mongo');
+var dbconn = require('../../secrets/db.mongo');
 var mongoose = require('mongoose');
 mongoose.createConnection(dbconn.connectionString);
 

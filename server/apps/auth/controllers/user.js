@@ -25,6 +25,7 @@ exports.getLogin = function (req, res) {
                     } else {
                         return res.redirect('/');
                     }
+                    break;
                 case 'dash/':
                     return res.redirect(ret_uri);
                 case 'admin/':

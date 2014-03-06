@@ -1,5 +1,5 @@
-define(['jquery', 'underscore', 'backbone', 'modules/bog.site', 'modules/bog.i18n', 'modules/bog.maps', 'models/model.event', 'text!../../../templates/events/event.form.html'],
-    function ($, _, Backbone, site, i18n, maps, EventModel, FormTemplate) {
+define(['jquery', 'underscore', 'backbone', 'bog', 'modules/bog.maps', 'models/model.event', 'text!../../../templates/events/event.form.html'],
+    function ($, _, Backbone, bog, maps, EventModel, FormTemplate) {
         return Backbone.View.extend({
             initialize: function () {
                 _.bindAll(this, 'localize', 'cancel', 'save', 'saveEntity', 'saveSuccess', 'saveFailure', 'remove');

@@ -8,26 +8,16 @@ html
             meta(name="description", content="")
             meta(name="author", content="")
             meta(name="viewport", content="initial-scale=1.0, user-scalable=no")
-            link(rel='stylesheet', type='text/css', href='lib/bootstrap/css/unity-bootstrap.min.css')
-            link(rel='stylesheet', type='text/css', href='styles/dash.css')
+            link(rel='stylesheet', type='text/css', href='//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css')
+            link(rel='stylesheet', type='text/css', href='/styles/pub.min.css')
         block styles
-            script(src="lib/require.js", data-main="scripts/main")
+            script(src="/lib/require/require.js", data-main="/dash/main")
         block scripts
     body
-        div#wrap
-            section(id="site-container", class="col-lg-12")
-                header(id="site-header")
-                section(id="page-container", class="col-lg-12")
-                    header(id="page-header")
-                        div(id="page-title")
-                            h2
-                        summary(id="page-description")
-                            h4
-                                article(id="page-content")
-                                //section(id="page-left-side", class="col-lg-2") Left
-                                //article(id="page-content", class="col-lg-8")
-                                //section(id="page-right-side", class="col-lg-2") Right
-            div#push
-        div.container
-            p(class="credit")
-                a(href="http://bankofgiving.com") © Bank of Giving 2014
+        #wrap
+            block content
+                .container(id="page-container")
+        #footer
+            .container.text-center
+                div
+                    | © 2014 Bank of Giving

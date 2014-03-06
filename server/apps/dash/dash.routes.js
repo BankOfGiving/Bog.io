@@ -1,6 +1,6 @@
 module.exports = function (app, express) {
     var path = require('path');
-    var uriBase = '/dash';
+    var base_uri = '/dash';
 
     // Environment specific configs
     var asset_location = 'src';
@@ -15,27 +15,30 @@ module.exports = function (app, express) {
             //asset_location = 'dist';
             break;
     }
+    app.all(base_uri + '/*', function (req, res, next) {
+        if (req.user) {
+            next();
+        } else {
+            res.redirect('/auth/', 401);
+        }
+    });
 
     // Dashboard Static Paths
-    app.use(uriBase + '/', express.static(path.join(__dirname, '../../../client/apps/dash')));
-    app.use(uriBase + '/scripts', express.static(path.join(__dirname, '../../../client/apps/dash/' + asset_location + '/scripts')));
-    app.use(uriBase + '/styles', express.static(path.join(__dirname, '../../../client/apps/dash/' + asset_location + '/styles')));
-    app.use(uriBase + '/templates', express.static(path.join(__dirname, '../../../client/apps/dash/' + asset_location + '/templates')));
+    app.use(base_uri + '/', express.static(path.join(__dirname, '../../../client/apps/dash/' + asset_location + '/')));
+    app.use(base_uri + '/views', express.static(path.join(__dirname, '../../../client/apps/dash/' + asset_location + '/views')));
 
     // Shared Resource Paths
-    app.use(uriBase + '/lib', express.static(path.join(__dirname, '../../../client/lib')));
-    app.use(uriBase + '/img', express.static(path.join(__dirname, '../../../client/img')));
+    app.use(base_uri + '/img', express.static(path.join(__dirname, '../../../client/img')));
+    app.use(base_uri + '/lib', express.static(path.join(__dirname, '../../../client/lib')));
+    app.use(base_uri + '/modules', express.static(path.join(__dirname, '../../../client/mod')));
+    app.use(base_uri + '/styles', express.static(path.join(__dirname, '../../../client/styles')));
 
-    app.get(uriBase + '/', function (req, res) {
+    // View Routes
+    app.get(base_uri + '/', function (req, res) {
         res.render(__dirname + '/views/index', { user: req.user });
     });
 
-    var apiBase = uriBase + '/api';
-
-    // Dashboard Api Routes
-    require('./api/api.routes.events.js')(app, apiBase);
-
-    app.get(apiBase + '/profile', function (req, res) {
-        res.json(200, req.user);
-    });
+    // Api Routes
+    var api_uri = base_uri + '/api';
+    require('./api/api.routes')(app, api_uri);
 };

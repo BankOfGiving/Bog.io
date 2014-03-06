@@ -15,6 +15,7 @@ module.exports = function (grunt) {
         },
         jshint: {
             src_client_admin: 'client/apps/admin/src/**/*.js',
+            src_client_auth: 'client/apps/auth/src/**/*.js',
             src_client_dash: 'client/apps/dash/src/**/*.js',
             src_client_pub: 'client/apps/pub/src/**/*.js',
             src_server: 'server/**/*.js'
@@ -29,22 +30,22 @@ module.exports = function (grunt) {
             },
             'admin': {
                 files: {
-                    "client/apps/admin/src/styles/admin.css": "client/apps/admin/src/styles/*.less"
+                    "client/styles/admin.min.css": "client/apps/admin/src/styles/*.less"
                 }
             },
             'auth': {
                 files: {
-                    "client/apps/auth/src/styles/auth.css": "client/apps/auth/src/styles/*.less"
+                    "client/styles/auth.min.css": "client/apps/auth/src/styles/*.less"
                 }
             },
             'dash': {
                 files: {
-                    "client/apps/dash/src/styles/dash.css": "client/apps/dash/src/styles/*.less"
+                    "client/styles/dash.min.css": "client/apps/dash/src/styles/*.less"
                 }
             },
             'pub': {
                 files: {
-                    "client/apps/pub/src/styles/pub.css": "client/apps/pub/src/styles/*.less"
+                    "client/styles/pub.min.css": "client/apps/pub/src/styles/*.less"
                 }
             }
         },
@@ -52,7 +53,11 @@ module.exports = function (grunt) {
         concat: {
             'pub_bog': {
                 src: 'client/apps/pub/src/lib/bog/*.js',
-                dest: 'client/lib/bog.pub.min.js'
+                dest: 'client/lib/bog/bog.pub.min.js'
+            },
+            'dash_bog': {
+                src: 'client/apps/dash/src/lib/bog/*.js',
+                dest: 'client/lib/bog/bog.dash.min.js'
             }
         },
         uglify: {
@@ -65,7 +70,11 @@ module.exports = function (grunt) {
             },
             'pub_bog': {
                 src: 'client/apps/pub/src/lib/bog/*.js',
-                dest: 'client/lib/bog.pub.min.js'
+                dest: 'client/lib/bog/bog.pub.min.js'
+            },
+            'dash_bog': {
+                src: 'client/apps/dash/src/lib/bog/*.js',
+                dest: 'client/lib/bog/bog.dash.min.js'
             }
         },
         watch: {
@@ -124,7 +133,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('client_pub',
         [
-            'concat:pub_bog',
+            'uglify:pub_bog',
             'htmlhint:src_client_pub',
             'jshint:src_client_pub',
             'less:pub'
@@ -132,8 +141,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('client_auth',
         [
-            //'htmlhint:src_client_auth',
-            //'jshint:src_client_auth',
+            'jshint:src_client_auth',
             'less:auth'
         ]);
 
@@ -146,6 +154,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('client_dash',
         [
+            'uglify:dash_bog',
             'htmlhint:src_client_dash',
             'jshint:src_client_dash',
             'less:dash'

@@ -1,5 +1,5 @@
-define([ 'jquery', 'underscore', 'backbone', 'modules/bog', 'modules/bog.site', 'views/home/landing', 'views/home/home', 'views/shared/header.admin', 'views/donations/donations.list', 'views/donations/donation.detail', 'views/donations/donation.form', 'views/events/events.list', 'views/events/event.detail', 'views/events/event.form', 'views/solicitations/solicitations.list', 'views/solicitations/solicitation.detail', 'views/solicitations/solicitation.form' ],
-    function ($, _, Backbone, bog, site, AdminLandingView, AdminHomeView, AdminHeaderView, DonationsListView, DonationDetailView, DonationFormView, EventsListView, EventDetailView, EventFormView, SolicitationsListView, SolicitationDetailView, SolicitationFormView) {
+define([ 'jquery', 'underscore', 'backbone', 'bog', 'views/home/landing', 'views/home/home', 'views/shared/header.admin', 'views/donations/donations.list', 'views/donations/donation.detail', 'views/donations/donation.form', 'views/events/events.list', 'views/events/event.detail', 'views/events/event.form', 'views/solicitations/solicitations.list', 'views/solicitations/solicitation.detail', 'views/solicitations/solicitation.form' ],
+    function ($, _, Backbone, bog, AdminLandingView, AdminHomeView, AdminHeaderView, DonationsListView, DonationDetailView, DonationFormView, EventsListView, EventDetailView, EventFormView, SolicitationsListView, SolicitationDetailView, SolicitationFormView) {
         var AppRouter = Backbone.Router.extend({
             routes: {
                 '': 'home',

@@ -7693,8 +7693,8 @@ ul.blog-tags a:hover, ul.blog-tags a:hover i {
  */
 @font-face {
     font-family: FontAwesome;
-    src: url(/lib/fontawesome/fonts/fontawesome-webfont.eot?v=3.2.1);
-    src: url(/lib/fontawesome/fonts/fontawesome-webfont.eot?#iefix&v=3.2.1) format('embedded-opentype'), url(/lib/fontawesome/fonts/fontawesome-webfont.woff?v=3.2.1) format('woff'), url(/lib/fontawesome/fonts/fontawesome-webfont.ttf?v=3.2.1) format('truetype'), url(/lib/fontawesome/fonts/fontawesome-webfont.svg#fontawesomeregular?v=3.2.1) format('svg');
+    src: url('/lib/fontawesome/fonts/fontawesome-webfont.eot?v=3.2.1');
+    src: url('/lib/fontawesome/fonts/fontawesome-webfont.eot?#iefix&v=3.2.1') format('embedded-opentype'), url('/lib/fontawesome/fonts/fontawesome-webfont.woff?v=3.2.1') format('woff'), url('/lib/fontawesome/fonts/fontawesome-webfont.ttf?v=3.2.1') format('truetype'), url('/lib/fontawesome/fonts/fontawesome-webfont.svg#fontawesomeregular?v=3.2.1') format('svg');
     font-weight: 400;
     font-style: normal
 }

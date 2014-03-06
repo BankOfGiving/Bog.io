@@ -30,10 +30,10 @@ module.exports = function (app, express) {
             break;
     }
 
-    app.use(base_uri + '/fonts', express.static(path.join(__dirname, '../../../client/apps/fonts')));
-    app.use(base_uri + '/img', express.static(path.join(__dirname, '../../../client/apps/img')));
+    app.use(base_uri + '/img', express.static(path.join(__dirname, '../../../client/img')));
     app.use(base_uri + '/scripts', express.static(path.join(__dirname, '../../../client/apps/auth/' + asset_location + '/scripts')));
-    app.use(base_uri + '/styles', express.static(path.join(__dirname, '../../../client/apps/auth/' + asset_location + '/styles')));
+
+    app.use(base_uri + '/styles', express.static(path.join(__dirname, '../../../client/styles')));
 
     app.get(base_uri + '/', userController.getLogin);
     app.get(base_uri + '/login', userController.getLogin);

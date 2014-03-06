@@ -1,0 +1,12 @@
+<div>
+    <% if(title !== '') { %>
+    <h2><%=title%></h2>
+    <% } else { %>
+    <h2 data-localize-key="module.title" data-localize-target="text"></h2>
+    <% } %>
+    <% if(description !== '') { %>
+    <p><%=description%></p>
+    <% } else { %>
+    <p data-localize-key="module.description" data-localize-target="text"></p>
+    <% } %>
+</div>

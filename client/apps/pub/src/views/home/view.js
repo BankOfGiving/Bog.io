@@ -50,7 +50,6 @@ define([
             },
             render: function () {
                 var self = this;
-                var site = new bog.site();
 
                 // render home layout
                 self.$el.empty();
@@ -81,9 +80,6 @@ define([
                     var left_nav_manifest = new self.module_manifest_template();
                     left_nav_manifest.mod_type = 'nav';
                     left_nav_manifest.uid = 'home_nav_left';
-                    left_nav_manifest.options = {
-                        nav: site.getContentNavigation()
-                    };
                     self.append_module(nav_module, column.modules, left_nav_manifest, function () {
                         // ---------------------------------------------------------------------------------------------
                         var separator_manifest = new self.module_manifest_template();
@@ -143,15 +139,15 @@ define([
                         search_results_placeholder_manifest.options = { };
                         self.append_module(text_module, results_container.results, search_results_placeholder_manifest, function () {
                             // ---------------------------------------------------------------------------------------------
-                            var center_placeholder_manifest = new self.module_manifest_template();
-                            center_placeholder_manifest.mod_type = 'placeholder';
-                            center_placeholder_manifest.uid = 'home_center_placeholder';
-                            center_placeholder_manifest.localize = false;
-                            center_placeholder_manifest.options = {
-                                height: '150',
-                                width: '620'
-                            };
-                            self.append_module(placeholder_module, results_container.results, center_placeholder_manifest);
+                            //var center_placeholder_manifest = new self.module_manifest_template();
+                            //center_placeholder_manifest.mod_type = 'placeholder';
+                            //center_placeholder_manifest.uid = 'home_center_placeholder';
+                            //center_placeholder_manifest.localize = false;
+                            //center_placeholder_manifest.options = {
+                            //  height: '150',
+                            //  width: '620'
+                            //};
+                            //self.append_module(placeholder_module, results_container.results, center_placeholder_manifest);
                         });
                     });
                 });

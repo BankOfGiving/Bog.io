@@ -1,0 +1,49 @@
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="navbar-brand">Bank of Giving</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <!--<li><a href="/auth/contact">Contact</a></li>-->
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
+                            id="current_culture_icon"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a class="culture-switch" data-value="en-US" href="#">en-US</a>
+                        </li>
+                        <li><a class="culture-switch" data-value="es-MX" href="#">es-MX</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <div class="profile-badge">
+                            <% if (module.user.profile.picture) { %>
+                            <img class="profile-image" src="<%=module.user.profile.picture%>"/>
+                            <% } else { %>
+                            <!--img.profile-image(src='#{user.gravatar()}') -->
+                            <% } %>
+                            <%=module.user.profile.name || module.user.email || module.user.id %>&nbsp;
+                            <i class="glyphicon glyphicon-chevron-down"></i>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/dash/" data-localize-key="account.dashboard" data-localize-target="text"></a></li>
+                        <li><a href="/auth/account/" data-localize-key="account.profile"
+                               data-localize-target="text"></a></li>
+                        <li class="divider"></li>
+                        <li><a href="/auth/logout" data-localize-key="account.logout" data-localize-target="text"></a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

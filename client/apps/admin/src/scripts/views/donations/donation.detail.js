@@ -1,5 +1,5 @@
-define(['jquery', 'underscore', 'backbone', 'bootstrap', 'moment', 'modules/bog.site', 'models/model.donation', 'text!../../../templates/donations/donation.detail.html', 'modules/bog.maps'],
-    function ($, _, Backbone, bs, moment, site, DonationModel, DetailTemplate, maps) {
+define(['jquery', 'underscore', 'backbone', 'bootstrap', 'moment', 'bog', 'models/model.donation', 'text!../../../templates/donations/donation.detail.html', 'lib/bog.maps/bog.maps'],
+    function ($, _, Backbone, bs, moment, bog, DonationModel, DetailTemplate, maps) {
         return Backbone.View.extend({
             // TODO:  Move site text to i18n file.
             siteText: {

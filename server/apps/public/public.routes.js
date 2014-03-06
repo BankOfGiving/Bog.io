@@ -17,22 +17,21 @@ module.exports = function (app, express) {
     }
 
     // Public Site Static Paths
-    app.use(base_uri + '/', express.static(path.join(__dirname, '../../../client/apps/pub')));
-    app.use(base_uri + '/app', express.static(path.join(__dirname, '../../../client/apps/pub/' + asset_location + '/app')));
-    app.use(base_uri + '/domain', express.static(path.join(__dirname, '../../../client/apps/pub/' + asset_location + '/domain')));
-    app.use(base_uri + '/modules', express.static(path.join(__dirname, '../../../client/apps/pub/' + asset_location + '/modules')));
-    app.use(base_uri + '/styles', express.static(path.join(__dirname, '../../../client/apps/pub/' + asset_location + '/styles')));
+    app.use(base_uri + '/', express.static(path.join(__dirname, '../../../client/apps/pub/' + asset_location + '/')));
     app.use(base_uri + '/views', express.static(path.join(__dirname, '../../../client/apps/pub/' + asset_location + '/views')));
 
     // Shared Resource Paths
-    app.use(base_uri + '/lib', express.static(path.join(__dirname, '../../../client/lib')));
     app.use(base_uri + '/img', express.static(path.join(__dirname, '../../../client/img')));
+    app.use(base_uri + '/lib', express.static(path.join(__dirname, '../../../client/lib')));
+    app.use(base_uri + '/modules', express.static(path.join(__dirname, '../../../client/mod')));
+    app.use(base_uri + '/styles', express.static(path.join(__dirname, '../../../client/styles')));
 
+    // View Routes
     app.get('/', function (req, res) {
         res.render(__dirname + '/views/index', { title: 'Welcome to the Bank of Giving!!' });
     });
 
-    // Register Api Routes
+    // Api Routes
     var api_uri = base_uri + '/api';
     require('./api/api.routes')(app, api_uri);
 };

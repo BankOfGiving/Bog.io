@@ -1,0 +1,12 @@
+{
+    "module": {
+        "title": "",
+        "description": ""
+    },
+    "account": {
+        "login": "Sign In",
+        "dashboard": "My Dashboard",
+        "profile": "My Account",
+        "logout": "Sign Out"
+    }
+}

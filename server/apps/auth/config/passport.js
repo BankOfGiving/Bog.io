@@ -1,28 +1,15 @@
+var secrets = require('./secrets');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-var OAuthStrategy = require('passport-oauth').OAuthStrategy;
-var OAuth2Strategy = require('passport-oauth').OAuth2Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var TwitterStrategy = require('passport-twitter').Strategy;
 var GitHubStrategy = require('passport-github').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+//var OAuthStrategy = require('passport-oauth').OAuthStrategy;
+//var OAuth2Strategy = require('passport-oauth').OAuth2Strategy;
 
-var User = require('../../../data/models/bog.data.models.user');
+var User = require('../../../data/models/bog.data.models.user.js');
 var _ = require('underscore');
-
-switch (process.env.NODE_ENV) {
-    case 'development':
-        var secrets = require('./secrets-dev');
-        break;
-    case 'staging':
-        var secrets = require('./secrets-stg');
-        break;
-    case 'production':
-        var secrets = require('./secrets');
-        break;
-    default:
-        var secrets = require('./secrets-dev');
-}
 
 passport.serializeUser(function (user, done) {
     done(null, user.id);
@@ -52,9 +39,6 @@ passport.use(new LocalStrategy({ usernameField: 'email' }, function (email, pass
  */
 
 passport.use(new FacebookStrategy(secrets.facebook, function (req, accessToken, refreshToken, profile, done) {
-    console.log('QUERY:  ' + req.query);
-    console.log('USER:  ' + req.user);
-    console.log('RET:  ' + req.query.ret);
     if (req.user) {
         User.findOne({ $or: [
             { facebook: profile.id },
@@ -230,7 +214,8 @@ passport.use(new GoogleStrategy(secrets.google, function (req, accessToken, refr
     }
 }));
 
-passport.use('tumblr', new OAuthStrategy({
+/**
+ passport.use('tumblr', new OAuthStrategy({
         requestTokenURL: 'http://www.tumblr.com/oauth/request_token',
         accessTokenURL: 'http://www.tumblr.com/oauth/access_token',
         userAuthorizationURL: 'http://www.tumblr.com/oauth/authorize',
@@ -239,7 +224,7 @@ passport.use('tumblr', new OAuthStrategy({
         callbackURL: secrets.tumblr.callbackURL,
         passReqToCallback: true
     },
-    function (req, token, tokenSecret, profile, done) {
+ function (req, token, tokenSecret, profile, done) {
         User.findById(req.user._id, function (err, user) {
             user.tokens.push({ kind: 'tumblr', accessToken: token, tokenSecret: tokenSecret });
             user.save(function (err) {
@@ -247,9 +232,9 @@ passport.use('tumblr', new OAuthStrategy({
             });
         });
     }
-));
+ ));
 
-passport.use('foursquare', new OAuth2Strategy({
+ passport.use('foursquare', new OAuth2Strategy({
         authorizationURL: 'https://foursquare.com/oauth2/authorize',
         tokenURL: 'https://foursquare.com/oauth2/access_token',
         clientID: secrets.foursquare.clientId,
@@ -257,7 +242,7 @@ passport.use('foursquare', new OAuth2Strategy({
         callbackURL: secrets.foursquare.redirectUrl,
         passReqToCallback: true
     },
-    function (req, accessToken, refreshToken, profile, done) {
+ function (req, accessToken, refreshToken, profile, done) {
         User.findById(req.user._id, function (err, user) {
             user.tokens.push({ kind: 'foursquare', accessToken: accessToken });
             user.save(function (err) {
@@ -265,7 +250,8 @@ passport.use('foursquare', new OAuth2Strategy({
             });
         });
     }
-));
+ ));
+ */
 
 exports.isAuthenticated = function (req, res, next) {
     if (req.isAuthenticated()) return next();

@@ -9,17 +9,15 @@ html
             meta(name="author", content="")
             meta(name="viewport", content="initial-scale=1.0, user-scalable=no")
             link(rel='stylesheet', type='text/css', href='//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css')
-            //link(rel='stylesheet', type='text/css', href='lib/bootstrap/css/bootable-bootstrap.min.css')
-            //link(rel='stylesheet', type='text/css', href='lib/bootstrap/css/superhero-bootstrap.min.css')
-            link(rel='stylesheet', type='text/css', href='lib/bootstrap/css/unify-bootstrap.css')
-
-            link(rel='stylesheet', type='text/css', href='styles/pub.css')
+            link(rel='stylesheet', type='text/css', href='/styles/pub.min.css')
         block styles
-            script(src="/lib/require.js", data-main="/app/main")
+            script(src="/lib/require/require.js", data-main="/main")
         block scripts
     body
-        div#wrap
-            section(id="page-container")
-        div.container
-            p(class="credit")
-                a(href="http://bankofgiving.com") © Bank of Giving 2014
+        #wrap
+            block content
+                .container(id="page-container")
+        #footer
+            .container.text-center
+                div
+                    | © 2014 Bank of Giving

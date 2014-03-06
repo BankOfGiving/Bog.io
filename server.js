@@ -9,9 +9,9 @@ var express = require('express'),
     path = require('path');
 
 // Configs
-var sessionStore = require('./server/config/db.sessionStore'),
-    db = require('./server/config/db.mongo'),
-    host = require('./server/config/env.host'),
+var sessionStore = require('./server/secrets/db.sessionStore'),
+    db = require('./server/secrets/db.mongo'),
+    host = require('./server/secrets/env.host'),
     MongoStore = require('connect-mongo')(express);
 
 mongoose.connect(db.connectionString);

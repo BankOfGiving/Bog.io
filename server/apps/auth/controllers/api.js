@@ -6,13 +6,7 @@ var request = require('request');
 var _ = require('underscore');
 var graph = require('fbgraph');
 var Twit = require('twit');
-
-var LastFmNode = require('lastfm').LastFmNode;
-var tumblr = require('tumblr.js');
 var Github = require('github-api');
-var foursquare = require('node-foursquare')({ secrets: secrets.foursquare });
-var querystring = require('querystring');
-var paypal = require('paypal-rest-sdk');
 
 /**
  * GET /api

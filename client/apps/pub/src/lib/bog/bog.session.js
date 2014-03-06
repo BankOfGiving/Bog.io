@@ -3,7 +3,7 @@ if (!bog) {
 }
 bog.session = {
     isAuthenticated: function (callback) {
-        $.ajax("auth/api/isAuthenticated", {
+        $.ajax("/auth/api/isAuthenticated", {
             type: "GET",
             dataType: "json",
             complete: function (xhr) {
