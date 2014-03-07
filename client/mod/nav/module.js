@@ -6,11 +6,13 @@ define([ 'module_base', 'text!./mod-nav-vert.html' ], function (mod_base, module
             _.bindAll(self, 'load_view_data');
 
             self.base_initialize(el, o, function () {
-                console.log(1);
                 self.load_view_data(function () {
-                    console.log(2);
-                    self.base_render(module_layout, window.current_culture, function (self) {
-                        console.log(3);
+                    self.base_render(module_layout, window.culture, function () {
+                        var route = Backbone.history.fragment;
+                        var current_nav = self.$el.find('[data-fragment="' + route + '"]');
+                        if (current_nav) {
+                            current_nav.addClass("active");
+                        }
                         if (callback) {
                             callback(self);
                         }
@@ -20,10 +22,7 @@ define([ 'module_base', 'text!./mod-nav-vert.html' ], function (mod_base, module
         },
         load_view_data: function (callback) {
             var self = this;
-
-            console.log(self.api_root + '/' + self.key);
             $.getJSON(self.api_root + '/' + self.key, function (data) {
-                console.log(data);
                 self.manifest.options.nav = data;
             })
                 .done(function () {

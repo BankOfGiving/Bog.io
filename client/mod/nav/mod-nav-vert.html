@@ -1,6 +1,7 @@
 <ul class="nav nav-pills nav-stacked">
     <% _.each(module.nav, function(item) { %>
-    <li class="nav nav-list"><a href="<%= item.link %>" data-localize-key="<%= item.key%>"
-                                data-localize-target="text"></a></li>
+    <li class="nav nav-list" data-fragment="<%= item.link.replace('#/', '') %>"><a href="<%= item.link %>"
+                                                                                   data-localize-key="<%= item.key%>"
+                                                                                   data-localize-target="text"></a></li>
     <% }); %>
 </ul>

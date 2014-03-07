@@ -26,7 +26,9 @@ define([
     function ($, _, Backbone, bs, postal, bog, view_layout, ad_static_module, column_container_module, debug_module, masthead_module, nav_module, placeholder_module, search_form_module, search_result_module, separator_module, social_module, text_module, titlebar_module) {
         return Backbone.View.extend({
             initialize: function () {
-                this.render();
+                var self = this;
+                _.bindAll(self, 'logout');
+                self.render();
             },
             module_manifest_template: function () {
                 return {
@@ -55,12 +57,12 @@ define([
                 // -----------------------------------------------------------------------------------------------------
                 var titlebar_manifest = new self.module_manifest_template();
                 titlebar_manifest.mod_type = 'titlebar';
-                titlebar_manifest.uid = 'titlebar';
+                titlebar_manifest.uid = 'home_titlebar';
                 self.append_module(titlebar_module, '#titlebar', titlebar_manifest);
                 // -----------------------------------------------------------------------------------------------------
                 var masthead_manifest = new self.module_manifest_template();
                 masthead_manifest.mod_type = 'masthead';
-                masthead_manifest.uid = 'home';
+                masthead_manifest.uid = 'home_header';
                 self.append_module(masthead_module, '#masthead', masthead_manifest);
                 // -----------------------------------------------------------------------------------------------------
                 var debug_module_manifest = new self.module_manifest_template();
@@ -72,12 +74,12 @@ define([
                 var left_column_manifest = new self.module_manifest_template();
                 left_column_manifest.mod_type = 'column';
                 left_column_manifest.localize = false;
-                left_column_manifest.uid = 'left-column';
+                left_column_manifest.uid = 'home_left_column';
                 self.append_module(column_container_module, '#column-one', left_column_manifest, function (column) {
                     // -------------------------------------------------------------------------------------------------
                     var left_nav_manifest = new self.module_manifest_template();
                     left_nav_manifest.mod_type = 'nav';
-                    left_nav_manifest.uid = 'nav-left';
+                    left_nav_manifest.uid = 'home_nav_left';
                     self.append_module(nav_module, column.modules, left_nav_manifest, function () {
                         // ---------------------------------------------------------------------------------------------
                         var separator_manifest = new self.module_manifest_template();
@@ -104,7 +106,7 @@ define([
                                     // ---------------------------------------------------------------------------------
                                     var news_module_manifest = new self.module_manifest_template();
                                     news_module_manifest.mod_type = 'text';
-                                    news_module_manifest.uid = 'news-static';
+                                    news_module_manifest.uid = 'home_news';
                                     news_module_manifest.title = 'NEWS!!!';
                                     news_module_manifest.description = 'Static text module';
                                     news_module_manifest.options = {
@@ -124,19 +126,35 @@ define([
                 center_column_manifest.localize = false;
                 center_column_manifest.uid = 'home_center_column';
                 self.append_module(column_container_module, '#column-two', center_column_manifest, function (column) {
+                    // ---------------------------------------------------------------------------------------------
+                    var solicitation_intro_manifest = new self.module_manifest_template();
+                    solicitation_intro_manifest.mod_type = 'text';
+                    solicitation_intro_manifest.uid = 'solicitation_intro';
+                    self.append_module(text_module, column.modules, solicitation_intro_manifest);
                     // -------------------------------------------------------------------------------------------------
-                    var search_results_manifest = new self.module_manifest_template();
-                    search_results_manifest.mod_type = 'search-results-container';
-                    search_results_manifest.uid = 'search-results-all';
-                    search_results_manifest.options = { };
-                    self.append_module(search_result_module, column.modules, search_results_manifest, function (results_container) {
-                        // ---------------------------------------------------------------------------------------------
-                        var search_results_placeholder_manifest = new self.module_manifest_template();
-                        search_results_placeholder_manifest.mod_type = 'text';
-                        search_results_placeholder_manifest.uid = 'search-results-placeholder';
-                        search_results_placeholder_manifest.options = { };
-                        self.append_module(text_module, results_container.results, search_results_placeholder_manifest);
-                    });
+                    /*var search_results_manifest = new self.module_manifest_template();
+                     search_results_manifest.mod_type = 'search-results-container';
+                     search_results_manifest.uid = 'home_search_results';
+                     search_results_manifest.options = { };
+                     self.append_module(search_result_module, column.modules, search_results_manifest, function (results_container) {
+                     // ---------------------------------------------------------------------------------------------
+                     var search_results_placeholder_manifest = new self.module_manifest_template();
+                     search_results_placeholder_manifest.mod_type = 'text';
+                     search_results_placeholder_manifest.uid = 'search_results_placeholder';
+                     search_results_placeholder_manifest.options = { };
+                     self.append_module(text_module, results_container.results, search_results_placeholder_manifest, function () {
+                     // ---------------------------------------------------------------------------------------------
+                     var center_placeholder_manifest = new self.module_manifest_template();
+                     center_placeholder_manifest.mod_type = 'placeholder';
+                     center_placeholder_manifest.uid = 'home_center_placeholder';
+                     center_placeholder_manifest.localize = false;
+                     center_placeholder_manifest.options = {
+                     height: '150',
+                     width: '620'
+                     };
+                     self.append_module(placeholder_module, results_container.results, center_placeholder_manifest);
+                     });
+                     });*/
                 });
                 // -----------------------------------------------------------------------------------------------------
                 // Column three
@@ -144,11 +162,11 @@ define([
                 var right_column_manifest = new self.module_manifest_template();
                 right_column_manifest.mod_type = 'column';
                 right_column_manifest.localize = false;
-                right_column_manifest.uid = 'right-column';
+                right_column_manifest.uid = 'home_right_column';
                 self.append_module(column_container_module, '#column-three', right_column_manifest, function (column) {
                     var search_form_manifest = new self.module_manifest_template();
                     search_form_manifest.mod_type = 'search_form';
-                    search_form_manifest.uid = 'search-form-all';
+                    search_form_manifest.uid = 'home_search_form';
                     search_form_manifest.pubsub.data_channel_id = 'pub';
                     search_form_manifest.pubsub.data_topic = 'search.results.all';
                     search_form_manifest.options = {
@@ -194,6 +212,19 @@ define([
                     data: window.mod_list
                 });
                 return key;
+            },
+            localize: function () {
+                i18n.localizeView(this.$el, 'pub_home');
+            },
+            events: {
+                "click #Logout": "logout"
+            },
+            logout: function () {
+                $.get(api.uri.auth.logout);
+                window.location.href = "/";
+            },
+            load_column: function (manifest) {
+                // Build a loader for column modules
             }
         });
     });

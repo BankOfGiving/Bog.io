@@ -44,11 +44,11 @@ bog.i18n = function () {
     };
 
     var get_culture = function (callback) {
-        if (window.current_culture) {
+        if (window.culture) {
             if (callback) {
-                callback(window.current_culture);
+                callback(window.culture);
             } else {
-                return window.current_culture;
+                return window.culture;
             }
         } else {
             var cache = new bog.cache();
@@ -70,11 +70,11 @@ bog.i18n = function () {
                             return culture;
                         }
                     }).fail(function () {
-                            if (window.current_culture) {
+                            if (window.culture) {
                                 if (callback) {
-                                    callback(window.current_culture);
+                                    callback(window.culture);
                                 } else {
-                                    return window.current_culture;
+                                    return window.culture;
                                 }
                             } else {
                                 if (callback) {
@@ -101,7 +101,7 @@ bog.i18n = function () {
                             loc_channel.publish(key, new_culture);
                         }
                     }
-                    window.current_culture = new_culture;
+                    window.culture = new_culture;
                     var cache = new bog.cache();
                     cache.set_text('current_culture', new_culture);
                 });

@@ -1,5 +1,5 @@
-define([ 'jquery', 'underscore', 'backbone', 'postal', 'bog' ],
-    function ($, _, Backbone, postal, bog) {
+define([ 'jquery', 'underscore', 'backbone', 'postal', 'bog', 'text!./modules/module-wrapper/mod-wrapper.html' ],
+    function ($, _, Backbone, postal, bog, module_wrapper_layout) {
         return Backbone.View.extend({
             api_root: null,
             data_channel: null,
@@ -43,16 +43,15 @@ define([ 'jquery', 'underscore', 'backbone', 'postal', 'bog' ],
                 // Render wrapper div immediately.
                 var mod_wrapper = document.getElementById(self.key);
                 if (mod_wrapper) {
-                    $(mod_wrapper).empty();
+                    mod_wrapper = $(mod_wrapper).empty();
+                    mod_wrapper.html(module_wrapper_layout);
                 } else {
-                    mod_wrapper = document.createElement('div');
-                    mod_wrapper.className = "module-wrapper";
-                    mod_wrapper.id = self.key;
-                    mod_wrapper.setAttribute("data-culture", culture);
+                    mod_wrapper = $(module_wrapper_layout);
                     self.$el.append(mod_wrapper);
                 }
 
-                mod_wrapper.setAttribute("data-culture", culture);
+                mod_wrapper.attr("id", self.key);
+                mod_wrapper.attr("data-culture", culture);
 
                 // Continue loading rest of module.
                 var rendered_template = _.template(template, {
@@ -61,18 +60,30 @@ define([ 'jquery', 'underscore', 'backbone', 'postal', 'bog' ],
                     module: self.manifest.options
                 });
 
+                mod_wrapper.append(rendered_template);
+
                 if (self.manifest.localize) {
                     if (!culture) {
                         culture = self.manifest.culture;
                     }
-                    self.__get_localized_markup(rendered_template, culture, self.key, function (localized_markup) {
-                        $(mod_wrapper).append(localized_markup);
+                    self.__get_localized_markup(mod_wrapper, culture, self.key, function (localized_markup) {
+                        var title_element = $(localized_markup).find('.module-wrapper-title');
+                        var desc_element = $(localized_markup).find('.module-wrapper-description');
+                        if (title_element && title_element.html() !== '') {
+                            title_element.attr('style', 'display: block;');
+                        } else {
+                            title_element.attr('style', 'display: none;');
+                        }
+                        if (desc_element && desc_element.html() !== '') {
+                            desc_element.attr('style', 'display: block;');
+                        } else {
+                            desc_element.attr('style', 'display: none;');
+                        }
                         if (callback) {
-                            callback(mod_wrapper);
+                            callback(localized_markup);
                         }
                     });
                 } else {
-                    $(mod_wrapper).append(rendered_template);
                     if (callback) {
                         callback(mod_wrapper);
                     }
@@ -93,10 +104,11 @@ define([ 'jquery', 'underscore', 'backbone', 'postal', 'bog' ],
                 }
                 return self;
             },
+
             __get_text: function (culture, key, callback) {
                 var self = this;
                 var cache = new bog.cache();
-                var loc_key = culture.replace('-', '_') + '.' + key;
+                var loc_key = culture + '.' + key;
                 cache.get_json(loc_key, function (loc_text) {
                     // 1.  Check local storage for specific text.
                     if (loc_text) {
@@ -156,10 +168,7 @@ define([ 'jquery', 'underscore', 'backbone', 'postal', 'bog' ],
                     i18n.get_culture(function (culture) {   // 'en-US';  // TODO: detect culture
                         if (!culture) {
                             throw 'invalid culture';
-                        } else {
-                            culture = culture.replace('-', '_');
                         }
-
                         self.__get_text(culture, key, function (loc_text) {
                             if (loc_text) {
                                 self.__render_markup(markup, loc_text, function (localized_markup) {
@@ -246,6 +255,7 @@ define([ 'jquery', 'underscore', 'backbone', 'postal', 'bog' ],
             __render_markup: function (markup, l10n_dictionary, callback) {
                 var self = this;
                 var rendered_markup = $(markup);
+                var show_placeholder = false;
                 var placeholder_text = '[][][][][][][][][][][][]';
 
                 $.each(rendered_markup.find("[data-localize-key]"), function (index, element) {
@@ -259,14 +269,14 @@ define([ 'jquery', 'underscore', 'backbone', 'postal', 'bog' ],
                                 if (key_text) {
                                     element.innerText = key_text;
                                 } else {
-                                    element.innerText = placeholder_text;
+                                    if (show_placeholder) element.innerText = placeholder_text;
                                 }
                                 break;
                             case 'html':
                                 if (key_text) {
                                     element.innerHTML = key_text;
                                 } else {
-                                    element.innerHTML = placeholder_text;
+                                    if (show_placeholder) element.innerHTML = placeholder_text;
                                 }
                                 break;
                             case 'form-group':
@@ -275,18 +285,20 @@ define([ 'jquery', 'underscore', 'backbone', 'postal', 'bog' ],
                                 break;
                         }
                     } else {
-                        // show placeholder text
-                        switch (loc_target) {
-                            case 'text':
-                                element.innerText = '[][][][][][][][][][][][]';
-                                break;
-                            case 'html':
-                                element.innerHTML = '[][][][][][][][][][][][]';
-                                break;
-                            case 'form-group':
-                                $(element).children('label').text('[][][][][][][][][][][][]');
-                                $(element).children('input').attr('placeholder', '[][][][][][][][][][][][]');
-                                break;
+                        if (show_placeholder) {
+                            // show placeholder text
+                            switch (loc_target) {
+                                case 'text':
+                                    element.innerText = '[][][][][][][][][][][][]';
+                                    break;
+                                case 'html':
+                                    element.innerHTML = '[][][][][][][][][][][][]';
+                                    break;
+                                case 'form-group':
+                                    $(element).children('label').text('[][][][][][][][][][][][]');
+                                    $(element).children('input').attr('placeholder', '[][][][][][][][][][][][]');
+                                    break;
+                            }
                         }
                     }
                 });

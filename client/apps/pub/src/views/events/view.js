@@ -13,6 +13,7 @@ define([
     'modules/column-container/module',
     'modules/debug/module',
     //'modules/map/module',
+    'modules/map/module',
     'modules/masthead/module',
     'modules/nav/module',
     'modules/placeholder/module',
@@ -23,10 +24,12 @@ define([
     'modules/text/module',
     'modules/titlebar/module'
 ],
-    function ($, _, Backbone, bs, postal, bog, view_layout, ad_static_module, column_container_module, debug_module, masthead_module, nav_module, placeholder_module, search_form_module, search_result_module, separator_module, social_module, text_module, titlebar_module) {
+    function ($, _, Backbone, bs, postal, bog, view_layout, ad_static_module, column_container_module, debug_module, map_module, masthead_module, nav_module, placeholder_module, search_form_module, search_result_module, separator_module, social_module, text_module, titlebar_module) {
         return Backbone.View.extend({
             initialize: function () {
-                this.render();
+                var self = this;
+                _.bindAll(self, 'logout');
+                self.render();
             },
             module_manifest_template: function () {
                 return {
@@ -60,7 +63,7 @@ define([
                 // -----------------------------------------------------------------------------------------------------
                 var masthead_manifest = new self.module_manifest_template();
                 masthead_manifest.mod_type = 'masthead';
-                masthead_manifest.uid = 'home';
+                masthead_manifest.uid = 'events';
                 self.append_module(masthead_module, '#masthead', masthead_manifest);
                 // -----------------------------------------------------------------------------------------------------
                 var debug_module_manifest = new self.module_manifest_template();
@@ -86,7 +89,7 @@ define([
                         self.append_module(separator_module, column.modules, separator_manifest, function () {
                             // -----------------------------------------------------------------------------------------
                             var social_link_manifest = new self.module_manifest_template();
-                            social_link_manifest.mod_type = 'social_links';
+                            social_link_manifest.mod_type = 'social-links';
                             social_link_manifest.localize = false;
                             social_link_manifest.options = {
                                 networks: [
@@ -122,20 +125,26 @@ define([
                 var center_column_manifest = new self.module_manifest_template();
                 center_column_manifest.mod_type = 'column';
                 center_column_manifest.localize = false;
-                center_column_manifest.uid = 'home_center_column';
+                center_column_manifest.uid = 'center-column';
                 self.append_module(column_container_module, '#column-two', center_column_manifest, function (column) {
                     // -------------------------------------------------------------------------------------------------
-                    var search_results_manifest = new self.module_manifest_template();
-                    search_results_manifest.mod_type = 'search-results-container';
-                    search_results_manifest.uid = 'search-results-all';
-                    search_results_manifest.options = { };
-                    self.append_module(search_result_module, column.modules, search_results_manifest, function (results_container) {
-                        // ---------------------------------------------------------------------------------------------
-                        var search_results_placeholder_manifest = new self.module_manifest_template();
-                        search_results_placeholder_manifest.mod_type = 'text';
-                        search_results_placeholder_manifest.uid = 'search-results-placeholder';
-                        search_results_placeholder_manifest.options = { };
-                        self.append_module(text_module, results_container.results, search_results_placeholder_manifest);
+                    var map_manifest = new self.module_manifest_template();
+                    map_manifest.mod_type = 'map';
+                    map_manifest.uid = 'map-events';
+                    map_manifest.localize = false;
+                    map_manifest.pubsub.data_channel_id = 'pub';
+                    map_manifest.pubsub.data_topic = 'search.results.events';
+                    self.append_module(map_module, column.modules, map_manifest, function () {
+                        // -------------------------------------------------------------------------------------------------
+                        var search_form_manifest = new self.module_manifest_template();
+                        search_form_manifest.mod_type = 'search-form';
+                        search_form_manifest.uid = 'search-form-events';
+                        search_form_manifest.pubsub.data_channel_id = 'pub';
+                        search_form_manifest.pubsub.data_topic = 'search.results.events';
+                        search_form_manifest.options = {
+                            orientation: 'horiz'
+                        };
+                        self.append_module(search_form_module, column.modules, search_form_manifest);
                     });
                 });
                 // -----------------------------------------------------------------------------------------------------
@@ -146,30 +155,12 @@ define([
                 right_column_manifest.localize = false;
                 right_column_manifest.uid = 'right-column';
                 self.append_module(column_container_module, '#column-three', right_column_manifest, function (column) {
-                    var search_form_manifest = new self.module_manifest_template();
-                    search_form_manifest.mod_type = 'search_form';
-                    search_form_manifest.uid = 'search-form-all';
-                    search_form_manifest.pubsub.data_channel_id = 'pub';
-                    search_form_manifest.pubsub.data_topic = 'search.results.all';
-                    search_form_manifest.options = {
-                        search_types: [],
-                        orientation: 'vert'
-                    };
-                    self.append_module(search_form_module, column.modules, search_form_manifest, function () {
-                        // -------------------------------------------------------------------------------------------------
-                        var latestinfo_manifest = new self.module_manifest_template();
-                        latestinfo_manifest.mod_type = 'text';
-                        latestinfo_manifest.uid = 'latest_info';
-                        latestinfo_manifest.options = {};
-                        self.append_module(text_module, column.modules, latestinfo_manifest, function () {
-                            // ---------------------------------------------------------------------------------------------
-                            var ads_module_manifest = new self.module_manifest_template();
-                            ads_module_manifest.mod_type = 'ad-static';
-                            ads_module_manifest.uid = 'home_ads_right';
-                            ads_module_manifest.options = {};
-                            self.append_module(ad_static_module, column.modules, ads_module_manifest);
-                        });
-                    });
+                    // -------------------------------------------------------------------------------------------------
+                    var search_results_manifest = new self.module_manifest_template();
+                    search_results_manifest.mod_type = 'search-results-container';
+                    search_results_manifest.uid = 'search-results-all';
+                    search_results_manifest.pubsub.data_topic = 'search.results.events';
+                    self.append_module(search_result_module, column.modules, search_results_manifest);
                 });
                 return this;
             },
@@ -194,6 +185,19 @@ define([
                     data: window.mod_list
                 });
                 return key;
+            },
+            localize: function () {
+                i18n.localizeView(this.$el, 'pub_home');
+            },
+            events: {
+                "click #Logout": "logout"
+            },
+            logout: function () {
+                $.get(api.uri.auth.logout);
+                window.location.href = "/";
+            },
+            load_column: function (manifest) {
+                // Build a loader for column modules
             }
         });
     });

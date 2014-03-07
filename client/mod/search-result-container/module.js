@@ -6,8 +6,8 @@ define([ 'module_base', 'text!./container.html', 'text!./result.html', 'text!./n
             initialize: function (el, o, callback) {
                 var self = this;
                 self.base_initialize(el, o, function () {
-                    self.render(module_layout, window.current_culture, function () {
-                        self.data_channel.subscribe("search.results.all", function (data) {
+                    self.render(module_layout, window.culture, function () {
+                        self.data_channel.subscribe(self.manifest.pubsub.data_topic, function (data) {
                             self.search_results(self.results, data);
                         });
                         if (callback) {

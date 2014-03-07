@@ -3,7 +3,7 @@ define([ 'module_base', 'text!./titlebar.public.html', 'text!./titlebar.auth.htm
         api_root: "/api/mod/titlebar",
         initialize: function (el, o, callback) {
             var self = this;
-            var culture = window.current_culture || 'en-US';
+            var culture = window.culture || 'en-US';
             self.base_initialize(el, o, function () {
                 bog.session.isAuthenticated(function (authenticated, user) {
                     var module_layout;

@@ -4,7 +4,7 @@ if (!bog) {
 bog.i18n = function () {
     var get_module_text = function (culture, key, callback) {
         var cache = new bog.cache();
-        var loc_key = culture.replace('-', '_') + '.' + key;
+        var loc_key = culture + '.' + key;
         cache.get_json(loc_key, function (loc_text) {
             // 1.  Check local storage for specific text.
             if (loc_text) {
@@ -44,11 +44,11 @@ bog.i18n = function () {
     };
 
     var get_culture = function (callback) {
-        if (window.current_culture) {
+        if (window.culture) {
             if (callback) {
-                callback(window.current_culture);
+                callback(window.culture);
             } else {
-                return window.current_culture;
+                return window.culture;
             }
         } else {
             var cache = new bog.cache();
@@ -70,11 +70,11 @@ bog.i18n = function () {
                             return culture;
                         }
                     }).fail(function () {
-                            if (window.current_culture) {
+                            if (window.culture) {
                                 if (callback) {
-                                    callback(window.current_culture);
+                                    callback(window.culture);
                                 } else {
-                                    return window.current_culture;
+                                    return window.culture;
                                 }
                             } else {
                                 if (callback) {
@@ -101,7 +101,7 @@ bog.i18n = function () {
                             loc_channel.publish(key, new_culture);
                         }
                     }
-                    window.current_culture = new_culture;
+                    window.culture = new_culture;
                     var cache = new bog.cache();
                     cache.set_text('current_culture', new_culture);
                 });
@@ -131,8 +131,6 @@ bog.i18n = function () {
             get_culture(function (culture) {   // 'en-US';  // TODO: detect culture
                 if (!culture) {
                     throw 'invalid culture';
-                } else {
-                    culture = culture.replace('-', '_');
                 }
 
                 get_module_text(culture, key, function (loc_text) {
