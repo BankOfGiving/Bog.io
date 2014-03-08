@@ -279,6 +279,10 @@ define([ 'jquery', 'underscore', 'backbone', 'postal', 'bog', 'text!./modules/mo
                                     if (show_placeholder) element.innerHTML = placeholder_text;
                                 }
                                 break;
+                            case 'button':
+                                $(element).text(key_text.label);
+                                $(element).attr('title', key_text.tooltip);
+                                break;
                             case 'form-group':
                                 $(element).children('label').text(key_text.label);
                                 $(element).children('input').attr('placeholder', key_text.placeholder);

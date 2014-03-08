@@ -1,0 +1,11 @@
+{
+    "module": {
+        "title": "Summary",
+        "description": "A summary of available data elements."
+    },
+    "data": {
+        "events": "Events",
+        "donations": "Donations",
+        "solicitations": "Solicitations"
+    }
+}

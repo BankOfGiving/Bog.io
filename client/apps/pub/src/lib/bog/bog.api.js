@@ -3,6 +3,10 @@ if (!bog) {
 }
 bog.api = {
     uri: {
+        base: {
+            pub: '/',
+            dash: '/dash'
+        },
         auth: {
             isAuthenticated: '/auth/api/isauthenticated',
             logout: '/auth/api/logout'

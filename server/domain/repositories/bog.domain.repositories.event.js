@@ -386,6 +386,86 @@ var EventRepository = function (current_user) {
         });
     };
 
+    // Return Single
+    var EmptyModel = function (depth, callback) {
+        depth = parseDepth(depth);
+        if (depth == -1) {
+            callback(self.err.wrap(5003));
+            return;
+        }
+        switch (depth) {
+            case 0:
+                EmptyModelAsList(function (err, item) {
+                    callback(err, item);
+                });
+                return;
+            case 1:
+                EmptyModelAsSimple(function (err, item) {
+                    callback(err, item);
+                });
+                return;
+            case 2:
+                EmptyModelAsDetail(function (err, item) {
+                    callback(err, item);
+                });
+                return;
+            case 3:
+                EmptyModelAsRaw(function (err, item) {
+                    callback(err, item);
+                });
+                return;
+            default:
+                callback(self.err.wrap(1000));
+                return;
+        }
+    };
+    var EmptyModelAsList = function (callback) {
+        var entity = new EventEntity();
+        pushRawSingleToList(entity, function (err, parsed_item) {
+            callback(err, parsed_item);
+        });
+    };
+    var EmptyModelAsSimple = function (callback) {
+        var entity = new EventEntity();
+        pushRawSingleToSimple(entity, function (err, parsed_item) {
+            callback(err, parsed_item);
+        });
+    };
+    var EmptyModelAsDetail = function (callback) {
+        var entity = new EventEntity();
+        pushRawSingleToDetail(entity, function (err, parsed_item) {
+            callback(err, parsed_item);
+        });
+    };
+    var EmptyModelAsRaw = function (id, callback) {
+        if (!isValidObjectID(id)) {
+            callback(self.err.wrap(5001));
+            return;
+        }
+
+        data.findById(id, function (err, entity) {
+            if (err) {
+                callback(self.err.wrap(1001, null, err));
+                return;
+            }
+            if (!entity || entity == {}) {
+                callback(self.err.wrap(5006));
+            } else {
+                self.authorization.userCanPerform(current_user, EventEntity, 'ByIdAsRaw', function (hasAuth) {
+                    if (!hasAuth) {
+                        callback(self.err.wrap(4000));
+                        return;
+                    }
+                    if (err) {
+                        callback(self.err.wrap(1001, null, err));
+                    } else {
+                        callback(null, entity);
+                    }
+                });
+            }
+        });
+    };
+
     // Add / Edit
     var Add = function (input, callback) {
         self.authorization.userCanPerform(current_user, EventEntity, 'Add', function (hasAuth) {
@@ -837,21 +917,22 @@ var EventRepository = function (current_user) {
         all: All,
         filtered: Filtered,
         byId: ById,
+        empty: EmptyModel,
 
-        allAsList: AllAsList,
-        allAsSimple: AllAsSimple,
-        allAsDetail: AllAsDetail,
-        allAsRaw: AllAsRaw,
-
-        filteredAsList: FilteredAsList,
-        filteredAsSimple: FilteredAsSimple,
-        filteredAsDetail: FilteredAsDetail,
-        filteredAsRaw: FilteredAsRaw,
-
-        byIdAsList: ByIdAsList,
-        byIdAsSimple: ByIdAsSimple,
-        byIdAsDetail: ByIdAsDetail,
-        byIdAsRaw: ByIdAsRaw,
+//        allAsList: AllAsList,
+//        allAsSimple: AllAsSimple,
+//        allAsDetail: AllAsDetail,
+//        allAsRaw: AllAsRaw,
+//
+//        filteredAsList: FilteredAsList,
+//        filteredAsSimple: FilteredAsSimple,
+//        filteredAsDetail: FilteredAsDetail,
+//        filteredAsRaw: FilteredAsRaw,
+//
+//        byIdAsList: ByIdAsList,
+//        byIdAsSimple: ByIdAsSimple,
+//        byIdAsDetail: ByIdAsDetail,
+//        byIdAsRaw: ByIdAsRaw,
 
         // Manage Event
         add: Add,

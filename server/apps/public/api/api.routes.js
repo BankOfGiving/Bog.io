@@ -1,13 +1,13 @@
-module.exports = function (app, base_uri) {
+module.exports = function (app, api_uri) {
     var url = require('url');
 
     // CORS
-    app.all(base_uri + '/*', function (req, res, next) {
+    app.all(api_uri + '/*', function (req, res, next) {
         res.header("Access-Control-Allow-Origin", "*");
         res.header("Access-Control-Allow-Headers", "X-Requested-With");
         next();
     });
-    app.get(base_uri + '/culture', function (req, res) {
+    app.get(api_uri + '/culture', function (req, res) {
         // TODO: 1. If user is logged in, check profile.
         // TODO: 2. Return accept-language from header.
         var culture = null;
@@ -21,7 +21,7 @@ module.exports = function (app, base_uri) {
         }
     });
 
-    app.get(base_uri + '/api/auth', function (req, res) {
+    app.get(api_uri + '/auth', function (req, res) {
         var is_auth = req.isAuthenticated();
         if (is_auth) {
             res.json({
@@ -35,7 +35,7 @@ module.exports = function (app, base_uri) {
         }
     });
 
-    var mod_uri = base_uri + '/mod';
+    var mod_uri = api_uri + '/mod';
 
     require('./mod/ad-static/api.routes.mod.ad-static')(app, mod_uri + '/ad-static');
     require('./mod/column/api.routes.mod.column')(app, mod_uri + '/column');

@@ -6,7 +6,7 @@ switch (process.env.NODE_ENV) {
     case 'staging':
         config.env.host = {
             protocol: 'http',
-            uri: '//lnx-ubu-data',
+            uri: '//lnx-ubu-web',
             port: 5000,
             path: '/'
         };

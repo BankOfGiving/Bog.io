@@ -37,12 +37,15 @@ module.exports = function (app, api_uri) {
 
     var mod_uri = api_uri + '/mod';
 
-    require('./mod/ad-static/api.routes.mod.ad-static')(app, mod_uri + '/ad-static');
-    require('./mod/column/api.routes.mod.column')(app, mod_uri + '/column');
-    require('./mod/masthead/api.routes.mod.masthead')(app, mod_uri + '/masthead');
-    require('./mod/nav/api.routes.mod.nav')(app, mod_uri + '/nav');
-    require('./mod/search-form/api.routes.mod.search-form')(app, mod_uri + '/search-form');
-    require('./mod/search-results-container/api.routes.mod.search-results-container')(app, mod_uri + '/search-results-container');
-    require('./mod/text/api.routes.mod.text')(app, mod_uri + '/text');
-    require('./mod/titlebar/api.routes.mod.titlebar')(app, mod_uri + '/titlebar');
+    require('./mod/ad-static/routes')(app, mod_uri + '/ad-static');
+    require('./mod/column/routes')(app, mod_uri + '/column');
+    require('./mod/data-summary/routes')(app, mod_uri + '/data-summary');
+    require('./mod/event-form/routes')(app, mod_uri + '/event-form');
+    require('./mod/markup/routes')(app, mod_uri + '/markup');
+    require('./mod/masthead/routes')(app, mod_uri + '/masthead');
+    require('./mod/nav/routes')(app, mod_uri + '/nav');
+    require('./mod/search-form/routes')(app, mod_uri + '/search-form');
+    require('./mod/search-results-container/routes')(app, mod_uri + '/search-results-container');
+    require('./mod/text/routes')(app, mod_uri + '/text');
+    require('./mod/titlebar/routes')(app, mod_uri + '/titlebar');
 };

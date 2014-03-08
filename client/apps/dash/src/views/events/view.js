@@ -14,6 +14,7 @@ define([
     'modules/data-summary/module',
     'modules/debug/module',
     //'modules/map/module',
+    'modules/markup/module',
     'modules/masthead/module',
     'modules/nav/module',
     'modules/placeholder/module',
@@ -24,7 +25,7 @@ define([
     'modules/text/module',
     'modules/titlebar/module'
 ],
-    function ($, _, Backbone, bs, postal, bog, view_layout, ad_static_module, column_container_module, data_summary_module, debug_module, masthead_module, nav_module, placeholder_module, search_form_module, search_result_module, separator_module, social_module, text_module, titlebar_module) {
+    function ($, _, Backbone, bs, postal, bog, view_layout, ad_static_module, column_container_module, data_summary_module, debug_module, markup_module, masthead_module, nav_module, placeholder_module, search_form_module, search_result_module, separator_module, social_module, text_module, titlebar_module) {
         return Backbone.View.extend({
             initialize: function () {
                 this.render();
@@ -61,7 +62,7 @@ define([
                 // -----------------------------------------------------------------------------------------------------
                 var masthead_manifest = new self.module_manifest_template();
                 masthead_manifest.mod_type = 'masthead';
-                masthead_manifest.uid = 'home';
+                masthead_manifest.uid = 'events';
                 self.append_module(masthead_module, '#masthead', masthead_manifest);
                 // -----------------------------------------------------------------------------------------------------
                 var debug_module_manifest = new self.module_manifest_template();
@@ -116,11 +117,11 @@ define([
                 center_column_manifest.uid = 'center-column';
                 self.append_module(column_container_module, '#column-two', center_column_manifest, function (column) {
                     // -------------------------------------------------------------------------------------------------
-                    var data_summary_manifest = new self.module_manifest_template();
-                    data_summary_manifest.mod_type = 'data-summary';
-                    data_summary_manifest.uid = 'self';
-                    data_summary_manifest.options = { };
-                    self.append_module(data_summary_module, column.modules, data_summary_manifest);
+                    var add_event_intro_manifest = new self.module_manifest_template();
+                    add_event_intro_manifest.mod_type = 'markup';
+                    add_event_intro_manifest.uid = 'add-event-intro';
+                    add_event_intro_manifest.options = { src: "add-event-intro.html"};
+                    self.append_module(markup_module, column.modules, add_event_intro_manifest);
                 });
                 return this;
             },

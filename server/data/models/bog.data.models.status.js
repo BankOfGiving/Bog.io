@@ -1,8 +1,9 @@
-var eventTypeSchema = {
-    value: null,
-    name: null,
-    description: null
-
+var StatusSchema = function () {
+    return {
+        value: null,
+        name: null,
+        description: null
+    };
 };
 
-module.exports = eventTypeSchema;
+module.exports = StatusSchema;

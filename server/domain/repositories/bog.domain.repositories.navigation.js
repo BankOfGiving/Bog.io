@@ -33,6 +33,7 @@ var NavigationRepository = function (current_user) {
         switch (nav_type) {
             default:
                 return [
+                    { link: '#/', label: 'Dashboard', key: 'nav.home', new_window: 'false', class: '' },
                     { link: '#/events', label: 'Events', key: 'nav.events', new_window: 'false', class: '' },
                     { link: '#/donations', label: 'Donations', key: 'nav.donations', new_window: 'false', class: '' },
                     { link: '#/solicitations', label: 'Solicitations', key: 'nav.solicitations', new_window: 'false', class: '' },

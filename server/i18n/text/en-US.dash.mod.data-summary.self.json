@@ -1,0 +1,11 @@
+{
+    "module": {
+        "title": "",
+        "description": ""
+    },
+    "labels": {
+        "events": "Events",
+        "donations": "Donations",
+        "solicitations": "Solicitations"
+    }
+}

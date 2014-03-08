@@ -1,0 +1,106 @@
+{
+    "module": {
+        "title": "",
+        "description": ""
+    },
+    "form": {
+        "sections": {
+            "basic": {
+                "label": "Event Basics",
+                "tooltip": ""
+            },
+            "location": {
+                "label": "Location",
+                "tooltip": ""
+            },
+            "contact": {
+                "label": "Contact Information",
+                "tooltip": ""
+            }
+        },
+        "elements": {
+            "title": {
+                "label": "Title",
+                "placeholder": "Add a descriptive title to attract readers..."
+            },
+            "description": {
+                "label": "Description",
+                "placeholder": "Add the details of your event here.  Examples:  Who to contact for questions? Who would enjoy this event? What should they expect on arrival?  Get creative!!!"
+            },
+            "status": {
+                "label": "Status",
+                "placeholder": ""
+            },
+            "tags": {
+                "label": "Tags",
+                "placeholder": ""
+            },
+            "type": {
+                "label": "Type",
+                "placeholder": ""
+            },
+            "address1": {
+                "label": "Street Address",
+                "placeholder": "123 Main Street"
+            },
+            "city": {
+                "label": "City",
+                "placeholder": "Metropolis"
+            },
+            "state": {
+                "label": "State",
+                "placeholder": "NY"
+            },
+            "postal_code": {
+                "label": "Postal Code",
+                "placeholder": "11111"
+            },
+            "country": {
+                "label": "Country",
+                "placeholder": "US"
+            },
+            "latitude": {
+                "label": "Latitude",
+                "placeholder": ""
+            },
+            "longitude": {
+                "label": "Longitude",
+                "placeholder": ""
+            }
+        },
+        "buttons": {
+            "cancel": {
+                "label": "cancel",
+                "tooltip": ""
+            },
+            "add": {
+                "label": "add",
+                "tooltip": ""
+            },
+            "save": {
+                "label": "save",
+                "tooltip": ""
+            },
+            "delete": {
+                "label": "delete",
+                "tooltip": ""
+            }
+        }
+    },
+    "data": {
+        "lookup": {
+            "event_types": {
+                "food": "Food Distribution",
+                "career_assist": "Career Assistance",
+                "health": "Health & Fitness",
+                "training": "Training & Education",
+                "other": "Other"
+            },
+            "statuses": {
+                "private": "Private",
+                "unlisted": "Unlisted",
+                "public": "Public"
+            }
+        }
+    }
+}

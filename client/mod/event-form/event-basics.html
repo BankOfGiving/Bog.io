@@ -1,53 +1,37 @@
 <fieldset id="Event-Basics">
     <legend></legend>
     <div class="form-group" data-localize-key="form.elements.title" data-localize-target="form-group">
-        <label for="title" class="col-lg-2 control-label"></label>
-
-        <div class="col-lg-8">
-            <input name="title" id="title" class="form-control" placeholder="" data-bind-event="title"
-                   value="<%= event.title %>">
-        </div>
+        <label for="title" class="control-label"></label>
+        <input name="title" id="title" class="form-control" placeholder="" data-bind-event="title"
+               value="<%= event.title %>">
     </div>
     <div class="form-group" data-localize-key="form.elements.description" data-localize-target="form-group">
-        <label for="description" class="col-lg-2 control-label"></label>
-
-        <div class="col-lg-8">
-            <textarea name="description" id="description" class="form-control" data-bind-event="description"
-                      placeholder=""><%= event.description %></textarea>
-        </div>
+        <label for="description" class="control-label"></label>
+        <textarea name="description" id="description" class="form-control" data-bind-event="description" placeholder=""><%=
+            event.description %></textarea>
     </div>
-    <div class="form-group">
-        <label for="status" class="col-lg-2 control-label"></label>
-
-        <div class="btn-group btn-group-justified col-lg-8">
-            <a id="Set-Status-private"
-               class="btn btn-info <% if (event.status == 'private') { print('disabled')} %>">Private</a>
-            <a id="Set-Status-unlisted"
-               class="btn btn-warning <% if (event.status == 'unlisted') { print('disabled')} %>">Unlisted</a>
-            <a id="Set-Status-public"
-               class="btn btn-success <% if (event.status == 'public') { print('disabled')} %>">Public</a>
-            <input name="status" id="status" type="hidden" data-bind-event="status" value="<%= event.status %>">
-        </div>
+    <div class="form-group" data-localize-key="form.elements.status" data-localize-target="form-group">
+        <label for="event_status" class="control-label"></label>
+        <select class="form-control" id="event_status">
+            <% _.each(module.view_data.event_statuses, function(event_status) { %>
+            <option data-localize-key="<%= event_status.key %>" data-localize-target="text"
+                    value="<%= event_status.value %>"></option>
+            <% }); %>
+        </select>
     </div>
-    <div class="form-group">
-        <label for="type" class="col-lg-2 control-label"></label>
-
-        <div class="btn-group btn-group-justified col-lg-8">
-            <select name="type" id="type" data-bind-event="type" class="form-control">
-                <% _.each(eventTypes, function(eventType) { %>
-                <option value="<%= eventType.value %>"
-                        selected="<% if(eventType.value == event.type ) { print('selected') } %>"><%=
-                    eventType.name %>
-                </option>
-                <% }); %>
-            </select>
-        </div>
+    <div class="form-group" data-localize-key="form.elements.type" data-localize-target="form-group">
+        <label for="event_type" class="control-label"></label>
+        <select class="form-control" id="event_type">
+            <% _.each(module.view_data.event_types, function(event_type) { %>
+            <option data-localize-key="<%= event_type.key %>" data-localize-target="text"
+                    value="<%= event_type.value %>"><%= event_type.key %>
+            </option>
+            <% }); %>
+        </select>
     </div>
-    <div class="form-group">
-        <label for="tags" class="col-lg-2 control-label"></label>
-
-        <div class="col-lg-8">
-            <input name="tags" id="tags" class="form-control" placeholder="" data-bind-event="tags" value="">
-        </div>
+    <div class="form-group" data-localize-key="form.elements.tags" data-localize-target="form-group">
+        <label for="tags" class="control-label"></label>
+        <input name="tags" id="tags" class="form-control" placeholder="" data-bind-event="tags" value="">
     </div>
 </fieldset>
+<%= JSON.stringify(module) %>

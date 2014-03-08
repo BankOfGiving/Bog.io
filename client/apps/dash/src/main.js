@@ -5,7 +5,7 @@ requirejs.config({
         main: 'main',
         router: 'router',
 
-        bog: '/lib/bog/bog.dash.min',
+        bog: '/lib/bog/bog.pub.min',
         module_base: 'modules/module-base',
 
         async: '/lib/async/async',

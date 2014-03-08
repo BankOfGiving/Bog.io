@@ -25,6 +25,7 @@ module.exports = function (app, express) {
 
     // Dashboard Static Paths
     app.use(base_uri + '/', express.static(path.join(__dirname, '../../../client/apps/dash/' + asset_location + '/')));
+    app.use(base_uri + '/markup', express.static(path.join(__dirname, '../../../client/apps/dash/' + asset_location + '/markup')));
     app.use(base_uri + '/views', express.static(path.join(__dirname, '../../../client/apps/dash/' + asset_location + '/views')));
 
     // Shared Resource Paths

@@ -4,6 +4,7 @@
         "description": ""
     },
     "nav": {
+        "home": "My Dashboard",
         "events": "My Events",
         "donations": "My Donations",
         "solicitations": "My Solicitations",
