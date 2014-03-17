@@ -24,50 +24,33 @@ define([
             initialize: function (id) {
                 this.render();
             },
-            module_manifest_template: function () {
-                return {
-                    app: 'dash',
-                    mod_type: '',
-                    uid: '',
-                    title: '',
-                    description: '',
-                    culture: '',
-                    localize: true,
-                    pubsub: {
-                        data_channel_id: '',
-                        data_topic: '',
-                        loc_channel_id: '',
-                        loc_topic: ''
-                    },
-                    options: {}
-                };
-            },
             render: function () {
                 var self = this;
+                var mod_util = new bog.modules();
 
                 // render home layout
                 self.$el.empty();
                 self.$el.append(view_layout);
                 // -----------------------------------------------------------------------------------------------------
-                var titlebar_manifest = new self.module_manifest_template();
+                var titlebar_manifest = new mod_util.manifest();
                 titlebar_manifest.mod_type = 'titlebar';
                 titlebar_manifest.uid = 'primary';
                 self.append_module(titlebar_module, '#titlebar', titlebar_manifest);
                 // -----------------------------------------------------------------------------------------------------
-                var masthead_manifest = new self.module_manifest_template();
+                var masthead_manifest = new mod_util.manifest();
                 masthead_manifest.mod_type = 'masthead';
                 masthead_manifest.uid = 'event-add';
                 self.append_module(masthead_module, '#masthead', masthead_manifest);
                 // -----------------------------------------------------------------------------------------------------
                 // Column one
                 // -----------------------------------------------------------------------------------------------------
-                var left_column_manifest = new self.module_manifest_template();
+                var left_column_manifest = new mod_util.manifest();
                 left_column_manifest.mod_type = 'column';
                 left_column_manifest.localize = false;
                 left_column_manifest.uid = 'left';
                 self.append_module(column_container_module, '#column-one', left_column_manifest, function (column) {
                     // -------------------------------------------------------------------------------------------------
-                    var event_form_manifest = new self.module_manifest_template();
+                    var event_form_manifest = new mod_util.manifest();
                     event_form_manifest.mod_type = 'event-form';
                     event_form_manifest.uid = 'event-add';
                     self.append_module(event_form_module, column.modules, event_form_manifest);

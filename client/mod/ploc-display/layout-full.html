@@ -1,0 +1,31 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title" data-localize-key="locations.title" data-localize-target="text"></h3>
+    </div>
+    <div class="panel-body">
+        <% if(_.template.isPopulatedArray(module.event.model.locations_physical)) { %>
+        <% _.each(module.event.model.locations_physical, function(address) { %>
+        <div>
+            <div class="col-lg-9" style="height: 100px">
+                <address data-source="<%=address._id%>"><%=address.street %><br><%=address.city %>, <%=address.state %>
+                    <%=address.postal_code %><br><%=address.country %>
+                </address>
+            </div>
+            <div class="col-lg-3" style="height: 100px"><img src="" height="100" width="100"/></div>
+        </div>
+        <% if(module.editable === 'true') { %>
+        <a id="event-location-edit" type="button" class="btn btn-info btn-xs" data-source="<%=address._id%>"
+           data-localize-key="buttons.edit_location" data-localize-target="link"></a>
+        <a id="event-location-delete" type="button" class="btn btn-danger btn-xs" data-source="<%=address._id%>"
+           data-localize-key="buttons.delete_location" data-localize-target="link"></a>
+        <% } %>
+        <% }); %>
+        <% } else { %>
+        <p class="text-muted" data-localize-key="locations.nodata" data-localize-target="text"></p>
+        <% } %>
+        <% if(module.editable === 'true') {%>
+        <a id="event-location-show" type="button" class="btn btn-info btn-xs pull-right"
+           data-localize-key="buttons.add_location" data-localize-target="link"></a>
+        <% } %>
+    </div>
+</div>

@@ -5,51 +5,9 @@ define([ 'postal', 'module_base', 'text!./layout-full.html', 'text!./event-basic
             initialize: function (el, o, callback) {
                 var self = this;
                 _.bindAll(this, 'load_view_data');
-
                 self.base_initialize(el, o, function () {
-                    /*if(self.manifest.options.layout){
-                     switch (self.manifest.options.layout) {
-                     case 'quick':
-                     break;
-                     case 'full':
-                     break;
-                     case 'wizard':
-                     break;
-                     default:
-                     console.log(1);
-                     require([ 'text!./layout-full.html', 'text!./event-basics.html' ], function(module_template, form_basics){
-                     $(module_template).find('form').append(form_basics);
-                     self.load_view_data(function () {
-                     self.base_render(module_template, window.culture, function (self) {
-                     if (callback) {
-                     callback(self);
-                     }
-                     });
-                     });
-                     });
-                     break
-                     }
-                     } else {*/
                     self.load_view_data(function (data) {
                         self.manifest.options.view_data = data;
-                        console.log(data);
-                        // var event_form_layout = html_decode(($(layout_full).find("form").append(form_basics)).html());
-                        //console.log('layout_full');
-                        //console.log(layout_full.length);
-                        //var form_element = $(layout_full).find("form");
-                        //console.log('form_element');
-                        //console.log(form_element);
-                        //form_element.append(form_basics);
-                        //console.log('form_element');
-                        //console.log(form_element);
-                        //console.log('layout_full.html()');
-                        //console.log(layout_full);
-                        //var event_form = $(layout_full).find("#event-form").append(form_basics);
-                        //console.log('event_form');
-                        //console.log(event_form);
-                        //console.log(event_form.html());
-
-
                         var event_form = $(layout_full);
                         var form_element = event_form.find("form");
                         form_element.append(form_basics);
@@ -60,12 +18,11 @@ define([ 'postal', 'module_base', 'text!./layout-full.html', 'text!./event-basic
                             }
                         });
                     });
-                    /*}*/
                 });
             },
             load_view_data: function (callback) {
                 var self = this;
-                var xhr = $.getJSON(self.api_root + '/' + self.key);
+                var xhr = $.getJSON(self.api_root + '/event/');
                 xhr.done(function (data) {
                     callback(data);
                 }).fail(function () {
@@ -81,10 +38,30 @@ define([ 'postal', 'module_base', 'text!./layout-full.html', 'text!./event-basic
                 history.back();
             },
             save: function () {
+
+                // TODO: To be replaces with proper data binding.
                 var self = this;
-                var frm = self.$el.find("form");
-                var data = JSON.stringify(frm.serializeObject());
-                console.log(data);
+                var form_elements = self.$el.find("form :input");
+                for (var i = 0; i < form_elements.length; i++) {
+                    var el = form_elements[i];
+                    if (el.id) {
+                        self.manifest.options.view_data.event_model[el.id] = el.value;
+                    }
+                }
+                console.log(self.manifest.options.view_data.event_model);
+                $.ajax({
+                    type: "POST",
+                    //contentType: "application/json; charset=utf-8",
+                    url: self.api_root + '/event/',
+                    //dataType: "json",
+                    data: self.manifest.options.view_data.event_model
+                })
+                    .done(function (msg) {
+                        console.log(self.manifest.options.view_data.event_model);
+                        alert("Data Saved: " + msg);
+                    }).fail(function (msg) {
+                        alert("Save failed: " + msg);
+                    });
 //                if (self.model.get("_is_dirty") === false) {
 //                    alert('nothing to save');
 //                  return;

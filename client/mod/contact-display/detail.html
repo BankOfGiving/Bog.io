@@ -1,0 +1,22 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title" data-localize-key="details.title" data-localize-target="text"><%=
+            module.event_model.title %></h3>
+    </div>
+    <div class="panel-body">
+        <table class="table">
+            <tr>
+                <td data-localize-key="details.status" data-localize-target="text"></td>
+                <td><%= module.event_model.status %></td>
+            </tr>
+            <tr>
+                <td data-localize-key="details.type" data-localize-target="text"></td>
+                <td><%= module.event_model.type %></td>
+            </tr>
+            <tr>
+                <td data-localize-key="details.tags" data-localize-target="text"></td>
+                <td><%= module.event_model.tags %></td>
+            </tr>
+        </table>
+    </div>
+</div>

@@ -28,24 +28,24 @@ module.exports = function (grunt) {
                 strictImports: false,
                 yuicompress: true
             },
-            'admin': {
-                files: {
-                    "client/styles/admin.min.css": "client/apps/admin/src/styles/*.less"
-                }
-            },
-            'auth': {
-                files: {
-                    "client/styles/auth.min.css": "client/apps/auth/src/styles/*.less"
-                }
-            },
-            'dash': {
-                files: {
-                    "client/styles/dash.min.css": "client/apps/dash/src/styles/*.less"
-                }
-            },
+//            'admin': {
+//                files: {
+//                    "client/styles/admin.min.css": "client/apps/admin/src/styles/*.less"
+//                }
+//            },
+//            'auth': {
+//                files: {
+//                    "client/styles/auth.min.css": "client/apps/auth/src/styles/*.less"
+//                }
+//            },
+//            'dash': {
+//                files: {
+//                    "client/styles/dash.min.css": "client/apps/dash/src/styles/*.less"
+//                }
+//            },
             'pub': {
                 files: {
-                    "client/styles/pub.min.css": "client/apps/pub/src/styles/*.less"
+                    "client/styles/pub.min.css": "client/apps/pub/src/styles/pub.less"
                 }
             }
         },
@@ -141,23 +141,23 @@ module.exports = function (grunt) {
 
     grunt.registerTask('client_auth',
         [
-            'jshint:src_client_auth',
-            'less:auth'
+            'jshint:src_client_auth'
+            //, 'less:auth'
         ]);
 
     grunt.registerTask('client_admin',
         [
-            'htmlhint:src_client_admin',
-            'jshint:src_client_admin',
-            'less:admin'
+            'htmlhint:src_client_admin'
+            , 'jshint:src_client_admin'
+            //, 'less:admin'
         ]);
 
     grunt.registerTask('client_dash',
         [
             'uglify:dash_bog',
             'htmlhint:src_client_dash',
-            'jshint:src_client_dash',
-            'less:dash'
+            'jshint:src_client_dash'
+            //, 'less:dash'
         ]);
 
     grunt.registerTask('watch', 'watch'); //, 'watch:client');

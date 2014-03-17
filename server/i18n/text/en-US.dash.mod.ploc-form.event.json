@@ -1,0 +1,71 @@
+{
+    "module": {
+        "title": "Event location",
+        "description": "Enter a location for your event."
+    },
+    "form": {
+        "elements": {
+            "street": {
+                "label": "Address",
+                "placeholder": "123 Main Street"
+            },
+            "city": {
+                "label": "City",
+                "placeholder": "Metropolis"
+            },
+            "state": {
+                "label": "State",
+                "placeholder": "New York"
+            },
+            "postal_code": {
+                "label": "Zip",
+                "placeholder": "10001"
+            },
+            "country": {
+                "label": "Country",
+                "placeholder": "USA"
+            },
+            "latitude": {
+                "label": "latitude",
+                "placeholder": "Something fun!"
+            },
+            "longitude": {
+                "label": "longitude",
+                "placeholder": "Something fun!"
+            }
+        },
+        "buttons": {
+            "save": {
+                "label": "Save",
+                "tooltip": "Save"
+            },
+            "delete": {
+                "label": "delete",
+                "tooltip": "Delete"
+            },
+            "cancel": {
+                "label": "Cancel",
+                "tooltip": "Cancel"
+            }
+        }
+    },
+    "validation": {
+        "no-matches": {
+            "title": "No Matches.",
+            "info-message": "We could not locate the address you entered.  Please check the information you've entered and try again."
+        },
+        "partial-match": {
+            "title": "Partial Match",
+            "info-message": "We could not locate an exact match for the address you entered.  Below is the closest address found given the information provided.  Is this correct?"
+        },
+        "multiple-matches": {
+            "title": "Multiple Matches",
+            "info-message": "We could not locate an exact match for the address you entered.  Below are the addresses found given the information provided.  Select the correct address or hit cancel to change the information."
+        },
+        "buttons": {
+            "ok": "Ok",
+            "yes": "Yes",
+            "no": "No"
+        }
+    }
+}

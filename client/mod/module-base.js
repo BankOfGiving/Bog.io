@@ -1,5 +1,5 @@
-define([ 'jquery', 'underscore', 'backbone', 'postal', 'bog', 'text!./modules/module-wrapper/mod-wrapper.html' ],
-    function ($, _, Backbone, postal, bog, module_wrapper_layout) {
+define([ 'jquery', 'underscore', 'backbone', 'moment', 'postal', 'bog', 'text!./modules/module-wrapper/mod-wrapper.html' ],
+    function ($, _, Backbone, moment, postal, bog, module_wrapper_layout) {
         return Backbone.View.extend({
             api_root: null,
             data_channel: null,
@@ -53,6 +53,20 @@ define([ 'jquery', 'underscore', 'backbone', 'postal', 'bog', 'text!./modules/mo
                 mod_wrapper.attr("id", self.key);
                 mod_wrapper.attr("data-culture", culture);
 
+                _.template.formatDateTime = function (date) {
+                    return moment(date).format('MMMM Do YYYY, h:mm:ss a');
+                };
+                _.template.isPopulatedArray = function (o) {
+                    if (o) {
+                        if ($.isArray(o)) {
+                            if (o.length > 0) {
+                                return true;
+                            }
+                        }
+                    }
+                    return false;
+                };
+
                 // Continue loading rest of module.
                 var rendered_template = _.template(template, {
                     title: self.manifest.title,
@@ -75,6 +89,7 @@ define([ 'jquery', 'underscore', 'backbone', 'postal', 'bog', 'text!./modules/mo
                             title_element.attr('style', 'display: none;');
                         }
                         if (desc_element && desc_element.html() !== '') {
+                            console.log('BLOCK');
                             desc_element.attr('style', 'display: block;');
                         } else {
                             desc_element.attr('style', 'display: none;');
@@ -84,6 +99,18 @@ define([ 'jquery', 'underscore', 'backbone', 'postal', 'bog', 'text!./modules/mo
                         }
                     });
                 } else {
+                    var title_element = $(mod_wrapper).find('.module-wrapper-title');
+                    var desc_element = $(mod_wrapper).find('.module-wrapper-description');
+                    if (title_element && title_element.html() !== '') {
+                        title_element.attr('style', 'display: block;');
+                    } else {
+                        title_element.attr('style', 'display: none;');
+                    }
+                    if (desc_element && desc_element.html() !== '') {
+                        desc_element.attr('style', 'display: block;');
+                    } else {
+                        desc_element.attr('style', 'display: none;');
+                    }
                     if (callback) {
                         callback(mod_wrapper);
                     }
@@ -154,7 +181,7 @@ define([ 'jquery', 'underscore', 'backbone', 'postal', 'bog', 'text!./modules/mo
                 if (culture) {
                     self.__get_text(culture, key, function (loc_text) {
                         if (loc_text) {
-                            self.__render_markup(markup, loc_text, function (localized_markup) {
+                            self.__localize_markup(markup, loc_text, function (localized_markup) {
                                 callback(localized_markup);
                             });
                         } else {
@@ -171,7 +198,8 @@ define([ 'jquery', 'underscore', 'backbone', 'postal', 'bog', 'text!./modules/mo
                         }
                         self.__get_text(culture, key, function (loc_text) {
                             if (loc_text) {
-                                self.__render_markup(markup, loc_text, function (localized_markup) {
+                                console.log(loc_text);
+                                self.__localize_markup(markup, loc_text, function (localized_markup) {
                                     callback(localized_markup);
                                 });
                             } else {
@@ -252,7 +280,7 @@ define([ 'jquery', 'underscore', 'backbone', 'postal', 'bog', 'text!./modules/mo
                 }
                 callback();
             },
-            __render_markup: function (markup, l10n_dictionary, callback) {
+            __localize_markup: function (markup, l10n_dictionary, callback) {
                 var self = this;
                 var rendered_markup = $(markup);
                 var show_placeholder = false;
@@ -280,12 +308,33 @@ define([ 'jquery', 'underscore', 'backbone', 'postal', 'bog', 'text!./modules/mo
                                 }
                                 break;
                             case 'button':
-                                $(element).text(key_text.label);
-                                $(element).attr('title', key_text.tooltip);
+                                if (key_text) {
+                                    if (key_text.hasOwnProperty('label') && key_text.hasOwnProperty('tooltip')) {
+                                        $(element).text(key_text.label);
+                                    }
+                                } else {
+                                    if (show_placeholder) element.innerHTML = placeholder_text;
+                                }
+                                break;
+                            case 'link':
+                                if (key_text) {
+                                    if (key_text.hasOwnProperty('label') && key_text.hasOwnProperty('tooltip')) {
+                                        $(element).text(key_text.label);
+                                        $(element).attr('title', key_text.tooltip);
+                                    }
+                                } else {
+                                    if (show_placeholder) element.innerTEXT = placeholder_text;
+                                }
                                 break;
                             case 'form-group':
-                                $(element).children('label').text(key_text.label);
-                                $(element).children('input').attr('placeholder', key_text.placeholder);
+                                if (key_text) {
+                                    if (key_text.hasOwnProperty('label')) {
+                                        $(element).children('label').text(key_text.label);
+                                        $(element).children('input').attr('placeholder', key_text.placeholder);
+                                    }
+                                } else {
+                                    if (show_placeholder) $(element).children('label').text(placeholder_text);
+                                }
                                 break;
                         }
                     } else {
@@ -322,6 +371,14 @@ define([ 'jquery', 'underscore', 'backbone', 'postal', 'bog', 'text!./modules/mo
                 }
 
                 return o;
+            },
+            html_decode: function (str) {
+                return String(str)
+                    .replace(/&amp;/, '&')
+                    .replace(/&quot;/g, '\"')
+                    .replace(/&#39;/g, '\'')
+                    .replace(/&lt;/g, '<')
+                    .replace(/&gt;/g, '>');
             }
         });
     });

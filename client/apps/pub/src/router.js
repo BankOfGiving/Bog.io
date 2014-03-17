@@ -7,22 +7,18 @@ define([
 
     'views/home/view',
     'views/events/view',
-    'views/donations/view',
-    'views/solicitations/view'
-], function ($, _, Backbone, postal, bog, home_view, events_view, donations_view, solicitations_view) {
+    'views/event/view'
+], function ($, _, Backbone, postal, bog, home_view, events_view, event_view) {
     var AppRouter = Backbone.Router.extend({
         routes: {
             '': 'home',
             'events': 'events',
-            'donations': 'donations',
-            'solicitations': 'solicitations',
-
-            // Default
-            '*actions': 'defaultAction'
+            'event/:id': 'event'
         }
     });
 
     var initialize = function () {
+        window.app = 'pub';
         var app_router = new AppRouter();
         var container = $('#page-container');
 
@@ -32,12 +28,10 @@ define([
         app_router.on('route:events', function () {
             new events_view({ el: container });
         });
-        app_router.on('route:donations', function () {
-            new donations_view({ el: container });
+        app_router.on('route:event', function (id) {
+            new event_view({ el: container }, id);
         });
-        app_router.on('route:solicitations', function () {
-            new solicitations_view({ el: container });
-        });
+
 
         app_router.on('route:defaultAction', function (actions) {
             console.log('No route:', actions);

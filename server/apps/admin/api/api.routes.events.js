@@ -36,6 +36,26 @@ module.exports = function (app, uriBase) {
         }
     });
 
+    var returnCollection = function (res, err, coll) {
+        if (err) {
+            var ret_err = err_handler.wrap(1001, null, err);
+            console.log('ERR:  ' + JSON.stringify(ret_err));
+            res.send(500, ret_err);
+        } else {
+            if (!coll || typeof(coll) === 'undefined') {
+                res.json(204, err_handler.wrap(5004));
+                return;
+            }
+            if (coll.length === 0) {
+                res.json(204, err_handler.wrap(5004));
+                return;
+            }
+            if (coll) {
+                res.send(200, coll);
+            }
+        }
+    };
+
     // Model Routes
     var singleUri = uriBase + '/event';
 
@@ -279,25 +299,6 @@ module.exports = function (app, uriBase) {
         });
     });
 
-    var returnCollection = function (res, err, coll) {
-        if (err) {
-            var ret_err = err_handler.wrap(1001, null, err);
-            console.log('ERR:  ' + JSON.stringify(ret_err));
-            res.send(500, ret_err);
-        } else {
-            if (!coll || typeof(coll) === 'undefined') {
-                res.json(204, err_handler.wrap(5004));
-                return;
-            }
-            if (coll.length === 0) {
-                res.json(204, err_handler.wrap(5004));
-                return;
-            }
-            if (coll) {
-                res.send(200, coll);
-            }
-        }
-    };
     var returnSingle = function (res, err, item) {
         if (err) {
             res.json(500, err_handler.wrap(1001, null, err));

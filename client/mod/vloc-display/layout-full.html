@@ -1,0 +1,113 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title" data-localize-key="details.title" data-localize-target="text"><%=
+            module.event.model.title %></h3>
+    </div>
+    <div class="panel-body">
+        <table class="table">
+            <tr>
+                <td data-localize-key="details.status" data-localize-target="text"></td>
+                <td><%= module.event.model.status %></td>
+            </tr>
+            <tr>
+                <td data-localize-key="details.type" data-localize-target="text"></td>
+                <td><%= module.event.model.type %></td>
+            </tr>
+            <tr>
+                <td data-localize-key="details.tags" data-localize-target="text"></td>
+                <td><%= module.event.model.tags %></td>
+            </tr>
+            <tr>
+                <td data-localize-key="details.start" data-localize-target="text"></td>
+                <td><%= _.template.formatDateTime(event.beginAt) %></td>
+            </tr>
+            <tr>
+                <td data-localize-key="details.end" data-localize-target="text"></td>
+                <td><%= _.template.formatDateTime(event.endAt) %></td>
+            </tr>
+        </table>
+        <% if(module.editable === 'true') {%>
+        <a type="button" class="btn btn-info btn-xs pull-right" data-localize-key="buttons.edit_details"
+           data-localize-target="link"></a>
+        <% } %>
+    </div>
+</div>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title" data-localize-key="locations.title" data-localize-target="text"></h3>
+    </div>
+    <div class="panel-body">
+        <% if(_.template.isPopulatedArray(module.event.model.locations_physical)) { %>
+        <% _.each(module.event.model.locations_physical, function(address) { %>
+        <div>
+            <div class="col-lg-9" style="height: 100px">
+                <address data-source="<%=address._id%>"><%=address.street %><br><%=address.city %>, <%=address.state %>
+                    <%=address.postal_code %><br><%=address.country %>
+                </address>
+            </div>
+            <div class="col-lg-3" style="height: 100px"><img src="" height="100" width="100"/></div>
+        </div>
+        <% if(module.editable === 'true') { %>
+        <a id="event-location-edit" type="button" class="btn btn-info btn-xs" data-source="<%=address._id%>"
+           data-localize-key="buttons.edit_location" data-localize-target="link"></a>
+        <a id="event-location-delete" type="button" class="btn btn-danger btn-xs" data-source="<%=address._id%>"
+           data-localize-key="buttons.delete_location" data-localize-target="link"></a>
+        <% } %>
+        <% }); %>
+        <% } else { %>
+        <p class="text-muted" data-localize-key="locations.nodata" data-localize-target="text"></p>
+        <% } %>
+        <% if(module.editable === 'true') {%>
+        <a id="event-location-show" type="button" class="btn btn-info btn-xs pull-right"
+           data-localize-key="buttons.add_location" data-localize-target="link"></a>
+        <% } %>
+    </div>
+</div>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title" data-localize-key="contacts.title" data-localize-target="text"></h3>
+    </div>
+    <div class="panel-body">
+        <% if(_.template.isPopulatedArray(event.contacts_physical)) { %>
+        <address><%= event.address.formatted_address %></address>
+        <% if(module.editable === 'true') {%>
+        <a type="button" class="btn btn-danger btn-xs pull-right" data-localize-key="buttons.delete_contact"
+           data-localize-target="link"></a>
+        <a type="button" class="btn btn-info btn-xs pull-right" data-localize-key="buttons.edit_contact"
+           data-localize-target="link"></a>
+        <% } %>
+        <% } else { %>
+        <p class="text-muted" data-localize-key="contacts.nodata" data-localize-target="text"></p>
+        <% } %>
+        <% if(module.editable === 'true') {%>
+        <a type="button" class="btn btn-info btn-xs pull-right" data-localize-key="buttons.add_contact"
+           data-localize-target="link"></a>
+        <% } %>
+    </div>
+</div>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title" data-localize-key="virtuals.title" data-localize-target="text"></h3>
+    </div>
+    <div class="panel-body">
+        <% if(_.template.isPopulatedArray(event.virtuals_physical)) { %>
+        <address><%= event.address.formatted_address %></address>
+        <% } else { %>
+        <p class="text-muted" data-localize-key="virtuals.nodata" data-localize-target="text"></p>
+        <% } %>
+        <% if(module.editable === 'true') {%>
+        <a type="button" class="btn btn-info btn-xs pull-right" data-localize-key="buttons.add_virtual"
+           data-localize-target="link"></a>
+        <% } %>
+    </div>
+</div>
+
+<div class="modal fade" id="event-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="" id="event-modal-content"></div>
+            </div>
+        </div>
+    </div>
+</div>

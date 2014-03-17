@@ -129,25 +129,6 @@ bog.maps = {
         }
     },
 
-    codeAddress: function (address, callback) {
-        var uri = "http://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&sensor=false";
-        $.getJSON(uri, function (geocode) {
-            console.log(uri);
-            console.log(geocode);
-            if (geocode.results.length === 0) {
-                callback("no results", null, null);
-            }
-            if (geocode.results.length == 1) {
-                console.log('GEOCODE: single result.');
-                var lat = geocode.results[0].geometry.location.lat;
-                var lng = geocode.results[0].geometry.location.lng;
-                callback(null, lat, lng);
-            }
-            if (geocode.results.length > 1) {
-                callback('multiple results.', null, null);
-            }
-        });
-    },
 
     panTo: function (lat, lng) {
         var centerLatLng = new google.maps.LatLng(lat, lng);

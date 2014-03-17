@@ -8,12 +8,18 @@ module.exports = function () {
 
     var WrapForResponse = function (code, alt_msg, inner) {
         var error_node = getErrorNode(code);
-        var error_message = i18n.pullText(error_node.message);
-        var return_error = { error: {
-            code: code,
-            message: error_message,
-            source: arguments.callee.caller.line
+        if (error_node) {
+            var error_message = i18n.pullText(error_node.message);
+        } else {
+            var error_message = 'Fix error translation';
         }
+
+        var return_error = {
+            error: {
+                code: code,
+                message: error_message,
+                source: arguments.callee.caller.line
+            }
         };
         if (inner) {
             return_error.inner = inner;

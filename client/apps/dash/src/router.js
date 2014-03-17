@@ -1,10 +1,13 @@
-define([ 'jquery', 'underscore', 'backbone', 'postal', 'bog', 'views/home/view', 'views/events/view', 'views/event-form/view'
-], function ($, _, Backbone, postal, bog, home_view, events_view, event_form_view) {
+define([ 'jquery', 'underscore', 'backbone', 'postal', 'bog', 'views/home/view', 'views/events/view', 'views/event/view', 'views/event-form/view'
+], function ($, _, Backbone, postal, bog, home_view, events_view, event_view, event_form_view) {
     var AppRouter = Backbone.Router.extend({
         routes: {
             '': 'home',
             'events': 'events',
-            'events/add': 'events_add',
+            'event/add': 'event_add',
+            'event/:id': 'event_view',
+            'event/:id/edit': 'event_edit',
+            'event/:id/delete': 'event_delete',
 
             // Default
             '*actions': 'defaultAction'
@@ -12,6 +15,7 @@ define([ 'jquery', 'underscore', 'backbone', 'postal', 'bog', 'views/home/view',
     });
 
     var initialize = function () {
+        window.app = 'dash';
         var app_router = new AppRouter();
         var container = $('#page-container');
         app_router.on('route:home', function () {
@@ -20,8 +24,17 @@ define([ 'jquery', 'underscore', 'backbone', 'postal', 'bog', 'views/home/view',
         app_router.on('route:events', function () {
             new events_view({ el: container });
         });
-        app_router.on('route:events_add', function () {
+        app_router.on('route:event_add', function () {
             new event_form_view({ el: container });
+        });
+        app_router.on('route:event_edit', function (id) {
+            new event_form_view({ el: container }, id);
+        });
+        app_router.on('route:event_view', function (id) {
+            new event_view({ el: container }, id);
+        });
+        app_router.on('route:event_delete', function (id) {
+            new event_view({ el: container }, id);
         });
         app_router.on('route:defaultAction', function (actions) {
             console.log('No route:', actions);

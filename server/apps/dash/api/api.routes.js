@@ -40,10 +40,12 @@ module.exports = function (app, api_uri) {
     require('./mod/ad-static/routes')(app, mod_uri + '/ad-static');
     require('./mod/column/routes')(app, mod_uri + '/column');
     require('./mod/data-summary/routes')(app, mod_uri + '/data-summary');
+    require('./mod/event-display/routes')(app, mod_uri + '/event-display');
     require('./mod/event-form/routes')(app, mod_uri + '/event-form');
     require('./mod/markup/routes')(app, mod_uri + '/markup');
     require('./mod/masthead/routes')(app, mod_uri + '/masthead');
     require('./mod/nav/routes')(app, mod_uri + '/nav');
+    require('./mod/ploc-form/routes')(app, mod_uri + '/ploc-form');
     require('./mod/search-form/routes')(app, mod_uri + '/search-form');
     require('./mod/search-results-container/routes')(app, mod_uri + '/search-results-container');
     require('./mod/text/routes')(app, mod_uri + '/text');

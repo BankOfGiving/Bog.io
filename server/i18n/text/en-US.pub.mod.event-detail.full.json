@@ -1,0 +1,26 @@
+{
+    "module": {
+        "title": "",
+        "description": ""
+    },
+    "details": {
+        "title": "",
+        "status": "Status",
+        "type": "Type",
+        "tags": "Tags",
+        "start": "Start",
+        "end": "End"
+    },
+    "locations": {
+        "title": "Event Locations",
+        "nodata": "No locations have been added for this event."
+    },
+    "contacts": {
+        "title": "Event Contacts",
+        "nodata": "No contacts have been added for this event."
+    },
+    "virtuals": {
+        "title": "Online Information",
+        "nodata": "No additional online information has been added for this event."
+    }
+}

@@ -40,21 +40,21 @@ define([ 'module_base', 'text!./container.html', 'text!./result.html', 'text!./n
                         console.log(data[i]);
                         var result_markup = _.template(result_layout, {result: data[i]});
                         self.results.append(result_markup);
-                        self.results.append(result_markup);
-                        self.results.append(result_markup);
-                        self.results.append(result_markup);
-                        self.results.append(result_markup);
-                        self.results.append(result_markup);
-                        self.results.append(result_markup);
-                        self.results.append(result_markup);
-                        self.results.append(result_markup);
-                        self.results.append(result_markup);
-                        self.results.append(result_markup);
-                        self.results.append(result_markup);
-                        self.results.append(result_markup);
-                        self.results.append(result_markup);
-                        self.results.append(result_markup);
-                        self.results.append(result_markup);
+//                        self.results.append(result_markup);
+//                        self.results.append(result_markup);
+//                        self.results.append(result_markup);
+//                        self.results.append(result_markup);
+//                        self.results.append(result_markup);
+//                        self.results.append(result_markup);
+//                        self.results.append(result_markup);
+//                        self.results.append(result_markup);
+//                        self.results.append(result_markup);
+//                        self.results.append(result_markup);
+//                        self.results.append(result_markup);
+//                        self.results.append(result_markup);
+//                        self.results.append(result_markup);
+//                        self.results.append(result_markup);
+//                        self.results.append(result_markup);
                         //this.append_module(search_result_module, container, search_result_manifest);
                     }
                 }

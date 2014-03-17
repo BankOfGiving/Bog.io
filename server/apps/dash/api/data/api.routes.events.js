@@ -2,6 +2,8 @@ module.exports = function (app, api_base) {
     var url = require('url');
 
     // modules
+    var EventTypeRepo = require('../../../../domain/repositories/bog.domain.repositories.event.type.js');
+    var EventStatusesRepo = require('../../../../domain/repositories/bog.domain.repositories.status.js');
     var EventRepo = require('../../../../domain/repositories/bog.domain.repositories.event.js');
     var ErrorHandler = require('../../../../bog/bog.errors.js');
 
@@ -38,10 +40,40 @@ module.exports = function (app, api_base) {
     });
 
     // Model Routes
-    var singleUri = api_base + '/event';
+    var single_uri = api_base + '/event';
+
+    app.get(single_uri + '/', function (req, res) {
+        var view_data = {};
+        var eventRepo = new EventRepo();
+        var statusesRepo = new EventStatusesRepo();
+        var typesRepo = new EventTypeRepo();
+
+        eventRepo.empty('detail', function (err, model) {
+            if (err) {
+                res.json(err_handler.wrap(5004));
+            } else {
+                view_data.event_model = model;
+                typesRepo.all(function (err, coll) {
+                    if (err) {
+                        res.json(err_handler.wrap(5004));
+                    } else {
+                        view_data.event_types = coll;
+                        statusesRepo.all(function (err, coll) {
+                            if (err) {
+                                res.json(err_handler.wrap(5004));
+                            } else {
+                                view_data.event_statuses = coll;
+                                res.json(view_data);
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    });
 
     // View Event
-    app.get(singleUri + '/:id', function (req, res) {
+    app.get(single_uri + '/:id', function (req, res) {
         var user = req.user;
         var domainRepo = new EventRepo(user);
         var depth = 3;
@@ -61,11 +93,12 @@ module.exports = function (app, api_base) {
     });
 
     // Add Event
-    app.post(singleUri + '/', function (req, res) {
+    app.post(single_uri + '/', function (req, res) {
         var user = req.user;
         var domainRepo = new EventRepo(user);
 
         var input = req.body;
+        console.log(input);
         if (!input) {
             res.json(500, err_handler.wrap(5004));
             return;
@@ -81,7 +114,7 @@ module.exports = function (app, api_base) {
     });
 
     // Update Event
-    app.put(singleUri + '/:id', function (req, res) {
+    app.put(single_uri + '/:id', function (req, res) {
         var user = req.user;
         var domainRepo = new EventRepo(user);
         var id = req.params.id;
@@ -105,7 +138,7 @@ module.exports = function (app, api_base) {
     });
 
     // Delete Event
-    app.delete(singleUri + '/:id', function (req, res) {
+    app.delete(single_uri + '/:id', function (req, res) {
         var user = req.user;
         var domainRepo = new EventRepo(user);
 
@@ -123,7 +156,7 @@ module.exports = function (app, api_base) {
             res.json(200, result);
         });
     });
-    app.delete(singleUri + '/', function (req, res) {
+    app.delete(single_uri + '/', function (req, res) {
         var user = req.user;
         var domainRepo = new EventRepo(user);
 
@@ -147,9 +180,8 @@ module.exports = function (app, api_base) {
         });
     });
 
-
     // Get All Locations for Event
-    app.get(singleUri + '/:eventid/ploc/', function (req, res) {
+    app.get(single_uri + '/:eventid/ploc/', function (req, res) {
         var user = req.user;
         var domainRepo = new EventRepo(user);
 
@@ -170,7 +202,7 @@ module.exports = function (app, api_base) {
         });
     });
     // Single Physical Location
-    app.get(singleUri + '/:eventid/ploc/:locid', function (req, res) {
+    app.get(single_uri + '/:eventid/ploc/:locid', function (req, res) {
         var user = req.user;
         var domainRepo = new EventRepo(user);
 
@@ -196,7 +228,7 @@ module.exports = function (app, api_base) {
         });
     });
     // Add Physical Location
-    app.post(singleUri + '/:eventid/ploc/', function (req, res) {
+    app.post(single_uri + '/:eventid/ploc/', function (req, res) {
         var user = req.user;
         var domainRepo = new EventRepo(user);
 
@@ -219,7 +251,7 @@ module.exports = function (app, api_base) {
         });
     });
     // Update Physical Location
-    app.put(singleUri + '/:eventid/ploc/:locid', function (req, res) {
+    app.put(single_uri + '/:eventid/ploc/:locid', function (req, res) {
         var user = req.user;
         var domainRepo = new EventRepo(user);
 
@@ -247,7 +279,7 @@ module.exports = function (app, api_base) {
         });
     });
     // Delete Physical Location
-    app.delete(singleUri + '/:eventid/ploc/:locid', function (req, res) {
+    app.delete(single_uri + '/:eventid/ploc/:locid', function (req, res) {
         var user = req.user;
         var domainRepo = new EventRepo(user);
 

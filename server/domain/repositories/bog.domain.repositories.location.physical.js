@@ -357,14 +357,14 @@ var PhysicalLocationRepository = function (current_user) {
                     callback(err, false);
                 } else {
                     callback(null, populated_entity);
-//                    data.add(populated_entity, function(err, saved_entity){
-//                        if(err){
-//                            callback(err, null);
-//                        } else {
-//                            //AddAuditEntry(saved_entity, 'Update', current_user);
-//                            callback(null, saved_entity);
-//                        }
-//                    });
+                    data.add(populated_entity, function (err, saved_entity) {
+                        if (err) {
+                            callback(err, null);
+                        } else {
+                            //AddAuditEntry(saved_entity, 'Update', current_user);
+                            callback(null, saved_entity);
+                        }
+                    });
                 }
             });
         });
@@ -517,11 +517,12 @@ var PhysicalLocationRepository = function (current_user) {
     };
 
     var verify = function (location, callback) { //callback(err, verified, result)
-        var GeoCoding = require('../../modules/bog.geocoding');
+        var GeoCoding = require('../../bog/bog.geocoding');
         var geo = new GeoCoding();
 
         serializeAddress(location, function (serialized_location) {
             geo.code(serialized_location, function (geocode) {
+                console.log(geocode);
                 if (geocode.results.length === 0) {
                     callback(self.err.wrap(400, 'Address Verification failed.  No match found.'), false);
                     return;
@@ -531,7 +532,7 @@ var PhysicalLocationRepository = function (current_user) {
                     return;
                 }
                 if (geocode.status != 'OK') {
-                    callback(self.err.wrap(400, 'Address Verification failed.  Invalid return staus: ' + geocode.status), false);
+                    callback(self.err.wrap(400, 'Address Verification failed.  Invalid return status: ' + geocode.status), false);
                     console.log("status:  " + geocode.status);
                     return;
                 }

@@ -1,0 +1,62 @@
+<div>
+    <div class="well" id="ploc-form-container">
+        <form id="ploc-form" class="form-horizontal">
+
+        </form>
+        <div class="btn-group">
+            <button id="ploc-button-cancel" name="cancel" class="btn navbar-btn"
+                    data-localize-key="form.buttons.cancel" data-localize-target="button"></button>
+            <button id="ploc-button-save" name="save" class="btn btn-primary navbar-btn"
+                    data-localize-key="form.buttons.save" data-localize-target="button"></button>
+            <button id="ploc-button-delete" name="delete" class="btn btn-danger navbar-btn"
+                    data-localize-key="form.buttons.delete" data-localize-target="button"></button>
+        </div>
+    </div>
+
+    <div class="panel panel-info" style="display: none;" id="ploc-validation-container">
+        <div class="" id="ploc-nomatches-content" style="display: none;">
+            <div class="panel-heading">
+                <p class="panel-title" data-localize-key="validation.no-matches.title" data-localize-target="text"></p>
+            </div>
+            <div class="panel-body">
+                <p data-localize-key="validation.no-matches.info-message" data-localize-target="text"></p>
+                <address></address>
+            </div>
+            <div class="panel-footer">
+                <button id="ploc-no-matches-ok" data-localize-key="validation.buttons.ok" data-localize-target="text"
+                        class="btn btn-info"></button>
+            </div>
+        </div>
+        <div class="" id="ploc-multiplematches-content" style="display: none;">
+            <div class="panel-heading">
+                <p class="panel-title" data-localize-key="validation.multiple-matches.title"
+                   data-localize-target="text"></p>
+            </div>
+            <div class="panel-body">
+                <p data-localize-key="validation.multiple-matches.info-message" data-localize-target="text"></p>
+                <address></address>
+            </div>
+            <div class="panel-footer">
+                <button id="ploc-multiple-matches-ok" data-localize-key="validation.buttons.ok"
+                        data-localize-target="text" class="btn btn-info"></button>
+            </div>
+        </div>
+        <div class="" id="ploc-partialmatch-content" style="display: none;">
+            <div class="panel-heading">
+                <p class="panel-title" data-localize-key="validation.partial-match.title"
+                   data-localize-target="text"></p>
+            </div>
+            <div class="panel-body">
+                <p data-localize-key="validation.partial-match.info-message" data-localize-target="text"></p>
+                <address></address>
+            </div>
+            <div class="panel-footer">
+                <button id="ploc-partial-match-yes" data-localize-key="validation.buttons.yes"
+                        data-localize-target="text" class="btn btn-info"></button>
+                <button id="ploc-partial-match-no" data-localize-key="validation.buttons.no" data-localize-target="text"
+                        class="btn btn-info"></button>
+            </div>
+        </div>
+        <div class="" id="ploc-validation-content" style="display: none;"></div>
+    </div>
+</div>

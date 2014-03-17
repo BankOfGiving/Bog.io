@@ -27,108 +27,90 @@ define([
     function ($, _, Backbone, bs, postal, bog, view_layout, ad_static_module, column_container_module, debug_module, map_module, masthead_module, nav_module, placeholder_module, search_form_module, search_result_module, separator_module, social_module, text_module, titlebar_module) {
         return Backbone.View.extend({
             initialize: function () {
-                var self = this;
-                _.bindAll(self, 'logout');
-                self.render();
-            },
-            module_manifest_template: function () {
-                return {
-                    app: 'pub',
-                    mod_type: '',
-                    uid: '',
-                    title: '',
-                    description: '',
-                    culture: '',
-                    localize: true,
-                    pubsub: {
-                        data_channel_id: '',
-                        data_topic: '',
-                        loc_channel_id: '',
-                        loc_topic: ''
-                    },
-                    options: {}
-                };
+                this.render();
             },
             render: function () {
                 var self = this;
+
+                var modules = new bog.modules();
 
                 // render home layout
                 self.$el.empty();
                 self.$el.append(view_layout);
                 // -----------------------------------------------------------------------------------------------------
-                var titlebar_manifest = new self.module_manifest_template();
+                var titlebar_manifest = new mod_util.manifest();
                 titlebar_manifest.mod_type = 'titlebar';
                 titlebar_manifest.uid = 'titlebar';
                 self.append_module(titlebar_module, '#titlebar', titlebar_manifest);
                 // -----------------------------------------------------------------------------------------------------
-                var masthead_manifest = new self.module_manifest_template();
+                var masthead_manifest = new mod_util.manifest();
                 masthead_manifest.mod_type = 'masthead';
                 masthead_manifest.uid = 'events';
                 self.append_module(masthead_module, '#masthead', masthead_manifest);
                 // -----------------------------------------------------------------------------------------------------
-                var debug_module_manifest = new self.module_manifest_template();
+                var debug_module_manifest = new mod_util.manifest();
                 debug_module_manifest.mod_type = 'debug';
                 self.append_module(debug_module, '#debug', debug_module_manifest);
                 // -----------------------------------------------------------------------------------------------------
                 // Column one
                 // -----------------------------------------------------------------------------------------------------
-                var left_column_manifest = new self.module_manifest_template();
+                var left_column_manifest = new mod_util.manifest();
                 left_column_manifest.mod_type = 'column';
                 left_column_manifest.localize = false;
                 left_column_manifest.uid = 'left-column';
                 self.append_module(column_container_module, '#column-one', left_column_manifest, function (column) {
                     // -------------------------------------------------------------------------------------------------
-                    var left_nav_manifest = new self.module_manifest_template();
+                    var left_nav_manifest = new mod_util.manifest();
                     left_nav_manifest.mod_type = 'nav';
                     left_nav_manifest.uid = 'nav-left';
                     self.append_module(nav_module, column.modules, left_nav_manifest, function () {
                         // ---------------------------------------------------------------------------------------------
-                        var separator_manifest = new self.module_manifest_template();
-                        separator_manifest.localize = false;
-                        separator_manifest.mod_type = 'separator';
-                        self.append_module(separator_module, column.modules, separator_manifest, function () {
-                            // -----------------------------------------------------------------------------------------
-                            var social_link_manifest = new self.module_manifest_template();
-                            social_link_manifest.mod_type = 'social-links';
-                            social_link_manifest.localize = false;
-                            social_link_manifest.options = {
-                                networks: [
-                                    { type: 'facebook', uri: '', icon: '' },
-                                    { type: 'twitter', uri: '', icon: '' },
-                                    { type: 'linkedin', uri: '', icon: '' },
-                                    { type: 'pinterest', uri: '', icon: '' }
-                                ]
-                            };
-                            self.append_module(social_module, column.modules, social_link_manifest, function () {
-                                var separator_manifest = new self.module_manifest_template();
-                                separator_manifest.localize = false;
-                                separator_manifest.mod_type = 'separator';
-                                self.append_module(separator_module, column.modules, separator_manifest, function () {
-                                    // ---------------------------------------------------------------------------------
-                                    var news_module_manifest = new self.module_manifest_template();
-                                    news_module_manifest.mod_type = 'text';
-                                    news_module_manifest.uid = 'news-static';
-                                    news_module_manifest.title = 'NEWS!!!';
-                                    news_module_manifest.description = 'Static text module';
-                                    news_module_manifest.options = {
-                                        text: 'This is an example of overriding text with the manifest.'
-                                    };
-                                    self.append_module(text_module, column.modules, news_module_manifest);
-                                });
-                            });
-                        });
+//                        var separator_manifest = new mod_util.manifest();
+//                        separator_manifest.localize = false;
+//                        separator_manifest.mod_type = 'separator';
+//                        self.append_module(separator_module, column.modules, separator_manifest, function () {
+//                            // -----------------------------------------------------------------------------------------
+//                            var social_link_manifest = new mod_util.manifest();
+//                            social_link_manifest.mod_type = 'social-links';
+//                            social_link_manifest.localize = false;
+//                            social_link_manifest.options = {
+//                                networks: [
+//                                    { type: 'facebook', uri: '', icon: '' },
+//                                    { type: 'twitter', uri: '', icon: '' },
+//                                    { type: 'linkedin', uri: '', icon: '' },
+//                                    { type: 'pinterest', uri: '', icon: '' }
+//                                ]
+//                            };
+//                            self.append_module(social_module, column.modules, social_link_manifest, function () {
+//                                var separator_manifest = new mod_util.manifest();
+//                                separator_manifest.localize = false;
+//                                separator_manifest.mod_type = 'separator';
+//                                self.append_module(separator_module, column.modules, separator_manifest, function () {
+//                                    // ---------------------------------------------------------------------------------
+//                                    var news_module_manifest = new mod_util.manifest();
+//                                    news_module_manifest.mod_type = 'text';
+//                                    news_module_manifest.uid = 'news-static';
+//                                    news_module_manifest.title = 'NEWS!!!';
+//                                    news_module_manifest.description = 'Static text module';
+//                                    news_module_manifest.options = {
+//                                        text: 'This is an example of overriding text with the manifest.'
+//                                    };
+//                                    self.append_module(text_module, column.modules, news_module_manifest);
+//                                });
+//                            });
+//                        });
                     });
                 });
                 // -----------------------------------------------------------------------------------------------------
                 // Column two
                 // -----------------------------------------------------------------------------------------------------
-                var center_column_manifest = new self.module_manifest_template();
+                var center_column_manifest = new mod_util.manifest();
                 center_column_manifest.mod_type = 'column';
                 center_column_manifest.localize = false;
                 center_column_manifest.uid = 'center-column';
                 self.append_module(column_container_module, '#column-two', center_column_manifest, function (column) {
                     // -------------------------------------------------------------------------------------------------
-                    var map_manifest = new self.module_manifest_template();
+                    var map_manifest = new mod_util.manifest();
                     map_manifest.mod_type = 'map';
                     map_manifest.uid = 'map-events';
                     map_manifest.localize = false;
@@ -136,7 +118,7 @@ define([
                     map_manifest.pubsub.data_topic = 'search.results.events';
                     self.append_module(map_module, column.modules, map_manifest, function () {
                         // -------------------------------------------------------------------------------------------------
-                        var search_form_manifest = new self.module_manifest_template();
+                        var search_form_manifest = new mod_util.manifest();
                         search_form_manifest.mod_type = 'search-form';
                         search_form_manifest.uid = 'search-form-events';
                         search_form_manifest.pubsub.data_channel_id = 'pub';
@@ -150,13 +132,13 @@ define([
                 // -----------------------------------------------------------------------------------------------------
                 // Column three
                 // -----------------------------------------------------------------------------------------------------
-                var right_column_manifest = new self.module_manifest_template();
+                var right_column_manifest = new mod_util.manifest();
                 right_column_manifest.mod_type = 'column';
                 right_column_manifest.localize = false;
                 right_column_manifest.uid = 'right-column';
                 self.append_module(column_container_module, '#column-three', right_column_manifest, function (column) {
                     // -------------------------------------------------------------------------------------------------
-                    var search_results_manifest = new self.module_manifest_template();
+                    var search_results_manifest = new mod_util.manifest();
                     search_results_manifest.mod_type = 'search-results-container';
                     search_results_manifest.uid = 'search-results-all';
                     search_results_manifest.pubsub.data_topic = 'search.results.events';

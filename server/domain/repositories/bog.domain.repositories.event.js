@@ -132,7 +132,7 @@ var EventRepository = function (current_user) {
             callback(self.err.wrap(5003));
             return;
         }
-
+        console.log(filter);
         switch (depth) {
             case 0:
                 FilteredAsList(filter, function (err, coll) {
@@ -364,6 +364,7 @@ var EventRepository = function (current_user) {
         }
 
         data.findById(id, function (err, entity) {
+            console.log(entity);
             if (err) {
                 callback(self.err.wrap(1001, null, err));
                 return;

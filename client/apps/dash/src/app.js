@@ -2,7 +2,9 @@ define([ 'jquery', 'underscore', 'backbone', 'router', 'bog'],
     function ($, _, Backbone, router, bog) {
         var initialize = function () {
             $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
-                options.url = bog.api.uri.base.dash + options.url;
+                if (options.url.indexOf('://') === -1) {
+                    options.url = bog.api.uri.base.dash + options.url;
+                }
             });
             $.fn.serializeObject = function () {
                 var o = {};
