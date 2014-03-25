@@ -31,12 +31,9 @@ define([
         app_router.on('route:event', function (id) {
             new event_view({ el: container }, id);
         });
-
-
         app_router.on('route:defaultAction', function (actions) {
             console.log('No route:', actions);
         });
-
         Backbone.history.start();
 
     };

@@ -134,6 +134,7 @@ define([ 'jquery', 'underscore', 'backbone', 'moment', 'postal', 'bog', 'text!./
 
             __get_text: function (culture, key, callback) {
                 var self = this;
+                console.log('self.api_root:  ' + self.api_root);
                 var cache = new bog.cache();
                 var loc_key = culture + '.' + key;
                 cache.get_json(loc_key, function (loc_text) {

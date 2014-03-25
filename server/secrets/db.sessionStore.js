@@ -7,7 +7,7 @@ switch (process.env.NODE_ENV) {
         config.db.sessionStore = {
             db: {
                 db: 'bog',
-                host: 'lnx-ubu-data',
+                host: '192.168.1.30',
                 port: '27017',
                 collection: 'SessionStore',  // optional, default: sessions
                 "options": { // all optional

@@ -5,9 +5,9 @@ if (!config) {
 switch (process.env.NODE_ENV) {
     case 'staging':
         config.db.mongo = {
-            host: 'lnx-ubu-data',
+            host: '192.168.1.30',
             port: '27017',
-            connectionString: 'mongodb://lnx-ubu-data:27017/bog'
+            connectionString: 'mongodb://192.168.1.30:27017/bog'
         };
         break;
     case 'production':
