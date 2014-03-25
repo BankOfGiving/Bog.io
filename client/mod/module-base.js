@@ -133,7 +133,6 @@ define([ 'jquery', 'underscore', 'backbone', 'moment', 'postal', 'bog', 'text!./
 
             __get_text: function (culture, key, callback) {
                 var self = this;
-                console.log('self.api_root:  ' + self.api_root);
                 var cache = new bog.cache();
                 var loc_key = culture + '.' + key;
                 cache.get_json(loc_key, function (loc_text) {
@@ -261,7 +260,9 @@ define([ 'jquery', 'underscore', 'backbone', 'moment', 'postal', 'bog', 'text!./
                 if (!manifest.uid && manifest.uid !== '') {
                     throw 'Invalid module type specified.';
                 }
-
+                if (!self.api_root && manifest.api_root) {
+                    throw 'Invalid api root or not api root specified.';
+                }
                 self.manifest = manifest;
                 self.app = self.manifest.app;
                 self.mod_type = self.manifest.mod_type;

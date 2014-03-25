@@ -3,7 +3,7 @@ module.exports = function () {
     var Logger = require('../../bog/bog.logging');
 
     var mongoose = require('mongoose');
-    var db = require('../../secrets/db.mongo');
+    var db = require('../../../secrets/db.mongo');
 
     mongoose.createConnection(db.connectionString);
 
