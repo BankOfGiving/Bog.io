@@ -89,7 +89,6 @@ define([ 'jquery', 'underscore', 'backbone', 'moment', 'postal', 'bog', 'text!./
                             title_element.attr('style', 'display: none;');
                         }
                         if (desc_element && desc_element.html() !== '') {
-                            console.log('BLOCK');
                             desc_element.attr('style', 'display: block;');
                         } else {
                             desc_element.attr('style', 'display: none;');
@@ -199,7 +198,6 @@ define([ 'jquery', 'underscore', 'backbone', 'moment', 'postal', 'bog', 'text!./
                         }
                         self.__get_text(culture, key, function (loc_text) {
                             if (loc_text) {
-                                console.log(loc_text);
                                 self.__localize_markup(markup, loc_text, function (localized_markup) {
                                     callback(localized_markup);
                                 });

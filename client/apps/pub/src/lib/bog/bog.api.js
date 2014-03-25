@@ -4,7 +4,7 @@ if (!bog) {
 bog.api = {
     uri: {
         base: {
-            pub: '/',
+            pub: '',
             dash: '/dash'
         },
         auth: {
