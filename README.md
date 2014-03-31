@@ -14,9 +14,8 @@ Table of Contents
 - [Data Layer](#overview-dal)
 - [Build and Deployment](#overview-ci)
 
-Apps
+[Apps](#app-overview)
 -------------
-(#app-overview)
 The "applications" in this project represent independently functional units that come together to make up an "enterprise style" system.  Each app is designed to be updated, removed, or replaced without impacting the rest of the system.
 
 
