@@ -18,8 +18,7 @@ Table of Contents
 -------------
 The "applications" in this project represent independently functional units that come together to make up an "enterprise style" system.  Each app is designed to be updated, removed, or replaced without impacting the rest of the system.
 
-
-* Public
+* [Public](#app-public)
 The Public app consists of several module pages which return publicly available information.  The
 * Auth
 The core concept for this app was taken from the [Hackathon Starter](https://github.com/sahat/hackathon-starter) project.
