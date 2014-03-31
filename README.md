@@ -20,11 +20,14 @@ Table of Contents
 ## Apps <a id="app-overview"></a>
 The "applications" in this project represent independently functional units that come together to make up an "enterprise style" system.  Each app is designed to be updated, removed, or replaced without impacting the rest of the system.
 
-# Public<a id="app-public"></a>
+Public<a id="app-public"></a>
+===
 The Public app consists of several module pages which return publicly available information.  The
-# Auth<a id="app-auth"></a>
+Auth<a id="app-auth"></a>
+---
 The core concept for this app was taken from the [Hackathon Starter](https://github.com/sahat/hackathon-starter) project.
-# Dashboard<a id="app-dash"></a>
+Dashboard<a id="app-dash"></a>
+
 
 # Admin<a id="app-admin"></a>
     *Coming soon!*
