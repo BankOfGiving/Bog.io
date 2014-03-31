@@ -33,33 +33,17 @@ _Coming soon!_
 The API layer is application and module specific.  It is designed to be nothing more than a thin gateway allowing access to hidden domain logic.  Each client app has a corresponding server app.  The server app hosts only the api calls that are allowed to that application and implements basic authorization checks where necessary.
 
 ##Modules
----
+Much of the client interface is broken into two portions:  View Templates and Modules
+
+Modules are a single unit of functionality that can be used multiple times on a single view.
+
 The module concept consists of a few basic parts:
   - Module Base Class
   - Manifest
   - Api
 The modules derive from a "module base"
 
-##CLIENT
+##I18N
+Each module in each view generates a unique key that identifies it on the server.  This key is used to retrieve the specific text in the desired language for that module.  If client-side caching is enabled, the text will be stored in browser local storage for 24 hours.
 
-####Frameworks
-
-* Lib
-
-SERVER
-====
-* Lib
-    * Bog
-
-* Data
-* Domain
-* i18n
-
-DATA
-===
-
-Resources
-===
-The Authorization portion was
-
-BOG
+The text is currently stored in JSON files on the server
