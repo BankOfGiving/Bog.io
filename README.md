@@ -7,7 +7,7 @@ The overall goal of this project is to demonstrate the extents to which an appli
 Table of Contents
 -----------------
 - [Apps](#apps)
-    - [Public App](#public-app)
+    - [Public App](#public)
     - [Auth App](#auth-app)
     - [Dashboard](#dash-app)
     - [Admin App](#admin-app)
