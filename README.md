@@ -17,29 +17,28 @@ Table of Contents
 - [Data Layer](#overview-dal)
 - [Build and Deployment](#overview-ci)
 
-##<a id="app-overview">Apps</a>
+##Apps <a id="app-overview"></a>
 ---
 The "applications" in this project represent independently functional units that come together to make up an "enterprise style" system.  Each app is designed to be updated, removed, or replaced without impacting the rest of the system.
 
-###<a id="app-public">Public</a>
+###Public<a id="app-public"></a>
 The Public app consists of several module pages which return publicly available information.  The
-###<a id="app-auth">Auth</a>
+###Auth<a id="app-auth"></a>
 The core concept for this app was taken from the [Hackathon Starter](https://github.com/sahat/hackathon-starter) project.
-### Dashboard<a id="app-dash"></a>
-### Admin<a id="app-admin"></a>
+###Dashboard<a id="app-dash"></a>
+###Admin<a id="app-admin"></a>
     *Coming soon!*
+##API
+---
 
-API
-===
-
-Modules
-
-CLIENT
-===
-* Frameworks
-* Modules
+##Modules
+---
 The module concept is an abstracted Backbone view
 The modules derive from a "module base"
+
+##CLIENT
+
+####Frameworks
 
 * Lib
 
