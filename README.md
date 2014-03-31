@@ -11,9 +11,9 @@ Table of Contents
     - [Auth App](#auth-app)
     - [Dashboard](#dash-app)
     - [Admin App](#admin-app)
-- [Modules](#overview-modules)
-- [API](#overview-api)
-- [Domain Logic (BLL)](#overview-bll)
+- [Modules](#modules)
+- [API](#api)
+- [Domain Logic (BLL)](#bll)
 - [Data Layer](#overview-dal)
 - [Build and Deployment](#overview-ci)
 
@@ -33,15 +33,17 @@ _Coming soon!_
 The API layer is application and module specific.  It is designed to be nothing more than a thin gateway allowing access to hidden domain logic.  Each client app has a corresponding server app.  The server app hosts only the api calls that are allowed to that application and implements basic authorization checks where necessary.
 
 ##Modules
-Much of the client interface is broken into two portions:  View Templates and Modules
+Much of the client interface is broken into two portions:  View Templates and Modules.  The template provides a basic layout for the page and the hard containers to be filled with modules and content.
 
-Modules are a single unit of functionality that can be used multiple times on a single view.
+Modules are a single unit of functionality that can be used as many times on as many views as is necessary.  Each module has a _manifest_ which provides the **module base** with the specific configuration for that module instance.  The manifest can be generated dynamically in the view using the referenced template, or stored as a file to be loaded from the server.  By keeping the settings in a JSON formatted manifest file, the intent is to move all configuration to the server and ultimately the database.
 
 The module concept consists of a few basic parts:
   - Module Base Class
   - Manifest
   - Api
 The modules derive from a "module base"
+
+
 
 ##I18N
 Each module in each view generates a unique key that identifies it on the server.  This key is used to retrieve the specific text in the desired language for that module.  If client-side caching is enabled, the text will be stored in browser local storage for 24 hours.
