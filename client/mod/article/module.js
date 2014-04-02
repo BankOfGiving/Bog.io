@@ -1,6 +1,6 @@
 define([ 'module_base', 'bootstrap' ], function (mod_base) {
     return mod_base.extend({
-        api_root: "/api/mod/markup",
+        api_root: "/api/mod/article",
         initialize: function (el, o, callback) {
             var self = this;
             self.base_initialize(el, o, function () {

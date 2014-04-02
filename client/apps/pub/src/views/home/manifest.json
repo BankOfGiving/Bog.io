@@ -1,0 +1,77 @@
+{
+    "app": "pub",
+    "view": "home",
+    "layout": "layout-1",
+    "modules": [
+        {
+            "mod_type": "titlebar",
+            "uid": "home",
+            "zone": 0,
+            "localize": false,
+            "options": {}
+        },
+        {
+            "mod_type": "masthead",
+            "uid": "home",
+            "zone": 1,
+            "localize": true,
+            "options": {}
+        },
+        {
+            "mod_type": "separator",
+            "zone": 1,
+            "localize": false,
+            "options": {}
+        },
+        {
+            "mod_type": "markup",
+            "uid": "header",
+            "zone": 1,
+            "clean": false,
+            "localize": false,
+            "options": {
+                "markup": "<img src=\"/img/kids-group.jpg\">"
+            }
+        },
+        {
+            "mod_type": "markup",
+            "uid": "event-overview",
+            "zone": 2,
+            "clean": true,
+            "localize": true,
+            "options": {
+                "markup": "<div class=\"label label-success\" style='float: left; padding:10px; margin-right: 10px; margin-top: 5px'><strong><i class=\"fa fa-calendar fa-3x\"></i></strong></div><div data-localize-target=\"html\" data-localize-key=\"markup.text\"></div><a href=\"#/events/about/\" target=\"_self\" data-localize-target=\"html\" data-localize-key=\"markup.more-link\"></a>"
+            }
+        },
+        {
+            "mod_type": "markup",
+            "uid": "donation-overview",
+            "zone": 3,
+            "clean": true,
+            "localize": true,
+            "options": {
+                "markup": "<div class=\"label label-warning\" style='float: left; padding:10px; margin-right: 10px; margin-top: 5px'><strong><i class=\"fa fa-gift fa-3x\"></i></strong></div><div data-localize-target=\"html\" data-localize-key=\"markup.text\"></div><a href=\"#/donations/about/\" target=\"_self\" data-localize-target=\"html\" data-localize-key=\"markup.more-link\"></a>"
+            }
+        },
+        {
+            "mod_type": "markup",
+            "uid": "solicitation-overview",
+            "zone": 4,
+            "clean": true,
+            "localize": true,
+            "options": {
+                "markup": "<div class=\"label label-primary\" style='float: left; padding:10px; margin-right: 10px; margin-top: 5px'><strong><i class=\"fa fa-heart fa-3x\"></i></strong></div><div data-localize-target=\"html\" data-localize-key=\"markup.text\"></div><a href=\"#/solicitations/about/\" target=\"_self\" data-localize-target=\"html\" data-localize-key=\"markup.more-link\"></a>"
+            }
+        },
+        {
+            "mod_type": "markup",
+            "uid": "media-quote",
+            "zone": 5,
+            "clean": true,
+            "localize": false,
+            "options": {
+                "markup": "<blockquote>\n  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>\n  <small>Someone famous in <cite title=\"Source Title\">Source Title</cite></small>\n</blockquote>"
+            }
+        }
+    ]
+}

@@ -38,8 +38,10 @@ module.exports = function (app, api_uri) {
     var mod_uri = api_uri + '/mod';
 
     require('./mod/ad-static/routes')(app, mod_uri + '/ad-static');
+    require('./mod/article/routes')(app, mod_uri + '/article');
     require('./mod/column/routes')(app, mod_uri + '/column');
     require('./mod/event-display/routes')(app, mod_uri + '/event-display');
+    require('./mod/markup/routes')(app, mod_uri + '/markup');
     require('./mod/masthead/routes')(app, mod_uri + '/masthead');
     require('./mod/nav/routes')(app, mod_uri + '/nav');
     require('./mod/search-form/routes')(app, mod_uri + '/search-form');

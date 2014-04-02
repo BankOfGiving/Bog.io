@@ -4,171 +4,102 @@ define([
     'backbone',
     'bootstrap',
     'postal',
+    'require',
 
     'bog',
 
-    'text!./layout.html',
-
-    'modules/ad-static/module',
-    'modules/column-container/module',
-    'modules/debug/module',
-    //'modules/map/module',
-    'modules/masthead/module',
-    'modules/nav/module',
-    'modules/placeholder/module',
-    'modules/search-form/module',
-    'modules/search-result-container/module',
-    'modules/separator/module',
-    'modules/social/module',
-    'modules/text/module',
-    'modules/titlebar/module'
+    'text!./manifest.json',
 ],
-    function ($, _, Backbone, bs, postal, bog, view_layout, ad_static_module, column_container_module, debug_module, masthead_module, nav_module, placeholder_module, search_form_module, search_result_module, separator_module, social_module, text_module, titlebar_module) {
+    function ($, _, Backbone, bs, postal, require, bog, view_manifest_text) {
         return Backbone.View.extend({
             initialize: function () {
-                this.render();
-            },
-            render: function () {
                 var self = this;
-                var mod_util = new bog.modules();
-
-                // render home layout
+                var view_manifest = JSON.parse(view_manifest_text);
+                require(['text!../../layouts/' + view_manifest.layout + '.html'], function (view_layout) {
+                    self.render(view_layout, view_manifest);
+                });
+            },
+            render: function (view_layout, manifest) {
+                var self = this;
                 self.$el.empty();
                 self.$el.append(view_layout);
+                for (var i = 0; i < manifest.modules.length; i++) {
+                    var mod_manifest = manifest.modules[i];
+                    mod_manifest.app = manifest.app;
+                    self.process_module(mod_manifest);
+                }
+
                 // -----------------------------------------------------------------------------------------------------
-                var titlebar_manifest = new mod_util.manifest();
-                titlebar_manifest.mod_type = 'titlebar';
-                titlebar_manifest.uid = 'titlebar';
-                self.append_module(titlebar_module, '#titlebar', titlebar_manifest);
+                // ZONE 0
                 // -----------------------------------------------------------------------------------------------------
-                var masthead_manifest = new mod_util.manifest();
-                masthead_manifest.mod_type = 'masthead';
-                masthead_manifest.uid = 'home';
-                self.append_module(masthead_module, '#masthead', masthead_manifest);
+//                var titlebar_manifest = new mod_util.manifest();
+//                titlebar_manifest.localize = false;
+//                titlebar_manifest.mod_type = 'titlebar';
+//                titlebar_manifest.uid = 'titlebar';
+//                self.append_module(titlebar_module, '#zone-0', titlebar_manifest);
+//                // -----------------------------------------------------------------------------------------------------
+//                // ZONE 1
+//                // -----------------------------------------------------------------------------------------------------
+//                var masthead_manifest = new mod_util.manifest();
+//                masthead_manifest.localize = false;
+//                masthead_manifest.mod_type = 'masthead';
+//                masthead_manifest.uid = 'home';
+//                self.append_module(masthead_module, '#zone-1', masthead_manifest);
+//
+//                var carousel_manifest = new mod_util.manifest();
+//                carousel_manifest.localize = false;
+//                carousel_manifest.mod_type = 'placeholder';
+//                carousel_manifest.uid = 'carousel';
+//                carousel_manifest.options = {
+//                    height: 480,
+//                    width: 800
+//                };
+//                self.append_module(placeholder_module, '#zone-1', carousel_manifest);
                 // -----------------------------------------------------------------------------------------------------
-                var debug_module_manifest = new mod_util.manifest();
-                debug_module_manifest.mod_type = 'debug';
-                self.append_module(debug_module, '#debug', debug_module_manifest);
+                // ZONE 2
                 // -----------------------------------------------------------------------------------------------------
-                // Column one
+                /*                var event_info_manifest = new mod_util.manifest();
+                 event_info_manifest.mod_type = 'masthead';
+                 event_info_manifest.uid = 'home';
+                 event_info_manifest.options.markup = "events information!!!!";
+                 self.append_module(markup_module, '#zone-2', event_info_manifest);*/
                 // -----------------------------------------------------------------------------------------------------
-                var left_column_manifest = new mod_util.manifest();
-                left_column_manifest.mod_type = 'column';
-                left_column_manifest.localize = false;
-                left_column_manifest.uid = 'left-column';
-                self.append_module(column_container_module, '#column-one', left_column_manifest, function (column) {
-                    // -------------------------------------------------------------------------------------------------
-                    var left_nav_manifest = new mod_util.manifest();
-                    left_nav_manifest.mod_type = 'nav';
-                    left_nav_manifest.uid = 'nav-left';
-                    self.append_module(nav_module, column.modules, left_nav_manifest, function () {
-                        // ---------------------------------------------------------------------------------------------
-                        var separator_manifest = new mod_util.manifest();
-                        separator_manifest.localize = false;
-                        separator_manifest.mod_type = 'separator';
-                        self.append_module(separator_module, column.modules, separator_manifest, function () {
-                            // -----------------------------------------------------------------------------------------
-                            var social_link_manifest = new mod_util.manifest();
-                            social_link_manifest.mod_type = 'social_links';
-                            social_link_manifest.localize = false;
-                            social_link_manifest.options = {
-                                networks: [
-                                    { type: 'facebook', uri: '', icon: '' },
-                                    { type: 'twitter', uri: '', icon: '' },
-                                    { type: 'linkedin', uri: '', icon: '' },
-                                    { type: 'pinterest', uri: '', icon: '' }
-                                ]
-                            };
-                            self.append_module(social_module, column.modules, social_link_manifest, function () {
-                                var separator_manifest = new mod_util.manifest();
-                                separator_manifest.localize = false;
-                                separator_manifest.mod_type = 'separator';
-                                self.append_module(separator_module, column.modules, separator_manifest, function () {
-                                    // ---------------------------------------------------------------------------------
-                                    var news_module_manifest = new mod_util.manifest();
-                                    news_module_manifest.mod_type = 'text';
-                                    news_module_manifest.uid = 'news-static';
-                                    news_module_manifest.title = 'NEWS!!!';
-                                    news_module_manifest.description = 'Static text module';
-                                    news_module_manifest.options = {
-                                        text: 'This is an example of overriding text with the manifest.'
-                                    };
-                                    self.append_module(text_module, column.modules, news_module_manifest);
-                                });
-                            });
-                        });
-                    });
-                });
+                // ZONE 3
                 // -----------------------------------------------------------------------------------------------------
-                // Column two
+                /*                var donation_info_manifest = new mod_util.manifest();
+                 donation_info_manifest.mod_type = 'masthead';
+                 donation_info_manifest.uid = 'home';
+                 donation_info_manifest.options.markup = "donations information!!!!";
+                 self.append_module(markup_module, '#zone-3', donation_info_manifest);*/
                 // -----------------------------------------------------------------------------------------------------
-                var center_column_manifest = new mod_util.manifest();
-                center_column_manifest.mod_type = 'column';
-                center_column_manifest.localize = false;
-                center_column_manifest.uid = 'home_center_column';
-                self.append_module(column_container_module, '#column-two', center_column_manifest, function (column) {
-                    // -------------------------------------------------------------------------------------------------
-                    var search_results_manifest = new mod_util.manifest();
-                    search_results_manifest.mod_type = 'search-results-container';
-                    search_results_manifest.uid = 'search-results-all';
-                    search_results_manifest.pubsub.data_channel_id = 'pub';
-                    search_results_manifest.pubsub.data_topic = 'search.results.all';
-                    self.append_module(search_result_module, column.modules, search_results_manifest, function (results_container) {
-                        // ---------------------------------------------------------------------------------------------
-                        var search_results_placeholder_manifest = new mod_util.manifest();
-                        search_results_placeholder_manifest.mod_type = 'text';
-                        search_results_placeholder_manifest.uid = 'search-results-placeholder';
-                        search_results_placeholder_manifest.options = { };
-                        self.append_module(text_module, results_container.results, search_results_placeholder_manifest);
-                    });
-                });
+                // ZONE 4
                 // -----------------------------------------------------------------------------------------------------
-                // Column three
-                // -----------------------------------------------------------------------------------------------------
-                var right_column_manifest = new mod_util.manifest();
-                right_column_manifest.mod_type = 'column';
-                right_column_manifest.localize = false;
-                right_column_manifest.uid = 'right-column';
-                self.append_module(column_container_module, '#column-three', right_column_manifest, function (column) {
-                    var search_form_manifest = new mod_util.manifest();
-                    search_form_manifest.mod_type = 'search-form';
-                    search_form_manifest.uid = 'search-form-all';
-                    search_form_manifest.pubsub.data_channel_id = 'pub';
-                    search_form_manifest.pubsub.data_topic = 'search.results.all';
-                    search_form_manifest.options = {
-                        search_types: [],
-                        orientation: 'vert'
-                    };
-                    self.append_module(search_form_module, column.modules, search_form_manifest, function () {
-                        // -------------------------------------------------------------------------------------------------
-                        var latestinfo_manifest = new mod_util.manifest();
-                        latestinfo_manifest.mod_type = 'text';
-                        latestinfo_manifest.uid = 'latest_info';
-                        latestinfo_manifest.options = {};
-                        self.append_module(text_module, column.modules, latestinfo_manifest, function () {
-                            // ---------------------------------------------------------------------------------------------
-                            var ads_module_manifest = new mod_util.manifest();
-                            ads_module_manifest.mod_type = 'ad-static';
-                            ads_module_manifest.uid = 'home_ads_right';
-                            ads_module_manifest.options = {};
-                            self.append_module(ad_static_module, column.modules, ads_module_manifest);
-                        });
-                    });
-                });
+                /*                var solicitations_info_manifest = new mod_util.manifest();
+                 solicitations_info_manifest.mod_type = 'masthead';
+                 solicitations_info_manifest.uid = 'home';
+                 solicitations_info_manifest.options.markup = "solicitations information!!!!";
+                 self.append_module(markup_module, '#zone-4', solicitations_info_manifest);*/
+
+
                 return this;
             },
-            append_module: function (module, container, manifest, callback) {
+            process_module: function (manifest) {
                 var self = this;
-                new module($(container), manifest, function (module_instance) {
-                    if (module_instance) {
-                        self.register_view_module(module_instance.key, manifest.localize);
-                        if (callback) {
-                            callback(module_instance);
-                        } else {
-                            return module_instance;
+                require(['modules/' + manifest.mod_type + '/module'], function (mod) {
+                    var container = $('#zone-' + manifest.zone);
+                    console.log(container);
+                    new mod(container, manifest, function (module_instance) {
+                        if (module_instance) {
+                            self.register_view_module(module_instance.key, manifest.localize);
+//                            if (callback !== 'undefined') {
+//                                return module_instance;
+//                            } else {
+//                                callback(module_instance);
+//                            }
                         }
-                    }
+                    });
                 });
+
             },
             register_view_module: function (key, localize) {
                 window.mod_list.push([key, localize]);

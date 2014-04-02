@@ -4,20 +4,21 @@ if (!bog) {
 bog.modules = function () {
     var get_manifest_template = function () {
         return {
-            app: window.app,
-            mod_type: '',
-            uid: '',
-            title: '',
-            description: '',
-            culture: '',
-            localize: true,
+            app: window.app,                // the app identifier
+            mod_type: '',                   // module type must match a registered module name
+            uid: '',                        // unique identifier of the module instance
+            title: '',                      // force the description (not used on all modules)
+            description: '',                // force the description (not used on all modules)
+            culture: '',                    // force the culture
+            localize: true,                 // set to false to prevent api call to retrieve text
+            clean: false,                   // clean other markup in the container
             pubsub: {
-                data_channel_id: '',
-                data_topic: '',
-                loc_channel_id: '',
-                loc_topic: ''
+                data_channel_id: '',        //
+                data_topic: '',             //
+                loc_channel_id: '',         //
+                loc_topic: ''               //
             },
-            options: {}
+            options: {}                     // contains all module specific settings and configuration
         };
     };
 

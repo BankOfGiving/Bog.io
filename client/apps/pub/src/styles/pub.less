@@ -1,7 +1,7 @@
 @import (less) "../../../../lib/animate/animate.css";
 @import (less) "../../../../lib/fontawesome/css/font-awesome.min.css";
 @import "lib/bootstrap/bootstrap";
-@import "themes/flatly";
+@import "themes/default";
 @import "column-container";
 @import "module-wrapper";
 @import "titlebar";
@@ -9,20 +9,33 @@
 @import "social";
 
 // Scaffolding
-// ---- ---------------------
+// -------------------------
 
 html, body, #page-container {
   height: 100%;
 }
 
 body {
-  padding-top: 45px;
+  margin-top: 30px;
 }
 
-.column-container {
-  //border: 5px solid red;
-  min-height: 500px;
-  height: 100% !important;
+.zone {
+  //border: 1px solid red;
+}
+
+#column-one {
+  background-color: mintcream;
+  border-right: 1px solid #335397;
+}
+
+#column-three {
+  background-color: mintcream;
+  border-left: 1px solid #335397;
+}
+
+#content-container {
+  background-color: mintcream;
+  border: 1px solid #335397;
 }
 
 #wrap {

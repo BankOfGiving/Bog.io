@@ -39,7 +39,6 @@ define([ 'jquery', 'underscore', 'backbone', 'moment', 'postal', 'bog', 'text!./
             base_render: function (template, culture, callback) {
                 var self = this;
                 self.template = template;
-
                 // Render wrapper div immediately.
                 var mod_wrapper = document.getElementById(self.key);
                 if (mod_wrapper) {
@@ -47,6 +46,9 @@ define([ 'jquery', 'underscore', 'backbone', 'moment', 'postal', 'bog', 'text!./
                     mod_wrapper.html(module_wrapper_layout);
                 } else {
                     mod_wrapper = $(module_wrapper_layout);
+                    if (self.manifest.clean) {
+                        self.$el.empty();
+                    }
                     self.$el.append(mod_wrapper);
                 }
 
@@ -227,14 +229,6 @@ define([ 'jquery', 'underscore', 'backbone', 'moment', 'postal', 'bog', 'text!./
                     } else {
                         self.loc_channel = postal.channel('i18n');
                     }
-                    if (self.loc_channel) {
-                        self.loc_channel.subscribe('set-culture', function (culture, envelope) {
-                            if (self.localize) {
-                                self.base_render(self.template, culture);
-                            }
-                        });
-                    }
-
                     // PUBSUB Channel for Debug
                     if (self.manifest.pubsub.debug_channel_id && self.manifest.pubsub.debug_channel_id !== '') {
                         self.debug_channel = postal.channel(self.manifest.pubsub.debug_channel_id);
@@ -242,7 +236,16 @@ define([ 'jquery', 'underscore', 'backbone', 'moment', 'postal', 'bog', 'text!./
                         self.debug_channel = postal.channel('debug');
                     }
                 } else {
-                    self.publish_debug('No pubsub set for this module.');
+                    self.publish_debug('No debug pubsub set for this module.  Using defaults');
+                    self.data_channel = postal.channel(self.manifest.app);
+                    self.loc_channel = postal.channel('i18n');
+                }
+                if (self.loc_channel) {
+                    self.loc_channel.subscribe('set-culture', function (culture, envelope) {
+                        if (self.localize) {
+                            self.base_render(self.template, culture);
+                        }
+                    });
                 }
                 return this;
             },
@@ -255,9 +258,6 @@ define([ 'jquery', 'underscore', 'backbone', 'moment', 'postal', 'bog', 'text!./
                     throw 'Invalid application specified.';
                 }
                 if (!manifest.mod_type && manifest.mod_type !== '') {
-                    throw 'Invalid module type specified.';
-                }
-                if (!manifest.uid && manifest.uid !== '') {
                     throw 'Invalid module type specified.';
                 }
                 if (!self.api_root && manifest.api_root) {
