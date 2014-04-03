@@ -1,6 +1,10 @@
 <a href="#/event/<%=result._id%>" class="list-group-item">
     <div class="btn-group" style="float: right">
-        <span class="btn btn-sm btn-default"><i class="fa-1x fa fa-h-square text-danger"></i></span>
+        <button class="btn btn-sm btn-default" data-toggle="tooltip" data-placement="top" title=""
+                data-original-title="Tooltip on top"><i class="fa-1x fa fa-h-square text-danger"></i></button>
+        <button class="btn btn-sm btn-default" data-toggle="tooltip" data-placement="top" title=""
+                data-original-title="Tooltip on top">Top
+        </button>
         <span class="btn btn-sm btn-default"><i class="icon-1x icon-map-marker text-danger"></i> x <%= result.locations_physical.length%></span>
     </div>
     <div class="event-red">

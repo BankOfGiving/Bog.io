@@ -20,7 +20,8 @@ EventRepository = function () {
 
         var fields = null;
         var options = null;
-        var query = EventModel.find(conditions, fields, options);
+        var query = EventModel.find(conditions, fields, options).populate('locations_physical');
+        console.log(query);
         query.exec(function (err, data) {
             callback(err, data);
         });

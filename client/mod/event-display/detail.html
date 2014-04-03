@@ -1,22 +1,117 @@
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        <h3 class="panel-title" data-localize-key="details.title" data-localize-target="text"><%=
-            module.event_model.title %></h3>
+<div class="well text-left text-top">
+    <div class="panel panel-primary">
+        <div class="panel-heading"><%= result.title %></div>
+        <div class="panel-body">
+            <table class="table table-striped">
+                <tr>
+                    <td>Status</td>
+                    <td><%= result.status %></td>
+                </tr>
+                <tr>
+                    <td>Type</td>
+                    <td><% switch (result.type) { case "health" : print("HEALTHY!!!");break; } %></td>
+                </tr>
+                <tr>
+                    <td>Tags</td>
+                    <td><%= result.tags %></td>
+                </tr>
+                <tr>
+                    <td>Author</td>
+                    <td><%= result.author %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Starts</td>
+                    <td><%= _.template.formatDateTime(result.beginAt) %></td>
+                </tr>
+                <tr>
+                    <td>Ends</td>
+                    <td><%= _.template.formatDateTime(result.endAt) %></td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td><%= result.description %></td>
+                </tr>
+            </table>
+        </div>
     </div>
+    <% if(_.template.isPopulatedArray(result.locations_physical)) { %>
+    <div class="panel panel-primary">
+        <div class="panel-heading">Locations <span class="badge"><%= result.locations_physical.length%></span></div>
+        <div class="panel-body">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Address</th>
+                    <th>Map</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% _.each(result.locations_physical, function(location) { %>
+                <tr>
+                    <td><%= location.geocoding_result.formatted_address %></td>
+                    <td><img border="0"
+                             src="//maps.googleapis.com/maps/api/staticmap?center=<%= location.latitude %>,<%= location.longitude %>&zoom=13&size=200x200&maptype=roadmap&sensor=false&markers=size:mid%7Ccolor:0xFF0000%7Clabel:FUN%7C<%= location.latitude %>,<%= location.longitude %>">
+
+                        <div><em class="text-center text-info text-muted"><%= location.latitude %>,<%=
+                            location.longitude %></em></div>
+                    </td>
+                </tr>
+                <% }); %>
+                </tbody>
+            </table>
+            <!--<div id="small-map" class="well well-lg col-lg-push-0" style="height: 400px;"></div>-->
+        </div>
+    </div>
+    <% } %>
+    <% if(_.template.isPopulatedArray(result.contacts)) { %>
+    <div class="panel-heading">Contact</div>
+    <div class="panel-body">
+        <div class="col-lg-6"></div>
+        <div></div>
+    </div>
+    <% } %>
+    <div class="panel-heading">History</div>
     <div class="panel-body">
         <table class="table">
             <tr>
-                <td data-localize-key="details.status" data-localize-target="text"></td>
-                <td><%= module.event_model.status %></td>
+                <td>Date Created
+                </td>
+                <td><%= _.template.formatDateTime( result.audit.createdAt )%>
+                </td>
             </tr>
             <tr>
-                <td data-localize-key="details.type" data-localize-target="text"></td>
-                <td><%= module.event_model.type %></td>
-            </tr>
-            <tr>
-                <td data-localize-key="details.tags" data-localize-target="text"></td>
-                <td><%= module.event_model.tags %></td>
+                <td>Last Updated
+                </td>
+                <td><%= _.template.formatDateTime( result.audit.lastModifiedAt )%>
+                </td>
             </tr>
         </table>
+        <button type="button" class="btn btn-warning btn-xs" data-toggle="collapse" data-target="#Change-History">
+            Show history
+        </button>
+        <div id="Change-History" class="panel panel-warning collapse">
+            <div class="panel-heading">Change history</div>
+            <div class="panel-body">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <td>Time Stamp</td>
+                        <td>Activity</td>
+                        <td>Detail</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% _.each(result.audit.detail, function(audit) { %>
+                    <tr>
+                        <td><%= _.template.formatDateTime( audit.timeStamp ) %></td>
+                        <td><%= audit.action %></td>
+                        <td></td>
+                    </tr>
+                    <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>

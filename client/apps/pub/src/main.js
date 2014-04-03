@@ -7,6 +7,7 @@ requirejs.config({
 
         bog: '/lib/bog/bog.pub.min',
         module_base: 'modules/module-base',
+        view_base: 'views/view-base',
 
         async: '/lib/async/async',
         bootstrap: '/lib/bootstrap/js/bootstrap.min',

@@ -55,8 +55,14 @@ define([ 'jquery', 'underscore', 'backbone', 'moment', 'postal', 'bog', 'text!./
                 mod_wrapper.attr("id", self.key);
                 mod_wrapper.attr("data-culture", culture);
 
-                _.template.formatDateTime = function (date) {
-                    return moment(date).format('MMMM Do YYYY, h:mm:ss a');
+                _.template.formatDateTime = function (date, format) {
+                    if (!format || format === '') {
+                        format = 'MMMM Do YYYY, h:mm:ss a';
+                    }
+                    return moment(date).format(format);
+                };
+                _.template.parseDateObject = function (date) {
+                    return moment(date);
                 };
                 _.template.isPopulatedArray = function (o) {
                     if (o) {
@@ -236,9 +242,9 @@ define([ 'jquery', 'underscore', 'backbone', 'moment', 'postal', 'bog', 'text!./
                         self.debug_channel = postal.channel('debug');
                     }
                 } else {
-                    self.publish_debug('No debug pubsub set for this module.  Using defaults');
                     self.data_channel = postal.channel(self.manifest.app);
                     self.loc_channel = postal.channel('i18n');
+                    self.debug_channel = postal.channel('debug');
                 }
                 if (self.loc_channel) {
                     self.loc_channel.subscribe('set-culture', function (culture, envelope) {

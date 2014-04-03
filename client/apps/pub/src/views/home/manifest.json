@@ -30,7 +30,7 @@
             "clean": false,
             "localize": false,
             "options": {
-                "markup": "<img src=\"/img/kids-group.jpg\">"
+                "markup": "<img src=\"/img/kids-group.jpg\" class=\"img-responsive\">"
             }
         },
         {
@@ -70,7 +70,7 @@
             "clean": true,
             "localize": false,
             "options": {
-                "markup": "<blockquote>\n  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>\n  <small>Someone famous in <cite title=\"Source Title\">Source Title</cite></small>\n</blockquote>"
+                "markup": "<blockquote><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>\n<small>Someone famous in <cite title=\"Source Title\">Source Title</cite></small>\n</blockquote>"
             }
         }
     ]

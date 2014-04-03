@@ -12,7 +12,26 @@ define([ 'postal', 'module_base', 'text!./mod-search-form-horiz.html', 'text!./m
                         if (self.manifest.options.orientation === 'horiz') {
                             module_template = module_layout_horiz;
                         }
-                        self.base_render(module_template, window.culture, function (self) {
+                        self.base_render(module_template, window.culture, function () {
+                            if (self.manifest.options.initial_set) {
+                                var search_filter = {};
+                                if (self.manifest.options.initial_set.entity) {
+                                    search_filter.entity = self.manifest.options.initial_set.entity;
+                                }
+                                if (self.manifest.options.initial_set.search_type) {
+                                    search_filter.type = self.manifest.options.initial_set.search_type;
+                                }
+                                if (self.manifest.options.initial_set.search_text) {
+                                    search_filter.text = self.manifest.options.initial_set.search_text;
+                                }
+                                if (self.manifest.options.initial_set.sort_key) {
+                                    search_filter.sort_key = self.manifest.options.initial_set.sort_key;
+                                }
+                                if (self.manifest.options.initial_set.sort_dir) {
+                                    search_filter.sort_dir = self.manifest.options.initial_set.sort_dir;
+                                }
+                                self.search(search_filter);
+                            }
                             if (callback) {
                                 callback(self);
                             }
@@ -21,7 +40,7 @@ define([ 'postal', 'module_base', 'text!./mod-search-form-horiz.html', 'text!./m
                 });
             },
             events: {
-                "click #btn_submit_search": "search"
+                "click #btn_submit_search": "search_event"
             },
             load_view_data: function (callback) {
                 var self = this;
@@ -35,7 +54,7 @@ define([ 'postal', 'module_base', 'text!./mod-search-form-horiz.html', 'text!./m
                         console.log("error");
                     });
             },
-            search: function (e) {
+            search_event: function (e) {
                 e.preventDefault();
 
                 var self = this;
@@ -43,21 +62,20 @@ define([ 'postal', 'module_base', 'text!./mod-search-form-horiz.html', 'text!./m
                     type: $('#search_type').val(),
                     text: $('#search_text').val()
                 };
-
+                self.search(search_filter);
+            },
+            localize: function () {
+                return this;
+            },
+            search: function (search_filter) {
+                var self = this;
                 $.post(self.api_root + '/', { "search_filter": search_filter }, "json")
                     .done(function (data) {
-                        console.log('SEARCH RESULTS');
-                        console.log(data);
-                        console.log('DATA_TOPIC');
-                        console.log(self.manifest.pubsub.data_topic);
                         self.data_channel.publish(self.manifest.pubsub.data_topic, data);
                     })
                     .fail(function () {
                         self.publish_debug(e);
                     });
-            },
-            localize: function () {
-                return this;
             }
         });
     });

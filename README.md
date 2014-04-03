@@ -16,12 +16,13 @@ Table of Contents
 - [Domain Logic (BLL)](#bll)
 - [Data Layer](#overview-dal)
 - [Build and Deployment](#overview-ci)
-
 ##Apps
 The **applications** in this project represent independently functional areas that come together to make up an "enterprise style" system.  Each app is designed to be updated, removed, or replaced without severely impacting the rest of the system.
 
 ####Public App
-The Public app consists of several module pages which return publicly available information.  The
+The goal of the public app is to create a functional platform with is populated and configured almost exclusively by manifest files referencing predefined templates and modules.
+
+
 Styling - Bootstrap
 Client-side Frameworks:  Backbone, Require,
 ####Auth App

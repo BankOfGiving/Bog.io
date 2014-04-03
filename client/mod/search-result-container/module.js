@@ -1,4 +1,4 @@
-define([ 'module_base', 'text!./container.html', 'text!./result.html', 'text!./no-results.html' ],
+define([ 'module_base', 'text!./container.html', 'text!./event-1.html', 'text!./no-results.html' ],
     function (mod_base, module_layout, result_layout, no_result_layout) {
         return mod_base.extend({
             api_root: "/api/mod/search-results-container",
@@ -40,22 +40,6 @@ define([ 'module_base', 'text!./container.html', 'text!./result.html', 'text!./n
                         console.log(data[i]);
                         var result_markup = _.template(result_layout, {result: data[i]});
                         self.results.append(result_markup);
-//                        self.results.append(result_markup);
-//                        self.results.append(result_markup);
-//                        self.results.append(result_markup);
-//                        self.results.append(result_markup);
-//                        self.results.append(result_markup);
-//                        self.results.append(result_markup);
-//                        self.results.append(result_markup);
-//                        self.results.append(result_markup);
-//                        self.results.append(result_markup);
-//                        self.results.append(result_markup);
-//                        self.results.append(result_markup);
-//                        self.results.append(result_markup);
-//                        self.results.append(result_markup);
-//                        self.results.append(result_markup);
-//                        self.results.append(result_markup);
-                        //this.append_module(search_result_module, container, search_result_manifest);
                     }
                 }
             }

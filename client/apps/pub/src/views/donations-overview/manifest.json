@@ -1,0 +1,67 @@
+{
+    "app": "pub",
+    "view": "home",
+    "layout": "layout-2",
+    "modules": [
+        {
+            "mod_type": "titlebar",
+            "uid": "home",
+            "zone": 0,
+            "localize": false,
+            "options": {}
+        },
+        {
+            "mod_type": "masthead",
+            "uid": "home",
+            "zone": 1,
+            "localize": true,
+            "options": {}
+        },
+        {
+            "mod_type": "separator",
+            "zone": 1,
+            "localize": false,
+            "options": {}
+        },
+        {
+            "mod_type": "article",
+            "uid": "donation-overview",
+            "zone": 2,
+            "clean": false,
+            "localize": true,
+            "options": {
+                "markup": "<h2 class='text-warning' data-localize-target='html' data-localize-key='article.title'></h2><img style=\"margin-bottom: 20px; margin-top: -1px;\" src=\"/img/donation-gift.png\" alt=\"history-banner\" width=\"100%\" class=\"img-responsive\"><div data-localize-target=\"html\" data-localize-key=\"article.text\"></div>"
+            }
+        },
+        {
+            "mod_type": "markup",
+            "uid": "event-overview",
+            "zone": 3,
+            "clean": false,
+            "localize": true,
+            "options": {
+                "markup": "<div data-localize-target=\"html\" data-localize-key=\"markup.text\"></div><a href=\"#/events-overview/\" target=\"_self\" data-localize-target=\"html\" data-localize-key=\"markup.more-link\"></a>"
+            }
+        },
+        {
+            "mod_type": "markup",
+            "uid": "donation-overview",
+            "zone": 3,
+            "clean": false,
+            "localize": true,
+            "options": {
+                "markup": "<div data-localize-target=\"html\" data-localize-key=\"markup.text\"></div><a href=\"#/events-overview/\" target=\"_self\" data-localize-target=\"html\" data-localize-key=\"markup.more-link\"></a>"
+            }
+        },
+        {
+            "mod_type": "markup",
+            "uid": "solicitation-overview",
+            "zone": 3,
+            "clean": false,
+            "localize": true,
+            "options": {
+                "markup": "<div data-localize-target=\"html\" data-localize-key=\"markup.text\"></div><a href=\"#/events-overview/\" target=\"_self\" data-localize-target=\"html\" data-localize-key=\"markup.more-link\"></a>"
+            }
+        }
+    ]
+}
