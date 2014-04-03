@@ -43,10 +43,31 @@
         </table>
     </div>
     <% if(_.template.isPopulatedArray(event.locations_physical)) { %>
-    <div class="panel-heading">Location</div>
+    <div class="panel-heading">Locations</div>
     <div class="panel-body">
+        <table class="table">
+            <thead>
+            <tr>
+                <td>Address</td>
+                <td>Lat</td>
+                <td>Lng</td>
+                <td>Map</td>
+
+            </tr>
+            </thead>
+            <tbody>
+            <% _.each(locations_physical, function(location) { %>
+            <tr>
+                <td><%= location.geocoding_result.formatted_address %></td>
+                <td><%= location.latitude %></td>
+                <td><%= location.longitude %></td>
+                <td></td>
+            </tr>
+            <% }); %>
+            </tbody>
+        </table>
         <div class="col-lg-6">
-            <address><%= event.address.formatted_address %></address>
+            <address><%= event.geocoding_result.formatted_address %></address>
         </div>
         <div id="small-map" class="well well-lg col-lg-push-0" style="height: 400px;"></div>
     </div>

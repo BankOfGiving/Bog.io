@@ -11,7 +11,14 @@ define([ 'postal', 'view_base', 'text!./manifest.json' ],
                 });
             },
             publish_view_data: function (id) {
-
+                var self = this;
+                $.getJSON("/api/event/" + id)
+                    .done(function (data) {
+                        self.data_channel.publish("event", data);
+                    })
+                    .fail(function () {
+                        self.publish_debug(e);
+                    });
             }
         });
     });

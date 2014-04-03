@@ -29,7 +29,8 @@
             "zone": 2,
             "localize": false,
             "pubsub": {
-                "data_topic": "search.results.events"
+                "data_channel_id": "pub",
+                "data_topic": "event"
             },
             "options": {}
         },
@@ -41,7 +42,7 @@
             "localize": true,
             "pubsub": {
                 "data_channel_id": "pub",
-                "data_topic": "search.results.events"
+                "data_topic": "event"
             },
             "options": {
                 "orientation": "vert"
