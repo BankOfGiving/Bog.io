@@ -78,6 +78,28 @@ module.exports = function (grunt) {
         clean: {
             dist: ["client/dist/"]
         },
+        copy: {
+            deploy_pub: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'client/src/apps/pub',
+                        src: '**/manifest.json',
+                        dest: 'client/dist/apps/pub'
+                    }
+                ]
+            },
+            deploy_shared: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'client/src/img/',
+                        src: ['**/*.{png,jpg,gif}'],
+                        dest: 'client/dist/img/'
+                    }
+                ]
+            }
+        },
         uglify: {
             'deploy_mod': {
                 options: {
@@ -235,13 +257,14 @@ module.exports = function (grunt) {
     grunt.registerTask('deploy-shared', [
         'uglify:deploy_shared',
         'uglify:deploy_mod',
-        'imagemin:deploy_shared',
+        'copy:deploy_shared',
         'less:deploy'
     ]);
 
     grunt.registerTask('deploy-pub', [
         'uglify:deploy_pub',
-        'htmlmin:deploy_pub'
+        'htmlmin:deploy_pub',
+        'copy:deploy_pub'
     ]);
 
     grunt.registerTask('deploy-full', [
