@@ -89,7 +89,7 @@ module.exports = function (grunt) {
                     }
                 ]
             },
-            deploy_shared: {
+            deploy_img: {
                 files: [
                     {
                         expand: true,
@@ -101,6 +101,18 @@ module.exports = function (grunt) {
             }
         },
         uglify: {
+            deploy_lib: {
+                options: {
+                    mangle: true,
+                    dead_code: true,
+                    squeeze: {dead_code: true},
+                    codegen: {quote_keys: true}
+                },
+                expand: true,
+                cwd: 'client/src/lib',
+                src: '**/*.js',
+                dest: 'client/dist/lib'
+            },
             'deploy_mod': {
                 options: {
                     mangle: true,
@@ -124,18 +136,6 @@ module.exports = function (grunt) {
                 cwd: 'client/src/apps/pub',
                 src: '**/*.js',
                 dest: 'client/dist/apps/pub'
-            },
-            deploy_shared: {
-                options: {
-                    mangle: true,
-                    dead_code: true,
-                    squeeze: {dead_code: true},
-                    codegen: {quote_keys: true}
-                },
-                expand: true,
-                cwd: 'client/src/lib',
-                src: '**/*.js',
-                dest: 'client/dist/lib'
             }
         },
         htmlmin: {
@@ -159,6 +159,27 @@ module.exports = function (grunt) {
                         dest: 'client/dist/apps/pub/'
                     }
                 ]
+            },
+            deploy_mod: {
+                options: {
+                    collapseWhitespace: true,
+                    collapseBooleanAttributes: true,
+                    removeComments: true,
+                    removeCommentsFromCDATA: true,
+                    removeEmptyAttributes: true,
+                    removeRedundantAttributes: true,
+                    removeOptionalTags: true,
+                    removeEmptyElements: false,
+                    useShortDoctype: true
+                },
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'client/src/mod/',
+                        src: ['**/*.html'],
+                        dest: 'client/dist/mod/'
+                    }
+                ]
             }
         },
         imagemin: {
@@ -173,7 +194,18 @@ module.exports = function (grunt) {
                 ]
             }
         },
-
+        minjson: {
+            deploy_pub: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'client/src/apps/pub/',
+                        src: ['**/*.json'],
+                        dest: 'client/dist/apps/pub/'
+                    }
+                ]
+            }
+        },
         // ----------------------------------------
         // Watch Tasks
         // ----------------------------------------
@@ -255,24 +287,25 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('deploy-shared', [
-        'uglify:deploy_shared',
+        'uglify:deploy_lib',
         'uglify:deploy_mod',
-        'copy:deploy_shared',
+        'htmlmin:deploy_mod',
+        'copy:deploy_img',
         'less:deploy'
     ]);
 
     grunt.registerTask('deploy-pub', [
         'uglify:deploy_pub',
-        'htmlmin:deploy_pub',
-        'copy:deploy_pub'
+        'htmlmin:deploy_pub'
+        , 'minjson:deploy_pub'
     ]);
 
     grunt.registerTask('deploy-full', [
-        'clean:dist',
-        'validate-all',
-        'concat-all',
-        'deploy-shared',
-        'deploy-pub'
+        'clean:dist'
+        , 'validate-all'
+        , 'concat-all'
+        , 'deploy-shared'
+        , 'deploy-pub'
     ]);
 
 
@@ -326,4 +359,5 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-minjson');
 };
