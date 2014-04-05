@@ -23,7 +23,7 @@ The **applications** in this project represent independently functional areas th
 ###Public App
 The goal of the public app is to create a functional platform with is populated and configured almost exclusively by manifest files referencing predefined templates and modules.  All functionality is designed to be highly configurable, responsive, and fast for all
 
-####Goals**
+####Goals
 + Responsive and functional across all current versions of major browsers. (complete)
 + Define and manage all page content through manifest files. (complete)
 + Static text localization with optionally cached language text. (complete)
@@ -35,13 +35,14 @@ The goal of the public app is to create a functional platform with is populated 
 **Javascript:**  [Backbone.js](http://backbonejs.org/), [RequireJS](http://requirejs.org/), [PostalJS](https://github.com/postaljs/postal.js)
 
 ###Auth App
-The core concept for this app was taken from the [Hackathon Starter](https://github.com/sahat/hackathon-starter) project.
+This app was taken from the [Hackathon Starter](https://github.com/sahat/hackathon-starter) project.  It has been modified to fit the style and this system.
 
 ###Dashboard App
-The Dashboard applications is slated to use AngularJS for the front end communication.  As it's a heavier framework, it's being used in an area that's less trafficked than the public site.
+The Dashboard applications is slated to use AngularJS for the front end communication.  As Angular is a heavier framework, it's being used in an area that's less trafficked than the public site.
 _Coming soon!_
 
 ###Admin App
+Because the admin app is isolated to a few select users, it will take advantage of Node.js, specifically Socket.io, to provide real-time updates.  generate views from the server
 _Coming soon!_
 
 ##Modules
