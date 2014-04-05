@@ -44,7 +44,8 @@
     "devDependencies": {
         "assert": "~1.1.1",
         "gifsicle": "^0.1.4",
-        "grunt": "~0.4.4",
+        "grunt": "^0.4.4",
+        "grunt-cli": "^0.1.13",
         "grunt-contrib-clean": "^0.5.0",
         "grunt-contrib-concat": "~0.4.0",
         "grunt-contrib-copy": "^0.5.0",
