@@ -1,4 +1,4 @@
-define([ 'jquery', 'underscore', 'backbone', 'bootstrap', 'postal', 'bog' ], function ($, _, Backbone, bs, postal, bog) {
+define([ 'jquery', 'under', 'backbone', 'bootstrap', 'postal', 'bog' ], function ($, _, Backbone, bs, postal, bog) {
     return Backbone.View.extend({
         initialize: function () {
         },

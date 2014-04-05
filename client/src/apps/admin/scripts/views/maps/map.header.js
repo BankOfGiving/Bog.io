@@ -1,6 +1,6 @@
 define([
     'jquery',
-    '../../../../../../.',
+    'under',
     'backbone',
     'modules/bog.maps',
     'views/home/titlebar',

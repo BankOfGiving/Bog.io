@@ -1,4 +1,4 @@
-define([ 'jquery', '../../../../../.', 'backbone', 'bootstrap', 'postal', 'bog', 'text!./layout.html',
+define([ 'jquery', 'under', 'backbone', 'bootstrap', 'postal', 'bog', 'text!./layout.html',
 
     'modules/column-container/module',
     'modules/event-display/module',

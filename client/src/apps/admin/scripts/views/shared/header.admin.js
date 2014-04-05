@@ -1,4 +1,4 @@
-define(['jquery', '../../../../../../.', 'backbone', 'modules/bog.site', 'modules/bog.i18n', 'text!../../../templates/shared/header.admin.html', 'text!../../../templates/shared/titlebar.auth.html'
+define(['jquery', 'under', 'backbone', 'modules/bog.site', 'modules/bog.i18n', 'text!../../../templates/shared/header.admin.html', 'text!../../../templates/shared/titlebar.auth.html'
 ], function ($, _, Backbone, site, i18n, AdminHeaderTemplate, TitlebarAuthTemplate) {
     return Backbone.View.extend({
         initialize: function () {

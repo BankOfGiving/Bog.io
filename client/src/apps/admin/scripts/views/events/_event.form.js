@@ -1,6 +1,6 @@
 define([
     'jquery',
-    '../../../../../../.',
+    'under',
     'backbone',
     'views/maps/map.small',
     'models/model.donation',

@@ -26,10 +26,10 @@ requirejs.config({
             exports: '$'
         }, 'bootstrap': {
             deps: [ 'jquery' ], exports: 'bs'
-        }, 'underscore': {
+        }, 'under': {
             deps: [ 'jquery' ], exports: '_'
         }, 'backbone': {
-            deps: [ 'underscore' ], exports: 'Backbone'
+            deps: [ 'under' ], exports: 'Backbone'
         }, 'bog': {
             deps: [ 'jquery', 'googlemaps' ], exports: 'bog'
         }

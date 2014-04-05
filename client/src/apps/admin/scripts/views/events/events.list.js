@@ -1,4 +1,4 @@
-define(['jquery', '../../../../../../.', 'backbone', 'modules/bog.site', 'modules/bog.i18n', 'collections/collection.events', 'text!../../../templates/events/events.list.html'],
+define(['jquery', 'under', 'backbone', 'modules/bog.site', 'modules/bog.i18n', 'collections/collection.events', 'text!../../../templates/events/events.list.html'],
     function ($, _, Backbone, site, i18n, EventCollection, EventTemplate) {
         return Backbone.View.extend({
             previewMap: null,

@@ -1,4 +1,4 @@
-define(['jquery', '../../../../../.', 'backbone', 'models/model.donation'],
+define(['jquery', 'under', 'backbone', 'models/model.donation'],
     function ($, _, Backbone, donation) {
         return Backbone.Collection.extend({
             model: donation,

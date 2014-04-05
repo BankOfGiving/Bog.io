@@ -1,4 +1,4 @@
-define(['jquery', '../../../../../../.', 'backbone', 'models/model.donation', 'text!../../../templates/donations/donation.add.html'],
+define(['jquery', 'under', 'backbone', 'models/model.donation', 'text!../../../templates/donations/donation.add.html'],
     function ($, _, Backbone, DonationModel, AddTemplate) {
         return Backbone.View.extend({
             el: $('#Donation-Workspace'),

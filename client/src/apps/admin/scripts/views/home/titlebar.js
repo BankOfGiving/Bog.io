@@ -1,4 +1,4 @@
-define([ 'jquery', '../../../../../../../', 'backbone', 'modules/bog.site', 'text!../../../templates/home/titlebar.v1.html' ],
+define([ 'jquery', 'under', 'backbone', 'modules/bog.site', 'text!../../../templates/home/titlebar.v1.html' ],
     function ($, _, Backbone, site, titleBarTemplate) {
         return Backbone.View.extend({
             el: $('body'),

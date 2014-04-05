@@ -1,6 +1,6 @@
 define([
     'jquery',
-    '../../../../../.',
+    'under',
     'backbone',
     'bootstrap',
     'postal',

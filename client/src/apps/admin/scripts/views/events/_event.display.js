@@ -1,6 +1,6 @@
 define([
     'jquery',
-    '../../../../../../.',
+    'under',
     'backbone'
 ], function ($, _, Backbone) {
     return Backbone.View.extend({

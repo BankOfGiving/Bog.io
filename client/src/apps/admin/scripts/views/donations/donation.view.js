@@ -1,4 +1,4 @@
-define(['jquery', '../../../../../../../', 'backbone',
+define(['jquery', 'under', 'backbone',
     'views/donations/_donation.display',
     'models/model.donation',
     'text!../../../templates/donations/donation.view.html',

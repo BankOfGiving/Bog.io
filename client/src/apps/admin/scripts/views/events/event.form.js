@@ -1,4 +1,4 @@
-define(['jquery', '../../../../../../../', 'backbone', 'bog', 'modules/bog.maps', 'models/model.event', 'text!../../../templates/events/event.form.html'],
+define(['jquery', 'under', 'backbone', 'bog', 'modules/bog.maps', 'models/model.event', 'text!../../../templates/events/event.form.html'],
     function ($, _, Backbone, bog, maps, EventModel, FormTemplate) {
         return Backbone.View.extend({
             initialize: function () {
