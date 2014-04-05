@@ -19,16 +19,16 @@ requirejs.config({
         jquery: '//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery',
         moment: '//cdnjs.cloudflare.com/ajax/libs/moment.js/2.4.0/moment.min',
         postal: '//cdnjs.cloudflare.com/ajax/libs/postal.js/0.8.5/postal',
-        underscore: '//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min'
+        underscorejs: '//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min'
     }, shim: {
         jquery: {
             exports: '$'
         }, 'bootstrap': {
             deps: [ 'jquery' ], exports: 'bs'
-        }, 'under': {
+        }, 'underscorejs': {
             deps: [ 'jquery' ], exports: '_'
         }, 'backbone': {
-            deps: [ 'under' ], exports: 'Backbone'
+            deps: [ 'underscorejs' ], exports: 'Backbone'
         }, 'bog': {
             deps: [ 'jquery', 'googlemaps' ], exports: 'bog'
         }

@@ -1,6 +1,6 @@
 define([
     'jquery',
-    'under',
+    'underscorejs',
     'backbone',
     'views/donations/_donation.display',
     'views/maps/map.small',

@@ -1,4 +1,4 @@
-define([ 'jquery', 'under', 'backbone', 'text!../../../templates/donations/_donation.display.html' ],
+define([ 'jquery', 'underscorejs', 'backbone', 'text!../../../templates/donations/_donation.display.html' ],
     function ($, _, Backbone, DetailTemplate) {
         return Backbone.View.extend({
             initialize: function (container, donation) {

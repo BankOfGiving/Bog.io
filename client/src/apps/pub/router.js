@@ -1,4 +1,4 @@
-define([ 'jquery', '../../../.', 'backbone', 'postal', 'bog',
+define([ 'jquery', 'underscorejs', 'backbone', 'postal', 'bog',
 
     'views/home/view',
     'views/about/view',

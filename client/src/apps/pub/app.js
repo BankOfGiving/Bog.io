@@ -1,4 +1,4 @@
-define([ 'jquery', '../../../.', 'backbone', 'router' ],
+define([ 'jquery', 'underscorejs', 'backbone', 'router' ],
     function ($, _, Backbone, router) {
         var initialize = function () {
             $.ajaxPrefilter(function (options, originalOptions, jqXHR) {

@@ -1,4 +1,4 @@
-define([ 'jquery', 'under', 'backbone', 'modules/bog.site', 'modules/bog.i18n', 'text!../../../templates/home/landing.html' ],
+define([ 'jquery', 'underscorejs', 'backbone', 'modules/bog.site', 'modules/bog.i18n', 'text!../../../templates/home/landing.html' ],
     function ($, _, Backbone, site, i18n, LandingTemplate) {
         return Backbone.View.extend({
             initialize: function () {

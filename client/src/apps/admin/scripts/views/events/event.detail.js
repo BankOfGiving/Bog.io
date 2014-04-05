@@ -1,4 +1,4 @@
-define(['jquery', 'under', 'backbone', 'bootstrap', 'moment', 'modules/bog.site', 'modules/bog.i18n', 'models/model.event', 'text!../../../templates/events/event.detail.html'],
+define(['jquery', 'underscorejs', 'backbone', 'bootstrap', 'moment', 'modules/bog.site', 'modules/bog.i18n', 'models/model.event', 'text!../../../templates/events/event.detail.html'],
     function ($, _, Backbone, bs, moment, site, i18n, EventModel, DetailTemplate) {
         return Backbone.View.extend({
             siteText: i18n.getViewText('event_detail'),

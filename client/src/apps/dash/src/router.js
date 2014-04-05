@@ -1,4 +1,4 @@
-define([ 'jquery', 'under', 'backbone', 'postal', 'bog', 'views/home/view', 'views/events/view', 'views/event/view', 'views/event-form/view'
+define([ 'jquery', 'underscorejs', 'backbone', 'postal', 'bog', 'views/home/view', 'views/events/view', 'views/event/view', 'views/event-form/view'
 ], function ($, _, Backbone, postal, bog, home_view, events_view, event_view, event_form_view) {
     var AppRouter = Backbone.Router.extend({
         routes: {

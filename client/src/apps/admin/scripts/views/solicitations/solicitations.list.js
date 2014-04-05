@@ -1,4 +1,4 @@
-define(['jquery', 'under', 'backbone', 'modules/bog.site', 'collections/collection.solicitations', 'text!../../../templates/solicitations/solicitations.list.html'], function ($, _, Backbone, site, SolicitationCollection, SolicitationTemplate) {
+define(['jquery', 'underscorejs', 'backbone', 'modules/bog.site', 'collections/collection.solicitations', 'text!../../../templates/solicitations/solicitations.list.html'], function ($, _, Backbone, site, SolicitationCollection, SolicitationTemplate) {
     return Backbone.View.extend({
         // TODO: move site text to i18n.
         siteText: {

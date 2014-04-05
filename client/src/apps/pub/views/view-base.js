@@ -1,6 +1,6 @@
 define([
     'jquery',
-    'under',
+    'underscorejs',
     'backbone',
     'bootstrap',
     'postal',
@@ -49,7 +49,6 @@ define([
             __process_manifest: function (manifest) {
                 var self = this;
                 var app = manifest.app;
-                var mod_container_arr = [];
                 var i, mod_key, mod_manifest;
 
                 for (i = 0; i < manifest.modules.length; i++) {

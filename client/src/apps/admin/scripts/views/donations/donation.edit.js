@@ -1,4 +1,4 @@
-define(['jquery', 'under', 'backbone', 'views/maps/map.small', 'views/donations/_donation.form', 'models/model.donation', 'text!../../../templates/donations/donation.edit.html'],
+define(['jquery', 'underscorejs', 'backbone', 'views/maps/map.small', 'views/donations/_donation.form', 'models/model.donation', 'text!../../../templates/donations/donation.edit.html'],
     function ($, _, Backbone, MapView, FormView, DonationModel, EditTemplate) {
         return Backbone.View.extend({
             el: $('body'),

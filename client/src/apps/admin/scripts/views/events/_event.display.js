@@ -1,6 +1,6 @@
 define([
     'jquery',
-    'under',
+    'underscorejs',
     'backbone'
 ], function ($, _, Backbone) {
     return Backbone.View.extend({

@@ -1,6 +1,6 @@
 define([
     'jquery',
-    'under',
+    'underscorejs',
     'backbone',
     'views/maps/map.small'
 ], function ($, _, Backbone, MapView, SolicitationModel, DetailTemplate) {

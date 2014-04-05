@@ -1,6 +1,6 @@
 define([
     'jquery',
-    'under',
+    'underscorejs',
     'backbone',
     'views/_base/Bog.views.partial.ListModels',
     'text!../../../templates/donations/_donations.list.items.html'

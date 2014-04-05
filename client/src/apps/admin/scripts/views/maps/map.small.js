@@ -1,6 +1,6 @@
 define([
     'jquery',
-    'under',
+    'underscorejs',
     'backbone',
     'modules/bog.maps'
 ], function ($, _, Backbone, maps) {

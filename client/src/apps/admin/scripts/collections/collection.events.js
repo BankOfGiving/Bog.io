@@ -1,4 +1,4 @@
-define(['jquery', 'under', 'backbone', 'models/model.event'], function ($, _, Backbone, event) {
+define(['jquery', 'underscorejs', 'backbone', 'models/model.event'], function ($, _, Backbone, event) {
     return Backbone.Collection.extend({
         model: event,
         urlRoot: 'events/',

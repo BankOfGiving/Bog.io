@@ -1,6 +1,6 @@
 define([
     'jquery',
-    'under',
+    'underscorejs',
     'backbone',
     'text!../../../templates/donations/_donation.form.html'
 ], function ($, _, Backbone, FormTemplate) {

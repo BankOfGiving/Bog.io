@@ -1,4 +1,4 @@
-define([ 'jquery', '../../.', 'backbone', 'moment', 'postal', 'bog', 'text!./modules/module-wrapper/mod-wrapper.html' ],
+define([ 'jquery', 'underscorejs', 'backbone', 'moment', 'postal', 'bog', 'text!./modules/module-wrapper/mod-wrapper.html' ],
     function ($, _, Backbone, moment, postal, bog, module_wrapper_layout) {
         return Backbone.View.extend({
             api_root: null,

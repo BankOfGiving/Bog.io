@@ -1,4 +1,4 @@
-define(['jquery', 'under', 'backbone'], function ($, _, Backbone) {
+define(['jquery', 'underscorejs', 'backbone'], function ($, _, Backbone) {
     return Backbone.Model.extend({
         urlRoot: 'donations/'
     });

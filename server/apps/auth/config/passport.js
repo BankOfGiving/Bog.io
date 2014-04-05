@@ -9,7 +9,7 @@ var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 //var OAuth2Strategy = require('passport-oauth').OAuth2Strategy;
 
 var User = require('../../../data/models/bog.data.models.user.js');
-var _ = require('underscore');
+//var _ = require('underscore');
 
 passport.serializeUser(function (user, done) {
     done(null, user.id);

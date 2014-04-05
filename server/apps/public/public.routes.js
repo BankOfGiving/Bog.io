@@ -20,17 +20,19 @@ module.exports = function (app, express) {
 
     // Public Site Static Paths
     app.use(base_uri + '/', express.static(path.join(client_root, '/apps/pub')));
-    app.use(base_uri + '/views', express.static(path.join(client_root, '/apps/pub/views')));
 
     // Shared Resource Paths
-    app.use(base_uri + '/img', express.static(path.join(client_root, '/apps/pub/img')));
-    app.use(base_uri + '/lib', express.static(path.join(client_root, '/apps/pub/lib')));
-    app.use(base_uri + '/modules', express.static(path.join(client_root, '/apps/pub/mod')));
-    app.use(base_uri + '/styles', express.static(path.join(client_root, '/apps/pub/styles')));
+    app.use(base_uri + '/img', express.static(path.join(client_root, '/img')));
+    app.use(base_uri + '/lib', express.static(path.join(client_root, '/lib')));
+    app.use(base_uri + '/modules', express.static(path.join(client_root, '/mod')));
+    app.use(base_uri + '/styles', express.static(path.join(client_root, '/styles')));
+
+    console.log(base_uri + '/styles');
+    console.log(path.join(client_root, '/styles'));
 
     // View Routes
     app.get('/', function (req, res) {
-        res.render(__dirname + '/views/index', { title: 'Welcome to the Bank of Giving!!' });
+        res.render(__dirname + '/views/index');
     });
 
     // Api Routes

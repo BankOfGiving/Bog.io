@@ -12,14 +12,14 @@ requirejs.config({
         googlemaps: '//maps.googleapis.com/maps/api/js?key=AIzaSyCZjCOZHzKqlOAkBXr1HFrLtY84zVqWZxA&sensor=true',
         jquery: '//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery',
         moment: '//cdnjs.cloudflare.com/ajax/libs/moment.js/2.4.0/moment.min',
-        underscore: "//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min"
+        underscorejs: "//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min"
     }, shim: {
         jquery: {
             exports: '$'
-        }, 'under': {
+        }, 'underscorejs': {
             deps: [ 'jquery' ], exports: '_'
         }, 'backbone': {
-            deps: [ 'under' ], exports: 'Backbone'
+            deps: [ 'underscorejs' ], exports: 'Backbone'
         }, 'bootstrap': {
             deps: [ 'jquery' ], exports: 'bs'
         }

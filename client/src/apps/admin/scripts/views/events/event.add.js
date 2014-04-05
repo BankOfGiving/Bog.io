@@ -1,4 +1,4 @@
-define(['jquery', 'under', 'backbone', 'models/model.event'],
+define(['jquery', 'underscorejs', 'backbone', 'models/model.event'],
     function ($, _, Backbone, EventModel, AddFormTemplate) {
         return Backbone.View.extend({
             el: $('body'),

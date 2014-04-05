@@ -1,4 +1,4 @@
-define(['jquery', 'under', 'backbone', 'bootstrap', 'moment', 'modules/bog.site' , 'models/model.solicitation' , 'text!../../../templates/solicitations/solicitation.detail.html' , 'modules/bog.maps' ],
+define(['jquery', 'underscorejs', 'backbone', 'bootstrap', 'moment', 'modules/bog.site' , 'models/model.solicitation' , 'text!../../../templates/solicitations/solicitation.detail.html' , 'modules/bog.maps' ],
     function ($, _, Backbone, bs, moment, site, SolicitationModel, DetailTemplate, maps) {
         return Backbone.View.extend({
             //TODO: Move site text to i18n.

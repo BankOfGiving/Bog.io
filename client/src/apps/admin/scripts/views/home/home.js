@@ -1,4 +1,4 @@
-define([ 'jquery', 'under', 'backbone', 'modules/bog.site', 'modules/bog.i18n', 'text!../../../templates/home/main.v1.html'],
+define([ 'jquery', 'underscorejs', 'backbone', 'modules/bog.site', 'modules/bog.i18n', 'text!../../../templates/home/main.v1.html'],
     function ($, _, Backbone, site, i18n, mainTemplate) {
         return Backbone.View.extend({
             initialize: function () {

@@ -177,9 +177,22 @@ module.exports = function (grunt) {
                     nospawn: true
                 }
             },
+            'client_mod': {
+                files: ['client/src/mod/**/*.*'],
+                tasks: [
+                    'htmlhint:src_client_mod',
+                    'jshint:src_client_mod'
+                ],
+                options: {
+                    nospawn: true
+                }
+            },
             'client_pub': {
-                files: ['client/apps/pub/**/*.*'],
-                tasks: ['client_pub'],
+                files: ['client/src/apps/pub/**/*.*'],
+                tasks: [
+                    'htmlhint:src_client_apps_pub',
+                    'jshint:src_client_apps_pub'
+                ],
                 options: {
                     nospawn: true
                 }

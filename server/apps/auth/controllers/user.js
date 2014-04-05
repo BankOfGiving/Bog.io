@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var passport = require('passport');
-var _ = require('underscore');
+//var _ = require('underscore');
 var User = require('../../../data/models/bog.data.models.user');
 
 /**

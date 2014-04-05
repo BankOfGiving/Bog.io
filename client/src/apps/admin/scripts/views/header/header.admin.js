@@ -1,4 +1,4 @@
-define([ 'jquery', 'under', 'backbone',
+define([ 'jquery', 'underscorejs', 'backbone',
     'text!../../../templates/header/header.admin.html'
 ], function ($, _, Backbone, AdminHeaderTemplate) {
     return Backbone.View.extend({
