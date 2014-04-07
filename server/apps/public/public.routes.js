@@ -27,9 +27,6 @@ module.exports = function (app, express) {
     app.use(base_uri + '/modules', express.static(path.join(client_root, '/mod')));
     app.use(base_uri + '/styles', express.static(path.join(client_root, '/styles')));
 
-    console.log(base_uri + '/styles');
-    console.log(path.join(client_root, '/styles'));
-
     // View Routes
     app.get('/', function (req, res) {
         res.render(__dirname + '/views/index');

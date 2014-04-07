@@ -2,6 +2,10 @@
     "app": "pub",
     "view": "home",
     "layout": "layout-2",
+    "pubsub": {
+        "data_channel_id": "pub",
+        "data_topic": "event"
+    },
     "modules": [
         {
             "mod_type": "titlebar",
@@ -32,6 +36,7 @@
                 "data_channel_id": "pub",
                 "data_topic": "event"
             },
+            "layout": "detail",
             "options": {}
         },
         {

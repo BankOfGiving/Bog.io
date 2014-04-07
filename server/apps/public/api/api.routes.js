@@ -48,4 +48,9 @@ module.exports = function (app, api_uri) {
     require('./mod/search-results-container/routes')(app, mod_uri + '/search-results-container');
     require('./mod/text/routes')(app, mod_uri + '/text');
     require('./mod/titlebar/routes')(app, mod_uri + '/titlebar');
+
+    var data_uri = api_uri + '/data';
+
+    require('./data/api.routes.events')(app, data_uri + '/events');
+    require('./data/api.routes.event')(app, data_uri + '/event');
 };

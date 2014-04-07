@@ -1,43 +1,44 @@
 <div class="well text-left text-top">
     <div class="panel panel-primary">
-        <div class="panel-heading"><%= result.title %></div>
+        <div class="panel-heading"><%= module.model.title %></div>
         <div class="panel-body">
             <table class="table table-striped">
                 <tr>
                     <td>Status</td>
-                    <td><%= result.status %></td>
+                    <td><%= module.model.status %></td>
                 </tr>
                 <tr>
                     <td>Type</td>
-                    <td><% switch (result.type) { case "health" : print("HEALTHY!!!");break; } %></td>
+                    <td><% switch (module.model.type) { case "health" : print("HEALTHY!!!");break; } %></td>
                 </tr>
                 <tr>
                     <td>Tags</td>
-                    <td><%= result.tags %></td>
+                    <td><%= module.model.tags %></td>
                 </tr>
                 <tr>
                     <td>Author</td>
-                    <td><%= result.author %>
+                    <td><%= module.model.author %>
                     </td>
                 </tr>
                 <tr>
                     <td>Starts</td>
-                    <td><%= _.template.formatDateTime(result.beginAt) %></td>
+                    <td><%= _.template.formatDateTime(module.model.beginAt) %></td>
                 </tr>
                 <tr>
                     <td>Ends</td>
-                    <td><%= _.template.formatDateTime(result.endAt) %></td>
+                    <td><%= _.template.formatDateTime(module.model.endAt) %></td>
                 </tr>
                 <tr>
                     <td>Description</td>
-                    <td><%= result.description %></td>
+                    <td><%= module.model.description %></td>
                 </tr>
             </table>
         </div>
     </div>
-    <% if(_.template.isPopulatedArray(result.locations_physical)) { %>
+    <% if(_.template.isPopulatedArray(module.model.locations_physical)) { %>
     <div class="panel panel-primary">
-        <div class="panel-heading">Locations <span class="badge"><%= result.locations_physical.length%></span></div>
+        <div class="panel-heading">Locations <span class="badge"><%= module.model.locations_physical.length%></span>
+        </div>
         <div class="panel-body">
             <table class="table table-striped">
                 <thead>
@@ -47,7 +48,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <% _.each(result.locations_physical, function(location) { %>
+                <% _.each(module.model.locations_physical, function(location) { %>
                 <tr>
                     <td><%= location.geocoding_result.formatted_address %></td>
                     <td><img border="0"
@@ -64,7 +65,7 @@
         </div>
     </div>
     <% } %>
-    <% if(_.template.isPopulatedArray(result.contacts)) { %>
+    <% if(_.template.isPopulatedArray(module.model.contacts)) { %>
     <div class="panel-heading">Contact</div>
     <div class="panel-body">
         <div class="col-lg-6"></div>
@@ -77,13 +78,13 @@
             <tr>
                 <td>Date Created
                 </td>
-                <td><%= _.template.formatDateTime( result.audit.createdAt )%>
+                <td><%= _.template.formatDateTime( module.model.audit.createdAt )%>
                 </td>
             </tr>
             <tr>
                 <td>Last Updated
                 </td>
-                <td><%= _.template.formatDateTime( result.audit.lastModifiedAt )%>
+                <td><%= _.template.formatDateTime( module.model.audit.lastModifiedAt )%>
                 </td>
             </tr>
         </table>
@@ -102,7 +103,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <% _.each(result.audit.detail, function(audit) { %>
+                    <% _.each(module.model.audit.detail, function(audit) { %>
                     <tr>
                         <td><%= _.template.formatDateTime( audit.timeStamp ) %></td>
                         <td><%= audit.action %></td>

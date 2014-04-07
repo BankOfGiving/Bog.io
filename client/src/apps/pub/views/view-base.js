@@ -44,6 +44,9 @@ define([
                 self.$el.empty();
                 self.$el.append(layout);
                 self.__process_manifest(manifest);
+                if (callback) {
+                    callback();
+                }
                 return this;
             },
             __process_manifest: function (manifest) {

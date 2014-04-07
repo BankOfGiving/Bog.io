@@ -37,7 +37,6 @@ define([ 'module_base', 'text!./container.html', 'text!./event-1.html', 'text!./
                     self.results.append(no_result_markup);
                 } else {
                     for (var i = 0; i < data.length; i++) {
-                        console.log(data[i]);
                         var result_markup = _.template(result_layout, {result: data[i]});
                         self.results.append(result_markup);
                     }

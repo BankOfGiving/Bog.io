@@ -20,6 +20,7 @@ requirejs.config({
         moment: '//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min',
         postal: '//cdnjs.cloudflare.com/ajax/libs/postal.js/0.8.5/postal',
         text: '//cdnjs.cloudflare.com/ajax/libs/require-text/2.0.10/text',
+        underscore: '//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min',
         underscorejs: '//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min',
 
         googlemaps: '//maps.googleapis.com/maps/api/js?key=AIzaSyCZjCOZHzKqlOAkBXr1HFrLtY84zVqWZxA&sensor=true'
