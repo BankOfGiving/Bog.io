@@ -885,7 +885,6 @@ var EventRepository = function (current_user) {
         for (var i = 0; i < collection.length; i++) {
             var rawItem = collection[i];
             var detailModel = new EventModelDetail().fromRaw(rawItem);
-            newColl.push(detailModel);
 
             // Perform Mapping
             newColl.push(detailModel);

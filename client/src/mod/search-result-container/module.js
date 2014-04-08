@@ -3,7 +3,8 @@ define([ 'module_base', 'text!./container.html', 'text!./no-results.html' ],
         return mod_base.extend({
             api_root: "/api/mod/search-results-container",
             template_root: "/modules/search-result-container",
-            results: [],
+            results_data: [],
+            results_markup: [],
             initialize: function (el, o, callback) {
                 var self = this;
                 self.base_initialize(el, o, function () {
@@ -20,7 +21,7 @@ define([ 'module_base', 'text!./container.html', 'text!./no-results.html' ],
             render: function (template, culture, callback) {
                 var self = this;
                 self.base_render(template, culture, function (rendered_layout) {
-                    self.results = $(rendered_layout).children("#search-results");
+                    self.results_markup = $(rendered_layout).children("#search-results");
                     if (callback) {
                         callback(self);
                     }
@@ -28,35 +29,39 @@ define([ 'module_base', 'text!./container.html', 'text!./no-results.html' ],
             },
             search_results: function (container, data) {
                 var self = this;
-                console.log(data);
-                self.results.empty();
+                self.results_markup.empty();
                 if (!data || data.length === 0) {
                     var no_result_markup = _.template(no_result_layout, {result: null});
-                    self.results.append(no_result_markup);
+                    self.results_markup.append(no_result_markup);
                 } else {
                     for (var i = 0; i < data.length; i++) {
                         var result = data[i];
                         switch (result.entity) {
                             case 'event':
+                                console.log(0);
                                 self.render_result(self.template_root + '/event-1.html', result);
                                 break;
                             case 'donation':
+                                console.log(1);
                                 self.render_result(self.template_root + '/donation-1.html', result);
                                 break;
                             case 'solicitation':
+                                console.log(2);
                                 self.render_result(self.template_root + '/solicitation-1.html', result);
                                 break;
                             default:
+                                console.log(3);
                                 self.render_result(self.template_root + '/event-1.html', result);
                                 break;
                         }
                     }
                 }
             },
-            render_result: function (result, layout_uri) {
+            render_result: function (layout_uri, result) {
+                var self = this;
                 require(['text!' + layout_uri], function (layout) {
                     var result_markup = _.template(layout, {result: result});
-                    self.results.append(result_markup);
+                    self.results_markup.append(result_markup);
                 });
             }
         });

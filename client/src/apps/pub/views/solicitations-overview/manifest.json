@@ -5,9 +5,9 @@
     "modules": [
         {
             "mod_type": "titlebar",
-            "uid": "home",
+            "uid": "pub",
             "zone": 0,
-            "localize": false,
+            "localize": true,
             "options": {}
         },
         {
