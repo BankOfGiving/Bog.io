@@ -38,32 +38,26 @@ define([ 'module_base', 'text!./container.html', 'text!./no-results.html' ],
                         var result = data[i];
                         switch (result.entity) {
                             case 'event':
-                                require(['text!' + self.template_root + '/event-1.html'], function (layout) {
-                                    var result_markup = _.template(layout, {result: result});
-                                    self.results.append(result_markup);
-                                });
+                                self.render_result(self.template_root + '/event-1.html', result);
                                 break;
                             case 'donation':
-                                require(['text!' + self.template_root + '/donation-1.html'], function (layout) {
-                                    var result_markup = _.template(layout, {result: result});
-                                    self.results.append(result_markup);
-                                });
+                                self.render_result(self.template_root + '/donation-1.html', result);
                                 break;
                             case 'solicitation':
-                                require(['text!' + self.template_root + '/solicitation-1.html'], function (layout) {
-                                    var result_markup = _.template(layout, {result: result});
-                                    self.results.append(result_markup);
-                                });
+                                self.render_result(self.template_root + '/solicitation-1.html', result);
                                 break;
                             default:
-                                require(['text!' + self.template_root + '/event-1.html'], function (layout) {
-                                    var result_markup = _.template(layout, {result: result});
-                                    self.results.append(result_markup);
-                                });
+                                self.render_result(self.template_root + '/event-1.html', result);
                                 break;
                         }
                     }
                 }
+            },
+            render_result: function (result, layout_uri) {
+                require(['text!' + layout_uri], function (layout) {
+                    var result_markup = _.template(layout, {result: result});
+                    self.results.append(result_markup);
+                });
             }
         });
     });
