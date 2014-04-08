@@ -1,6 +1,7 @@
-var EventDetail = function () {
+var detail = function () {
 
     var model = {
+        entity: 'donation', //ObjectId
         id: '', //ObjectId
         title: '', //{ type: String }
         description: '', //{ type: String }
@@ -66,4 +67,4 @@ var EventDetail = function () {
     };
 };
 
-module.exports = EventDetail;
+module.exports = detail;

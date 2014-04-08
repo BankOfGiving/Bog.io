@@ -209,6 +209,7 @@ var DonationRepository = function (current_user) {
                     callback(self.err.wrap(1001, null, err));
                 } else {
                     var returnList = [];
+                    console.log(coll);
                     pushRawCollectionToDetail(coll, function (listColl) {
                         returnList = listColl;
                     });
@@ -278,6 +279,7 @@ var DonationRepository = function (current_user) {
         }
 
         data.findById(id, function (err, entity) {
+            console.log(id);
             if (err) {
                 callback(self.err.wrap(1001, null, err));
                 return;

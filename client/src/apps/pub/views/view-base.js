@@ -45,9 +45,10 @@ define([
                 self.$el.append(layout);
                 self.__process_manifest(manifest);
                 if (callback) {
-                    callback();
+                    callback(self);
+                } else {
+                    return this;
                 }
-                return this;
             },
             __process_manifest: function (manifest) {
                 var self = this;

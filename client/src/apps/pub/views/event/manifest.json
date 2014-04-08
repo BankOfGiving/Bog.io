@@ -1,7 +1,8 @@
 {
     "app": "pub",
-    "view": "home",
+    "view": "event",
     "layout": "layout-2",
+    "data_api": "/api/data/event/",
     "pubsub": {
         "data_channel_id": "pub",
         "data_topic": "event"

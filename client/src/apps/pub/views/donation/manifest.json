@@ -1,19 +1,11 @@
 {
     "app": "pub",
-    "view": "events",
+    "view": "donation",
     "layout": "layout-2",
-    "data_api": "/api/data/events/",
-    "initial_set": {
-        "entity": "events",
-        "type": "",
-        "text": "",
-        "sort_key": "lastModifiedAt",
-        "sort_dir": "desc",
-        "pull": 10
-    },
+    "data_api": "/api/data/donation/",
     "pubsub": {
         "data_channel_id": "pub",
-        "data_topic": "search.results.events"
+        "data_topic": "donation"
     },
     "modules": [
         {
@@ -37,34 +29,30 @@
             "options": {}
         },
         {
-            "mod_type": "search-result-container",
-            "uid": "search-results-all",
+            "mod_type": "donation-display",
+            "uid": "",
             "zone": 2,
             "localize": false,
             "pubsub": {
-                "data_topic": "search.results.events"
+                "data_channel_id": "pub",
+                "data_topic": "donation"
             },
+            "layout": "detail",
             "options": {}
         },
         {
             "mod_type": "search-form",
-            "uid": "events",
+            "uid": "donations",
             "zone": 3,
             "clean": false,
             "localize": true,
             "pubsub": {
                 "data_channel_id": "pub",
-                "data_topic": "search.results.events"
+                "data_topic": "donation"
             },
             "options": {
                 "orientation": "vert"
             }
-        },
-        {
-            "mod_type": "separator",
-            "zone": 3,
-            "localize": false,
-            "options": {}
         },
         {
             "mod_type": "markup",
@@ -83,7 +71,7 @@
             "clean": false,
             "localize": true,
             "options": {
-                "markup": "<div data-localize-target=\"html\" data-localize-key=\"markup.text\"></div><a href=\"#/events-overview/\" target=\"_self\" data-localize-target=\"html\" data-localize-key=\"markup.more-link\"></a>"
+                "markup": "<div data-localize-target=\"html\" data-localize-key=\"markup.text\"></div><a href=\"#/donations-overview/\" target=\"_self\" data-localize-target=\"html\" data-localize-key=\"markup.more-link\"></a>"
             }
         },
         {
@@ -93,7 +81,7 @@
             "clean": false,
             "localize": true,
             "options": {
-                "markup": "<div data-localize-target=\"html\" data-localize-key=\"markup.text\"></div><a href=\"#/events-overview/\" target=\"_self\" data-localize-target=\"html\" data-localize-key=\"markup.more-link\"></a>"
+                "markup": "<div data-localize-target=\"html\" data-localize-key=\"markup.text\"></div><a href=\"#/solicitations-overview/\" target=\"_self\" data-localize-target=\"html\" data-localize-key=\"markup.more-link\"></a>"
             }
         }
     ]

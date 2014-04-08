@@ -13,25 +13,6 @@ define([ 'postal', 'module_base', 'text!./mod-search-form-horiz.html', 'text!./m
                             module_template = module_layout_horiz;
                         }
                         self.base_render(module_template, window.culture, function () {
-                            if (self.manifest.options.initial_set) {
-                                var search_filter = {};
-                                if (self.manifest.options.initial_set.entity) {
-                                    search_filter.entity = self.manifest.options.initial_set.entity;
-                                }
-                                if (self.manifest.options.initial_set.search_type) {
-                                    search_filter.type = self.manifest.options.initial_set.search_type;
-                                }
-                                if (self.manifest.options.initial_set.search_text) {
-                                    search_filter.text = self.manifest.options.initial_set.search_text;
-                                }
-                                if (self.manifest.options.initial_set.sort_key) {
-                                    search_filter.sort_key = self.manifest.options.initial_set.sort_key;
-                                }
-                                if (self.manifest.options.initial_set.sort_dir) {
-                                    search_filter.sort_dir = self.manifest.options.initial_set.sort_dir;
-                                }
-                                self.search(search_filter);
-                            }
                             if (callback) {
                                 callback(self);
                             }

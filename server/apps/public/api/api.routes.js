@@ -53,4 +53,6 @@ module.exports = function (app, api_uri) {
 
     require('./data/api.routes.events')(app, data_uri + '/events');
     require('./data/api.routes.event')(app, data_uri + '/event');
+    require('./data/api.routes.donations')(app, data_uri + '/donations');
+    require('./data/api.routes.donation')(app, data_uri + '/donation');
 };

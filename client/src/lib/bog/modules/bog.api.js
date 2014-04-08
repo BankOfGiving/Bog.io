@@ -19,8 +19,8 @@ bog.api = {
         donations: 'api/donations/',
         donation: 'api/donation/',
 
-        events: '/api/events/',
-        event: '/api/event/',
+        events: '/api/data/events/',
+        event: '/api/data/event/',
 
         event_types: '/api/event_types/',
         event_type: '/api/event_type/',

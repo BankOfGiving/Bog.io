@@ -2,7 +2,7 @@ module.exports = function (app, uri_base) {
     var url = require('url');
 
     // modules
-    var EventRepo = require('../../../../domain/repositories/bog.domain.repositories.event.js');
+    var DonationRepo = require('../../../../domain/repositories/bog.domain.repositories.donation.js');
     var ErrorHandler = require('../../../../bog/bog.errors.js');
 
     var err_handler = new ErrorHandler();
@@ -16,7 +16,7 @@ module.exports = function (app, uri_base) {
 
     app.get(uri_base + '/', function (req, res) {
         var user = req.user;
-        var domainRepo = new EventRepo(user);
+        var domainRepo = new DonationRepo(user);
         var depth = 2;
         if (!depth) {
             res.json(400, err_handler.wrap(5000));
@@ -47,7 +47,7 @@ module.exports = function (app, uri_base) {
 
     var search_all = function (req, res) {
         var user = req.user;
-        var domainRepo = new EventRepo(user);
+        var domainRepo = new DonationRepo(user);
         var depth = 2;
         if (!depth) {
             res.json(err_handler.wrap(5000));

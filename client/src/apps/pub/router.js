@@ -4,10 +4,8 @@ define([ 'jquery', 'underscorejs', 'backbone', 'postal', 'bog',
     'views/about/view',
     'views/events/view',
     'views/events-overview/view',
-    'views/event/view',
-    'views/donations-overview/view',
-    'views/solicitations-overview/view'
-], function ($, _, Backbone, postal, bog, home_view, about_view, events_view, events_overview_view, event_view, donations_overview_view, solicitations_overview_view) {
+    'views/event/view'
+], function ($, _, Backbone, postal, bog, home_view, about_view, events_view, events_overview_view, event_view) {
     var AppRouter = Backbone.Router.extend({
         routes: {
             '': 'home',
@@ -15,7 +13,9 @@ define([ 'jquery', 'underscorejs', 'backbone', 'postal', 'bog',
             'events': 'events',
             'events/about/': 'events-overview',
             'event/:id': 'event',
+            'donations': 'donations',
             'donations/about/': 'donations-overview',
+            'donations/:id': 'donation',
             'solicitations/about/': 'solicitations-overview'
         }
     });
@@ -49,15 +49,39 @@ define([ 'jquery', 'underscorejs', 'backbone', 'postal', 'bog',
         // ----------------------------------------------------------
         // DONATIONS
         // ----------------------------------------------------------
+        app_router.on('route:donations', function () {
+            require(['views/donations/view'], function (view) {
+                new view({ el: container });
+            });
+        });
         app_router.on('route:donations-overview', function () {
-            new donations_overview_view({ el: container });
+            require(['views/donations-overview/view'], function (view) {
+                new view({ el: container });
+            });
+        });
+        app_router.on('route:donation', function (id) {
+            require(['views/donation/view'], function (view) {
+                new view({ el: container }, id);
+            });
         });
 
         // ----------------------------------------------------------
         // SOLICITATIONS
         // ----------------------------------------------------------
+        app_router.on('route:solicitations', function () {
+            require(['views/solicitations/view'], function (view) {
+                new view({ el: container });
+            });
+        });
         app_router.on('route:solicitations-overview', function () {
-            new solicitations_overview_view({ el: container });
+            require(['views/solicitations-overview/view'], function (view) {
+                new view({ el: container });
+            });
+        });
+        app_router.on('route:solicitation', function (id) {
+            require(['views/solicitation/view'], function (view) {
+                new view({ el: container }, id);
+            });
         });
 
 

@@ -2,6 +2,7 @@ var EventSimple = function () {
     var self = this;
 
     var SimpleModel = {
+        entity: 'event', //entity type
         id: '',
         title: ''
     };

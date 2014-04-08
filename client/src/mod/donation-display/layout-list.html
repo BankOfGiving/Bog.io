@@ -1,0 +1,37 @@
+<fieldset id="Event-Basics">
+    <legend></legend>
+    <div class="form-group" data-localize-key="form.elements.title" data-localize-target="form-group">
+        <label for="title" class="control-label"></label>
+        <input name="title" id="title" class="form-control" placeholder="" data-bind-event="title"
+               value="<%= event.title %>">
+    </div>
+    <div class="form-group" data-localize-key="form.elements.description" data-localize-target="form-group">
+        <label for="description" class="control-label"></label>
+        <textarea name="description" id="description" class="form-control" data-bind-event="description" placeholder=""><%=
+            event.description %></textarea>
+    </div>
+    <div class="form-group" data-localize-key="form.elements.status" data-localize-target="form-group">
+        <label for="status" class="control-label"></label>
+        <select class="form-control" id="status">
+            <% _.each(module.view_data.event_statuses, function(event_status) { %>
+            <option data-localize-key="<%= event_status.key %>" data-localize-target="text"
+                    value="<%= event_status.value %>"></option>
+            <% }); %>
+        </select>
+    </div>
+    <div class="form-group" data-localize-key="form.elements.type" data-localize-target="form-group">
+        <label for="type" class="control-label"></label>
+        <select class="form-control" id="type">
+            <% _.each(module.view_data.event_types, function(event_type) { %>
+            <option data-localize-key="<%= event_type.key %>" data-localize-target="text"
+                    value="<%= event_type.value %>"><%= event_type.key %>
+            </option>
+            <% }); %>
+        </select>
+    </div>
+    <div class="form-group" data-localize-key="form.elements.tags" data-localize-target="form-group">
+        <label for="tags" class="control-label"></label>
+        <input name="tags" id="tags" class="form-control" placeholder="" data-bind-event="tags" value="">
+    </div>
+</fieldset>
+<%= JSON.stringify(module) %>

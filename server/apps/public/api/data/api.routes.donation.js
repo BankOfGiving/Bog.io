@@ -2,9 +2,9 @@ module.exports = function (app, uri_base) {
     var url = require('url');
 
     // modules
-    var EventTypeRepo = require('../../../../domain/repositories/bog.domain.repositories.event.type.js');
-    var EventStatusesRepo = require('../../../../domain/repositories/bog.domain.repositories.status.js');
-    var EventRepo = require('../../../../domain/repositories/bog.domain.repositories.event.js');
+    var DonationTypeRepo = require('../../../../domain/repositories/bog.domain.repositories.donation.type.js');
+    var DonationStatusesRepo = require('../../../../domain/repositories/bog.domain.repositories.status.js');
+    var DonationRepo = require('../../../../domain/repositories/bog.domain.repositories.donation.js');
     var ErrorHandler = require('../../../../bog/bog.errors.js');
 
     var err_handler = new ErrorHandler();
@@ -18,25 +18,25 @@ module.exports = function (app, uri_base) {
 
     app.get(uri_base + '/', function (req, res) {
         var view_data = {};
-        var eventRepo = new EventRepo();
-        var statusesRepo = new EventStatusesRepo();
-        var typesRepo = new EventTypeRepo();
+        var DonationRepo = new DonationRepo();
+        var statusesRepo = new DonationStatusesRepo();
+        var typesRepo = new DonationTypeRepo();
 
-        eventRepo.empty('detail', function (err, model) {
+        DonationRepo.empty('detail', function (err, model) {
             if (err) {
                 res.json(err_handler.wrap(5004));
             } else {
-                view_data.event_model = model;
+                view_data.Donation_model = model;
                 typesRepo.all(function (err, coll) {
                     if (err) {
                         res.json(err_handler.wrap(5004));
                     } else {
-                        view_data.event_types = coll;
+                        view_data.Donation_types = coll;
                         statusesRepo.all(function (err, coll) {
                             if (err) {
                                 res.json(err_handler.wrap(5004));
                             } else {
-                                view_data.event_statuses = coll;
+                                view_data.Donation_statuses = coll;
                                 res.json(view_data);
                             }
                         });
@@ -46,10 +46,10 @@ module.exports = function (app, uri_base) {
         });
     });
 
-    // View Event
+    // View Donation
     app.get(uri_base + '/:id', function (req, res) {
         var user = req.user;
-        var domainRepo = new EventRepo(user);
+        var domainRepo = new DonationRepo(user);
         var depth = 3;
         if (!depth) {
             res.json(500, err_handler.wrap(5002));
@@ -66,12 +66,12 @@ module.exports = function (app, uri_base) {
         });
     });
 
-    // Get All Locations for Event
-    app.get(uri_base + '/:eventid/ploc/', function (req, res) {
+    // Get All Locations for Donation
+    app.get(uri_base + '/:Donationid/ploc/', function (req, res) {
         var user = req.user;
-        var domainRepo = new EventRepo(user);
+        var domainRepo = new DonationRepo(user);
 
-        var id = req.params.eventid;
+        var id = req.params.Donationid;
         if (!id) {
             res.json(500, err_handler.wrap(5000));
             return;
@@ -88,12 +88,12 @@ module.exports = function (app, uri_base) {
         });
     });
     // Single Physical Location
-    app.get(uri_base + '/:eventid/ploc/:locid', function (req, res) {
+    app.get(uri_base + '/:Donationid/ploc/:locid', function (req, res) {
         var user = req.user;
-        var domainRepo = new EventRepo(user);
+        var domainRepo = new DonationRepo(user);
 
-        var eventid = req.params.eventid;
-        if (!eventid) {
+        var Donationid = req.params.Donationid;
+        if (!Donationid) {
             res.json(500, err_handler.wrap(5000));
             return;
         }
@@ -109,7 +109,7 @@ module.exports = function (app, uri_base) {
             return;
         }
 
-        domainRepo.plocById(eventid, locid, depth, function (err, item) {
+        domainRepo.plocById(Donationid, locid, depth, function (err, item) {
             returnCollection(res, err, item);
         });
     });

@@ -1,0 +1,33 @@
+{
+    "module": {
+        "title": "Search Donations",
+        "description": ""
+    },
+    "form": {
+        "elements": {
+            "search": {
+                "label": "Search Terms",
+                "placeholder": "Something fun!"
+            },
+            "type": {
+                "label": "Result Types",
+                "placeholder": "Select a type"
+            }
+        },
+        "buttons": {
+            "cancel": "Cancel",
+            "search": "Search"
+        }
+    },
+    "data": {
+        "lookup": {
+            "event_types": {
+                "food": "Food Distribution",
+                "career_assist": "Career Assistance",
+                "health": "Health & Fitness",
+                "training": "Training & Education",
+                "other": "Other"
+            }
+        }
+    }
+}
