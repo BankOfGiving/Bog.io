@@ -371,22 +371,23 @@ module.exports = function (grunt) {
 
     grunt.registerTask('deploy-pub', [
         'uglify:deploy_pub',
-        'htmlmin:deploy_pub'
-        , 'minjson:deploy_pub'
-    ]);
-
-    grunt.registerTask('deploy-dash', [
-        'uglify:deploy_pub',
         'htmlmin:deploy_pub',
         'minjson:deploy_pub'
     ]);
 
+    grunt.registerTask('deploy-dash', [
+        'uglify:deploy_dash',
+        'htmlmin:deploy_dash',
+        'minjson:deploy_dash'
+    ]);
+
     grunt.registerTask('deploy-full', [
-        'clean:dist'
-        , 'validate-all'
-        , 'concat-all'
-        , 'deploy-shared'
-        , 'deploy-pub'
+        'clean:dist',
+        'validate-all',
+        'concat-all',
+        'deploy-shared',
+        'deploy-pub',
+        'deploy-dash'
     ]);
 
 
@@ -395,39 +396,7 @@ module.exports = function (grunt) {
             'jshint:src_server'
         ]);
 
-    grunt.registerTask('client_pub',
-        [
-            'htmlhint:src_client_pub',
-            'jshint:src_client_pub',
-            'less:pub',
-            'uglify:pub_bog',
-            'uglify:pub_views'
-        ]);
-
-    grunt.registerTask('client_auth',
-        [
-            'jshint:src_client_auth'
-            //, 'less:auth'
-        ]);
-
-    grunt.registerTask('client_admin',
-        [
-            'htmlhint:src_client_admin'
-            , 'jshint:src_client_admin'
-            //, 'less:admin'
-        ]);
-
-    grunt.registerTask('client_dash',
-        [
-            'uglify:dash_bog',
-            'htmlhint:src_client_dash',
-            'jshint:src_client_dash'
-            //, 'less:dash'
-        ]);
-
-    grunt.registerTask('watch', 'watch'); //, 'watch:client');
-
-    // grunt.registerTask("dash", ['jshint:src_dash', 'concat:dash-js', 'uglify:dash-js', 'less:dash', 'jshint:min_dash']);
+    grunt.registerTask('watch', 'watch');
 
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-jshint');
