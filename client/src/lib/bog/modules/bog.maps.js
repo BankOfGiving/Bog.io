@@ -1,6 +1,4 @@
-if (!bog) {
-    var bog = {};
-}
+var bog = bog || {};
 bog.maps = {
     DEFAULT_LATITUDE: 39.833333,
     DEFAULT_LONGITUDE: -98.583333,

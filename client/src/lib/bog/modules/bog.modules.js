@@ -1,6 +1,4 @@
-if (!bog) {
-    var bog = {};
-}
+var bog = bog || {};
 bog.modules = function () {
     var get_manifest_template = function () {
         return {

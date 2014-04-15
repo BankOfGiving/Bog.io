@@ -7,8 +7,6 @@ module.exports = function (app, mod_uri) {
         var mod_key = req.params.uid;
         var mod_key_arr = mod_key.split('.');
         var app = mod_key_arr[0];
-        // var component = mod_key_arr[1];  /* always 'mod' */
-        // var component_type = mod_key_arr[2]; /* always 'nav' */
         var uid;
         if (mod_key_arr[3]) {
             uid = mod_key_arr[3];
@@ -33,16 +31,5 @@ function get_nav(app, uid, user) {
             return nav_repo.dash(uid);
         default:
             return nav_repo.pub(uid);
-    }
-}
-
-function mod_key_json(mod_key, culture_included) {
-    var mod_key_arr = mod_key.split('.');
-    var app = mod_key_arr[0];
-    // var component = mod_key_arr[1];  /* always 'mod' */
-    // var component_type = mod_key_arr[2]; /* always 'nav' */
-    var uid;
-    if (mod_key_arr[3]) {
-        uid = mod_key_arr[3];
     }
 }

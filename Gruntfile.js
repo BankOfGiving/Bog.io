@@ -9,6 +9,9 @@ module.exports = function (grunt) {
             src_client_apps_pub: {
                 src: ['client/src/apps/pub/**/*.html']
             },
+            src_client_apps_dash: {
+                src: ['client/src/apps/dash/**/*.html']
+            },
             src_client_mod: {
                 src: ['client/src/mod/**/*.html']
             }
@@ -23,6 +26,9 @@ module.exports = function (grunt) {
             src_client_apps_pub: {
                 src: ['client/src/apps/pub/**/*.js']
             },
+            src_client_apps_dash: {
+                src: ['client/src/apps/dash/**/*.js']
+            },
             src_server: {
                 src: ['server/**/*.js']
             }
@@ -33,12 +39,12 @@ module.exports = function (grunt) {
         // ----------------------------------------
         concat: {
             src_client_lib_bog: {
-                src: 'client/src/lib/bog/**/*.js',
+                src: 'client/src/lib/bog/modules/*.js',
                 dest: 'client/src/lib/bog/bog.pub.min.js'
             }
         },
         less: {
-            dev: {
+            pub: {
                 options: {
                     //cleancss: true,
                     strictImports: true,
@@ -49,6 +55,17 @@ module.exports = function (grunt) {
                     "client/src/styles/pub.min.css": "client/src/styles/pub/pub.less"
                 }
             },
+            dash: {
+                options: {
+                    //cleancss: true,
+                    strictImports: true,
+                    strictMath: true,
+                    strictUnits: true
+                },
+                files: {
+                    "client/src/styles/dash.min.css": "client/src/styles/dash/dash.less"
+                }
+            },
             deploy: {
                 options: {
                     compress: true,
@@ -56,9 +73,10 @@ module.exports = function (grunt) {
                     optimization: 2,
                     cleancss: true
                 },
-                files: {
-                    "client/dist/styles/pub.min.css": "client/src/styles/pub.min.css"
-                }
+                files: [
+                    { "client/dist/styles/pub.min.css": "client/src/styles/pub.min.css" },
+                    { "client/dist/styles/dash.min.css": "client/src/styles/dash.min.css" }
+                ]
             }
         },
         cssmin: {
@@ -66,9 +84,10 @@ module.exports = function (grunt) {
                 options: {
                     keepSpecialComments: 0
                 },
-                files: {
-                    'client/src/styles/pub.min.css': 'client/src/styles/pub.min.css'
-                }
+                files: [
+                    { 'client/src/styles/pub.min.css': 'client/src/styles/pub.min.css' },
+                    { 'client/src/styles/dash.min.css': 'client/src/styles/dash.min.css' }
+                ]
             }
         },
 
@@ -86,6 +105,16 @@ module.exports = function (grunt) {
                         cwd: 'client/src/apps/pub',
                         src: '**/manifest.json',
                         dest: 'client/dist/apps/pub'
+                    }
+                ]
+            },
+            deploy_dash: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'client/src/apps/dash',
+                        src: '**/manifest.json',
+                        dest: 'client/dist/apps/dash'
                     }
                 ]
             },
@@ -136,6 +165,18 @@ module.exports = function (grunt) {
                 cwd: 'client/src/apps/pub',
                 src: '**/*.js',
                 dest: 'client/dist/apps/pub'
+            },
+            'deploy_dash': {
+                options: {
+                    mangle: true,
+                    dead_code: true,
+                    squeeze: {dead_code: true},
+                    codegen: {quote_keys: true}
+                },
+                expand: true,
+                cwd: 'client/src/apps/dash',
+                src: '**/*.js',
+                dest: 'client/dist/apps/dash'
             }
         },
         htmlmin: {
@@ -157,6 +198,27 @@ module.exports = function (grunt) {
                         cwd: 'client/src/apps/pub/',
                         src: ['**/*.html'],
                         dest: 'client/dist/apps/pub/'
+                    }
+                ]
+            },
+            deploy_dash: {
+                options: {
+                    removeCommentsFromCDATA: true,
+                    removeComments: true,
+                    collapseBooleanAttributes: true,
+                    removeAttributeQuotes: true,
+                    removeRedundantAttributes: true,
+                    useShortDoctype: true,
+                    removeEmptyAttributes: true,
+                    removeOptionalTags: true,
+                    removeEmptyElements: false
+                },
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'client/src/apps/dash/',
+                        src: ['**/*.html'],
+                        dest: 'client/dist/apps/dash/'
                     }
                 ]
             },
@@ -204,22 +266,46 @@ module.exports = function (grunt) {
                         dest: 'client/dist/apps/pub/'
                     }
                 ]
+            },
+            deploy_dash: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'client/src/apps/dash/',
+                        src: ['**/*.json'],
+                        dest: 'client/dist/apps/dash/'
+                    }
+                ]
             }
         },
         // ----------------------------------------
         // Watch Tasks
         // ----------------------------------------
         watch: {
-            'client_admin': {
-                files: ['client/apps/admin/**/*.*'],
-                tasks: ['client_admin'],
+            'client_pub': {
+                files: [
+                    'client/src/apps/pub/**/*.*',
+                    'client/src/styles/pub/**/*.*'
+                ],
+                tasks: [
+                    'htmlhint:src_client_apps_pub',
+                    'jshint:src_client_apps_pub',
+                    'less:pub'
+                ],
                 options: {
                     nospawn: true
                 }
             },
             'client_dash': {
-                files: ['client/apps/dash/**/*.*'],
-                tasks: ['client_dash'],
+                files: [
+                    'client/src/apps/dash/**/*.*',
+                    'client/src/styles/dash/**/*.*'
+                ],
+                tasks: [
+                    'htmlhint:src_client_apps_dash',
+                    'jshint:src_client_apps_dash',
+                    'less:dash'
+                ],
                 options: {
                     nospawn: true
                 }
@@ -241,16 +327,6 @@ module.exports = function (grunt) {
                     nospawn: true
                 }
             },
-            'client_pub': {
-                files: ['client/src/apps/pub/**/*.*'],
-                tasks: [
-                    'htmlhint:src_client_apps_pub',
-                    'jshint:src_client_apps_pub'
-                ],
-                options: {
-                    nospawn: true
-                }
-            },
             'server': {
                 files: ['server/**/*.js'],
                 tasks: ['server'],
@@ -263,19 +339,17 @@ module.exports = function (grunt) {
 
     grunt.registerTask('default',
         [
-            'client_pub',
-            'client_dash',
-            'client_auth',
-            'client_admin',
-            'server'
+            'deploy-full'
         ]
     );
 
     grunt.registerTask('validate-all', [
         'htmlhint:src_client_apps_pub',
+        'htmlhint:src_client_apps_dash',
         'htmlhint:src_client_mod',
 
         'jshint:src_client_apps_pub',
+        'jshint:src_client_apps_dash',
         'jshint:src_client_lib_bog',
         'jshint:src_client_mod',
         'jshint:src_server'
@@ -283,7 +357,8 @@ module.exports = function (grunt) {
 
     grunt.registerTask('concat-all', [
         'concat:src_client_lib_bog',
-        'less:dev'
+        'less:pub',
+        'less:dash'
     ]);
 
     grunt.registerTask('deploy-shared', [
@@ -298,6 +373,12 @@ module.exports = function (grunt) {
         'uglify:deploy_pub',
         'htmlmin:deploy_pub'
         , 'minjson:deploy_pub'
+    ]);
+
+    grunt.registerTask('deploy-dash', [
+        'uglify:deploy_pub',
+        'htmlmin:deploy_pub',
+        'minjson:deploy_pub'
     ]);
 
     grunt.registerTask('deploy-full', [

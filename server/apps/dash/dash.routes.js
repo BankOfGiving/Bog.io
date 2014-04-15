@@ -9,34 +9,27 @@ module.exports = function (app, express) {
             app.use(express.errorHandler());
             break;
         case 'staging':
-            //asset_location = 'dist';
+            asset_location = 'dist';
             break;
         case 'production':
-            //asset_location = 'dist';
+            asset_location = 'dist';
             break;
     }
-    app.all(base_uri + '/*', function (req, res, next) {
-        if (req.user) {
-            next();
-        } else {
-            res.redirect('/auth/', 401);
-        }
-    });
 
-    // Dashboard Static Paths
-    app.use(base_uri + '/', express.static(path.join(__dirname, '../../../client/apps/dash/' + asset_location + '/')));
-    app.use(base_uri + '/markup', express.static(path.join(__dirname, '../../../client/apps/dash/' + asset_location + '/markup')));
-    app.use(base_uri + '/views', express.static(path.join(__dirname, '../../../client/apps/dash/' + asset_location + '/views')));
+    var client_root = path.join(__dirname, '../../../client/' + asset_location);
+
+    // Public Site Static Paths
+    app.use(base_uri + '/', express.static(path.join(client_root, '/apps/dash')));
 
     // Shared Resource Paths
-    app.use(base_uri + '/img', express.static(path.join(__dirname, '../../../client/img')));
-    app.use(base_uri + '/lib', express.static(path.join(__dirname, '../../../client/lib')));
-    app.use(base_uri + '/modules', express.static(path.join(__dirname, '../../../client/mod')));
-    app.use(base_uri + '/styles', express.static(path.join(__dirname, '../../../client/styles')));
+    app.use(base_uri + '/img', express.static(path.join(client_root, '/img')));
+    app.use(base_uri + '/lib', express.static(path.join(client_root, '/lib')));
+    app.use(base_uri + '/modules', express.static(path.join(client_root, '/mod')));
+    app.use(base_uri + '/styles', express.static(path.join(client_root, '/styles')));
 
     // View Routes
     app.get(base_uri + '/', function (req, res) {
-        res.render(__dirname + '/views/index', { user: req.user });
+        res.render(__dirname + '/views/index');
     });
 
     // Api Routes

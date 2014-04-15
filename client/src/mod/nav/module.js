@@ -1,16 +1,15 @@
 define(['module_base'], function (mod_base) {
     return mod_base.extend({
         api_root: "/api/mod/nav",
+        template_root: "/modules/nav/",
         initialize: function (el, o, callback) {
             var self = this;
             _.bindAll(self, 'load_view_data');
-            console.log(el);
             self.base_initialize(el, o, function () {
                 if (!self.manifest.options.layout) {
                     throw "Invalid layout specified.";
                 }
-                require(['text!/modules/nav/' + self.manifest.options.layout + '.html'], function (layout) {
-                    console.log(layout);
+                require(['text!' + self.template_root + self.manifest.options.layout + '.html'], function (layout) {
                     self.load_view_data(function () {
                         self.base_render(layout, window.culture, function () {
                             var route = Backbone.history.fragment;

@@ -1,4 +1,4 @@
-define([ 'jquery', 'underscorejs', 'backbone', 'moment', 'postal', 'bog', 'text!./modules/module-wrapper/mod-wrapper.html' ],
+define([ 'jquery', 'underscore', 'backbone', 'moment', 'postal', 'bog', 'text!./modules/module-wrapper/mod-wrapper.html' ],
     function ($, _, Backbone, moment, postal, bog, module_wrapper_layout) {
         return Backbone.View.extend({
             api_root: null,
@@ -23,7 +23,8 @@ define([ 'jquery', 'underscorejs', 'backbone', 'moment', 'postal', 'bog', 'text!
                     self.__init_pubsub();
                     if (!self.render) {
                         // If there is no custom render function, call the base render.
-                        self.base_render(function () {
+                        self.base_render(function (markup) {
+                            console.log(markup);
                             if (callback) {
                                 callback();
                             }
@@ -40,7 +41,8 @@ define([ 'jquery', 'underscorejs', 'backbone', 'moment', 'postal', 'bog', 'text!
                 var self = this;
                 self.template = template;
                 // Render wrapper div immediately.
-                var mod_wrapper = document.getElementById(self.key);
+                var base_key = self.key.split(".", 4).join(".");
+                var mod_wrapper = document.getElementById(base_key);
                 if (mod_wrapper) {
                     mod_wrapper = $(mod_wrapper).empty();
                     mod_wrapper.html(module_wrapper_layout);
@@ -51,8 +53,7 @@ define([ 'jquery', 'underscorejs', 'backbone', 'moment', 'postal', 'bog', 'text!
                     }
                     self.$el.replaceWith(mod_wrapper);
                 }
-
-                mod_wrapper.attr("id", self.key);
+                mod_wrapper.attr("id", base_key);
                 mod_wrapper.attr("data-culture", culture);
 
                 _.template.formatDateTime = function (date, format) {
@@ -81,9 +82,7 @@ define([ 'jquery', 'underscorejs', 'backbone', 'moment', 'postal', 'bog', 'text!
                     description: self.manifest.description,
                     module: self.manifest.options
                 });
-
                 mod_wrapper.append(rendered_template);
-
                 if (self.manifest.localize) {
                     if (!culture) {
                         culture = self.manifest.culture;
@@ -272,13 +271,14 @@ define([ 'jquery', 'underscorejs', 'backbone', 'moment', 'postal', 'bog', 'text!
                 self.manifest = manifest;
                 self.app = self.manifest.app;
                 self.mod_type = self.manifest.mod_type;
-                if (self.manifest.uid === '') {
+                if (!self.manifest.uid || self.manifest.uid === '') {
                     self.uid = Math.floor((Math.random() * 10000000) + 1);
                 } else {
                     self.uid = self.manifest.uid;
                 }
 
                 self.localize = self.manifest.localize;
+
                 if (self.uid && self.uid !== '') {
                     self.key = self.app + '.' + 'mod.' + self.mod_type + '.' + self.uid;
                 } else {

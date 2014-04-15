@@ -1,0 +1,6 @@
+<ul class="nav nav-pills">
+    <% _.each( module.networks, function(network){ %>
+    <li class="nav nav-list" data-fragment="<%= network.link %>"><a href="#"><i
+            class="icon-2x icon-<%=network.type%> text-muted"></i></a></li>
+    <% }) %>
+</ul>

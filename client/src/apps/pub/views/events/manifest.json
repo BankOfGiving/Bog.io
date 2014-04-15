@@ -19,27 +19,45 @@
         {
             "mod_type": "titlebar",
             "uid": "pub",
-            "zone": 0,
+            "zone": "titlebar-1",
             "localize": true,
             "options": {}
         },
         {
             "mod_type": "masthead",
             "uid": "home",
-            "zone": 1,
+            "zone": "header-1",
             "localize": true,
             "options": {}
         },
         {
+            "mod_type": "social",
+            "uid": "header",
+            "zone": "header-2",
+            "localize": false,
+            "options": {
+                "layout": "horiz-1"
+            }
+        },
+        {
+            "mod_type": "nav",
+            "uid": "secondary",
+            "zone": "header-2",
+            "localize": true,
+            "options": {
+                "layout": "horiz-1"
+            }
+        },
+        {
             "mod_type": "separator",
-            "zone": 1,
+            "zone": "header-3",
             "localize": false,
             "options": {}
         },
         {
             "mod_type": "search-result-container",
             "uid": "search-results-all",
-            "zone": 2,
+            "zone": "content-2",
             "localize": false,
             "pubsub": {
                 "data_topic": "search.results.events"
@@ -49,7 +67,7 @@
         {
             "mod_type": "search-form",
             "uid": "events",
-            "zone": 3,
+            "zone": "content-3",
             "clean": false,
             "localize": true,
             "pubsub": {
@@ -62,38 +80,78 @@
         },
         {
             "mod_type": "separator",
-            "zone": 3,
+            "zone": "content-3",
             "localize": false,
             "options": {}
         },
         {
             "mod_type": "markup",
-            "uid": "event-overview",
-            "zone": 3,
+            "uid": "donations-overview",
+            "zone": "content-3",
             "clean": false,
             "localize": true,
             "options": {
-                "markup": "<div data-localize-target=\"html\" data-localize-key=\"markup.text\"></div><a href=\"#/events-overview/\" target=\"_self\" data-localize-target=\"html\" data-localize-key=\"markup.more-link\"></a>"
+                "markup": "<div data-localize-target=\"html\" data-localize-key=\"markup.text\"></div><a href=\"#/donations/about/\" target=\"_self\" data-localize-target=\"html\" data-localize-key=\"markup.more-link\"></a>"
             }
         },
         {
             "mod_type": "markup",
-            "uid": "donation-overview",
-            "zone": 3,
+            "uid": "solicitations-overview",
+            "zone": "content-3",
             "clean": false,
             "localize": true,
             "options": {
-                "markup": "<div data-localize-target=\"html\" data-localize-key=\"markup.text\"></div><a href=\"#/events-overview/\" target=\"_self\" data-localize-target=\"html\" data-localize-key=\"markup.more-link\"></a>"
+                "markup": "<div data-localize-target=\"html\" data-localize-key=\"markup.text\"></div><a href=\"#/solicitations/about/\" target=\"_self\" data-localize-target=\"html\" data-localize-key=\"markup.more-link\"></a>"
             }
         },
         {
             "mod_type": "markup",
-            "uid": "solicitation-overview",
-            "zone": 3,
-            "clean": false,
-            "localize": true,
+            "uid": "footer-about",
+            "zone": "footer-1",
+            "clean": true,
+            "localize": false,
             "options": {
-                "markup": "<div data-localize-target=\"html\" data-localize-key=\"markup.text\"></div><a href=\"#/events-overview/\" target=\"_self\" data-localize-target=\"html\" data-localize-key=\"markup.more-link\"></a>"
+                "markup": "<div class=\"text-muted\"><h2>About</h2><p data-localize-target=\"html\" data-localize-key=\"markup.text\">Bans Chiro A A En Golf Ewe Rowth Carbonyl Solum Cooperating By Moderating Pended Cricothyreoid Reliers Coapts Centauromachy Aldermanlike Epilog Modo Oleo A Outsnores Euphoric So Hint Myology Absentment Karuna Em Curaghs Crime Home Headlike Up Exappendiculate.</p></div>"
+            }
+        },
+        {
+            "mod_type": "twitter-feed",
+            "uid": "footer",
+            "zone": "footer-3",
+            "clean": true,
+            "localize": false,
+            "options": {
+                "layout": "vert-footer"
+            }
+        },
+        {
+            "mod_type": "markup",
+            "uid": "footer-contact",
+            "zone": "footer-4",
+            "clean": true,
+            "localize": false,
+            "options": {
+                "markup": "<div class=\"text-muted\"><h2>Contact</h2>Bank of Giving - A Non-Profit Organization<br>1234 Compassion Way<br>Los Angeles, CA 91101<br><span>Phone: <span>(555) 555-5555</span></span><br><span>Fax: <span>(555) 555-5556</span></span><br>Email: <a href=\"mailto:info@bankofgiving.com\" target=\"_blank\">info@bankofgiving.com</a><a href=\"#\" target=\"_self\"></div>"
+            }
+        },
+        {
+            "mod_type": "social",
+            "uid": "footer-social",
+            "zone": "footer-4",
+            "clean": true,
+            "localize": false,
+            "options": {
+                "layout": "horiz-footer"
+            }
+        },
+        {
+            "mod_type": "markup",
+            "uid": "footer-copyright",
+            "zone": "footer-5",
+            "clean": true,
+            "localize": false,
+            "options": {
+                "markup": "<div class=\"text-muted text-center\">© 2014 Bank of Giving</div>"
             }
         }
     ]

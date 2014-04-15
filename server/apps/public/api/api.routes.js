@@ -46,6 +46,7 @@ module.exports = function (app, api_uri) {
     require('./mod/nav/routes')(app, mod_uri + '/nav');
     require('./mod/search-form/routes')(app, mod_uri + '/search-form');
     require('./mod/search-results-container/routes')(app, mod_uri + '/search-results-container');
+    require('./mod/social/routes')(app, mod_uri + '/social');
     require('./mod/text/routes')(app, mod_uri + '/text');
     require('./mod/titlebar/routes')(app, mod_uri + '/titlebar');
 

@@ -1,11 +1,4 @@
-define([ 'jquery', 'underscorejs', 'backbone', 'postal', 'bog',
-
-    'views/home/view',
-    'views/about/view',
-    'views/events/view',
-    'views/events-overview/view',
-    'views/event/view'
-], function ($, _, Backbone, postal, bog, home_view, about_view, events_view, events_overview_view, event_view) {
+define([ 'jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
     var AppRouter = Backbone.Router.extend({
         routes: {
             '': 'home',
@@ -26,24 +19,34 @@ define([ 'jquery', 'underscorejs', 'backbone', 'postal', 'bog',
         var container = $('#page-container');
 
         app_router.on('route:home', function () {
-            new home_view({ el: container });
+            require(['views/home/view'], function (view) {
+                new view({ el: container });
+            });
         });
 
         app_router.on('route:about', function () {
-            new about_view({ el: container });
+            require(['views/about/view'], function (view) {
+                new view({ el: container });
+            });
         });
 
         // ----------------------------------------------------------
         // EVENTS
         // ----------------------------------------------------------
         app_router.on('route:events', function () {
-            new events_view({ el: container });
+            require(['views/events/view'], function (view) {
+                new view({ el: container });
+            });
         });
         app_router.on('route:events-overview', function () {
-            new events_overview_view({ el: container });
+            require(['views/events-overview/view'], function (view) {
+                new view({ el: container });
+            });
         });
         app_router.on('route:event', function (id) {
-            new event_view({ el: container }, id);
+            require(['views/event/view'], function (view) {
+                new view({ el: container }, id);
+            });
         });
 
         // ----------------------------------------------------------

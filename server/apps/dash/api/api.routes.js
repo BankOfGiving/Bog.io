@@ -38,16 +38,23 @@ module.exports = function (app, api_uri) {
     var mod_uri = api_uri + '/mod';
 
     require('./mod/ad-static/routes')(app, mod_uri + '/ad-static');
+    require('./mod/article/routes')(app, mod_uri + '/article');
     require('./mod/column/routes')(app, mod_uri + '/column');
-    require('./mod/data-summary/routes')(app, mod_uri + '/data-summary');
+    require('./mod/donation-form-wizard/routes')(app, mod_uri + '/donation-form-wizard');
     require('./mod/event-display/routes')(app, mod_uri + '/event-display');
-    require('./mod/event-form/routes')(app, mod_uri + '/event-form');
     require('./mod/markup/routes')(app, mod_uri + '/markup');
     require('./mod/masthead/routes')(app, mod_uri + '/masthead');
     require('./mod/nav/routes')(app, mod_uri + '/nav');
-    require('./mod/ploc-form/routes')(app, mod_uri + '/ploc-form');
     require('./mod/search-form/routes')(app, mod_uri + '/search-form');
     require('./mod/search-results-container/routes')(app, mod_uri + '/search-results-container');
+    require('./mod/social/routes')(app, mod_uri + '/social');
     require('./mod/text/routes')(app, mod_uri + '/text');
     require('./mod/titlebar/routes')(app, mod_uri + '/titlebar');
+
+    var data_uri = api_uri + '/data';
+
+    require('./data/api.routes.events')(app, data_uri + '/events');
+    require('./data/api.routes.event')(app, data_uri + '/event');
+    require('./data/api.routes.donations')(app, data_uri + '/donations');
+    require('./data/api.routes.donation')(app, data_uri + '/donation');
 };

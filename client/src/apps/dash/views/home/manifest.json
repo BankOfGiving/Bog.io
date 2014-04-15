@@ -1,0 +1,88 @@
+{
+    "app": "dash",
+    "view": "home",
+    "layout": "layout-3",
+    "modules": [
+        {
+            "mod_type": "titlebar",
+            "uid": "pub",
+            "zone": "titlebar-1",
+            "localize": false,
+            "options": {}
+        },
+        {
+            "mod_type": "nav",
+            "uid": "secondary",
+            "zone": "content-2",
+            "localize": true,
+            "options": {
+                "layout": "vert-1"
+            }
+        },
+        {
+            "mod_type": "markup",
+            "uid": "events-overview",
+            "zone": "content-3",
+            "clean": true,
+            "localize": false,
+            "options": {
+                "markup": "<div class=\"label label-success\" style='float: left; padding:10px; margin-right: 10px; margin-top: 5px'><strong><i class=\"fa fa-calendar fa-3x\"></i></strong></div><div data-localize-target=\"html\" data-localize-key=\"markup.text\"></div><a href=\"#/events/about/\" target=\"_self\" data-localize-target=\"html\" data-localize-key=\"markup.more-link\"></a>"
+            }
+        },
+        {
+            "mod_type": "separator",
+            "zone": "content-3",
+            "localize": false
+        },
+        {
+            "mod_type": "markup",
+            "uid": "donations-overview",
+            "zone": "content-3",
+            "clean": true,
+            "localize": false,
+            "options": {
+                "markup": "<div class=\"label label-warning\" style='float: left; padding:10px; margin-right: 10px; margin-top: 5px'><strong><i class=\"fa fa-gift fa-3x\"></i></strong></div><div data-localize-target=\"html\" data-localize-key=\"markup.text\"></div><a href=\"#/donations/about/\" target=\"_self\" data-localize-target=\"html\" data-localize-key=\"markup.more-link\"></a>"
+            }
+        },
+        {
+            "mod_type": "separator",
+            "zone": "content-3",
+            "localize": false
+        },
+        {
+            "mod_type": "markup",
+            "uid": "solicitations-overview",
+            "zone": "content-3",
+            "clean": true,
+            "localize": false,
+            "options": {
+                "markup": "<div class=\"label label-primary\" style='float: left; padding:10px; margin-right: 10px; margin-top: 5px'><strong><i class=\"fa fa-heart fa-3x\"></i></strong></div><div data-localize-target=\"html\" data-localize-key=\"markup.text\"></div><a href=\"#/solicitations/about/\" target=\"_self\" data-localize-target=\"html\" data-localize-key=\"markup.more-link\"></a>"
+            }
+        },
+        {
+            "mod_type": "separator",
+            "zone": "content-3",
+            "localize": false
+        },
+        {
+            "mod_type": "markup",
+            "uid": "media-quote",
+            "zone": "content-3",
+            "clean": true,
+            "localize": false,
+            "options": {
+                "markup": "<blockquote><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>\n<small>Someone famous in <cite title=\"Source Title\">Source Title</cite></small>\n</blockquote>"
+            }
+        },
+        {
+            "mod_type": "markup",
+            "uid": "footer-copyright",
+            "zone": "footer-5",
+            "clean": true,
+            "localize": false,
+            "options": {
+                "markup": "<div class=\"text-muted text-center\">© 2014 Bank of Giving</div>"
+            }
+        }
+    ]
+}

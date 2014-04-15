@@ -1,6 +1,4 @@
-if (!bog) {
-    var bog = {};
-}
+var bog = bog || {};
 bog.api = {
     uri: {
         base: {

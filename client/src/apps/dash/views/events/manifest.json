@@ -1,0 +1,59 @@
+{
+    "app": "dash",
+    "view": "events",
+    "layout": "layout-3",
+    "data_api": "/api/data/events/",
+    "initial_set": {
+        "entity": "events",
+        "type": "",
+        "text": "",
+        "sort_key": "lastModifiedAt",
+        "sort_dir": "desc",
+        "pull": 10
+    },
+    "pubsub": {
+        "data_channel_id": "dash",
+        "data_topic": "search.results.events"
+    },
+    "modules": [
+        {
+            "mod_type": "titlebar",
+            "uid": "pub",
+            "zone": "titlebar-1",
+            "clean": true,
+            "localize": true,
+            "options": {}
+        },
+        {
+            "mod_type": "nav",
+            "uid": "secondary",
+            "zone": "content-2",
+            "clean": true,
+            "localize": true,
+            "options": {
+                "layout": "vert-1"
+            }
+        },
+        {
+            "mod_type": "search-result-container",
+            "uid": "search-results-events",
+            "zone": "content-3",
+            "clean": true,
+            "localize": false,
+            "pubsub": {
+                "data_channel_id": "dash",
+                "data_topic": "search.results.events"
+            }
+        },
+        {
+            "mod_type": "markup",
+            "uid": "footer-copyright",
+            "zone": "footer-5",
+            "clean": true,
+            "localize": false,
+            "options": {
+                "markup": "<div class=\"text-muted text-center\">© 2014 Bank of Giving</div>"
+            }
+        }
+    ]
+}

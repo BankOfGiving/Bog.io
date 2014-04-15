@@ -1,6 +1,4 @@
-if (!bog) {
-    var bog = {};
-}
+var bog = bog || {};
 bog.cache = function () {
     var enable_local_cache = window.local_cache;
     var __has_local_storage = function () {

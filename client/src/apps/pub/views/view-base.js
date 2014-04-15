@@ -1,11 +1,4 @@
-define([
-    'jquery',
-    'underscorejs',
-    'backbone',
-    'bootstrap',
-    'postal',
-    'require'
-],
+define([ 'jquery', 'underscore', 'backbone', 'bootstrap', 'postal', 'require' ],
     function ($, _, Backbone, bs, postal, require) {
         return Backbone.View.extend({
             base_initialize: function (el, manifest, callback) {
@@ -33,7 +26,7 @@ define([
             },
             base_render: function (manifest, layout, callback) {
                 var self = this;
-                // if not custom layour is specified, use the value from the manifest.
+                // if no custom layout is specified, use the value from the manifest.
                 if (!layout) {
                     if (!self.layout || self.layout === '') {
                         throw 'No view layout specified.';
@@ -44,6 +37,12 @@ define([
                 self.$el.empty();
                 self.$el.append(layout);
                 self.__process_manifest(manifest);
+
+                // SHOW DEBUG AND/OR LAYOUT REGIONS
+                var param = self.__get_querystring_param_by_name("showZones");
+                if (param == 'true') {
+                    $(".zone").css('border', '1px solid #FF0000');
+                }
                 if (callback) {
                     callback(self);
                 } else {
@@ -120,6 +119,12 @@ define([
                     data: window.mod_list
                 });
                 return key;
+            },
+            __get_querystring_param_by_name: function (name) {
+                name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+                var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                    results = regex.exec(window.location.hash);
+                return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
             }
         });
     });

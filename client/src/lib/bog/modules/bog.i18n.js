@@ -1,6 +1,4 @@
-if (!bog) {
-    var bog = {};
-}
+var bog = bog || {};
 bog.i18n = function () {
     var get_module_text = function (culture, key, callback) {
         var cache = new bog.cache();

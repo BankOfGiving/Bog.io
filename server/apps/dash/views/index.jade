@@ -9,15 +9,10 @@ html
             meta(name="author", content="")
             meta(name="viewport", content="initial-scale=1.0, user-scalable=no")
             link(rel='stylesheet', type='text/css', href='//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css')
-            link(rel='stylesheet', type='text/css', href='/styles/pub.min.css')
+            link(rel='stylesheet', type='text/css', href='/dash/styles/dash.min.css')
         block styles
-            script(src="/lib/require/require.js", data-main="/dash/main")
+            script(src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.11/require.min.js", data-main="/dash/main")
         block scripts
     body
-        #wrap
-            block content
-                .container(id="page-container")
-        #footer
-            .container.text-center
-                div
-                    | © 2014 Bank of Giving
+        block content
+            #page-container

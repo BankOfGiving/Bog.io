@@ -1,5 +1,5 @@
-define([ 'module_base', 'text!./container.html', 'text!./no-results.html' ],
-    function (mod_base, module_layout, result_layout, no_result_layout) {
+define([ 'postal', 'module_base', 'text!./container.html', 'text!./no-results.html' ],
+    function (postal, mod_base, module_layout, result_layout, no_result_layout) {
         return mod_base.extend({
             api_root: "/api/mod/search-results-container",
             template_root: "/modules/search-result-container",
@@ -9,8 +9,12 @@ define([ 'module_base', 'text!./container.html', 'text!./no-results.html' ],
                 var self = this;
                 self.base_initialize(el, o, function () {
                     self.render(module_layout, window.culture, function () {
-                        self.data_channel.subscribe(self.manifest.pubsub.data_topic, function (data) {
-                            self.search_results(self.results, data);
+                        postal.subscribe({
+                            channel: self.manifest.pubsub.data_channel_id,
+                            topic: self.manifest.pubsub.data_topic,
+                            callback: function (data) {
+                                self.search_results(self.results, data);
+                            }
                         });
                         if (callback) {
                             callback(self);

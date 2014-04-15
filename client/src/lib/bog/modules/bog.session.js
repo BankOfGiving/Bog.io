@@ -1,6 +1,4 @@
-if (!bog) {
-    var bog = {};
-}
+var bog = bog || {};
 bog.session = {
     isAuthenticated: function (callback) {
         $.ajax("/api/auth", {

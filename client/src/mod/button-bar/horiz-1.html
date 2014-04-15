@@ -1,0 +1,12 @@
+<div class="btn-group btn-group-justified">
+    <% _.each(module.buttons, function(button) { %>
+    <%
+    var _style = 'default';
+    if(button.style) { _style = button.style; }
+    %>
+    <a id="<%=button.id%>"
+       data-localize-key="<%=button.key%>"
+       data-localize-target="html"
+       class="btn btn-<%=_style%>"><%=button.label%></a>
+    <% }); %>
+</div>

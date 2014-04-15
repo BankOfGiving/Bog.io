@@ -64,26 +64,6 @@ module.exports = function (app, uri_base) {
         }
     };
 
-
-    /*    var return_results = function (res, err, coll) {
-     if (err) {
-     var ret_err = err_handler.wrap(1001, null, err);
-     res.send(500, ret_err);
-     } else {
-     if (!coll || typeof(coll) === 'undefined') {
-     res.json(204, err_handler.wrap(5004));
-     return;
-     }
-     if (coll.length === 0) {
-     res.json(204, err_handler.wrap(5004));
-     return;
-     }
-     if (coll) {
-     res.json(coll);
-     }
-     }
-     };*/
-
     var return_results = function (res, err, coll) {
         if (err) {
             var ret_err = err_handler.wrap(1001, null, err);
