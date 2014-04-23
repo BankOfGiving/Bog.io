@@ -3,21 +3,20 @@ define([ 'jquery', 'underscore', 'backbone', 'postal' ],
         var AppRouter = Backbone.Router.extend({
             routes: {
                 '': 'home',
+                '_=_': 'home',
                 'events': 'events',
                 'events/add': 'event_add',
                 'events/:id': 'event_view',
                 'events/:id/edit': 'event_edit',
                 'events/:id/delete': 'event_delete',
                 'donations': 'donations',
+                'donations/listings': 'donations_listings',
+                'donations/following': 'donations_following',
+                'donations/requested': 'donations_requested',
+
                 'donations/create': 'donation_add',
-                'donations/create/1a05c520': 'donation_wizard_intro',
-                'donations/create/e6cf0b1d': 'donation_wizard_type',
-                'donations/create/72260b8a': 'donation_wizard_goods_details',
-                'donations/create/33401573': 'donation_wizard_goods_contact',
-                'donations/create/dcc65983': 'donation_wizard_goods_local',
-                'donations/create/7c74eba6': 'donation_wizard_goods_shipping_required',
-                'donations/create/7e28f3a7': 'donation_wizard_goods_shipping_included',
-                'donations/create/5e9e89cb': 'donation_wizard_goods_location',
+                'donations/create/wizard': 'donation_add_wizard',
+
                 'donations/:id': 'donation_view',
                 'donations/:id/edit': 'donation_edit',
                 'donations/:id/delete': 'donation_delete',
@@ -79,44 +78,9 @@ define([ 'jquery', 'underscore', 'backbone', 'postal' ],
                     new view({ el: container });
                 });
             });
-            app_router.on('route:donation_wizard_intro', function () {
+            app_router.on('route:donation_add_wizard', function () {
                 require(['views/donation-wizard/view'], function (view) {
                     new view({ el: container, step: 'intro', model: window.global_view_persistence });
-                });
-            });
-            app_router.on('route:donation_wizard_type', function () {
-                require(['views/donation-wizard/view'], function (view) {
-                    new view({ el: container, step: 'type', model: window.global_view_persistence });
-                });
-            });
-            app_router.on('route:donation_wizard_goods_details', function () {
-                require(['views/donation-wizard/view'], function (view) {
-                    new view({ el: container, step: 'goods-details', model: window.global_view_persistence});
-                });
-            });
-            app_router.on('route:donation_wizard_goods_contact', function () {
-                require(['views/donation-wizard/view'], function (view) {
-                    new view({ el: container, step: 'goods-contact', model: window.global_view_persistence});
-                });
-            });
-            app_router.on('route:donation_wizard_goods_local', function () {
-                require(['views/donation-wizard/view'], function (view) {
-                    new view({ el: container, step: 'goods-local-only', model: window.global_view_persistence});
-                });
-            });
-            app_router.on('route:donation_wizard_goods_shipping_required', function () {
-                require(['views/donation-wizard/view'], function (view) {
-                    new view({ el: container, step: 'goods-shipping-required', model: window.global_view_persistence});
-                });
-            });
-            app_router.on('route:donation_wizard_goods_shipping_included', function () {
-                require(['views/donation-wizard/view'], function (view) {
-                    new view({ el: container, step: 'goods-shipping-included', model: window.global_view_persistence});
-                });
-            });
-            app_router.on('route:donation_wizard_goods_location', function () {
-                require(['views/donation-wizard/view'], function (view) {
-                    new view({ el: container, step: 'goods-location', model: window.global_view_persistence});
                 });
             });
             app_router.on('route:donation_edit', function (id) {

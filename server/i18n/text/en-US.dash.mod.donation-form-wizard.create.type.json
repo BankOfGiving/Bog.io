@@ -5,5 +5,21 @@
     },
     "step": {
         "title": "What are you offering?"
+    },
+    "types": {
+        "goods": {
+            "name": "Goods",
+            "description": "Do you make quilts, pottery, or jewelry that you'd like share? Has your child outgrown his infant clothes?  Goods are anything tangible that you'd like to donate."
+        },
+        "services": {
+            "name": "Services",
+            "description": "Do you have a special skill, talent or hobby that you'd like to share with others? Select a service donation and give the gift of your expertise to those who need it."
+        }
+    },
+    "buttons": {
+        "previous": {
+            "label": "Previous",
+            "tooltip": "Go back to the previous step"
+        }
     }
 }

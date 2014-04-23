@@ -1,47 +1,32 @@
-<form class="form-horizontal">
-    <fieldset>
-        <div class="form-group">
-            <label for="detail_short_desc" class="col-lg-3 control-label">What is it?</label>
+<div class="list-group">
+    <a href="#" class="list-group-item" data-value="home-made">
+        <h3 class="list-group-item-heading" data-localize-key="conditions.home-made.name"
+            data-localize-target="text"></h3>
 
-            <div class="col-lg-9">
-                <input type="text" class="form-control" id="detail_short_desc"
-                       placeholder="Infant Clothes, Television, Bicycle, etc.">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="detail_condition" class="col-lg-3 control-label">What condition is it?</label>
-            <div class="col-lg-9">
-                <select class="form-control" id="detail_condition">
-                    <option>New</option>
-                    <option>Home-made</option>
-                    <option>Like New</option>
-                    <option>Gently Used</option>
-                    <option>Well Used</option>
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="detail_quantity" class="col-lg-3 control-label">How many are you donating?</label>
-            <div class="col-lg-9">
-                <select class="form-control" id="detail_quantity">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="detail_long_desc" class="col-lg-3 control-label">Notes</label>
+        <p class="list-group-item-text" data-localize-key="conditions.home-made.description"
+           data-localize-target="html"></p>
+    </a>
+    <a href="#" class="list-group-item" data-value="new">
+        <h3 class="list-group-item-heading" data-localize-key="conditions.new.name" data-localize-target="text"></h3>
 
-            <div class="col-lg-9">
-                <span class="help-block">Add any additional notes such as <em><b>best time to contact</b></em>, preference of <em><b>email
-                    or phone</b></em>, etc.</span>
-                <textarea class="form-control" rows="3" id="detail_long_desc"></textarea>
-            </div>
-        </div>
-    </fieldset>
-    <a class="btn btn-warning" id="step-btn-prev">Back</a>
-    <a class="btn btn-success" id="step-btn-next">Next</a>
-</form>
+        <p class="list-group-item-text" data-localize-key="conditions.new.description" data-localize-target="html"></p>
+    </a>
+    <a href="#" class="list-group-item" data-value="gently-used">
+        <h3 class="list-group-item-heading" data-localize-key="conditions.gently-used.name"
+            data-localize-target="text"></h3>
+
+        <p class="list-group-item-text" data-localize-key="conditions.gently-used.description"
+           data-localize-target="html"></p>
+    </a>
+    <a href="#" class="list-group-item" data-value="well-used">
+        <h3 class="list-group-item-heading" data-localize-key="conditions.well-used.name"
+            data-localize-target="text"></h3>
+
+        <p class="list-group-item-text" data-localize-key="conditions.well-used.description"
+           data-localize-target="html"></p>
+    </a>
+</div>
+<div class="btn-group">
+    <a class="btn btn-warning" id="step-btn-prev" data-localize-key="buttons.previous"
+       data-localize-target="button"></a>
+</div>

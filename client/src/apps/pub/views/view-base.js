@@ -3,10 +3,8 @@ define([ 'jquery', 'underscore', 'backbone', 'bootstrap', 'postal', 'require' ],
         return Backbone.View.extend({
             base_initialize: function (el, manifest, callback) {
                 var self = this;
-
                 self.__parse_manifest(manifest, function (manifest) {
-
-                    require(['text!../../layouts/' + manifest.layout + '.html'], function (layout) {
+                    require(['text!./layouts/' + manifest.layout + '.html'], function (layout) {
                         self.layout = layout;
                         if (!self.render) {
                             // If there is no custom render function, call the base render.
@@ -39,9 +37,15 @@ define([ 'jquery', 'underscore', 'backbone', 'bootstrap', 'postal', 'require' ],
                 self.__process_manifest(manifest);
 
                 // SHOW DEBUG AND/OR LAYOUT REGIONS
-                var param = self.__get_querystring_param_by_name("showZones");
-                if (param == 'true') {
-                    $(".zone").css('border', '1px solid #FF0000');
+                var zone_param = self.__get_querystring_param_by_name("showZones");
+                if (zone_param == 'true') {
+                    var zones = $(".zone").css('border', '1px solid #FF0000');
+                }
+                console.log('dsfsdfsdffsd' + self.page_lock);
+                if (self.page_lock) {
+                    $(window).on('beforeunload', function (e) {
+                        return 'are you sure you want to leave the page?';
+                    });
                 }
                 if (callback) {
                     callback(self);
@@ -100,6 +104,11 @@ define([ 'jquery', 'underscore', 'backbone', 'bootstrap', 'postal', 'require' ],
                 var self = this;
                 new mod(container, manifest, function (module_instance) {
                     if (module_instance) {
+                        // DEBUG: show module wrappers
+                        var mod_param = self.__get_querystring_param_by_name("showMods");
+                        if (mod_param == 'true') {
+                            $(".module-wrapper").css('border', '1px solid #00FF00');
+                        }
                         self.__register_view_module(module_instance.key, manifest.localize);
                         if (callback) {
                             callback();

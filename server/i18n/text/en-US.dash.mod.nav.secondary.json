@@ -4,11 +4,23 @@
         "description": ""
     },
     "nav": {
-        "events": "Events",
-        "donations": "Donations",
-        "solicitations": "Solicitations",
-        "blog": "Blog",
-        "philosophy": "Philosophy",
-        "about": "About"
+        "cat": {
+            "donations": "Donations",
+            "events": "Events",
+            "solicitations": "Solicitations",
+            "account": "Account"
+        },
+        "link": {
+            "donations": {
+                "listings": "My Listings",
+                "following": "Donations I'm Following",
+                "requested": "Donations I've Requested",
+                "create": "Add Donation",
+                "wizard": "Add Donation Wizard"
+            },
+            "events": "My Events",
+            "solicitations": "My Requests",
+            "account": "My Account"
+        }
     }
 }

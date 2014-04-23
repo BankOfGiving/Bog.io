@@ -1,0 +1,23 @@
+<ul class="nav nav-pills nav-stacked">
+    <% _.each(module.nav, function(cat) { %>
+    <li class="active">
+        <a
+                style="padding-bottom: 5px;padding-top: 5px;"
+                data-localize-key="<%= cat.key %>"
+                data-localize-target="text"></a></li>
+    <% _.each(cat.links, function(nav) { %>
+    <li class="<% if(nav.disabled) { print('disabled'); } %>">
+        <% if(nav.disabled) { %>
+        <a style="padding-bottom: 3px;padding-top: 3px;"
+           data-localize-key="<%= nav.key %>"
+           data-localize-target="text"></a>
+        <% } else { %>
+        <a href="<%= nav.link %>"
+           style="padding-bottom: 3px;padding-top: 3px;"
+           data-localize-key="<%= nav.key %>"
+           data-localize-target="text"></a>
+        <% } %>
+    </li>
+    <% }); %>
+    <% }); %>
+</ul>

@@ -4,6 +4,17 @@
         "description": ""
     },
     "step": {
-        "title": "Thanks for Donating!!"
+        "title": "Thanks for Donating!!",
+        "text": "This is some informational text about the process you're about to complete. <br><br><p>Dependent certainty off discovery him his tolerably offending. Ham for attention remainder sometimes additions recommend fat our. Direction has strangers now believing. Respect enjoyed gay far exposed parlors towards. Enjoyment use tolerably dependent listening men. No peculiar in handsome together unlocked do by. Article concern joy anxious did picture sir her. Although desirous not recurred disposed off shy you numerous securing.</p><p>New the her nor case that lady paid read. Invitation friendship travelling eat everything the out two. Shy you who scarcely expenses debating hastened resolved. Always polite moment on is warmth spirit it to hearts. Downs those still witty an balls so chief so. Moment an little remain no up lively no. Way brought may off our regular country towards adapted cheered.</p><p>Carried nothing on am warrant towards. Polite in of in oh needed itself silent course. Assistance travelling so especially do prosperous appearance mr no celebrated. Wanted easily in my called formed suffer. Songs hoped sense as taken ye mirth at. Believe fat how six drawing pursuit minutes far. Same do seen head am part it dear open to. Whatever may scarcely judgment had.</p>"
+    },
+    "buttons": {
+        "previous": {
+            "label": "Previous",
+            "tooltip": "Go back to the previous step"
+        },
+        "next": {
+            "label": "Next",
+            "tooltip": "Proceed to the next step"
+        }
     }
 }

@@ -1,36 +1,32 @@
-<form class="form-horizontal">
+<form id="form-goods-details" class="form">
     <fieldset>
-        <div class="form-group">
-            <label for="detail_short_desc" class="col-lg-3 control-label">What is it?</label>
+        <div class="form-group" data-localize-key="form.short-desc" data-localize-target="form-group">
+            <label for="detail_short_desc" class="control-label"></label>
 
-            <div class="col-lg-9">
-                <input type="text" class="form-control" id="detail_short_desc"
-                       placeholder="Infant Clothes, Television, Bicycle, etc.">
+            <div class="">
+                <input type="text" class="form-control" id="detail_short_desc" placeholder="">
             </div>
         </div>
-        <div class="form-group">
-            <label for="detail_quantity" class="col-lg-3 control-label">How many are you donating?</label>
+        <div class="form-group" data-localize-key="form.reason" data-localize-target="form-group">
+            <label for="detail_long_desc" class="control-label"></label>
 
-            <div class="col-lg-9">
-                <select class="form-control" id="detail_quantity">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
+            <div class="">
+                <span class="help-block" data-localize-key="form.reason.helper" data-localize-target="html"></span>
+                <textarea class="form-control" rows="3" id="detail_reason" placeholder=""></textarea>
             </div>
         </div>
-        <div class="form-group">
-            <label for="detail_long_desc" class="col-lg-3 control-label">Notes</label>
+        <div class="form-group" data-localize-key="form.long-desc" data-localize-target="form-group">
+            <label for="detail_long_desc" class="control-label"></label>
 
-            <div class="col-lg-9">
-                <span class="help-block">Add any additional notes such as <em><b>best time to contact</b></em>, preference of <em><b>email
-                    or phone</b></em>, etc.</span>
-                <textarea class="form-control" rows="3" id="detail_long_desc"></textarea>
+            <div class="">
+                <span class="help-block" data-localize-key="form.long-desc.helper" data-localize-target="html"></span>
+                <textarea class="form-control" rows="3" id="detail_long_desc" placeholder=""></textarea>
             </div>
         </div>
     </fieldset>
-    <a class="btn btn-warning" id="step-btn-prev">Back</a>
-    <a class="btn btn-success" id="step-btn-next">Next</a>
 </form>
+<div class="btn-group">
+    <a class="btn btn-warning" id="step-btn-prev" data-localize-key="buttons.previous"
+       data-localize-target="button"></a>
+    <a class="btn btn-warning" id="step-btn-next" data-localize-key="buttons.next" data-localize-target="button"></a>
+</div>

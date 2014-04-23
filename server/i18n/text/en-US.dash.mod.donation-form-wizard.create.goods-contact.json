@@ -4,6 +4,34 @@
         "description": ""
     },
     "step": {
-        "title": "How can we learn more?"
+        "title": "How can you be contacted?"
+    },
+    "form": {
+        "contact_name": {
+            "label": "Name",
+            "placeholder": "John Smith"
+        },
+        "contact_email": {
+            "label": "Email",
+            "placeholder": "email@company.com"
+        },
+        "contact_phone": {
+            "label": "Phone",
+            "placeholder": "(212) 555-1879"
+        },
+        "contact_notes": {
+            "label": "Notes",
+            "placeholder": "Add any additional notes such as <em><b>best time to contact</b></em>, preference of <em><b>email or phone</b></em>, etc.</span>"
+        }
+    },
+    "buttons": {
+        "previous": {
+            "label": "Previous",
+            "tooltip": "Go back to the previous step"
+        },
+        "next": {
+            "label": "Next",
+            "tooltip": "Proceed to the next step"
+        }
     }
 }

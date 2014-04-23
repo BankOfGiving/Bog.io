@@ -1,0 +1,26 @@
+{
+    "module": {
+        "title": "",
+        "description": ""
+    },
+    "step": {
+        "title": "Donation Exchange",
+        "help-text": "How will the donation exchange hands?"
+    },
+    "receipt-type": {
+        "pickup": {
+            "name": "Pickup",
+            "description": "Select this option if you are willing to ship your donation to someone outside of your area."
+        },
+        "delivery": {
+            "name": "Delivery",
+            "description": "Select this option to set up delivery or pickup options."
+        }
+    },
+    "buttons": {
+        "previous": {
+            "label": "Previous",
+            "tooltip": "Go back to the previous step"
+        }
+    }
+}

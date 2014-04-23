@@ -1,0 +1,16 @@
+{
+    "module": {
+        "title": "",
+        "description": ""
+    },
+    "step": {
+        "title": "Pickup Info",
+        "description": ""
+    },
+    "buttons": {
+        "previous": {
+            "label": "Previous",
+            "tooltip": "Go back to the previous step"
+        }
+    }
+}

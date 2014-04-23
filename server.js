@@ -26,7 +26,7 @@ var week = (day * 7);
 var month = (day * 30);
 
 /** Express Settings */
-app.set('port', process.env.PORT || 5000);
+app.set('port', host.port || 5000);
 //app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(express.compress());

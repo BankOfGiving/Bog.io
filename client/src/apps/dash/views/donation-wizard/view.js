@@ -4,13 +4,7 @@ define([ 'postal', 'view_base', 'text!./manifest.json' ],
             initialize: function (args) {
                 var self = this;
                 var step = args.step;
-                var model = args.model || {
-                    "this": "is",
-                    "a": "test",
-                    "of": "router",
-                    "data": "persistence",
-                    "version": 1
-                };
+                var model = args.model || {};
 
                 var manifest = JSON.parse(manifest_text);
                 self.base_initialize(self.el, manifest, function () {

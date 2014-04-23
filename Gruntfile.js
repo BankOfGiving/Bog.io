@@ -66,6 +66,17 @@ module.exports = function (grunt) {
                     "client/src/styles/dash.min.css": "client/src/styles/dash/dash.less"
                 }
             },
+            auth: {
+                options: {
+                    //cleancss: true,
+                    strictImports: true,
+                    strictMath: true,
+                    strictUnits: true
+                },
+                files: {
+                    "client/src/styles/auth.min.css": "client/src/styles/auth/auth.less"
+                }
+            },
             deploy: {
                 options: {
                     compress: true,
@@ -75,6 +86,7 @@ module.exports = function (grunt) {
                 },
                 files: [
                     { "client/dist/styles/pub.min.css": "client/src/styles/pub.min.css" },
+                    { "client/dist/styles/auth.min.css": "client/src/styles/auth.min.css" },
                     { "client/dist/styles/dash.min.css": "client/src/styles/dash.min.css" }
                 ]
             }
@@ -86,6 +98,7 @@ module.exports = function (grunt) {
                 },
                 files: [
                     { 'client/src/styles/pub.min.css': 'client/src/styles/pub.min.css' },
+                    { 'client/src/styles/auth.min.css': 'client/src/styles/auth.min.css' },
                     { 'client/src/styles/dash.min.css': 'client/src/styles/dash.min.css' }
                 ]
             }
@@ -358,6 +371,7 @@ module.exports = function (grunt) {
     grunt.registerTask('concat-all', [
         'concat:src_client_lib_bog',
         'less:pub',
+        'less:auth',
         'less:dash'
     ]);
 

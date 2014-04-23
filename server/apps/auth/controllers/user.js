@@ -36,7 +36,7 @@ exports.getLogin = function (req, res) {
                     return res.redirect(ret_uri);
             }
         } else {
-            //return res.redirect('auth/');
+            return res.redirect('dash/');
         }
     }
 

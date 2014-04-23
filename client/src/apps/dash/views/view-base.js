@@ -44,7 +44,7 @@ define([ 'jquery', 'underscore', 'backbone', 'bootstrap', 'postal', 'require' ],
                     var zones = $(".zone").css('border', '1px solid #FF0000');
                 }
                 if (self.page_lock) {
-                    $(window).bind('beforeunload', function (e) {
+                    $(window).on('beforeunload', function (e) {
                         return 'are you sure you want to leave the page?';
                     });
                 }

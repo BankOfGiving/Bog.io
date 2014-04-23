@@ -335,8 +335,9 @@ define([ 'jquery', 'underscore', 'backbone', 'moment', 'postal', 'bog', 'text!./
                             case 'form-group':
                                 if (key_text) {
                                     if (key_text.hasOwnProperty('label')) {
-                                        $(element).children('label').text(key_text.label);
-                                        $(element).children('input').attr('placeholder', key_text.placeholder);
+                                        $(element).children("label").text(key_text.label);
+                                        $(element).children("input").attr("placeholder", key_text.placeholder);
+                                        $(element).children("textarea").attr("placeholder", key_text.placeholder);
                                     }
                                 } else {
                                     if (show_placeholder) $(element).children('label').text(placeholder_text);

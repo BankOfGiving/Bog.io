@@ -1,12 +1,14 @@
 <form class="form-horizontal">
     <fieldset>
-        <div class="form-group">
-            <label for="contact_name" class="col-lg-2 control-label">Name</label>
 
-            <div class="col-lg-10">
+        <div class="form-group col-md-3" data-localize-key="form.contact_name" data-localize-target="form-group">
+            <label for="contact_name" class="control-label"></label>
+
+            <div class="col-md-9">
                 <input type="text" class="form-control" id="contact_name" placeholder="John Smith">
             </div>
         </div>
+
         <div class="form-group">
             <label for="contact_email" class="col-lg-2 control-label">Email</label>
 
@@ -25,12 +27,11 @@
             <label for="contact_notes" class="col-lg-2 control-label">Notes</label>
 
             <div class="col-lg-10">
-                <span class="help-block">Add any additional notes such as <em><b>best time to contact</b></em>, preference of <em><b>email
-                    or phone</b></em>, etc.</span>
+                <span class="help-block">
                 <textarea class="form-control" rows="3" id="contact_notes"></textarea>
             </div>
         </div>
     </fieldset>
 </form>
-<a class="btn btn-warning" id="step-btn-prev">Back</a>
-<a class="btn btn-success" id="step-btn-next">Next</a>
+<a class="btn btn-warning" id="step-btn-prev" data-localize-key="buttons.previous" data-localize-target="button"></a>
+<a class="btn btn-warning" id="step-btn-next" data-localize-key="buttons.next" data-localize-target="button"></a>

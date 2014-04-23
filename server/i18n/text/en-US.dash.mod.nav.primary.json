@@ -1,0 +1,12 @@
+{
+    "module": {
+        "title": "",
+        "description": ""
+    },
+    "nav": {
+        "home": "Home",
+        "blog": "Blog",
+        "philosophy": "Philosophy",
+        "about": "About"
+    }
+}

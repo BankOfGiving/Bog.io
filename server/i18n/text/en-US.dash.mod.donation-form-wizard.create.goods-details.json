@@ -5,5 +5,31 @@
     },
     "step": {
         "title": "Give us the details..."
+    },
+    "form": {
+        "short-desc": {
+            "label": "What are you donating?",
+            "placeholder": "Infant Clothes, Television, Bicycle, etc"
+        },
+        "reason": {
+            "label": "Why are you donating...",
+            "placeholder": "Spring Cleaning, Toy Drive, etc.",
+            "helper": ""
+        },
+        "long-desc": {
+            "label": "Add some detail...",
+            "placeholder": "Add any additional notes such as <em><b>best time to contact</b></em>, preference of <em><b>email<or phone</b></em>, etc.",
+            "helper": ""
+        }
+    },
+    "buttons": {
+        "previous": {
+            "label": "Previous",
+            "tooltip": "Go back to the previous step"
+        },
+        "next": {
+            "label": "Next",
+            "tooltip": "Proceed to the next step"
+        }
     }
 }

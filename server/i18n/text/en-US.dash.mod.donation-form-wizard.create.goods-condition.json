@@ -4,19 +4,30 @@
         "description": ""
     },
     "step": {
-        "title": "What are you offering?"
+        "title": "What condition is it in?"
     },
-    "types": {
-        "goods": {
-            "name": "Goods",
-            "description": "Do you make quilts, pottery, or jewelry that you'd like share? Has your child outgrown his infant clothes?  Goods are anything tangible that you'd like to donate."
+    "conditions": {
+        "home-made": {
+            "name": "Home-made",
+            "description": "I make goods and/or crafts at home that I would like to donate.."
         },
-        "services": {
-            "name": "Services",
-            "description": "Do you have a special skill, talent or hobby that you'd like to share with others? Select a service donation and give the gift of your expertise to those who need it."
+        "new": {
+            "name": "New",
+            "description": "My donation is a brand new retail product still in package and never used."
+        },
+        "gently-used": {
+            "name": "Gently Used",
+            "description": "I am donating an item that I've used only briefly but is still in great condition."
+        },
+        "well-used": {
+            "name": "Well Used",
+            "description": "My donation has been well loved and might be perfect for someone else."
         }
     },
     "buttons": {
-        "previous": "Previous"
+        "previous": {
+            "label": "Previous",
+            "tooltip": "Go back to the previous step"
+        }
     }
 }

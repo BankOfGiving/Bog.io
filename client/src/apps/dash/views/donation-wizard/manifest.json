@@ -10,7 +10,7 @@
     "modules": [
         {
             "mod_type": "titlebar",
-            "uid": "dash",
+            "uid": "pub",
             "zone": "titlebar-1",
             "localize": true,
             "options": {}
@@ -23,39 +23,27 @@
             "options": {}
         },
         {
-            "mod_type": "social",
-            "uid": "header",
-            "zone": "header-2",
-            "localize": false,
-            "options": {
-                "layout": "horiz-1"
-            }
-        },
-        {
             "mod_type": "nav",
             "uid": "primary",
             "zone": "header-2",
-            "clean": true,
             "localize": true,
             "options": {
                 "layout": "horiz-1"
-            }
-        },
-        {
-            "mod_type": "nav",
-            "uid": "secondary",
-            "zone": "content-2",
-            "clean": true,
-            "localize": true,
-            "options": {
-                "layout": "vert-1"
             }
         },
         {
             "mod_type": "separator",
             "zone": "header-3",
-            "localize": false,
-            "options": {}
+            "localize": false
+        },
+        {
+            "mod_type": "nav",
+            "uid": "secondary",
+            "zone": "content-2",
+            "localize": true,
+            "options": {
+                "layout": "vert-2"
+            }
         },
         {
             "mod_type": "donation-form-wizard",

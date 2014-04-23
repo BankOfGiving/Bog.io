@@ -7,8 +7,29 @@
             "mod_type": "titlebar",
             "uid": "pub",
             "zone": "titlebar-1",
-            "localize": false,
+            "localize": true,
             "options": {}
+        },
+        {
+            "mod_type": "masthead",
+            "uid": "home",
+            "zone": "header-1",
+            "localize": true,
+            "options": {}
+        },
+        {
+            "mod_type": "nav",
+            "uid": "primary",
+            "zone": "header-2",
+            "localize": true,
+            "options": {
+                "layout": "horiz-1"
+            }
+        },
+        {
+            "mod_type": "separator",
+            "zone": "header-3",
+            "localize": false
         },
         {
             "mod_type": "nav",
@@ -16,7 +37,7 @@
             "zone": "content-2",
             "localize": true,
             "options": {
-                "layout": "vert-1"
+                "layout": "vert-2"
             }
         },
         {

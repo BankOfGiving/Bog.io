@@ -1,10 +1,10 @@
 {
     "app": "dash",
-    "view": "events",
+    "view": "donations",
     "layout": "layout-3",
-    "data_api": "/api/data/events/",
+    "data_api": "/api/data/donations/",
     "initial_set": {
-        "entity": "events",
+        "entity": "donation",
         "type": "",
         "text": "",
         "sort_key": "lastModifiedAt",
@@ -13,25 +13,44 @@
     },
     "pubsub": {
         "data_channel_id": "dash",
-        "data_topic": "search.results.events"
+        "data_topic": "search.results.donations"
     },
     "modules": [
         {
             "mod_type": "titlebar",
             "uid": "pub",
             "zone": "titlebar-1",
-            "clean": true,
+            "localize": true,
+            "options": {}
+        },
+        {
+            "mod_type": "masthead",
+            "uid": "home",
+            "zone": "header-1",
             "localize": true,
             "options": {}
         },
         {
             "mod_type": "nav",
-            "uid": "secondary",
-            "zone": "content-2",
-            "clean": true,
+            "uid": "primary",
+            "zone": "header-2",
             "localize": true,
             "options": {
-                "layout": "vert-1"
+                "layout": "horiz-1"
+            }
+        },
+        {
+            "mod_type": "separator",
+            "zone": "header-3",
+            "localize": false
+        },
+        {
+            "mod_type": "nav",
+            "uid": "secondary",
+            "zone": "content-2",
+            "localize": true,
+            "options": {
+                "layout": "vert-2"
             }
         },
         {
@@ -60,13 +79,13 @@
         },
         {
             "mod_type": "search-result-container",
-            "uid": "search-results-events",
+            "uid": "search-results-donations",
             "zone": "content-3",
             "clean": true,
             "localize": false,
             "pubsub": {
                 "data_channel_id": "dash",
-                "data_topic": "search.results.events"
+                "data_topic": "search.results.donations"
             }
         },
         {

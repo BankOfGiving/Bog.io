@@ -3,8 +3,9 @@ define([ 'postal', 'module_base', 'text!./wizard-container.html' ],
         return mod_base.extend({
             api_root: "/api/mod/donation-form-wizard",
             template_root: "/modules/donation-form-wizard/",
-            page_lock: true,
+            page_lock: false,
             container: null,
+            goods_max_steps: 8,
             initialize: function (el, o, callback) {
                 var self = this;
                 _.bindAll(this, 'render_intro');
@@ -13,7 +14,7 @@ define([ 'postal', 'module_base', 'text!./wizard-container.html' ],
                         channel: "dash",
                         topic: "donation-wizard",
                         callback: function (data) {
-                            var model = data.model;
+                            self.model = data.model;
                             self.render();
                         }
                     });
@@ -35,7 +36,7 @@ define([ 'postal', 'module_base', 'text!./wizard-container.html' ],
                     $("#step-btn-next").off().on('click', function (e) {
                         e.preventDefault();
                         self.render_type(function () {
-                            self.update_progress(2, 7);
+                            self.update_progress(2, self.goods_max_steps);
                         });
                     });
                     if (callback) {
@@ -46,22 +47,35 @@ define([ 'postal', 'module_base', 'text!./wizard-container.html' ],
             render_type: function (callback) {
                 var self = this;
                 self.render_step('type', function () {
-                    $("#step-btn-goods").off().on('click', function (e) {
+                    $("a.list-group-item").off().bind('click', function (e) {
                         e.preventDefault();
-                        self.render_goods_details(function () {
-                            self.update_progress(3, 7);
-                        });
+                        var donation_type = e.target.getAttribute("data-value");
+                        if (!donation_type) {
+                            donation_type = e.target.parentElement.getAttribute("data-value");
+                        }
+                        if (donation_type) {
+                            self.model.type = donation_type;
+                            switch (donation_type) {
+                                case "goods":
+                                    self.render_goods_details(function () {
+                                        self.update_progress(3, self.goods_max_steps);
+                                    });
+                                    break;
+                                case "services":
+                                    self.render_service_details(function () {
+                                        self.update_progress(3, self.goods_max_steps);
+                                    });
+                                    break;
+                            }
+                        } else {
+                            console.log("BAD TARGET");
+                        }
                     });
-                    $("#step-btn-services").off().on('click', function (e) {
-                        e.preventDefault();
-                        self.render_service_details(function () {
-                            self.update_progress(3, 7);
-                        });
-                    });
+
                     $("#step-btn-prev").off().on('click', function (e) {
                         e.preventDefault();
                         self.render_intro(function () {
-                            self.update_progress(1, 7);
+                            self.update_progress(1, self.goods_max_steps);
                         });
                     });
                     if (callback) {
@@ -78,13 +92,16 @@ define([ 'postal', 'module_base', 'text!./wizard-container.html' ],
                     $("#step-btn-prev").off().on('click', function (e) {
                         e.preventDefault();
                         self.render_type(function () {
-                            self.update_progress(4, 7);
+                            self.update_progress(2, self.goods_max_steps);
                         });
                     });
                     $("#step-btn-next").off().on('click', function (e) {
                         e.preventDefault();
-                        self.render_goods_contact(function () {
-                            self.update_progress(4, 7);
+                        self.model.title = $("#detail_short_desc").val();
+                        self.model.reason = $("#detail_reason").val();
+                        self.model.description = $("#detail_long_desc").val();
+                        self.render_goods_condition(function () {
+                            self.update_progress(4, self.goods_max_steps);
                         });
                     });
                     if (callback) {
@@ -92,18 +109,243 @@ define([ 'postal', 'module_base', 'text!./wizard-container.html' ],
                     }
                 });
             },
+            render_goods_condition: function (callback) {
+                var self = this;
+                self.render_step('goods-condition', function () {
+                    $("#step-btn-prev").off().on('click', function (e) {
+                        e.preventDefault();
+                        self.render_goods_details(function () {
+                            self.update_progress(4, self.goods_max_steps);
+                        });
+                    });
+                    $("a.list-group-item").off().on('click', function (e) {
+                        e.preventDefault();
+                        var goods_condition = e.target.getAttribute("data-value");
+                        if (!goods_condition) {
+                            goods_condition = e.target.parentElement.getAttribute("data-value");
+                        } else {
+                            return;
+                        }
+                        if (goods_condition) {
+                            self.model.condition = goods_condition;
+                            self.render_goods_range_type(function () {
+                                self.update_progress(5, self.goods_max_steps);
+                            });
+                        }
+                    });
+                    if (callback) {
+                        callback();
+                    }
+                });
+            },
+
+            render_goods_range_type: function (callback) {
+                var self = this;
+                self.render_step('goods-range-type', function () {
+                    $("#step-btn-prev").off().on('click', function (e) {
+                        e.preventDefault();
+                        self.render_goods_condition(function () {
+                            self.update_progress(4, self.goods_max_steps);
+                        });
+                    });
+                    $("a.list-group-item").off().on('click', function (e) {
+                        e.preventDefault();
+                        var range_type = e.target.getAttribute("data-value");
+                        if (!range_type) {
+                            range_type = e.target.parentElement.getAttribute("data-value");
+                        } else {
+                            return;
+                        }
+                        if (range_type) {
+                            self.model.range_type = range_type;
+                            switch (range_type) {
+                                case "any":
+                                    self.render_goods_shipping_required(function () {
+                                        self.update_progress(6, self.goods_max_steps);
+                                    });
+                                    break;
+                                case "local":
+                                    self.render_goods_local_receipt_type(function () {
+                                        self.update_progress(6, self.goods_max_steps);
+                                    });
+                                    break;
+                            }
+                        }
+                    });
+                    if (callback) {
+                        callback();
+                    }
+                });
+            },
+
+            render_goods_local_receipt_type: function (callback) {
+                var self = this;
+                self.render_step('goods-local-receipt-type', function () {
+                    $("#step-btn-prev").off().on('click', function (e) {
+                        e.preventDefault();
+                        self.render_goods_range_type(function () {
+                            self.update_progress(5, self.goods_max_steps);
+                        });
+                    });
+                    $("a.list-group-item").off().on('click', function (e) {
+                        e.preventDefault();
+                        var local_receipt_type = e.target.getAttribute("data-value");
+                        self.model.local_receipt_type = local_receipt_type;
+                        switch (local_receipt_type) {
+                            case "pickup":
+                                self.render_goods_local_pickup(function () {
+                                    self.update_progress(7, self.goods_max_steps);
+                                });
+                                break;
+                            case "delivery":
+                                self.render_goods_local_delivery(function () {
+                                    self.update_progress(7, self.goods_max_steps);
+                                });
+                                break;
+                        }
+                    });
+                    if (callback) {
+                        callback();
+                    }
+                });
+            },
+
+            render_goods_local_pickup: function (callback) {
+                var self = this;
+                self.render_step('goods-local-pickup', function () {
+                    $("#step-btn-prev").off().on('click', function (e) {
+                        e.preventDefault();
+                        self.render_goods_local_receipt_type(function () {
+                            self.update_progress(6, self.goods_max_steps);
+                        });
+                    });
+                    $("step-btn-next").off().on('click', function (e) {
+                        e.preventDefault();
+                        self.render_goods_contact(function () {
+                            self.update_progress(8, self.goods_max_steps);
+                        });
+                    });
+                    if (callback) {
+                        callback();
+                    }
+                });
+            },
+            render_goods_local_delivery: function (callback) {
+                var self = this;
+                self.render_step('goods-local-delivery', function () {
+                    $("#step-btn-prev").off().on('click', function (e) {
+                        e.preventDefault();
+                        self.render_goods_local_receipt_type(function () {
+                            self.update_progress(6, self.goods_max_steps);
+                        });
+                    });
+                    $("step-btn-next").off().on('click', function (e) {
+                        e.preventDefault();
+                        self.render_goods_contact(function () {
+                            self.update_progress(8, self.goods_max_steps);
+                        });
+                    });
+                    if (callback) {
+                        callback();
+                    }
+                });
+            },
+
+            render_goods_shipping_required: function (callback) {
+                var self = this;
+                self.render_step('goods-shipping-required', function () {
+                    $("#step-btn-prev").off().on('click', function (e) {
+                        e.preventDefault();
+                        self.render_goods_range_type(function () {
+                            self.update_progress(5, self.goods_max_steps);
+                        });
+                    });
+                    $("a.list-group-item").off().on('click', function (e) {
+                        e.preventDefault();
+                        var local_receipt_type = e.target.getAttribute("data-value");
+                        self.model.local_receipt_type = local_receipt_type;
+                        switch (local_receipt_type) {
+                            case "yes":
+                                self.render_goods_other_details(function () {
+                                    self.update_progress(7, self.goods_max_steps);
+                                });
+                                break;
+                            case "delivery":
+                                self.render_goods_shipping_included(function () {
+                                    self.update_progress(7, self.goods_max_steps);
+                                });
+                                break;
+                        }
+                    });
+                    if (callback) {
+                        callback();
+                    }
+                });
+            },
+
+            render_goods_other_details: function (callback) {
+                var self = this;
+                self.render_step('goods-other-details', function () {
+                    $("#step-btn-prev").off().on('click', function (e) {
+                        e.preventDefault();
+                        self.render_goods_shipping_required(function () {
+                            self.update_progress(6, self.goods_max_steps);
+                        });
+                    });
+                    $("step-btn-next").off().on('click', function (e) {
+                        e.preventDefault();
+                        self.render_goods_contact(function () {
+                            self.update_progress(8, self.goods_max_steps);
+                        });
+                    });
+                });
+                if (callback) {
+                    callback();
+                }
+            },
+
+            render_goods_shipping_included: function (callback) {
+                var self = this;
+                self.render_step('goods-shipping-included', function () {
+                    $("#step-btn-prev").off().on('click', function (e) {
+                        e.preventDefault();
+                        self.render_goods_shipping_required(function () {
+                            self.update_progress(6, self.goods_max_steps);
+                        });
+                    });
+                    $("step-btn-next").off().on('click', function (e) {
+                        e.preventDefault();
+                        self.render_goods_contact(function () {
+                            self.update_progress(8, self.goods_max_steps);
+                        });
+                    });
+                });
+                if (callback) {
+                    callback();
+                }
+            },
+
             render_goods_contact: function (callback) {
                 var self = this;
                 self.render_step('goods-contact', function () {
                     $("#step-btn-prev").off().on('click', function (e) {
                         e.preventDefault();
-                        self.render_type(function () {
-                            self.update_progress(5, 7);
-                        });
+                        e.addClass("disabled");
+                        //self.render_type(function () {
+                        //    self.update_progress(5, 7);
+                        //});
                     });
                     $("#step-btn-next").off().on('click', function (e) {
                         e.preventDefault();
-                        self.render_goods_contact(function () {
+                        var contact = {
+                            "name": $("#contact_name").val(),
+                            "email": $("#contact_email").val(),
+                            "phone": $("#contact_phone").val(),
+                            "notes": $("#contact_notes").val()
+                        };
+                        self.contacts = self.contacts || [];
+                        self.contacts.push(contact);
+                        self.render_goods_range_type(function () {
                             self.update_progress(5, 7);
                         });
                     });
@@ -111,34 +353,6 @@ define([ 'postal', 'module_base', 'text!./wizard-container.html' ],
                         callback();
                     }
                 });
-            },
-            render_goods_local_only: function (callback) {
-                var self = this;
-                require(['text!' + self.template_root + 'step-local-only.html'], function (layout) {
-                    self.base_render(layout, window.culture, function () {
-                        $("#step-btn-prev").on('click', function (e) {
-                            e.preventDefault();
-                            window.location.href = '#/donations/create/33401573';
-                        });
-                        $("#step-btn-yes").on('click', function (e) {
-                            e.preventDefault();
-                            window.location.href = '#/donations/create/5e9e89cb';
-                        });
-                        $("#step-btn-no").on('click', function (e) {
-                            e.preventDefault();
-                            window.location.href = '#/donations/create/7c74eba6';
-                        });
-                        if (callback) {
-                            callback();
-                        }
-                    });
-                });
-            },
-            render_goods_shipping_required: function (callback) {
-
-            },
-            render_goods_shipping_included: function (callback) {
-
             },
             //----------------------------------------------------------------------------------------------------------
             // SERVICES DONATION
@@ -165,6 +379,7 @@ define([ 'postal', 'module_base', 'text!./wizard-container.html' ],
             // COMMON FUNCTIONS
             //----------------------------------------------------------------------------------------------------------
             update_progress: function (curr, cap) {
+                console.log(this.model);
                 var $bar = $('.progress > .progress-bar-success');
                 var $bg = $('.progress > .progress-bar-info');
                 var step = 100 / cap;

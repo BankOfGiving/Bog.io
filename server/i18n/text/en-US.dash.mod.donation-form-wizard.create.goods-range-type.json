@@ -1,0 +1,26 @@
+{
+    "module": {
+        "title": "",
+        "description": ""
+    },
+    "step": {
+        "title": "Range?",
+        "help-text": "Is your donation available to a specific area or can it be shipped?"
+    },
+    "range-type": {
+        "any": {
+            "name": "Shipping Available",
+            "description": "Select this option if you are willing to ship your donation to someone outside of your area."
+        },
+        "local": {
+            "name": "Local Only",
+            "description": "Select this option to set up delivery or pickup options."
+        }
+    },
+    "buttons": {
+        "previous": {
+            "label": "Previous",
+            "tooltip": "Go back to the previous step"
+        }
+    }
+}

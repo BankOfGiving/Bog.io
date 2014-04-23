@@ -1,0 +1,29 @@
+{
+    "module": {
+        "title": "",
+        "description": ""
+    },
+    "step": {
+        "title": "Are you willing to cover shipping costs?",
+        "help-text": ""
+    },
+    "shipping": {
+        "included": {
+            "no": {
+                "name": "All Included!",
+                "description": "I will cover any shipping costs that may be required."
+            },
+            "yes": {
+                "name": "Not this time",
+                "description": "Any shipping costs will be the responsibility of the beneficiary."
+            }
+        }
+
+    },
+    "buttons": {
+        "previous": {
+            "label": "Previous",
+            "tooltip": "Go back to the previous step"
+        }
+    }
+}
