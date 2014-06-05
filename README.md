@@ -1,8 +1,10 @@
 BOG
 ===
-BOG is a test site assembled to test various concepts and provide a functional model for the demonstration of those concepts.  While this is a functional app it's likely to be a little rough around the edges as new concepts are introduced and rounded out.
+BOG is a test site assembled to demonstrate as well as provide a functional various coding concepts.  While this is a functional app it's likely to be a little rough around the edges as new concepts are introduced and rounded out.
 
 The overall goal of this project is to demonstrate the extents to which an application can be modularized and functionality decoupled.
+
+The current build can be viewed here [http://alpha.bankofgiving.com/| BOG (Alpha)]
 
 Table of Contents
 -----------------
