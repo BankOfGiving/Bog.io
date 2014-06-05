@@ -37,7 +37,7 @@ The goal of the public app is to create a functional platform with is populated 
 **Javascript:**  [Backbone.js](http://backbonejs.org/), [RequireJS](http://requirejs.org/), [PostalJS](https://github.com/postaljs/postal.js)
 
 ###Auth App
-This app was taken from the [Hackathon Starter](https://github.com/sahat/hackathon-starter) project.  It has been modified to fit the style and this system.
+This app was taken from the [Hackathon Starter](https://github.com/sahat/hackathon-starter) project.  It has been modified to fit the style and fintionality of this system.
 
 ###Dashboard App
 The Dashboard applications is slated to use AngularJS for the front end communication.  As Angular is a heavier framework, it's being used in an area that's less trafficked than the public site.
