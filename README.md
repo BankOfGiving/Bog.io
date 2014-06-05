@@ -4,7 +4,7 @@ BOG is a test site assembled to demonstrate as well as provide a functional vari
 
 The overall goal of this project is to demonstrate the extents to which an application can be modularized and functionality decoupled.
 
-The current build can be viewed here [http://alpha.bankofgiving.com/| BOG (Alpha)]
+The current build can be viewed here: [BOG (Alpha)](http://alpha.bankofgiving.com)
 
 Table of Contents
 -----------------
