@@ -1,3 +1,5 @@
+![Travis-CI](https://travis-ci.org/BankOfGiving/Bog.io.svg)
+
 BOG
 ===
 BOG is a test site assembled to demonstrate as well as provide a functional various coding concepts.  While this is a functional app it's likely to be a little rough around the edges as new concepts are introduced and rounded out.
