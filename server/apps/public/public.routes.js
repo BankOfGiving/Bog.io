@@ -1,12 +1,13 @@
 module.exports = function (app, express) {
     var path = require('path');
+    var errorHandler = require('errorhandler');
     var base_uri = '';
 
     // Environment specific configs
     var asset_location = 'src';
     switch (app.get('env')) {
         case 'development':
-            app.use(express.errorHandler());
+            app.use(errorHandler());
             break;
         case 'staging':
             asset_location = 'dist';
