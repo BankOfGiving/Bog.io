@@ -7,6 +7,7 @@ var morgan  = require('morgan');
 var cookieParser = require('cookie-parser');
 var methodOverride = require('method-override');
 var errorHandler = require('errorhandler');
+var session = require('express-session');
 
 var http = require('http');
 var passport = require('passport');
@@ -15,20 +16,19 @@ var domain = require('domain');
 var expressValidator = require('express-validator');
 var path = require('path');
 
-var csrf = require('csurf');
-var favicon = require('serve-favicon');
+//var csrf = require('csurf');
+//var favicon = require('serve-favicon');
 
 // Configs
 var config_db = require('./secrets/db.mongo');
 var config_host = require('./secrets/env.host');
 var sessionStore = require('./secrets/db.sessionStore');
-//var MongoStore = require('connect-mongo')(express);
+var MongoStore = require('connect-mongo')(express);
 
-/*mongoose.connect(config_db.connectionString);
+mongoose.connect(config_db.connectionString);
 mongoose.connection.on('error', function () {
     console.error('✗ Mongo Connection Error. Please make sure Mongo is running.');
 });
-*/
 
 var app = express();
 var hour = 3600000;
@@ -58,16 +58,15 @@ app.use(methodOverride());
 
 //app.use(favicon());
 //app.use(csrf());
-//app.use(session({
-//    secret: sessionStore.secret,
-//    maxAge: sessionStore.maxAge,
-//    store: new MongoStore({
-//        db: mongoose.connection.db,
-//        auto_reconnect: true
-//    })
-//}));
-//app.use(flash());
-// app.use(app.router);
+app.use(session({
+    secret: sessionStore.secret,
+    maxAge: sessionStore.maxAge,
+    store: new MongoStore({
+        db: mongoose.connection.db,
+        auto_reconnect: true
+    })
+}));
+app.use(flash());
 if (process.env.NODE_ENV === 'development') {
     app.use(errorHandler());
 }
@@ -76,8 +75,6 @@ if (process.env.NODE_ENV === 'development') {
 require('./server/apps/app.routes')(app, express);
 
 /** Server Action */
-
-
 var server = http.createServer(app).listen(app.get('port'), function () {
     console.log('ENV: ' + process.env.NODE_ENV);
     console.log('WWW: ' + config_host.protocol + ':' + config_host.uri + ((config_host.port != 80) ? ':' + config_host.port : ''));
@@ -85,7 +82,7 @@ var server = http.createServer(app).listen(app.get('port'), function () {
     console.log("Express server listening on port " + app.get('port') + " in " + app.settings.env);
 });
 
-/** Server Error Handling *//*
+/** Server Error Handling **/
 
 server.on('request', function (req, res) {
     var error_handler_domain = domain.create();
@@ -94,4 +91,4 @@ server.on('request', function (req, res) {
     error_handler_domain.on('error', function (err) {
         console.log(err.message);
     });
-});*/
+});
