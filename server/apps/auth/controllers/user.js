@@ -3,13 +3,12 @@ var passport = require('passport');
 //var _ = require('underscore');
 var User = require('../../../data/models/bog.data.models.user');
 
-/**
- * GET /login
- * Login page.
- */
-
 exports.getLogin = function (req, res) {
-    console.log('SESSION:  ' + req.session.ret_uri);
+    if(req.session){
+        if(req.session.ret_uri){
+            console.log('SESSION:  ' + req.session.ret_uri);
+        }
+    }
     if (req.query.ret) {
         req.session.ret_uri = req.query.ret;
     }
