@@ -5,7 +5,7 @@ BOG
 
 BOG is a test site assembled to demonstrate as well as provide a functional various coding concepts.  While this is a functional app it's likely to be a little rough around the edges as new concepts are introduced and rounded out.
 
-The overall goal of this project is to demonstrate the extents to which an application can be modularized and functionality decoupled.
+The overall goal of this project is to demonstrate the extents to which an application can be modularized and functionality decoupled.  
 
 The current build can be viewed here: [BOG (Alpha)](http://alpha.bankofgiving.com)
 
@@ -72,10 +72,11 @@ Each module instance generates a unique key that identifies it on the server.  T
 
 To learn more about the module manifest see the wiki page: [here](#)
 
-##API
-
 ##Domain Logic
+The "domain" layer handles all of the business logic necessary to process requests.  As an abstraction layer above the data layer it provides all validation, verification and maintains logical and data integrity for the application.
 
 ##Data Layer
+Thin abstration over the ORD (Mongoose).  Provides an accessible data api to the domain layer withoput requiring knowledge of the underlying trechnology.  Theoretically, the ORD or database can be replaced without the need to alter the rest of the applicaiton provided the data structure and interfaces remain unchanged. 
 
 ##Build and Deployment
+Grunt.js is used for validation, compression, and packaging of all layers.  Currently, TeamCity is used to build and deploy the applicaiton from development, to staging and on to production.  
