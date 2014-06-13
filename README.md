@@ -40,7 +40,7 @@ The goal of the public app is to create a functional platform with is populated 
 **Javascript:**  [Backbone.js](http://backbonejs.org/), [RequireJS](http://requirejs.org/), [PostalJS](https://github.com/postaljs/postal.js)
 
 ###Auth App
-This app was taken from the [Hackathon Starter](https://github.com/sahat/hackathon-starter) project.  It has been modified to fit the style and funtionality of this system.
+This app was taken from the [Hackathon Starter](https://github.com/sahat/hackathon-starter) project.  It has been modified to fit the style and functionality of this system.
 
 ###Dashboard App
 The Dashboard applications is slated to use AngularJS for the front end communication.  As Angular is a heavier framework, it's being used in an area that's less trafficked than the public site.
@@ -76,7 +76,7 @@ To learn more about the module manifest see the wiki page: [here](#)
 The "domain" layer handles all of the business logic necessary to process requests.  As an abstraction layer above the data layer it provides all validation, verification and maintains logical and data integrity for the application.
 
 ##Data Layer
-Thin abstration over the ORD (Mongoose).  Provides an accessible data api to the domain layer withoput requiring knowledge of the underlying trechnology.  Theoretically, the ORD or database can be replaced without the need to alter the rest of the applicaiton provided the data structure and interfaces remain unchanged. 
+Thin abstraction over the ORD (Mongoose).  Provides an accessible data api to the domain layer without requiring knowledge of the underlying technology.  Theoretically, the ORD or database can be replaced without the need to alter the rest of the application provided the data structure and interfaces remain unchanged. 
 
 ##Build and Deployment
-Grunt.js is used for validation, compression, and packaging of all layers.  Currently, TeamCity is used to build and deploy the applicaiton from development, to staging and on to production.  
+Grunt.js is used for validation, compression, and packaging of all layers.  Currently, TeamCity is used to build and deploy the application from development, to staging and on to production.  
