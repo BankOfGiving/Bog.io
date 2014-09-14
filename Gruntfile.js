@@ -357,9 +357,9 @@ module.exports = function (grunt) {
     );
 
     grunt.registerTask('validate-all', [
-        'htmlhint:src_client_apps_pub',
-        'htmlhint:src_client_apps_dash',
-        'htmlhint:src_client_mod',
+        //'htmlhint:src_client_apps_pub',
+        //'htmlhint:src_client_apps_dash',
+        //'htmlhint:src_client_mod',
 
         'jshint:src_client_apps_pub',
         'jshint:src_client_apps_dash',

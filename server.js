@@ -42,8 +42,8 @@ app.set('view engine', 'jade');
 app.use(compression());
 app.use(morgan('dev'));
 app.use(cookieParser());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
+//app.use(bodyParser.json());
+//app.use(bodyParser.urlencoded());
 app.use(expressValidator());
 app.use(methodOverride());
 
